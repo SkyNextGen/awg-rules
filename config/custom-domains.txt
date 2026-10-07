@@ -54,6 +54,7 @@ torrent.by
 torrindex.net
 wstracker.online
 ysagin.top
+dnschecker.org
 
 # Full Google Play Services block explicitly requested by the user.
 accounts.google.com
