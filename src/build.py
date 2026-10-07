@@ -187,7 +187,7 @@ def build():
         raise ValueError('Dedicated CDN IPs require a source URL')
     previous = json.loads((dist / 'bgp-snapshot.json').read_text()) if (dist / 'bgp-snapshot.json').exists() else {}
     asns = sorted({x for group in cfg['service_asns'].values() for x in group})
-    if not set(asns) <= {62041, 59930, 44907, 211157, 32934, 63293}:
+    if not set(asns) <= {62041, 62014, 59930, 44907, 211157, 32934, 63293}:
         raise ValueError('Unreviewed ASN expansion forbidden')
     snapshot = bgp(asns, previous, cfg, report)
     suffix = prune(rules['domain_suffix'])
@@ -198,7 +198,9 @@ def build():
         merged['domain'] = exact
     else:
         merged.pop('domain', None)
-    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + cdn['ip_cidr'])
+    custom_ips = lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())
+    report['sources']['custom-ip-cidrs.txt'] = len(custom_ips)
+    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + cdn['ip_cidr'] + custom_ips)
     merged['ip_cidr'] = prefixes
     total = len(suffix) + len(exact)
     if not cfg['min_total_domains'] <= total <= cfg['max_total_domains'] or len(prefixes) > cfg['max_prefixes']:

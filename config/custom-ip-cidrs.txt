@@ -1,0 +1,7 @@
+# Reviewed 2026-10-07: official Telegram list https://core.telegram.org/resources/cidr.txt
+# Complements BGP, including the official IPv6 range routed by another origin ASN.
+# Overlaps are merged with BGP; no shared hosting/CDN ASN expansion.
+149.154.168.0/22
+91.108.16.0/22
+2001:b28:f23f::/48
+2a0a:f280::/32
