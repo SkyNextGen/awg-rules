@@ -26,6 +26,34 @@ jw.org
 rocksdb.org
 snaptu.com
 fbcdn-photos-a.akamaihd.net
+1337x.to
+booktracker.org
+booktracker.work
+eu.org
+filmitorrent.net
+freetp.org
+kinozal.me
+newstudio.tv
+nnmclub.to
+nnmstatic.win
+rustorka.com
+rutor.info
+rutor.is
+rutor.org
+rutracker.cc
+rutracker.net
+rutracker.org
+rutracker.ru
+rutracker.wiki
+rutrc.org
+rutrk.org
+stealth.si
+t-ru.org
+thepiratebay.org
+torrent.by
+torrindex.net
+wstracker.online
+ysagin.top
 
 # Full Google Play Services block explicitly requested by the user.
 accounts.google.com
