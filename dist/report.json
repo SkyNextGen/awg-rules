@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-07T13:17:55.648565+00:00",
+  "built_at": "2026-10-07T14:39:26.393631+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -13,7 +13,7 @@
     "v2fly:wbgames": 6,
     "v2fly:pornhub": 9,
     "v2fly:ubisoft": 31,
-    "custom-domains.txt": 123,
+    "custom-domains.txt": 124,
     "service-domains.txt": 25,
     "BGP:AS32934": 36,
     "BGP:AS44907": 2,
@@ -25,7 +25,7 @@
     "service-cdn.json": 0,
     "custom-ip-cidrs.txt": 4
   },
-  "domains": 1914,
+  "domains": 1915,
   "prefixes": 127,
   "ipv4": 84,
   "ipv6": 43,
@@ -70,7 +70,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T13:17:57.891532+00:00"
+      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
     },
     "44907": {
       "prefixes": [
@@ -78,7 +78,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T13:17:57.891532+00:00"
+      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
     },
     "59930": {
       "prefixes": [
@@ -87,7 +87,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T13:17:57.891532+00:00"
+      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
     },
     "62014": {
       "prefixes": [
@@ -97,7 +97,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T13:17:57.891532+00:00"
+      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
     },
     "62041": {
       "prefixes": [
@@ -109,7 +109,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T13:17:57.891532+00:00"
+      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
     },
     "63293": {
       "prefixes": [
@@ -194,7 +194,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T13:17:57.891532+00:00"
+      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
     },
     "211157": {
       "prefixes": [
@@ -203,39 +203,27 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T13:17:57.891532+00:00"
+      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
     }
   },
   "matchers": {
-    "domain_suffix": 1879,
+    "domain_suffix": 1880,
     "domain": 35,
     "domain_regex": 1,
     "ip_cidr": 127
   },
   "sha256": {
-    "routing.json": "0e2a7e0381383d6340052ddfba8b23031d81e822cb3b69954fb920f29acfc48c",
-    "routing.srs": "05ab44d0a73102590005087c926058b3259c5a6debe642d45e61ec154755a04f"
+    "routing.json": "5377d9068c66483ce6f747fe6a95e0f36c23368884cb9ce6d79d5b9441d01dcd",
+    "routing.srs": "54b01199e1ee98402f796841c97219e428a8ff79871647e2bc4e6fa08a91efcb"
   },
   "changes": {
     "domains": {
       "baseline": true,
       "added": [
-        "domain_suffix:booktracker.work",
-        "domain_suffix:eu.org",
-        "domain_suffix:freetp.org",
-        "domain_suffix:newstudio.tv",
-        "domain_suffix:rutracker.ru",
-        "domain_suffix:rutrc.org",
-        "domain_suffix:rutrk.org",
-        "domain_suffix:stealth.si",
-        "domain_suffix:t-ru.org",
-        "domain_suffix:torrent.by",
-        "domain_suffix:torrindex.net",
-        "domain_suffix:wstracker.online",
-        "domain_suffix:ysagin.top"
+        "domain_suffix:dnschecker.org"
       ],
       "removed": [],
-      "added_count": 13,
+      "added_count": 1,
       "removed_count": 0
     },
     "ipv4": {
@@ -334,37 +322,10 @@
     "custom-domains.txt": {
       "baseline": true,
       "added": [
-        "domain_suffix:1337x.to",
-        "domain_suffix:booktracker.org",
-        "domain_suffix:booktracker.work",
-        "domain_suffix:eu.org",
-        "domain_suffix:filmitorrent.net",
-        "domain_suffix:freetp.org",
-        "domain_suffix:kinozal.me",
-        "domain_suffix:newstudio.tv",
-        "domain_suffix:nnmclub.to",
-        "domain_suffix:nnmstatic.win",
-        "domain_suffix:rustorka.com",
-        "domain_suffix:rutor.info",
-        "domain_suffix:rutor.is",
-        "domain_suffix:rutor.org",
-        "domain_suffix:rutracker.cc",
-        "domain_suffix:rutracker.net",
-        "domain_suffix:rutracker.org",
-        "domain_suffix:rutracker.ru",
-        "domain_suffix:rutracker.wiki",
-        "domain_suffix:rutrc.org",
-        "domain_suffix:rutrk.org",
-        "domain_suffix:stealth.si",
-        "domain_suffix:t-ru.org",
-        "domain_suffix:thepiratebay.org",
-        "domain_suffix:torrent.by",
-        "domain_suffix:torrindex.net",
-        "domain_suffix:wstracker.online",
-        "domain_suffix:ysagin.top"
+        "domain_suffix:dnschecker.org"
       ],
       "removed": [],
-      "added_count": 28,
+      "added_count": 1,
       "removed_count": 0
     },
     "service-domains.txt": {
@@ -438,13 +399,13 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-07T13:08:29.806782+00:00",
+  "compared_to": "2026-10-07T13:17:55.648565+00:00",
   "trend": {
-    "runs": 3,
+    "runs": 4,
     "metrics": {
       "domains": {
-        "average": 1905.3,
-        "delta": 13
+        "average": 1907.8,
+        "delta": 1
       },
       "ipv4": {
         "average": 84.0,

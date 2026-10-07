@@ -2015,6 +2015,7 @@
     "domain_suffix:device-provisioning.googleapis.com",
     "domain_suffix:deviceintegrity.googleapis.com",
     "domain_suffix:dl.google.com",
+    "domain_suffix:dnschecker.org",
     "domain_suffix:eu.org",
     "domain_suffix:fbcdn-photos-a.akamaihd.net",
     "domain_suffix:fcm.googleapis.com",
