@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-07T12:44:07.374955+00:00",
+  "built_at": "2026-10-07T13:08:29.806782+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -15,6 +15,14 @@
     "v2fly:ubisoft": 31,
     "custom-domains.txt": 95,
     "service-domains.txt": 25,
+    "BGP:AS32934": 36,
+    "BGP:AS44907": 2,
+    "BGP:AS59930": 3,
+    "BGP:AS62014": 4,
+    "BGP:AS62041": 6,
+    "BGP:AS63293": 79,
+    "BGP:AS211157": 3,
+    "service-cdn.json": 0,
     "custom-ip-cidrs.txt": 4
   },
   "domains": 1901,
@@ -62,7 +70,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
+      "fetched_at": "2026-10-07T13:08:30.685709+00:00"
     },
     "44907": {
       "prefixes": [
@@ -70,7 +78,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
+      "fetched_at": "2026-10-07T13:08:30.685709+00:00"
     },
     "59930": {
       "prefixes": [
@@ -79,7 +87,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
+      "fetched_at": "2026-10-07T13:08:30.685709+00:00"
     },
     "62014": {
       "prefixes": [
@@ -89,7 +97,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
+      "fetched_at": "2026-10-07T13:08:30.685709+00:00"
     },
     "62041": {
       "prefixes": [
@@ -101,7 +109,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
+      "fetched_at": "2026-10-07T13:08:30.685709+00:00"
     },
     "63293": {
       "prefixes": [
@@ -186,7 +194,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
+      "fetched_at": "2026-10-07T13:08:30.685709+00:00"
     },
     "211157": {
       "prefixes": [
@@ -195,7 +203,7 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
+      "fetched_at": "2026-10-07T13:08:30.685709+00:00"
     }
   },
   "matchers": {
@@ -207,5 +215,202 @@
   "sha256": {
     "routing.json": "6c49d9e21f1b13d35e0a91292d4f3897b7333cb24268aac3acacd947fc09f8b0",
     "routing.srs": "51757964827f7a4ac25d4f5cdc2501ed47b6c43fdda042e5c28a8d2d889a7207"
+  },
+  "changes": {
+    "domains": {
+      "baseline": true,
+      "added": [],
+      "removed": [],
+      "added_count": 0,
+      "removed_count": 0
+    },
+    "ipv4": {
+      "baseline": true,
+      "added": [],
+      "removed": [],
+      "added_count": 0,
+      "removed_count": 0
+    },
+    "ipv6": {
+      "baseline": true,
+      "added": [],
+      "removed": [],
+      "added_count": 0,
+      "removed_count": 0
+    }
+  },
+  "source_changes": {
+    "itdog": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:discord": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:instagram": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:openai": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:telegram": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:whatsapp": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:youtube": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:facebook": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:wbgames": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:pornhub": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "v2fly:ubisoft": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "custom-domains.txt": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "service-domains.txt": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "BGP:AS32934": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "BGP:AS44907": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "BGP:AS59930": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "BGP:AS62014": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "BGP:AS62041": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "BGP:AS63293": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "BGP:AS211157": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "service-cdn.json": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
+    "custom-ip-cidrs.txt": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    }
+  },
+  "compared_to": "2026-10-07T12:44:07.374955+00:00",
+  "trend": {
+    "runs": 2,
+    "metrics": {
+      "domains": {
+        "average": 1901.0,
+        "delta": 0
+      },
+      "ipv4": {
+        "average": 84.0,
+        "delta": 0
+      },
+      "ipv6": {
+        "average": 43.0,
+        "delta": 0
+      }
+    }
   }
 }
