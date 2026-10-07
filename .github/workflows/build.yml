@@ -1,0 +1,51 @@
+name: Build routing rules
+on:
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/**'
+      - 'config/**'
+      - 'tests/**'
+      - '.github/workflows/build.yml'
+permissions:
+  contents: write
+concurrency:
+  group: routing-build
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Tests
+        run: python -m unittest discover -s tests -v
+      - name: Install official sing-box
+        run: python src/install_sing_box.py
+      - name: Build and verify
+        run: python src/build.py
+        env:
+          SING_BOX: .tools/sing-box
+      - name: Build report
+        run: cat dist/report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish verified output
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dist
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update verified routing rules [skip ci]'
+            git push
+          fi
+      - name: Telegram notification
+        if: always()
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+          BUILD_STATUS: ${{ job.status }}
+        run: python src/notify.py

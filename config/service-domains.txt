@@ -1,0 +1,26 @@
+# First-party service and dedicated CDN suffixes. Never add shared CDN suffixes.
+telegram.org
+telegram.me
+telegram.dog
+t.me
+telegra.ph
+telesco.pe
+tdesktop.com
+telegram-cdn.org
+cdn-telegram.org
+usercontent.dev
+facebook.com
+facebook.net
+fb.com
+fbcdn.net
+fbsbx.com
+instagram.com
+cdninstagram.com
+ig.me
+whatsapp.com
+whatsapp.net
+wa.me
+meta.com
+threads.net
+threads.com
+messenger.com

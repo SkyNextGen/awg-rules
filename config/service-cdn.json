@@ -1,0 +1,5 @@
+{
+  "domain_suffix": [],
+  "ip_cidr": [],
+  "evidence": "Add only service-specific CDN hostnames or dedicated prefixes with a source URL. Shared CDN ASN expansion and DNS-to-prefix expansion are prohibited."
+}

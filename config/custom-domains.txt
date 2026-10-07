@@ -1,0 +1,2 @@
+# One domain per line; suffix match includes the domain and its subdomains.
+# Add only domains you want routed through AWGM.

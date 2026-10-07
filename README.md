@@ -1,3 +1,49 @@
 # awg-rules
 
-Initial routing rules project; verified builder follows in the next commit.
+Список маршрутизации для AWG Manager: ITDog Russia inside полностью, выбранные категории V2Fly, пользовательские домены, Telegram и Meta/WhatsApp, IPv4 и IPv6.
+
+Готовые файлы:
+
+- `https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.srs`
+- `https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.json`
+- Отчёт: [dist/report.md](dist/report.md), подробности и SHA256: `dist/report.json`.
+
+## Управление
+
+- `config/v2fly-categories.txt`: категории вручную, одна на строку. Начальный список перенесён из прежнего проекта.
+- `config/custom-domains.txt`: свои домены; совпадение включает поддомены.
+- `config/service-domains.txt`: дополнительные Telegram/Meta/WhatsApp и их собственные CDN.
+- `config/service-cdn.json`: только подтверждённые service-specific CDN домены/сети. Для IP нужен URL источника в `evidence`. Общие ASN Cloudflare, Akamai, AWS и других CDN не добавляются; DNS-адреса не расширяются до сетей провайдера.
+- `config/sources.json`: источники, выделенные сервисные ASN и пороги проверки.
+
+ITDog не обрезается до прежнего лимита 3000. V2Fly сохраняет full/domain/keyword/regexp и рекурсивные include; неизвестные конструкции останавливают сборку. Простые атрибуты записей не фильтруются. Фильтрованные include пока отклоняются, чтобы не расширять категорию молча.
+
+BGP: RIPEstat announced-prefixes → официальный `bgp.tools/table.jsonl` (одна загрузка при необходимости) → последний проверенный snapshot, не старше 7 дней. Shared CDN ASN не включаются. Выделенные ASN Telegram: 62041, 59930, 44907, 211157; Meta: 32934, 63293. Пустой ответ, потеря семейства адресов, небезопасная сеть, сокращение более 20% или рост более 50% останавливают публикацию. ASN список разрешён явно в сборщике: расширение требует проверки кода. BGP — данные маршрутизации, не гарантия принадлежности каждого сервиса и не проверка RPKI.
+
+## Сборка
+
+Python 3.12+, без сторонних библиотек:
+
+```sh
+python -m unittest discover -s tests -v
+python src/install_sing_box.py
+SING_BOX=.tools/sing-box python src/build.py
+```
+
+Windows PowerShell: `$env:SING_BOX = "$PWD\.tools\sing-box.exe"`, затем `python src/build.py`.
+
+Закреплён официальный sing-box 1.12.12; архив проверяется по SHA256 из GitHub Release API. Используется исходный rule-set version 1 для совместимости (sing-box 1.8+). Компиляция и обратное преобразование проверяют сохранение правил. Ошибка источника/проверки оставляет опубликованные файлы прежними. GitHub публикует весь `dist` одним коммитом только после успеха.
+
+## Actions и Telegram
+
+Один workflow: ежедневно в 06:23 МСК (03:23 UTC), ручной `workflow_dispatch`, а также push изменений кода/настроек для первой проверки. Коммиты результатов не запускают сборку повторно. Расписание GitHub может запускаться с задержкой.
+
+В Settings → Secrets and variables → Actions добавьте `TG_BOT_TOKEN` и `TG_CHAT_ID`. Значения не храните в git и не присылайте в чат. Без обоих Secrets уведомление пропускается. Telegram — отдельный финальный шаг: сбой доставки не ломает сборку. Уведомление содержит статус, статистику, предупреждения и ссылку на run; ответы API и URL с токеном не печатаются.
+
+## Проверка и откат
+
+Готово: зелёный Actions run, актуальный отчёт, AWGM загрузил SRS и нужные сервисы открываются. Сначала проверить на одном клиенте; `kvas-domains` сохранить до проверки на реальном AWGM.
+
+Откатывать: AWGM не принимает SRS или после переключения сервисы перестали открываться. Верните прежний URL списка в AWGM. Для отката результата GitHub восстановите `dist` из последнего успешного коммита; не удаляйте старый проект. Порог при намеренном изменении состава корректируйте вручную после проверки diff.
+
+Списки сторонних проектов сохраняют условия своих лицензий; ссылки на источники находятся в конфигурации.

@@ -1,0 +1,13 @@
+{
+  "itdog_url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Russia/inside-kvas.lst",
+  "v2fly_base": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/",
+  "service_asns": {"telegram": [62041, 59930, 44907, 211157], "meta": [32934, 63293]},
+  "min_itdog_domains": 500,
+  "min_total_domains": 500,
+  "max_total_domains": 100000,
+  "max_prefixes": 20000,
+  "max_snapshot_age_days": 7,
+  "min_previous_ratio": 0.8,
+  "max_previous_ratio": 1.5,
+  "sing_box_version": "1.12.12"
+}
