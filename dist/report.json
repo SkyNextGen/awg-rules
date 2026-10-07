@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-07T12:30:07.493106+00:00",
+  "built_at": "2026-10-07T12:44:07.374955+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -13,11 +13,11 @@
     "v2fly:wbgames": 6,
     "v2fly:pornhub": 9,
     "v2fly:ubisoft": 31,
-    "custom-domains.txt": 78,
+    "custom-domains.txt": 95,
     "service-domains.txt": 25,
     "custom-ip-cidrs.txt": 4
   },
-  "domains": 1890,
+  "domains": 1901,
   "prefixes": 127,
   "ipv4": 84,
   "ipv6": 43,
@@ -62,7 +62,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:30:09.090151+00:00"
+      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
     },
     "44907": {
       "prefixes": [
@@ -70,7 +70,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:30:09.090151+00:00"
+      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
     },
     "59930": {
       "prefixes": [
@@ -79,7 +79,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:30:09.090151+00:00"
+      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
     },
     "62014": {
       "prefixes": [
@@ -89,7 +89,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:30:09.090151+00:00"
+      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
     },
     "62041": {
       "prefixes": [
@@ -101,7 +101,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:30:09.090151+00:00"
+      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
     },
     "63293": {
       "prefixes": [
@@ -186,7 +186,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:30:09.090151+00:00"
+      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
     },
     "211157": {
       "prefixes": [
@@ -195,17 +195,17 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T12:30:09.090151+00:00"
+      "fetched_at": "2026-10-07T12:44:08.715506+00:00"
     }
   },
   "matchers": {
-    "domain_suffix": 1853,
-    "domain": 37,
+    "domain_suffix": 1866,
+    "domain": 35,
     "domain_regex": 1,
     "ip_cidr": 127
   },
   "sha256": {
-    "routing.json": "139897491745eb30ce131c9010b9268c2029f9fdf17f7d12ca433b963241dd48",
-    "routing.srs": "ddd0dc4bddcb7cfa49cef74bb4ad0157c06f383e6dc6c19fc79f958217d57274"
+    "routing.json": "6c49d9e21f1b13d35e0a91292d4f3897b7333cb24268aac3acacd947fc09f8b0",
+    "routing.srs": "51757964827f7a4ac25d4f5cdc2501ed47b6c43fdda042e5c28a8d2d889a7207"
   }
 }
