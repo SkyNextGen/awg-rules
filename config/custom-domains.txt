@@ -1,4 +1,25 @@
 # Domains from user lists, reviewed 2026-10-07.
+# Warner Bros. / WB Games: pinned user requirements and verified service sites.
+# Sources: https://warnerbrosgames.com/ , https://www.warnerbros.com/
+# https://www.wbplay.com/ , V2Fly data/wbgames; see docs/warner-bros.md.
+wbinsights.com
+wbagora.com
+wbgames.com
+warnerbrosgames.com
+warnerbros.com
+warnerbros.co.uk
+wbplay.com
+netherrealm.com
+mortalkombat.com
+injustice.com
+hogwartslegacy.com
+back4blood.com
+legobatmangame.com
+gotdragonfire.com
+gotconquest.com
+dcworldscollidegame.com
+wb-agora-hydra-file-storage-k1.s3.amazonaws.com
+
 capcut.com
 jw-russia.org
 jw.org
