@@ -11,6 +11,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from urllib.request import Request, urlopen
+from report import records, write_report
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
@@ -162,21 +163,25 @@ def build():
     dist, staging = ROOT / 'dist', ROOT / '.staging'
     staging.mkdir(exist_ok=True)
     report = {'built_at': datetime.now(timezone.utc).isoformat(), 'warnings': [], 'sources': {}}
+    source_records = {}
     itdog = {domain(x) for x in lines(fetch(cfg['itdog_url']))}
     if len(itdog) < cfg['min_itdog_domains']:
         raise ValueError('ITDog truncated or empty')
     rules = {'domain_suffix': set(itdog), 'domain': set(), 'domain_keyword': set(), 'domain_regex': set()}
     report['sources']['itdog'] = len(itdog)
+    source_records['itdog'] = sorted('domain_suffix:' + d for d in itdog)
     v2 = V2Fly(cfg['v2fly_base'])
     for cat in lines((ROOT / 'config/v2fly-categories.txt').read_text()):
         parsed = v2.category(cat)
         report['sources']['v2fly:' + cat] = sum(map(len, parsed.values()))
+        source_records['v2fly:' + cat] = records(parsed)
         for k in rules:
             rules[k].update(parsed[k])
     for file in ('custom-domains.txt', 'service-domains.txt'):
         domains = {domain(x) for x in lines((ROOT / 'config' / file).read_text())}
         rules['domain_suffix'].update(domains)
         report['sources'][file] = len(domains)
+        source_records[file] = sorted('domain_suffix:' + d for d in domains)
     cdn = json.loads((ROOT / 'config/service-cdn.json').read_text())
     for d in cdn['domain_suffix']:
         d = domain(d)
@@ -190,6 +195,11 @@ def build():
     if not set(asns) <= {62041, 62014, 59930, 44907, 211157, 32934, 63293}:
         raise ValueError('Unreviewed ASN expansion forbidden')
     snapshot = bgp(asns, previous, cfg, report)
+    for asn, row in snapshot.items():
+        source_records['BGP:AS' + asn] = row['prefixes']
+        report['sources']['BGP:AS' + asn] = len(row['prefixes'])
+    source_records['service-cdn.json'] = sorted(['domain_suffix:' + d for d in cdn['domain_suffix']] + cdn['ip_cidr'])
+    report['sources']['service-cdn.json'] = len(source_records['service-cdn.json'])
     suffix = prune(rules['domain_suffix'])
     exact = sorted(d for d in rules['domain'] if not any(d == x or d.endswith('.' + x) for x in suffix))
     merged = {k: sorted(v) for k, v in rules.items() if v}
@@ -200,12 +210,13 @@ def build():
         merged.pop('domain', None)
     custom_ips = lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())
     report['sources']['custom-ip-cidrs.txt'] = len(custom_ips)
+    source_records['custom-ip-cidrs.txt'] = sorted(set(custom_ips))
     prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + cdn['ip_cidr'] + custom_ips)
     merged['ip_cidr'] = prefixes
     total = len(suffix) + len(exact)
     if not cfg['min_total_domains'] <= total <= cfg['max_total_domains'] or len(prefixes) > cfg['max_prefixes']:
         raise ValueError('Output size outside safety limits')
-    old = json.loads((dist / 'report.json').read_text()) if (dist / 'report.json').exists() else {}
+    old = json.loads((dist / 'report.json').read_text(encoding='utf-8')) if (dist / 'report.json').exists() else {}
     for key, count in [('domains', total), ('prefixes', len(prefixes))]:
         if old.get(key) and not cfg['min_previous_ratio'] <= count / old[key] <= cfg['max_previous_ratio']:
             raise ValueError(key + ' changed beyond safety threshold')
@@ -221,11 +232,10 @@ def build():
         raise ValueError('SRS round-trip differs from JSON')
     report.update(domains=total, prefixes=len(prefixes), ipv4=sum(network(p).version == 4 for p in prefixes), ipv6=sum(network(p).version == 6 for p in prefixes), asns=snapshot, matchers={k: len(v) for k, v in merged.items()})
     report['sha256'] = {f: hashlib.sha256((staging / f).read_bytes()).hexdigest() for f in ('routing.json', 'routing.srs')}
-    (staging / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     (staging / 'bgp-snapshot.json').write_text(json.dumps(snapshot, indent=2) + '\n')
-    (staging / 'report.md').write_text(f"# Build report\n\nUTC: {report['built_at']}\n\nDomains: {total}; IPv4: {report['ipv4']}; IPv6: {report['ipv6']}.\n\nOfficial sing-box compile/decompile verified.\n\n" + '\n'.join('- ' + x for x in report['warnings']) + '\n')
+    write_report(report, payload, source_records, staging, dist, old)
     dist.mkdir(exist_ok=True)
-    for f in ('routing.json', 'routing.srs', 'report.json', 'report.md', 'bgp-snapshot.json'):
+    for f in ('routing.json', 'routing.srs', 'report.json', 'report.md', 'bgp-snapshot.json', 'source-snapshot.json', 'history.json', 'tg_message.txt'):
         shutil.copyfile(staging / f, dist / f)
     print(f'Build OK: {total} domains, {len(prefixes)} prefixes')
 

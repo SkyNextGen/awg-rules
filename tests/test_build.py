@@ -2,9 +2,11 @@ import importlib.util
 from pathlib import Path
 import unittest
 import tempfile
+import sys
 from datetime import datetime, timezone, timedelta
 from unittest.mock import patch
 
+sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 spec = importlib.util.spec_from_file_location('builder', Path(__file__).parents[1] / 'src/build.py')
 b = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(b)
