@@ -27,6 +27,11 @@ BGP: RIPEstat announced-prefixes → официальный `bgp.tools/table.jso
 
 ## Сборка
 
+Покрытие Discord и Nexus Mods, проверенные DNS IPv4/IPv6 и ограничения
+общих CDN описаны в [docs/discord-nexusmods.md](docs/discord-nexusmods.md).
+Категория Discord уже включалась ранее; добавление Nexus и закрепление
+сервисных доменов не заменяют проверку маршрутизации на реальном клиенте.
+
 Python 3.12+, без сторонних библиотек:
 
 ```sh

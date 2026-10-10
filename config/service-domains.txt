@@ -24,3 +24,17 @@ meta.com
 threads.net
 threads.com
 messenger.com
+
+# Discord core, attachments/media CDN, voice/video endpoints.
+# Pin required coverage even if the upstream category changes.
+# Sources: V2Fly data/discord and Discord voice documentation.
+discord.com
+discord.gg
+discordapp.com
+discordapp.net
+discord.media
+
+# Nexus Mods website/API/assets and download CDN; includes all subdomains.
+# Sources: V2Fly data/nexusmods and Nexus Mods download troubleshooting.
+nexusmods.com
+nexus-cdn.com
