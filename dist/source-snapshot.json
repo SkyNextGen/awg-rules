@@ -1212,6 +1212,10 @@
     "domain_suffix:discordstatus.com",
     "domain_suffix:watchanimeattheoffice.com"
   ],
+  "v2fly:nexusmods": [
+    "domain_suffix:nexus-cdn.com",
+    "domain_suffix:nexusmods.com"
+  ],
   "v2fly:instagram": [
     "domain_suffix:achat-followers-instagram.com",
     "domain_suffix:acheter-followers-instagram.com",
@@ -1337,8 +1341,6 @@
     "domain_suffix:usercontent.dev"
   ],
   "v2fly:whatsapp": [
-    "domain_suffix:graph.whatsapp.com",
-    "domain_suffix:graph.whatsapp.net",
     "domain_suffix:wa.me",
     "domain_suffix:whatsapp-plus.info",
     "domain_suffix:whatsapp-plus.me",
@@ -2111,6 +2113,11 @@
   "service-domains.txt": [
     "domain_suffix:cdn-telegram.org",
     "domain_suffix:cdninstagram.com",
+    "domain_suffix:discord.com",
+    "domain_suffix:discord.gg",
+    "domain_suffix:discord.media",
+    "domain_suffix:discordapp.com",
+    "domain_suffix:discordapp.net",
     "domain_suffix:facebook.com",
     "domain_suffix:facebook.net",
     "domain_suffix:fb.com",
@@ -2120,6 +2127,8 @@
     "domain_suffix:instagram.com",
     "domain_suffix:messenger.com",
     "domain_suffix:meta.com",
+    "domain_suffix:nexus-cdn.com",
+    "domain_suffix:nexusmods.com",
     "domain_suffix:t.me",
     "domain_suffix:tdesktop.com",
     "domain_suffix:telegra.ph",
@@ -2240,7 +2249,7 @@
     "157.240.182.0/23",
     "157.240.184.0/21",
     "2a03:2887:ff00::/48",
-    "2a03:2887:ff02::/47",
+    "2a03:2887:ff03::/48",
     "2a03:2887:ff04::/46",
     "2a03:2887:ff09::/48",
     "2a03:2887:ff0a::/48",
