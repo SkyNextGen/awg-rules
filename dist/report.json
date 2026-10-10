@@ -1,20 +1,21 @@
 {
-  "built_at": "2026-10-07T14:39:26.393631+00:00",
+  "built_at": "2026-10-10T22:27:19.199304+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
     "v2fly:discord": 28,
+    "v2fly:nexusmods": 2,
     "v2fly:instagram": 74,
     "v2fly:openai": 23,
     "v2fly:telegram": 21,
-    "v2fly:whatsapp": 13,
+    "v2fly:whatsapp": 11,
     "v2fly:youtube": 178,
     "v2fly:facebook": 397,
     "v2fly:wbgames": 6,
     "v2fly:pornhub": 9,
     "v2fly:ubisoft": 31,
     "custom-domains.txt": 124,
-    "service-domains.txt": 25,
+    "service-domains.txt": 32,
     "BGP:AS32934": 36,
     "BGP:AS44907": 2,
     "BGP:AS59930": 3,
@@ -25,7 +26,7 @@
     "service-cdn.json": 0,
     "custom-ip-cidrs.txt": 4
   },
-  "domains": 1915,
+  "domains": 1917,
   "prefixes": 127,
   "ipv4": 84,
   "ipv6": 43,
@@ -70,7 +71,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
+      "fetched_at": "2026-10-10T22:27:20.362468+00:00"
     },
     "44907": {
       "prefixes": [
@@ -78,7 +79,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
+      "fetched_at": "2026-10-10T22:27:20.362468+00:00"
     },
     "59930": {
       "prefixes": [
@@ -87,7 +88,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
+      "fetched_at": "2026-10-10T22:27:20.362468+00:00"
     },
     "62014": {
       "prefixes": [
@@ -97,7 +98,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
+      "fetched_at": "2026-10-10T22:27:20.362468+00:00"
     },
     "62041": {
       "prefixes": [
@@ -109,7 +110,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
+      "fetched_at": "2026-10-10T22:27:20.362468+00:00"
     },
     "63293": {
       "prefixes": [
@@ -156,7 +157,7 @@
         "157.240.182.0/23",
         "157.240.184.0/21",
         "2a03:2887:ff00::/48",
-        "2a03:2887:ff02::/47",
+        "2a03:2887:ff03::/48",
         "2a03:2887:ff04::/46",
         "2a03:2887:ff09::/48",
         "2a03:2887:ff0a::/48",
@@ -194,7 +195,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
+      "fetched_at": "2026-10-10T22:27:20.362468+00:00"
     },
     "211157": {
       "prefixes": [
@@ -203,27 +204,28 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-07T14:39:27.169759+00:00"
+      "fetched_at": "2026-10-10T22:27:20.362468+00:00"
     }
   },
   "matchers": {
-    "domain_suffix": 1880,
+    "domain_suffix": 1882,
     "domain": 35,
     "domain_regex": 1,
     "ip_cidr": 127
   },
   "sha256": {
-    "routing.json": "5377d9068c66483ce6f747fe6a95e0f36c23368884cb9ce6d79d5b9441d01dcd",
-    "routing.srs": "54b01199e1ee98402f796841c97219e428a8ff79871647e2bc4e6fa08a91efcb"
+    "routing.json": "e2553672655e284acabaffd306c045e9f44dd8059e9bf48a211df33fb7bbf99c",
+    "routing.srs": "172ff92937b442dce5a6535d190628737e82677f603dcfedfe41d68a8aab1c52"
   },
   "changes": {
     "domains": {
       "baseline": true,
       "added": [
-        "domain_suffix:dnschecker.org"
+        "domain_suffix:nexus-cdn.com",
+        "domain_suffix:nexusmods.com"
       ],
       "removed": [],
-      "added_count": 1,
+      "added_count": 2,
       "removed_count": 0
     },
     "ipv4": {
@@ -235,10 +237,14 @@
     },
     "ipv6": {
       "baseline": true,
-      "added": [],
-      "removed": [],
-      "added_count": 0,
-      "removed_count": 0
+      "added": [
+        "2a03:2887:ff03::/48"
+      ],
+      "removed": [
+        "2a03:2887:ff02::/47"
+      ],
+      "added_count": 1,
+      "removed_count": 1
     }
   },
   "source_changes": {
@@ -255,6 +261,13 @@
       "removed": [],
       "added_count": 0,
       "removed_count": 0
+    },
+    "v2fly:nexusmods": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
     },
     "v2fly:instagram": {
       "baseline": true,
@@ -280,9 +293,12 @@
     "v2fly:whatsapp": {
       "baseline": true,
       "added": [],
-      "removed": [],
+      "removed": [
+        "domain_suffix:graph.whatsapp.com",
+        "domain_suffix:graph.whatsapp.net"
+      ],
       "added_count": 0,
-      "removed_count": 0
+      "removed_count": 2
     },
     "v2fly:youtube": {
       "baseline": true,
@@ -321,18 +337,24 @@
     },
     "custom-domains.txt": {
       "baseline": true,
-      "added": [
-        "domain_suffix:dnschecker.org"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 1,
+      "added_count": 0,
       "removed_count": 0
     },
     "service-domains.txt": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain_suffix:discord.com",
+        "domain_suffix:discord.gg",
+        "domain_suffix:discord.media",
+        "domain_suffix:discordapp.com",
+        "domain_suffix:discordapp.net",
+        "domain_suffix:nexus-cdn.com",
+        "domain_suffix:nexusmods.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 7,
       "removed_count": 0
     },
     "BGP:AS32934": {
@@ -372,10 +394,14 @@
     },
     "BGP:AS63293": {
       "baseline": true,
-      "added": [],
-      "removed": [],
-      "added_count": 0,
-      "removed_count": 0
+      "added": [
+        "2a03:2887:ff03::/48"
+      ],
+      "removed": [
+        "2a03:2887:ff02::/47"
+      ],
+      "added_count": 1,
+      "removed_count": 1
     },
     "BGP:AS211157": {
       "baseline": true,
@@ -399,13 +425,13 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-07T13:17:55.648565+00:00",
+  "compared_to": "2026-10-07T14:39:26.393631+00:00",
   "trend": {
-    "runs": 4,
+    "runs": 5,
     "metrics": {
       "domains": {
-        "average": 1907.8,
-        "delta": 1
+        "average": 1909.6,
+        "delta": 2
       },
       "ipv4": {
         "average": 84.0,

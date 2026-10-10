@@ -1,4 +1,5 @@
 discord
+nexusmods
 instagram
 openai
 telegram
