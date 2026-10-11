@@ -35,7 +35,7 @@ class Reports(unittest.TestCase):
             self.assertFalse(report['source_changes']['itdog']['baseline'])
             self.assertEqual(report['trend']['runs'], 2)
             self.assertEqual(report['trend']['metrics']['domains']['delta'], 0)
-            self.assertIn('06:23 МСК', (stage / 'report.md').read_text(encoding='utf-8'))
+            self.assertIn('23:17 МСК', (stage / 'report.md').read_text(encoding='utf-8'))
             self.assertIn('+1 / -1', (stage / 'tg_message.txt').read_text(encoding='utf-8'))
             # Subsequent run has a real source baseline, not invented zero changes.
             for f in stage.iterdir():

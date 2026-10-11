@@ -33,6 +33,8 @@ def write_report(report, payload, source_records, staging, dist, old):
     prior_sources = json.loads((dist / 'source-snapshot.json').read_text(encoding='utf-8')) if (dist / 'source-snapshot.json').exists() else {}
     current_rule = payload['rules'][0]
     changes = {'domains': delta(records(current_rule), records(previous_rule) if previous_rule else None)}
+    scoped_records = lambda obj: [json.dumps(r, sort_keys=True) for r in obj['rules'][1:]]
+    changes['scoped_udp'] = delta(scoped_records(payload), scoped_records(previous_payload) if previous_payload else None)
     for version in (4, 6):
         current = [p for p in current_rule['ip_cidr'] if ipaddress.ip_network(p).version == version]
         before = [p for p in previous_rule['ip_cidr'] if ipaddress.ip_network(p).version == version] if previous_rule else None
@@ -58,7 +60,7 @@ def write_report(report, payload, source_records, staging, dist, old):
         f"> 🕒 **Сборка:** {moscow_time(report['built_at'])}  ",
         '> 📦 **Репозиторий:** SkyNextGen/awg-rules  ',
         '> 📄 **Файлы:** `dist/routing.json` и `dist/routing.srs`  ',
-        '> 🗓 **Расписание:** понедельник, 06:23 МСК; также вручную и после изменения кода/настроек  ',
+        '> 🗓 **Расписание:** понедельник, 23:17 МСК; также вручную и после изменения кода/настроек  ',
         f"> 🔄 **Сравнение со сборкой:** {moscow_time(report['compared_to']) if report['compared_to'] else 'первый запуск'}", '',
         '---', '', '## 🧮 Итог сборки', '',
         '| Показатель | Всего | Добавлено / удалено |', '|---|---:|---|',
@@ -105,6 +107,13 @@ def write_report(report, payload, source_records, staging, dist, old):
                 body.append(f'- … ещё {len(values) - 20}; полный список в `dist/report.json`.')
             body.append('')
     body += ['</details>', '']
+    if report.get('scoped_rules'):
+        body += ['', '## Discord: scoped UDP', '',
+                 '| Network | Destination ports | IPv4 CIDRs | IPv6 CIDRs |',
+                 '|---|---|---:|---:|']
+        for rule in report['scoped_rules']:
+            body.append('| udp | ' + ', '.join(rule['port_range']) + ' | ' + str(sum(ipaddress.ip_network(p).version == 4 for p in rule['ip_cidr'])) + ' | ' + str(sum(ipaddress.ip_network(p).version == 6 for p in rule['ip_cidr'])) + ' |')
+        body += ['', 'These shared CIDRs are restricted by BOTH UDP and destination ports; they are excluded from the unrestricted IP rule.', 'Counts above for ordinary IPv4/IPv6 prefixes exclude scoped UDP rules.', '']
     (staging / 'report.md').write_text('\n'.join(body), encoding='utf-8')
     (staging / 'report.json').write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     (staging / 'source-snapshot.json').write_text(json.dumps(source_records, indent=2) + '\n', encoding='utf-8')

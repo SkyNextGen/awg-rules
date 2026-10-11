@@ -3,3 +3,7 @@
 __pycache__/
 *.pyc
 .env
+
+.review-cache/
+review-source.patch
+review-full.patch

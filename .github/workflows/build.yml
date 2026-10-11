@@ -1,9 +1,17 @@
 name: Build routing rules
 on:
   schedule:
-    - cron: '23 3 * * 1'
+    # ITDog cron 08:29 UTC; observed publication as late as 17:18 UTC.
+    - cron: '17 20 * * 1'
   workflow_dispatch:
   push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'config/**'
+      - 'tests/**'
+      - '.github/workflows/build.yml'
+  pull_request:
     paths:
       - 'src/**'
       - 'config/**'
@@ -25,6 +33,9 @@ jobs:
           python-version: '3.12'
       - name: Tests
         run: python -m unittest discover -s tests -v
+      - name: Verify ITDog scheduled publication
+        if: github.event_name == 'schedule'
+        run: python src/check_itdog.py
       - name: Install official sing-box
         run: python src/install_sing_box.py
       - name: Build and verify
@@ -34,6 +45,7 @@ jobs:
       - name: Build report
         run: cat dist/report.md >> "$GITHUB_STEP_SUMMARY"
       - name: Publish verified output
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -43,7 +55,7 @@ jobs:
             git push
           fi
       - name: Telegram notification
-        if: always()
+        if: always() && github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
