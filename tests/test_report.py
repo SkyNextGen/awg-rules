@@ -76,7 +76,7 @@ class Reports(unittest.TestCase):
         self.assertIn('Изменений нет', text)
         self.assertNotIn('Discord', text)
         self.assertNotIn('WARNING', text)
-        self.assertLessEqual(len(text.splitlines()), 5)
+        self.assertLessEqual(len(text.splitlines()), 13)
 
     def test_operational_warning_remains_visible_and_bounded(self):
         report = self.compact_sample()
@@ -85,7 +85,7 @@ class Reports(unittest.TestCase):
         self.assertTrue(text.startswith('⚠️'))
         self.assertIn('AS62041: snapshot age 2 days', text)
         self.assertIn('Ещё предупреждений: 1', text)
-        self.assertLess(len(text), 700)
+        self.assertLess(len(text), 1000)
 
     def test_compact_report_detects_scoped_udp_change(self):
         report = self.compact_sample()
@@ -108,3 +108,35 @@ class Reports(unittest.TestCase):
             self.assertIn('Постоянные ограничения', full)
             self.assertIn('Discord: ограничения IPv6', full)
             self.assertIn('Предупреждений нет', full)
+
+    def test_changed_sources_are_identified_even_if_output_is_unchanged(self):
+        report = self.compact_sample()
+        report['source_changes'] = {
+            'v2fly:google': delta(['domain_suffix:new.example'], ['domain_suffix:old.example']),
+            'itdog': delta(['domain_suffix:a.com'], ['domain_suffix:a.com']),
+            'BGP:AS62041': delta(['1.1.1.0/24'], []),
+        }
+        report['sources'] = {'v2fly:google': 1, 'itdog': 1, 'BGP:AS62041': 1}
+        text = telegram_text(report)
+        self.assertIn('V2Fly / google: 1 (+1 / -1)', text)
+        self.assertIn('BGP / AS62041: 1 (+1 / -0)', text)
+        self.assertNotIn('• ITDog:', text)
+        self.assertNotIn('Изменений нет', text)
+
+    def test_total_deltas_and_short_trend_are_visible(self):
+        report = self.compact_sample()
+        report['changes']['domains'] = delta(['new.com', 'same.com'], ['old.com', 'same.com'])
+        report['trend'] = {'runs': 7, 'metrics': {'domains': {'average': 2.0, 'delta': 0}}}
+        text = telegram_text(report)
+        self.assertIn('Домены: 2 (+1 / -1)', text)
+        self.assertIn('Δ +0 к прошлой сборке', text)
+        self.assertIn('среднее за 7 запусков: 2.0', text)
+
+    def test_removed_and_new_sources_are_not_reported_as_unchanged(self):
+        report = self.compact_sample()
+        report['source_changes'] = {'removed': delta([], ['old']), 'new': delta(['value'], None)}
+        report['sources'] = {'new': 1}
+        text = telegram_text(report)
+        self.assertIn('removed: 0 (+0 / -1)', text)
+        self.assertIn('new: 1 (новый источник)', text)
+        self.assertNotIn('Изменений нет', text)

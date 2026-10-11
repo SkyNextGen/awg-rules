@@ -129,27 +129,58 @@ def telegram_text(report, status='success', run_url=''):
         return '\n'.join([label, 'Новый набор не опубликован. Сохранён последний проверенный.',
                           '🔗 Actions: ' + run_url if run_url else 'Подробности — в GitHub Actions.'])
     warnings = report.get('warnings', [])
-    text = ['⚠️ AWG · Сборка успешна, есть предупреждения' if warnings else '✅ AWG · Сборка успешна',
-            moscow_time(report['built_at']),
-            f"Домены: {report['domains']} · IPv4: {report['ipv4']} · IPv6: {report['ipv6']}"]
     changes = report['changes']
-    changed = []
+    text = ['⚠️ AWG · Сборка успешна, есть предупреждения' if warnings else '✅ AWG · Сборка успешна',
+            '🕒 ' + moscow_time(report['built_at']), '', '📊 Итог · добавлено / удалено']
+    changed = False
     first = False
-    for key, label in (('domains', 'Домены'), ('ipv4', 'IPv4'), ('ipv6', 'IPv6'), ('scoped_udp', 'UDP-правила')):
-        item = changes.get(key)
-        if item is None:
-            continue
-        if not item['baseline']:
-            first = True
-        elif item['added_count'] or item['removed_count']:
-            changed.append(label + ' ' + change_text(item))
-    text += changed or ['Изменения: первый снимок' if first else 'Изменений нет']
+    for key, label in (('domains', 'Домены'), ('ipv4', 'IPv4'), ('ipv6', 'IPv6')):
+        item = changes[key]
+        first |= not item['baseline']
+        changed |= bool(item['added_count'] or item['removed_count'])
+        summary = change_text(item) if item['baseline'] else 'первый снимок'
+        text.append(f"{label}: {report[key]} ({summary})")
+    udp = changes.get('scoped_udp')
+    if udp:
+        first |= not udp['baseline']
+        if udp['baseline'] and (udp['added_count'] or udp['removed_count']):
+            changed = True
+            text.append('UDP-правила ' + change_text(udp))
+    source_changes = report.get('source_changes', {})
+    active = [(name, item) for name, item in sorted(source_changes.items())
+              if not item['baseline'] or item['added_count'] or item['removed_count']]
+    labels = {'itdog': 'ITDog', 'custom-domains.txt': 'Custom-домены',
+              'custom-ip-cidrs.txt': 'Custom-IP', 'service-domains.txt': 'Сервисные домены',
+              'service-cdn.json': 'Сервисные CDN', 'ITDog:discord:scoped-udp': 'Discord UDP'}
+    if active:
+        text += ['', '📌 Где изменилось']
+        for name, item in active[:12]:
+            label = labels.get(name, name.replace('v2fly:', 'V2Fly / ').replace('BGP:', 'BGP / ')
+                               .replace('ITDog:service:', 'ITDog / '))
+            count = report.get('sources', {}).get(name, 0)
+            summary = change_text(item) if item['baseline'] else 'новый источник'
+            text.append(f"• {label}: {count} ({summary})")
+        if len(active) > 12:
+            text.append(f'Ещё источников: {len(active) - 12} — в полном отчёте.')
+        text.append('Дельты источников до объединения; записи могут пересекаться.')
+    elif not changed:
+        text += ['', 'Первый снимок — сравнение со следующей сборки.' if first else 'Изменений нет']
+    trend = report.get('trend', {})
+    metrics = trend.get('metrics', {})
+    domain_trend = metrics.get('domains', {})
+    if domain_trend.get('delta') is not None:
+        text += ['', f"📈 Домены: Δ {domain_trend['delta']:+d} к прошлой сборке · "
+                     f"среднее за {trend['runs']} запусков: {domain_trend['average']}"]
     if warnings:
         # Operational warnings stay visible; permanent limitations live in the full report.
-        text += ['⚠️ ' + x.replace('\n', ' ')[:160] for x in warnings[:2]]
+        text += ['', '⚠️ Предупреждения']
+        text += ['• ' + x.replace('\n', ' ')[:160] for x in warnings[:2]]
         if len(warnings) > 2:
             text.append(f'Ещё предупреждений: {len(warnings) - 2} — в отчёте.')
-    text += ['🔗 Отчёт: ' + REPORT_URL]
+    footer = '\n\n🔗 Отчёт: ' + REPORT_URL
     if run_url:
-        text.append('🔗 Actions: ' + run_url)
-    return '\n'.join(text)
+        footer += '\n🔗 Actions: ' + run_url
+    # Keep the links intact even if many source names or warnings are long.
+    budget = max(0, 3900 - len(footer.encode('utf-16-le')) // 2)
+    body = '\n'.join(text).encode('utf-16-le')[:budget * 2].decode('utf-16-le', errors='ignore')
+    return body + footer
