@@ -1,7 +1,6 @@
-# Personal additions not covered by selected ITDog/V2Fly suffix rules.
-# Reviewed 2026-10-11; removed duplicates and coverage evidence:
-# docs/custom-domain-audit.json
-# Entries include their subdomains; shared CDN parent suffixes must not be added.
+# Личные домены: каждая запись включает сам домен и все поддомены.
+# Перед добавлением проверяйте покрытие ITDog/V2Fly; порядок работы — в README.
+# Общий родительский домен CDN может захватить другие сервисы.
 
 warnerbros.com
 warnerbros.co.uk
@@ -36,10 +35,8 @@ wstracker.online
 ysagin.top
 dnschecker.org
 
-# User-collected personal additions reviewed 2026-10-11.
-# These names are not asserted to belong to Telegram/Meta.
-# Only suffixes with no overlap in the selected baseline were imported.
-# Audit: docs/custom-import-audit-2026-10-11.json
+# Личные дополнения из пользовательских списков, проверены 11.10.2026.
+# Эти имена не подтверждают принадлежность Telegram/Meta.
 nicegram.app
 teleg.xyz
 telegram.ai

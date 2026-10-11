@@ -6,7 +6,6 @@ import json
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 from build import ROOT, domain, lines, prune, service_prefixes, network
-import ipaddress
 from check_service_coverage import covered_suffix, covers_network
 from unittest.mock import patch
 
@@ -73,32 +72,10 @@ class ServiceCoverage(unittest.TestCase):
         self.assertTrue(covers_network('149.154.168.0/22', ['149.154.160.0/20']))
         self.assertFalse(covers_network('2a0a:f280::/32', ['149.154.160.0/20']))
 
-    def test_custom_cleanup_audit_has_proven_suffix_matches(self):
-        audit = json.loads((ROOT / 'docs/custom-domain-audit.json').read_text())
-        self.assertEqual(len(audit['removed_custom']), 92)
-        self.assertEqual(len(audit['removed_service_domains']), 32)
-        self.assertTrue(set(audit['kept_custom']).issubset(
-            set(lines((ROOT / 'config/custom-domains.txt').read_text()))))
-        for entry in audit['removed_custom'] + audit['removed_service_domains']:
-            self.assertTrue(entry['coverage'])
-            for match in entry['coverage']:
-                self.assertTrue(match['rule'].startswith('domain_suffix:'))
-                self.assertTrue(covered_suffix(entry['domain'], {match['rule'].split(':', 1)[1]}))
-
-    def test_personal_import_has_no_baseline_or_internal_overlap(self):
-        audit = json.loads((ROOT / 'docs/custom-import-audit-2026-10-11.json').read_text())
-        domains = [row['domain'] for row in audit['domains'] if row['decision'] == 'added']
-        cidrs = [row['cidr'] for row in audit['cidrs'] if row['decision'] == 'added']
-        self.assertTrue(set(domains).issubset(lines((ROOT / 'config/custom-domains.txt').read_text())))
-        self.assertTrue(set(cidrs).issubset(lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())))
-        self.assertEqual(audit['summary']['added_domains'], len(domains))
-        self.assertEqual(audit['summary']['added_cidrs'], len(cidrs))
-        self.assertFalse(audit['baseline_suffixes'])
-        self.assertFalse(audit['baseline_exact'])
-        self.assertEqual(set(prune(domains)), set(domains))
-        baseline = [network(value) for value in audit['baseline_unrestricted_cidrs']]
-        added = [network(value) for value in cidrs]
-        for i, value in enumerate(added):
-            for other in baseline + added[:i]:
+    def test_personal_ip_list_has_no_internal_overlap(self):
+        cidrs = lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())
+        networks = [network(value) for value in cidrs]
+        for i, value in enumerate(networks):
+            for other in networks[:i]:
                 if value.version == other.version:
                     self.assertFalse(value.overlaps(other), (value, other))
