@@ -77,6 +77,19 @@ def prune(values):
     return sorted(keep)
 
 
+def service_prefixes(source):
+    """Fetch a fresh, bounded service-specific CIDR list; never widen DNS/CDN IPs."""
+    if not source['url'].startswith('https://'):
+        raise ValueError('Service IP source must use HTTPS')
+    values = lines(fetch(source['url']))
+    if not source['min_prefixes'] <= len(values) <= source['max_prefixes']:
+        raise ValueError('Service IP source empty, truncated or excessive')
+    prefixes = collapse(values)
+    if {network(p).version for p in prefixes} != {4, 6}:
+        raise ValueError('Service IP source missing address family')
+    return prefixes
+
+
 def discord_voice(cfg):
     """Preserve ITDog's network AND CIDR AND destination-port semantics."""
     source = cfg['rule_source']
@@ -268,11 +281,10 @@ def build():
         if not service_records:
             raise ValueError('Empty custom service source: ' + service)
         report.setdefault('custom_services', {})[service] = sorted(set(service_records))
-    for file in ('custom-domains.txt', 'service-domains.txt'):
-        domains = {domain(x) for x in lines((ROOT / 'config' / file).read_text())}
-        rules['domain_suffix'].update(domains)
-        report['sources'][file] = len(domains)
-        source_records[file] = sorted('domain_suffix:' + d for d in domains)
+    domains = {domain(x) for x in lines((ROOT / 'config/custom-domains.txt').read_text())}
+    rules['domain_suffix'].update(domains)
+    report['sources']['custom-domains.txt'] = len(domains)
+    source_records['custom-domains.txt'] = sorted('domain_suffix:' + d for d in domains)
     cdn = json.loads((ROOT / 'config/service-cdn.json').read_text())
     for d in cdn['domain_suffix']:
         d = domain(d)
@@ -289,6 +301,24 @@ def build():
     for asn, row in snapshot.items():
         source_records['BGP:AS' + asn] = row['prefixes']
         report['sources']['BGP:AS' + asn] = len(row['prefixes'])
+    live_service_ips = {}
+    for service, source in cfg.get('service_ip_sources', {}).items():
+        if service not in service_sources:
+            raise ValueError('Unknown service IP source: ' + service)
+        live_service_ips[service] = service_prefixes(source)
+        source_name = service + ':official-cidr'
+        source_records[source_name] = live_service_ips[service]
+        report['sources'][source_name] = len(live_service_ips[service])
+    service_ip_groups = cfg.get('custom_service_asn_groups', {})
+    for service, group in service_ip_groups.items():
+        if service not in service_sources or group not in cfg['service_asns']:
+            raise ValueError('Unknown custom service ASN mapping: ' + service)
+    for service in service_sources:
+        group_asns = cfg['service_asns'].get(service_ip_groups.get(service), [])
+        values = live_service_ips.get(service, []) + [
+            p for asn in group_asns for p in snapshot[str(asn)]['prefixes']]
+        report['custom_services'][service] = sorted(set(report['custom_services'][service] +
+            ['ip_cidr:' + p for p in collapse(values)]))
     source_records['service-cdn.json'] = sorted(['domain_suffix:' + d for d in cdn['domain_suffix']] + cdn['ip_cidr'])
     report['sources']['service-cdn.json'] = len(source_records['service-cdn.json'])
     suffix = prune(rules['domain_suffix'])
@@ -302,7 +332,7 @@ def build():
     custom_ips = lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())
     report['sources']['custom-ip-cidrs.txt'] = len(custom_ips)
     source_records['custom-ip-cidrs.txt'] = sorted(set(custom_ips))
-    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + cdn['ip_cidr'] + custom_ips)
+    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + cdn['ip_cidr'] + custom_ips + [p for values in live_service_ips.values() for p in values])
     merged['ip_cidr'] = prefixes
     total = len(suffix) + len(exact)
     if not cfg['min_total_domains'] <= total <= cfg['max_total_domains'] or len(prefixes) > cfg['max_prefixes']:
@@ -318,6 +348,7 @@ def build():
     report['sources']['ITDog:discord:scoped-udp'] = len(scoped)
     report['scoped_rules'] = scoped
     report['limitations'] = [
+        'Ежедневная пересборка получает проверяемые upstream-источники, но не обнаруживает автоматически все новые домены в интернете. WhatsApp использует общие сети Meta, а не отдельный полный реестр WhatsApp-IP.',
         'Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. '
         'Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах.'
     ]

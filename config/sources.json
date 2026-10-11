@@ -55,5 +55,16 @@
     "rule_source": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/convert.py",
     "ipv4_url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv4/discord.lst",
     "ipv6_url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv6/discord.lst"
+  },
+  "service_ip_sources": {
+    "telegram": {
+      "url": "https://core.telegram.org/resources/cidr.txt",
+      "min_prefixes": 5,
+      "max_prefixes": 1000
+    }
+  },
+  "custom_service_asn_groups": {
+    "telegram": "telegram",
+    "whatsapp": "meta"
   }
 }
