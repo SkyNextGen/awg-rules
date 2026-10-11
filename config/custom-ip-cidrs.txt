@@ -1,3 +1,30 @@
 # Personal static IPv4/IPv6 additions only.
-# Telegram CIDRs are refreshed from the official source in config/sources.json.
-# The four former Telegram entries are covered by that live source.
+# Telegram official/BGP prefixes are refreshed separately in config/sources.json.
+# User-collected personal additions reviewed 2026-10-11.
+# This list may include shared hosting/CDN networks; it is not a messenger ownership list.
+# Only CIDRs without overlap in the selected baseline were imported.
+# Audit: docs/custom-import-audit-2026-10-11.json
+
+45.130.4.0/24
+77.240.43.0/24
+87.245.208.0/24
+99.84.0.0/16
+142.250.0.0/15
+147.75.0.0/16
+163.114.0.0/16
+164.163.191.64/26
+173.194.10.0/24
+199.201.0.0/16
+213.102.128.0/24
+3.33.221.48/32
+3.33.252.61/32
+15.197.206.217/32
+15.197.210.208/32
+34.192.181.12/32
+34.193.38.112/32
+34.194.71.217/32
+34.194.255.230/32
+173.194.222.0/24
+192.186.226.0/24
+45.43.186.0/24
+95.216.41.0/24
