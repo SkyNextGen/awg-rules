@@ -52,7 +52,6 @@
 | custom-domains.txt | 67 | +0 / -0 |
 | custom-ip-cidrs.txt | 23 | +0 / -0 |
 | itdog | 1181 | +0 / -0 |
-| service-cdn.json | 0 | +0 / -0 |
 | telegram:official-cidr | 11 | +0 / -0 |
 | v2fly:anthropic | 9 | +0 / -0 |
 | v2fly:autodesk | 558 | первый снимок — сравнение со следующего запуска |
@@ -323,16 +322,6 @@
 - —
 
 ### itdog
-
-**➕ Добавлено: 0**
-
-- —
-
-**➖ Удалено: 0**
-
-- —
-
-### service-cdn.json
 
 **➕ Добавлено: 0**
 

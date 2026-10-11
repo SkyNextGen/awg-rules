@@ -16,7 +16,6 @@ from report import records, write_report
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
-SHARED = {'cloudfront.net', 'akamai.net', 'akamaized.net', 'cloudflare.com', 'fastly.net', 'azureedge.net'}
 
 
 def fetch(url):
@@ -285,14 +284,6 @@ def build():
     rules['domain_suffix'].update(domains)
     report['sources']['custom-domains.txt'] = len(domains)
     source_records['custom-domains.txt'] = sorted('domain_suffix:' + d for d in domains)
-    cdn = json.loads((ROOT / 'config/service-cdn.json').read_text())
-    for d in cdn['domain_suffix']:
-        d = domain(d)
-        if d in SHARED or any(x.endswith('.' + d) for x in SHARED):
-            raise ValueError('Shared CDN suffix forbidden')
-        rules['domain_suffix'].add(d)
-    if cdn['ip_cidr'] and not cdn.get('evidence', '').startswith('https://'):
-        raise ValueError('Dedicated CDN IPs require a source URL')
     previous = json.loads((dist / 'bgp-snapshot.json').read_text()) if (dist / 'bgp-snapshot.json').exists() else {}
     asns = sorted({x for group in cfg['service_asns'].values() for x in group})
     if not set(asns) <= {62041, 62014, 59930, 44907, 211157, 32934, 63293}:
@@ -319,8 +310,6 @@ def build():
             p for asn in group_asns for p in snapshot[str(asn)]['prefixes']]
         report['custom_services'][service] = sorted(set(report['custom_services'][service] +
             ['ip_cidr:' + p for p in collapse(values)]))
-    source_records['service-cdn.json'] = sorted(['domain_suffix:' + d for d in cdn['domain_suffix']] + cdn['ip_cidr'])
-    report['sources']['service-cdn.json'] = len(source_records['service-cdn.json'])
     suffix = prune(rules['domain_suffix'])
     exact = sorted(d for d in rules['domain'] if not any(d == x or d.endswith('.' + x) for x in suffix))
     merged = {k: sorted(v) for k, v in rules.items() if v}
@@ -332,7 +321,7 @@ def build():
     custom_ips = lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())
     report['sources']['custom-ip-cidrs.txt'] = len(custom_ips)
     source_records['custom-ip-cidrs.txt'] = sorted(set(custom_ips))
-    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + cdn['ip_cidr'] + custom_ips + [p for values in live_service_ips.values() for p in values])
+    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + custom_ips + [p for values in live_service_ips.values() for p in values])
     merged['ip_cidr'] = prefixes
     total = len(suffix) + len(exact)
     if not cfg['min_total_domains'] <= total <= cfg['max_total_domains'] or len(prefixes) > cfg['max_prefixes']:
