@@ -35,6 +35,10 @@ class SafetyTests(unittest.TestCase):
             self.assertEqual(result['domain_suffix'], {'example.org'})
             self.assertEqual(result['domain_keyword'], {'hello'})
 
+    def test_v2fly_category_names_can_contain_exclamation(self):
+        with patch.object(b, 'fetch', return_value='example.com'):
+            self.assertEqual(b.V2Fly('test/').category('category-ai-!cn')['domain_suffix'], {'example.com'})
+
     def test_include_cycle(self):
         with patch.object(b, 'fetch', return_value='include:test'):
             with self.assertRaises(ValueError):

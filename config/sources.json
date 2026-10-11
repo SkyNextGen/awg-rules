@@ -1,7 +1,47 @@
 {
   "itdog_url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Russia/inside-kvas.lst",
   "v2fly_base": "https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/",
-  "service_asns": {"telegram": [62041, 62014, 59930, 44907, 211157], "meta": [32934, 63293]},
+  "service_sources": {
+    "discord": [
+      {
+        "kind": "v2fly",
+        "category": "discord"
+      },
+      {
+        "kind": "domains",
+        "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/discord.lst"
+      }
+    ],
+    "telegram": [
+      {
+        "kind": "v2fly",
+        "category": "telegram"
+      },
+      {
+        "kind": "domains",
+        "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/telegram.lst"
+      }
+    ],
+    "whatsapp": [
+      {
+        "kind": "v2fly",
+        "category": "whatsapp"
+      }
+    ]
+  },
+  "service_asns": {
+    "telegram": [
+      62041,
+      62014,
+      59930,
+      44907,
+      211157
+    ],
+    "meta": [
+      32934,
+      63293
+    ]
+  },
   "min_itdog_domains": 500,
   "min_total_domains": 500,
   "max_total_domains": 100000,
@@ -9,5 +49,11 @@
   "max_snapshot_age_days": 8,
   "min_previous_ratio": 0.8,
   "max_previous_ratio": 1.5,
-  "sing_box_version": "1.12.12"
+  "max_source_expansion_ratio": 3,
+  "sing_box_version": "1.12.12",
+  "discord_voice": {
+    "rule_source": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/convert.py",
+    "ipv4_url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv4/discord.lst",
+    "ipv6_url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv6/discord.lst"
+  }
 }

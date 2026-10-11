@@ -1,5 +1,6 @@
 """Fail-closed source merger. Only promote output after official SRS compilation."""
 import hashlib
+import ast
 import ipaddress
 import json
 import os
@@ -19,6 +20,17 @@ SHARED = {'cloudfront.net', 'akamai.net', 'akamaized.net', 'cloudflare.com', 'fa
 
 
 def fetch(url):
+    cache = os.environ.get('SOURCE_CACHE')
+    if cache:
+        path = Path(cache) / (hashlib.sha256(url.encode()).hexdigest() + '.txt')
+        manifest = json.loads((Path(cache) / 'manifest.json').read_text(encoding='utf-8'))
+        timestamp = datetime.fromisoformat(manifest['fetched_at'].replace('Z', '+00:00'))
+        age = (datetime.now(timezone.utc) - timestamp).total_seconds()
+        expected = {row['url']: row['sha256'] for row in manifest['sources']}
+        value = path.read_bytes()
+        if not 0 <= age <= 86400 or hashlib.sha256(value).hexdigest() != expected.get(url):
+            raise ValueError('Expired or corrupted local source cache: ' + url)
+        return value.decode('utf-8')
     for attempt in range(3):
         try:
             with urlopen(Request(url, headers={'User-Agent': UA}), timeout=60) as response:
@@ -65,12 +77,63 @@ def prune(values):
     return sorted(keep)
 
 
+def discord_voice(cfg):
+    """Preserve ITDog's network AND CIDR AND destination-port semantics."""
+    source = cfg['rule_source']
+    tree = ast.parse(fetch(source))
+    calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call)
+             and isinstance(n.func, ast.Name) and n.func.id == 'srs_rule'
+             and len(n.args) == 2 and isinstance(n.args[0], ast.Constant)
+             and n.args[0].value == 'discord']
+    if len(calls) != 1 or not isinstance(calls[0].args[1], ast.List):
+        raise ValueError('Discord upstream rule structure changed')
+    ports = {}
+    for item in calls[0].args[1].elts:
+        if not isinstance(item, ast.Dict):
+            raise ValueError('Unexpected Discord rule')
+        values = {ast.literal_eval(k): v for k, v in zip(item.keys, item.values)}
+        if 'ip_cidr' not in values:
+            continue
+        if set(values) != {'network', 'ip_cidr', 'port_range'} or ast.literal_eval(values['network']) != ['udp']:
+            raise ValueError('Discord rule must retain UDP and port restrictions')
+        name = values['ip_cidr']
+        if not isinstance(name, ast.Name) or name.id not in {'discord_subnets', 'discord_cf_subnets'}:
+            raise ValueError('Unexpected Discord subnet source')
+        ranges = ast.literal_eval(values['port_range'])
+        if not isinstance(ranges, list) or not ranges:
+            raise ValueError('Missing Discord ports')
+        for value in ranges:
+            if not re.fullmatch(r'\d+:\d+', value):
+                raise ValueError('Invalid Discord port range')
+            lo, hi = map(int, value.split(':'))
+            if not 1 <= lo <= hi <= 65535 or (lo == 1 and hi == 65535):
+                raise ValueError('Unsafe Discord ports')
+        ports[name.id] = ranges
+    if set(ports) != {'discord_subnets', 'discord_cf_subnets'}:
+        raise ValueError('Missing Discord scoped upstream rules')
+    prefixes = []
+    for family in (4, 6):
+        values = lines(fetch(cfg['ipv' + str(family) + '_url']))
+        if not values or len(values) > 2000 or any(network(p).version != family for p in values):
+            raise ValueError('Invalid Discord IPv' + str(family) + ' source')
+        prefixes.extend(values)
+    assignments = [n for n in ast.walk(tree) if isinstance(n, ast.Assign)
+                   and any(isinstance(t, ast.Name) and t.id == 'discord_cf_subnets' for t in n.targets)]
+    if len(assignments) != 1:
+        raise ValueError('Missing Discord Cloudflare source')
+    cloudflare = collapse(ast.literal_eval(assignments[0].value))
+    if cloudflare != ['104.16.0.0/12']:
+        raise ValueError('Discord Cloudflare prefixes changed; review required')
+    return [dict(network=['udp'], ip_cidr=collapse(prefixes), port_range=ports['discord_subnets']),
+            dict(network=['udp'], ip_cidr=cloudflare, port_range=ports['discord_cf_subnets'])]
+
+
 class V2Fly:
     def __init__(self, base):
         self.base, self.cache = base, {}
 
     def category(self, name, stack=()):
-        if not re.fullmatch(r'[a-z0-9_-]+', name):
+        if not re.fullmatch(r'[a-z0-9_!-]+', name):
             raise ValueError('Invalid category')
         if name in stack:
             raise ValueError('V2Fly include cycle')
@@ -163,6 +226,8 @@ def build():
     dist, staging = ROOT / 'dist', ROOT / '.staging'
     staging.mkdir(exist_ok=True)
     report = {'built_at': datetime.now(timezone.utc).isoformat(), 'warnings': [], 'sources': {}}
+    if os.environ.get('SOURCE_CACHE'):
+        report['warnings'].append('Local review build from explicitly fetched SOURCE_CACHE; not a live Python HTTP build')
     source_records = {}
     itdog = {domain(x) for x in lines(fetch(cfg['itdog_url']))}
     if len(itdog) < cfg['min_itdog_domains']:
@@ -177,6 +242,32 @@ def build():
         source_records['v2fly:' + cat] = records(parsed)
         for k in rules:
             rules[k].update(parsed[k])
+    service_sources = cfg.get('service_sources', {})
+    for service, urls in sorted(service_sources.items()):
+        service_records = []
+        for source in urls:
+            if source.get('kind') == 'v2fly':
+                category = source['category']
+                parsed = v2.category(category)
+                for key, values in parsed.items():
+                    rules[key].update(values)
+                source_name = 'v2fly:' + category
+                source_records[source_name] = records(parsed)
+                report['sources'][source_name] = len(source_records[source_name])
+            elif source.get('kind') == 'domains' and source.get('url', '').startswith('https://'):
+                service_domains = {domain(x) for x in lines(fetch(source['url']))}
+                if not service_domains:
+                    raise ValueError('Empty custom domain source: ' + source['url'])
+                rules['domain_suffix'].update(service_domains)
+                source_name = 'ITDog:service:' + service
+                source_records[source_name] = sorted('domain_suffix:' + d for d in service_domains)
+                report['sources'][source_name] = len(source_records[source_name])
+            else:
+                raise ValueError('Invalid custom service source: ' + service)
+            service_records.extend(source_records[source_name])
+        if not service_records:
+            raise ValueError('Empty custom service source: ' + service)
+        report.setdefault('custom_services', {})[service] = sorted(set(service_records))
     for file in ('custom-domains.txt', 'service-domains.txt'):
         domains = {domain(x) for x in lines((ROOT / 'config' / file).read_text())}
         rules['domain_suffix'].update(domains)
@@ -217,26 +308,43 @@ def build():
     if not cfg['min_total_domains'] <= total <= cfg['max_total_domains'] or len(prefixes) > cfg['max_prefixes']:
         raise ValueError('Output size outside safety limits')
     old = json.loads((dist / 'report.json').read_text(encoding='utf-8')) if (dist / 'report.json').exists() else {}
+    added_sources = set(report['sources']) - set(old.get('sources', {}))
     for key, count in [('domains', total), ('prefixes', len(prefixes))]:
-        if old.get(key) and not cfg['min_previous_ratio'] <= count / old[key] <= cfg['max_previous_ratio']:
+        max_ratio = cfg.get('max_source_expansion_ratio', cfg['max_previous_ratio']) if key == 'domains' and added_sources else cfg['max_previous_ratio']
+        if old.get(key) and not cfg['min_previous_ratio'] <= count / old[key] <= max_ratio:
             raise ValueError(key + ' changed beyond safety threshold')
-    payload = {'version': 1, 'rules': [merged]}
+    scoped = discord_voice(cfg['discord_voice'])
+    source_records['ITDog:discord:scoped-udp'] = [json.dumps(r, sort_keys=True) for r in scoped]
+    report['sources']['ITDog:discord:scoped-udp'] = len(scoped)
+    report['scoped_rules'] = scoped
+    report['warnings'].append('Discord voice CIDRs are community-derived shared networks, limited to upstream UDP ports; dynamic endpoints and IPv6 low-port Cloudflare coverage are not guaranteed')
+    payload = {'version': 1, 'rules': [merged] + scoped}
     (staging / 'routing.json').write_text(json.dumps(payload, indent=2, ensure_ascii=True) + '\n')
     exe = os.environ.get('SING_BOX', 'sing-box')
     subprocess.run([exe, 'rule-set', 'compile', '--output', str(staging / 'routing.srs'), str(staging / 'routing.json')], check=True)
     subprocess.run([exe, 'rule-set', 'decompile', '--output', str(staging / 'roundtrip.json'), str(staging / 'routing.srs')], check=True)
     roundtrip = json.loads((staging / 'roundtrip.json').read_text())
     def canonical(obj):
-        return {k: sorted(v if isinstance(v, list) else [v]) for k, v in obj['rules'][0].items() if k != 'type'}
+        return [{k: sorted(v if isinstance(v, list) else [v]) for k, v in rule.items() if k != 'type'} for rule in obj['rules']]
     if canonical(roundtrip) != canonical(payload):
         raise ValueError('SRS round-trip differs from JSON')
     report.update(domains=total, prefixes=len(prefixes), ipv4=sum(network(p).version == 4 for p in prefixes), ipv6=sum(network(p).version == 6 for p in prefixes), asns=snapshot, matchers={k: len(v) for k, v in merged.items()})
     report['sha256'] = {f: hashlib.sha256((staging / f).read_bytes()).hexdigest() for f in ('routing.json', 'routing.srs')}
+    custom_stage = staging / 'custom'
+    custom_stage.mkdir(exist_ok=True)
+    for service, entries in report['custom_services'].items():
+        service_rule = {}
+        for entry in entries:
+            key, value = entry.split(':', 1)
+            service_rule.setdefault(key, []).append(value)
+        service_rules = [service_rule] + (scoped if service == 'discord' else [])
+        (custom_stage / (service + '.json')).write_text(json.dumps({'version': 1, 'rules': service_rules}, indent=2) + '\n', encoding='utf-8')
     (staging / 'bgp-snapshot.json').write_text(json.dumps(snapshot, indent=2) + '\n')
     write_report(report, payload, source_records, staging, dist, old)
     dist.mkdir(exist_ok=True)
     for f in ('routing.json', 'routing.srs', 'report.json', 'report.md', 'bgp-snapshot.json', 'source-snapshot.json', 'history.json', 'tg_message.txt'):
         shutil.copyfile(staging / f, dist / f)
+    shutil.copytree(custom_stage, dist / 'custom', dirs_exist_ok=True)
     print(f'Build OK: {total} domains, {len(prefixes)} prefixes')
 
 
