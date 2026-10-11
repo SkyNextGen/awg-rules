@@ -1,9 +1,7 @@
-# Personal static IPv4/IPv6 additions only.
-# Telegram official/BGP prefixes are refreshed separately in config/sources.json.
-# User-collected personal additions reviewed 2026-10-11.
-# This list may include shared hosting/CDN networks; it is not a messenger ownership list.
-# Only CIDRs without overlap in the selected baseline were imported.
-# Audit: docs/custom-import-audit-2026-10-11.json
+# Личные статические IP-сети; источники и порядок работы описаны в README.
+# Пользовательские дополнения проверены 11.10.2026.
+# Есть сети общего хостинга/CDN: это не реестр IP мессенджеров.
+# Официальные сети и BGP Telegram/Meta обновляются отдельно.
 
 45.130.4.0/24
 77.240.43.0/24
