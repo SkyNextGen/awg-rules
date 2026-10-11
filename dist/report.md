@@ -2,11 +2,11 @@
 
 ## 🧭 Общая информация
 
-> 🕒 **Сборка:** 11.10.2026, 19:50 МСК  
+> 🕒 **Сборка:** 11.10.2026, 20:24 МСК  
 > 📦 **Репозиторий:** SkyNextGen/awg-rules  
 > 📄 **Файлы:** `dist/routing.json` и `dist/routing.srs`  
 > 🗓 **Расписание:** ежедневно, 23:17 МСК; также вручную и после изменения кода/настроек  
-> 🔄 **Сравнение со сборкой:** 11.10.2026, 19:35 МСК
+> 🔄 **Сравнение со сборкой:** 11.10.2026, 19:50 МСК
 
 ---
 
@@ -14,8 +14,8 @@
 
 | Показатель | Всего | Добавлено / удалено |
 |---|---:|---|
-| Доменные правила | 3651 | +35 / -0 |
-| IPv4-префиксы | 107 | +23 / -0 |
+| Доменные правила | 4254 | +604 / -1 |
+| IPv4-префиксы | 107 | +0 / -0 |
 | IPv6-префиксы | 43 | +0 / -0 |
 
 Другие доменные условия (keyword/regexp): **7**. Они также учитываются в списке изменений.
@@ -49,12 +49,14 @@
 | ITDog:discord:scoped-udp | 2 | +0 / -0 |
 | ITDog:service:discord | 20 | +0 / -0 |
 | ITDog:service:telegram | 20 | +0 / -0 |
-| custom-domains.txt | 67 | +35 / -0 |
-| custom-ip-cidrs.txt | 23 | +23 / -0 |
+| custom-domains.txt | 67 | +0 / -0 |
+| custom-ip-cidrs.txt | 23 | +0 / -0 |
 | itdog | 1181 | +0 / -0 |
 | service-cdn.json | 0 | +0 / -0 |
 | telegram:official-cidr | 11 | +0 / -0 |
 | v2fly:anthropic | 9 | +0 / -0 |
+| v2fly:autodesk | 558 | первый снимок — сравнение со следующего запуска |
+| v2fly:canva | 6 | первый снимок — сравнение со следующего запуска |
 | v2fly:category-ai-!cn | 190 | +0 / -0 |
 | v2fly:category-ai-chat-!cn | 190 | +0 / -0 |
 | v2fly:category-ai-cn | 115 | +0 / -0 |
@@ -68,23 +70,31 @@
 | v2fly:google-gemini | 46 | +0 / -0 |
 | v2fly:google-play | 10 | +0 / -0 |
 | v2fly:googlefcm | 12 | +0 / -0 |
+| v2fly:hdrezka | 11 | первый снимок — сравнение со следующего запуска |
 | v2fly:instagram | 74 | +0 / -0 |
+| v2fly:jetbrains | 25 | первый снимок — сравнение со следующего запуска |
+| v2fly:mega | 7 | первый снимок — сравнение со следующего запуска |
 | v2fly:meta | 555 | +0 / -0 |
 | v2fly:microsoft | 754 | +0 / -0 |
 | v2fly:microsoft-dev | 74 | +0 / -0 |
 | v2fly:netflix | 28 | +0 / -0 |
 | v2fly:nexusmods | 2 | +0 / -0 |
+| v2fly:notion | 7 | первый снимок — сравнение со следующего запуска |
 | v2fly:nvidia | 66 | +0 / -0 |
 | v2fly:openai | 23 | +0 / -0 |
 | v2fly:patreon | 4 | +0 / -0 |
 | v2fly:perplexity | 5 | +0 / -0 |
 | v2fly:playstation | 4 | +0 / -0 |
+| v2fly:protonmail | 9 | первый снимок — сравнение со следующего запуска |
+| v2fly:rutracker | 9 | первый снимок — сравнение со следующего запуска |
 | v2fly:signal | 8 | +0 / -0 |
 | v2fly:soundcloud | 3 | +0 / -0 |
 | v2fly:spotify | 28 | +0 / -0 |
 | v2fly:telegram | 21 | +0 / -0 |
 | v2fly:threads | 2 | +0 / -0 |
 | v2fly:tiktok | 37 | +0 / -0 |
+| v2fly:tmdb | 4 | первый снимок — сравнение со следующего запуска |
+| v2fly:twitter | 24 | первый снимок — сравнение со следующего запуска |
 | v2fly:ubisoft | 31 | +0 / -0 |
 | v2fly:wbgames | 6 | +0 / -0 |
 | v2fly:whatsapp | 11 | +0 / -0 |
@@ -98,69 +108,69 @@
 
 | Показатель | Среднее | Δ к прошлой |
 |---|---:|---:|
-| Домены | 3132.6 | +35 |
-| IPv4 | 87.3 | +23 |
+| Домены | 3466.4 | +603 |
+| IPv4 | 90.6 | +0 |
 | IPv6 | 43.0 | +0 |
 
 | Сборка (МСК) | Домены | IPv4 | IPv6 |
 |---|---:|---:|---:|
-| 11.10.2026, 01:27 МСК | 1917 | 84 | 43 |
 | 11.10.2026, 01:29 МСК | 1917 | 84 | 43 |
 | 11.10.2026, 17:06 МСК | 3609 | 84 | 43 |
 | 11.10.2026, 17:54 МСК | 3609 | 84 | 43 |
 | 11.10.2026, 18:31 МСК | 3609 | 84 | 43 |
 | 11.10.2026, 19:35 МСК | 3616 | 84 | 43 |
 | 11.10.2026, 19:50 МСК | 3651 | 107 | 43 |
+| 11.10.2026, 20:24 МСК | 4254 | 107 | 43 |
 
 ## 🌐 BGP и fallback
 
 | ASN | Источник | Префиксов до общего объединения | Получено (МСК) |
 |---|---|---:|---|
-| AS32934 | RIPEstat | 36 | 11.10.2026, 19:51 МСК |
-| AS44907 | RIPEstat | 2 | 11.10.2026, 19:51 МСК |
-| AS59930 | RIPEstat | 3 | 11.10.2026, 19:51 МСК |
-| AS62014 | RIPEstat | 4 | 11.10.2026, 19:51 МСК |
-| AS62041 | RIPEstat | 6 | 11.10.2026, 19:51 МСК |
-| AS63293 | RIPEstat | 79 | 11.10.2026, 19:51 МСК |
-| AS211157 | RIPEstat | 3 | 11.10.2026, 19:51 МСК |
+| AS32934 | RIPEstat | 36 | 11.10.2026, 20:24 МСК |
+| AS44907 | RIPEstat | 2 | 11.10.2026, 20:24 МСК |
+| AS59930 | RIPEstat | 3 | 11.10.2026, 20:24 МСК |
+| AS62014 | RIPEstat | 4 | 11.10.2026, 20:24 МСК |
+| AS62041 | RIPEstat | 6 | 11.10.2026, 20:24 МСК |
+| AS63293 | RIPEstat | 79 | 11.10.2026, 20:24 МСК |
+| AS211157 | RIPEstat | 3 | 11.10.2026, 20:24 МСК |
 
 ## 🔐 SHA256
 
-- `routing.json`: `19a2627ad81868cf3af3395853fbaa5b1ae084372b9d9cb9b4e93b250a9561b8`
-- `routing.srs`: `e2fd1d479b9f865d31e6d7dcedf4d0c4b63b26d1c67681739d0d45d77f560464`
+- `routing.json`: `4497942faadfd193822a669b95e202bf84bdf0c1bc8db1269720caeac268844f`
+- `routing.srs`: `4bde3776a7e30c93bba7afdb9dcedc77cb241600e8b2927b4142c8d8b5039136`
 
 <details>
 <summary>🔄 Изменения — первые 20 записей в каждой группе</summary>
 
 ### domains
 
-**➕ Добавлено: 35**
+**➕ Добавлено: 604**
 
-- `domain_suffix:nicegram.app`
-- `domain_suffix:teleg.xyz`
-- `domain_suffix:telegram.ai`
-- `domain_suffix:telegram.asia`
-- `domain_suffix:telegram.biz`
-- `domain_suffix:telegram.cloud`
-- `domain_suffix:telegram.cn`
-- `domain_suffix:telegram.co`
-- `domain_suffix:telegram.com`
-- `domain_suffix:telegram.de`
-- `domain_suffix:telegram.dev`
-- `domain_suffix:telegram.eu`
-- `domain_suffix:telegram.fr`
-- `domain_suffix:telegram.host`
-- `domain_suffix:telegram.in`
-- `domain_suffix:telegram.info`
-- `domain_suffix:telegram.io`
-- `domain_suffix:telegram.jp`
-- `domain_suffix:telegram.net`
-- `domain_suffix:telegram.qa`
-- … ещё 15; полный список в `dist/report.json`.
+- `domain:tmdb-web-image-prod.b-cdn.net`
+- `domain_suffix:123dapp.com`
+- `domain_suffix:123dappipad.com`
+- `domain_suffix:123dartisan.com`
+- `domain_suffix:123dcatch.com`
+- `domain_suffix:123dcircuits.com`
+- `domain_suffix:123dcreature.com`
+- `domain_suffix:123dcreaturenews.com`
+- `domain_suffix:123ddesign.com`
+- `domain_suffix:123ddoodler.com`
+- `domain_suffix:123dmake.com`
+- `domain_suffix:123dnews.com`
+- `domain_suffix:123dpro.com`
+- `domain_suffix:123dpro.net`
+- `domain_suffix:123dsculpt.com`
+- `domain_suffix:20yearsoffea.com`
+- `domain_suffix:360autodesk.com`
+- `domain_suffix:360nexus.com`
+- `domain_suffix:360nexus.net`
+- `domain_suffix:360plm.com`
+- … ещё 584; полный список в `dist/report.json`.
 
-**➖ Удалено: 0**
+**➖ Удалено: 1**
 
-- —
+- `domain_suffix:grazie.aws.intellij.net`
 
 ### scoped_udp
 
@@ -174,29 +184,9 @@
 
 ### ipv4
 
-**➕ Добавлено: 23**
+**➕ Добавлено: 0**
 
-- `142.250.0.0/15`
-- `147.75.0.0/16`
-- `15.197.206.217/32`
-- `15.197.210.208/32`
-- `163.114.0.0/16`
-- `164.163.191.64/26`
-- `173.194.10.0/24`
-- `173.194.222.0/24`
-- `192.186.226.0/24`
-- `199.201.0.0/16`
-- `213.102.128.0/24`
-- `3.33.221.48/32`
-- `3.33.252.61/32`
-- `34.192.181.12/32`
-- `34.193.38.112/32`
-- `34.194.255.230/32`
-- `34.194.71.217/32`
-- `45.130.4.0/24`
-- `45.43.186.0/24`
-- `77.240.43.0/24`
-- … ещё 3; полный список в `dist/report.json`.
+- —
 
 **➖ Удалено: 0**
 
@@ -314,29 +304,9 @@
 
 ### custom-domains.txt
 
-**➕ Добавлено: 35**
+**➕ Добавлено: 0**
 
-- `domain_suffix:nicegram.app`
-- `domain_suffix:teleg.xyz`
-- `domain_suffix:telegram.ai`
-- `domain_suffix:telegram.asia`
-- `domain_suffix:telegram.biz`
-- `domain_suffix:telegram.cloud`
-- `domain_suffix:telegram.cn`
-- `domain_suffix:telegram.co`
-- `domain_suffix:telegram.com`
-- `domain_suffix:telegram.de`
-- `domain_suffix:telegram.dev`
-- `domain_suffix:telegram.eu`
-- `domain_suffix:telegram.fr`
-- `domain_suffix:telegram.host`
-- `domain_suffix:telegram.in`
-- `domain_suffix:telegram.info`
-- `domain_suffix:telegram.io`
-- `domain_suffix:telegram.jp`
-- `domain_suffix:telegram.net`
-- `domain_suffix:telegram.qa`
-- … ещё 15; полный список в `dist/report.json`.
+- —
 
 **➖ Удалено: 0**
 
@@ -344,29 +314,9 @@
 
 ### custom-ip-cidrs.txt
 
-**➕ Добавлено: 23**
+**➕ Добавлено: 0**
 
-- `142.250.0.0/15`
-- `147.75.0.0/16`
-- `15.197.206.217/32`
-- `15.197.210.208/32`
-- `163.114.0.0/16`
-- `164.163.191.64/26`
-- `173.194.10.0/24`
-- `173.194.222.0/24`
-- `192.186.226.0/24`
-- `199.201.0.0/16`
-- `213.102.128.0/24`
-- `3.33.221.48/32`
-- `3.33.252.61/32`
-- `34.192.181.12/32`
-- `34.193.38.112/32`
-- `34.194.255.230/32`
-- `34.194.71.217/32`
-- `45.130.4.0/24`
-- `45.43.186.0/24`
-- `77.240.43.0/24`
-- … ещё 3; полный список в `dist/report.json`.
+- —
 
 **➖ Удалено: 0**
 
@@ -411,6 +361,14 @@
 **➖ Удалено: 0**
 
 - —
+
+### v2fly:autodesk
+
+Первый снимок; предыдущего набора нет.
+
+### v2fly:canva
+
+Первый снимок; предыдущего набора нет.
 
 ### v2fly:category-ai-!cn
 
@@ -542,6 +500,10 @@
 
 - —
 
+### v2fly:hdrezka
+
+Первый снимок; предыдущего набора нет.
+
 ### v2fly:instagram
 
 **➕ Добавлено: 0**
@@ -551,6 +513,14 @@
 **➖ Удалено: 0**
 
 - —
+
+### v2fly:jetbrains
+
+Первый снимок; предыдущего набора нет.
+
+### v2fly:mega
+
+Первый снимок; предыдущего набора нет.
 
 ### v2fly:meta
 
@@ -602,6 +572,10 @@
 
 - —
 
+### v2fly:notion
+
+Первый снимок; предыдущего набора нет.
+
 ### v2fly:nvidia
 
 **➕ Добавлено: 0**
@@ -651,6 +625,14 @@
 **➖ Удалено: 0**
 
 - —
+
+### v2fly:protonmail
+
+Первый снимок; предыдущего набора нет.
+
+### v2fly:rutracker
+
+Первый снимок; предыдущего набора нет.
 
 ### v2fly:signal
 
@@ -711,6 +693,14 @@
 **➖ Удалено: 0**
 
 - —
+
+### v2fly:tmdb
+
+Первый снимок; предыдущего набора нет.
+
+### v2fly:twitter
+
+Первый снимок; предыдущего набора нет.
 
 ### v2fly:ubisoft
 
