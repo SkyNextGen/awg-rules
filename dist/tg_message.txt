@@ -6,10 +6,10 @@
 🟠 СТАТУС СБОРКИ: ПРЕДУПРЕЖДЕНИЕ
 
 🚀 Сборка завершена успешно
-🕒 11.10.2026, 17:06 МСК
+🕒 11.10.2026, 17:54 МСК
 
 📊 ИТОГ И ИЗМЕНЕНИЯ
-Домены: 3609 (+1720 / -22)
+Домены: 3609 (+0 / -0)
 IPv4: 84 (+0 / -0)
 IPv6: 43 (+0 / -0)
 
@@ -21,24 +21,11 @@ Custom IP: 4 (+0 / -0)
 V2Fly: 34 категорий, ошибок нет
 
 📈 ТРЕНД ЗА 7 УСПЕШНЫХ ЗАПУСКОВ (до 7)
-Среднее доменов: 2153.4
-Δ к прошлой: +1692
-📈 Рост
-
-➕ Доменные условия:
-• domain:ai.zhaomi.cn
-• domain:apps5.oingo.com
-• domain:audio-ak-spotify-com.akamaized.net
-… ещё 1717 в отчёте
-
-➖ Доменные условия:
-• domain:openaiapi-site.azureedge.net
-• domain:openaiassets.blob.core.windows.net
-• domain:openaicom-api-bdcpf8c6d2e9atf6.z01.azurefd.net
-… ещё 19 в отчёте
+Среднее доменов: 2397.4
+Δ к прошлой: +0
+➡️ Стабильно
 
 ⚠️ Замечания:
-• Local review build from explicitly fetched SOURCE_CACHE; not a live Python HTTP build
 • Discord voice CIDRs are community-derived shared networks, limited to upstream UDP ports; dynamic endpoints and IPv6 low-port Cloudflare coverage are not guaranteed
 
 🔐 sha256 SRS: 7fa1f4f9…05c7c5d4
