@@ -1,0 +1,71 @@
+"""Post-build coverage checks against fresh sources and the generated service sets."""
+import ipaddress
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+HOSTS = (
+    'discord.com', 'gateway.discord.gg', 'cdn.discordapp.com',
+    'media.discordapp.net', 'images-ext-1.discordapp.net', 'images-ext-2.discordapp.net',
+    'voice-region.discord.media', 'nexusmods.com', 'api.nexusmods.com',
+    'users.nexusmods.com', 'staticdelivery.nexusmods.com', 'files.nexus-cdn.com',
+    'supporter-files.nexus-cdn.com', 'premium-files.nexus-cdn.com',
+    'signal.art', 'signal.group', 'signal.link', 'signal.me', 'signal.tube',
+    'signal.org', 'signalusers.org', 'whispersystems.org',
+    'telegram.org', 't.me', 'whatsapp.com', 'whatsapp.net', 'wa.me',
+)
+
+
+def covered_suffix(value, suffixes):
+    return any(value == suffix or value.endswith('.' + suffix) for suffix in suffixes)
+
+
+def covers_network(value, prefixes):
+    wanted = ipaddress.ip_network(value)
+    return any(wanted.version == net.version and wanted.subnet_of(net)
+               for net in map(ipaddress.ip_network, prefixes))
+
+
+def verify(root=ROOT):
+    payload = json.loads((root / 'dist/routing.json').read_text(encoding='utf-8'))
+    snapshot = json.loads((root / 'dist/source-snapshot.json').read_text(encoding='utf-8'))
+    base = payload['rules'][0]
+    for host in HOSTS:
+        if not covered_suffix(host, base['domain_suffix']):
+            raise ValueError('Missing generated service coverage: ' + host)
+    upstream_suffixes = {
+        value.split(':', 1)[1] for name, values in snapshot.items()
+        if name == 'itdog' or name.startswith(('v2fly:', 'ITDog:service:'))
+        for value in values if value.startswith('domain_suffix:')}
+    custom = [value.split('#', 1)[0].strip()
+              for value in (root / 'config/custom-domains.txt').read_text(encoding='utf-8').splitlines()]
+    overlaps = [value for value in custom if value and covered_suffix(value, upstream_suffixes)]
+    # Notify when a personal addition has become redundant; do not silently rewrite user config.
+    if overlaps:
+        print('Custom domains now covered by upstream: ' + ', '.join(sorted(overlaps)))
+    for service in ('telegram', 'whatsapp', 'discord'):
+        data = json.loads((root / ('dist/custom/' + service + '.json')).read_text(encoding='utf-8'))
+        if not data['rules']:
+            raise ValueError('Empty generated service set: ' + service)
+        for rule in data['rules']:
+            for suffix in rule.get('domain_suffix', []):
+                if not covered_suffix(suffix, base['domain_suffix']):
+                    raise ValueError('Service domain missing from final output: ' + suffix)
+            if rule.get('port_range'):
+                if rule.get('network') != ['udp'] or rule not in payload['rules'][1:]:
+                    raise ValueError('Scoped Discord UDP conditions differ from final output')
+                continue
+            for prefix in rule.get('ip_cidr', []):
+                if not covers_network(prefix, base['ip_cidr']):
+                    raise ValueError('Service IP missing from final output: ' + prefix)
+        if service != 'discord' and not data['rules'][0].get('ip_cidr'):
+            raise ValueError('Missing generated service IPs: ' + service)
+    telegram = json.loads((root / 'dist/custom/telegram.json').read_text(encoding='utf-8'))
+    for prefix in snapshot['telegram:official-cidr']:
+        if not covers_network(prefix, telegram['rules'][0]['ip_cidr']):
+            raise ValueError('Official Telegram prefix missing from generated source: ' + prefix)
+    print('Service coverage OK: Discord media/UDP, Nexus, Signal, Telegram official CIDR and all custom service sets')
+
+
+if __name__ == '__main__':
+    verify()

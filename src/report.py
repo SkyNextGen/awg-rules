@@ -60,7 +60,7 @@ def write_report(report, payload, source_records, staging, dist, old):
         f"> 🕒 **Сборка:** {moscow_time(report['built_at'])}  ",
         '> 📦 **Репозиторий:** SkyNextGen/awg-rules  ',
         '> 📄 **Файлы:** `dist/routing.json` и `dist/routing.srs`  ',
-        '> 🗓 **Расписание:** понедельник, 23:17 МСК; также вручную и после изменения кода/настроек  ',
+        '> 🗓 **Расписание:** ежедневно, 23:17 МСК; также вручную и после изменения кода/настроек  ',
         f"> 🔄 **Сравнение со сборкой:** {moscow_time(report['compared_to']) if report['compared_to'] else 'первый запуск'}", '',
         '---', '', '## 🧮 Итог сборки', '',
         '| Показатель | Всего | Добавлено / удалено |', '|---|---:|---|',
@@ -150,7 +150,7 @@ def telegram_text(report, status='success', run_url=''):
     active = [(name, item) for name, item in sorted(source_changes.items())
               if not item['baseline'] or item['added_count'] or item['removed_count']]
     labels = {'itdog': 'ITDog', 'custom-domains.txt': 'Custom-домены',
-              'custom-ip-cidrs.txt': 'Custom-IP', 'service-domains.txt': 'Сервисные домены',
+              'custom-ip-cidrs.txt': 'Custom-IP', 'telegram:official-cidr': 'Telegram / официальный CIDR',
               'service-cdn.json': 'Сервисные CDN', 'ITDog:discord:scoped-udp': 'Discord UDP'}
     if active:
         text += ['', '📌 Где изменилось']
