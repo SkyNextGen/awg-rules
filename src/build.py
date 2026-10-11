@@ -317,7 +317,10 @@ def build():
     source_records['ITDog:discord:scoped-udp'] = [json.dumps(r, sort_keys=True) for r in scoped]
     report['sources']['ITDog:discord:scoped-udp'] = len(scoped)
     report['scoped_rules'] = scoped
-    report['warnings'].append('Discord voice CIDRs are community-derived shared networks, limited to upstream UDP ports; dynamic endpoints and IPv6 low-port Cloudflare coverage are not guaranteed')
+    report['limitations'] = [
+        'Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. '
+        'Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах.'
+    ]
     payload = {'version': 1, 'rules': [merged] + scoped}
     (staging / 'routing.json').write_text(json.dumps(payload, indent=2, ensure_ascii=True) + '\n')
     exe = os.environ.get('SING_BOX', 'sing-box')

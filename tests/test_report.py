@@ -62,3 +62,49 @@ class Reports(unittest.TestCase):
         self.assertLessEqual(len(text.encode('utf-16-le')) // 2, 4096)
         self.assertIn('https://github.com/run/1', text)
         self.assertIn('dist/report.md', text)
+
+    def compact_sample(self):
+        report = self.sample()
+        report['changes'] = {k: delta([], []) for k in ('domains', 'ipv4', 'ipv6', 'scoped_udp')}
+        return report
+
+    def test_compact_success_does_not_promote_limitations_to_warnings(self):
+        report = self.compact_sample()
+        report['limitations'] = ['Discord: динамические IP не гарантированы']
+        text = telegram_text(report)
+        self.assertTrue(text.startswith('✅'))
+        self.assertIn('Изменений нет', text)
+        self.assertNotIn('Discord', text)
+        self.assertNotIn('WARNING', text)
+        self.assertLessEqual(len(text.splitlines()), 5)
+
+    def test_operational_warning_remains_visible_and_bounded(self):
+        report = self.compact_sample()
+        report['warnings'] = ['AS62041: snapshot age 2 days', 'x' * 6000, 'third warning']
+        text = telegram_text(report)
+        self.assertTrue(text.startswith('⚠️'))
+        self.assertIn('AS62041: snapshot age 2 days', text)
+        self.assertIn('Ещё предупреждений: 1', text)
+        self.assertLess(len(text), 700)
+
+    def test_compact_report_detects_scoped_udp_change(self):
+        report = self.compact_sample()
+        report['changes']['scoped_udp'] = delta(['new voice rule'], ['old voice rule'])
+        text = telegram_text(report)
+        self.assertIn('UDP-правила +1 / -1', text)
+        self.assertNotIn('Изменений нет', text)
+
+    def test_permanent_limitations_remain_in_full_report(self):
+        with tempfile.TemporaryDirectory() as d:
+            dist, stage = Path(d) / 'dist', Path(d) / 'stage'
+            dist.mkdir()
+            stage.mkdir()
+            report = self.sample()
+            report['limitations'] = ['Discord: ограничения IPv6']
+            payload = {'version': 1, 'rules': [{'domain_suffix': ['a.com', 'b.com'],
+                       'ip_cidr': ['1.1.1.0/24', '2606:4700::/32']}]}
+            write_report(report, payload, {}, stage, dist, {})
+            full = (stage / 'report.md').read_text(encoding='utf-8')
+            self.assertIn('Постоянные ограничения', full)
+            self.assertIn('Discord: ограничения IPv6', full)
+            self.assertIn('Предупреждений нет', full)
