@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-11T15:31:29.848965+00:00",
+  "built_at": "2026-10-11T16:35:53.364040+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -27,6 +27,7 @@
     "v2fly:patreon": 4,
     "v2fly:perplexity": 5,
     "v2fly:playstation": 4,
+    "v2fly:signal": 8,
     "v2fly:soundcloud": 3,
     "v2fly:spotify": 28,
     "v2fly:threads": 2,
@@ -39,8 +40,7 @@
     "v2fly:telegram": 21,
     "ITDog:service:telegram": 20,
     "v2fly:whatsapp": 11,
-    "custom-domains.txt": 124,
-    "service-domains.txt": 32,
+    "custom-domains.txt": 32,
     "BGP:AS32934": 36,
     "BGP:AS44907": 2,
     "BGP:AS59930": 3,
@@ -48,8 +48,9 @@
     "BGP:AS62041": 6,
     "BGP:AS63293": 79,
     "BGP:AS211157": 3,
+    "telegram:official-cidr": 11,
     "service-cdn.json": 0,
-    "custom-ip-cidrs.txt": 4,
+    "custom-ip-cidrs.txt": 0,
     "ITDog:discord:scoped-udp": 2
   },
   "custom_services": {
@@ -105,7 +106,19 @@
       "domain_suffix:ton.org",
       "domain_suffix:toncenter.com",
       "domain_suffix:tx.me",
-      "domain_suffix:usercontent.dev"
+      "domain_suffix:usercontent.dev",
+      "ip_cidr:149.154.160.0/20",
+      "ip_cidr:185.76.151.0/24",
+      "ip_cidr:2001:67c:4e8::/48",
+      "ip_cidr:2001:b28:f23c::/47",
+      "ip_cidr:2001:b28:f23f::/48",
+      "ip_cidr:2a0a:f280::/32",
+      "ip_cidr:91.105.192.0/23",
+      "ip_cidr:91.108.16.0/21",
+      "ip_cidr:91.108.4.0/22",
+      "ip_cidr:91.108.56.0/22",
+      "ip_cidr:91.108.8.0/21",
+      "ip_cidr:95.161.64.0/20"
     ],
     "whatsapp": [
       "domain_suffix:wa.me",
@@ -118,7 +131,122 @@
       "domain_suffix:whatsapp.net",
       "domain_suffix:whatsapp.org",
       "domain_suffix:whatsapp.tv",
-      "domain_suffix:whatsappbrand.com"
+      "domain_suffix:whatsappbrand.com",
+      "ip_cidr:102.132.112.0/24",
+      "ip_cidr:102.132.115.0/24",
+      "ip_cidr:102.132.116.0/23",
+      "ip_cidr:102.132.119.0/24",
+      "ip_cidr:102.132.120.0/23",
+      "ip_cidr:102.132.123.0/24",
+      "ip_cidr:102.132.125.0/24",
+      "ip_cidr:102.132.126.0/24",
+      "ip_cidr:102.132.96.0/20",
+      "ip_cidr:102.221.188.0/22",
+      "ip_cidr:103.4.96.0/22",
+      "ip_cidr:129.134.0.0/17",
+      "ip_cidr:129.134.130.0/24",
+      "ip_cidr:129.134.132.0/24",
+      "ip_cidr:129.134.135.0/24",
+      "ip_cidr:129.134.136.0/22",
+      "ip_cidr:129.134.140.0/24",
+      "ip_cidr:129.134.143.0/24",
+      "ip_cidr:129.134.144.0/24",
+      "ip_cidr:129.134.148.0/23",
+      "ip_cidr:129.134.150.0/24",
+      "ip_cidr:129.134.154.0/23",
+      "ip_cidr:129.134.156.0/22",
+      "ip_cidr:129.134.160.0/22",
+      "ip_cidr:129.134.164.0/23",
+      "ip_cidr:129.134.168.0/21",
+      "ip_cidr:129.134.176.0/20",
+      "ip_cidr:129.134.194.0/23",
+      "ip_cidr:129.134.196.0/23",
+      "ip_cidr:157.240.0.0/17",
+      "ip_cidr:157.240.128.0/23",
+      "ip_cidr:157.240.131.0/24",
+      "ip_cidr:157.240.132.0/24",
+      "ip_cidr:157.240.134.0/24",
+      "ip_cidr:157.240.136.0/23",
+      "ip_cidr:157.240.139.0/24",
+      "ip_cidr:157.240.140.0/24",
+      "ip_cidr:157.240.156.0/22",
+      "ip_cidr:157.240.169.0/24",
+      "ip_cidr:157.240.170.0/24",
+      "ip_cidr:157.240.175.0/24",
+      "ip_cidr:157.240.177.0/24",
+      "ip_cidr:157.240.179.0/24",
+      "ip_cidr:157.240.181.0/24",
+      "ip_cidr:157.240.182.0/23",
+      "ip_cidr:157.240.184.0/21",
+      "ip_cidr:157.240.192.0/18",
+      "ip_cidr:163.70.128.0/17",
+      "ip_cidr:163.77.132.0/23",
+      "ip_cidr:163.77.136.0/23",
+      "ip_cidr:163.77.160.0/20",
+      "ip_cidr:173.252.64.0/18",
+      "ip_cidr:179.60.192.0/22",
+      "ip_cidr:185.60.216.0/22",
+      "ip_cidr:185.89.216.0/22",
+      "ip_cidr:204.15.20.0/22",
+      "ip_cidr:2620:0:1c00::/40",
+      "ip_cidr:2a03:2880::/32",
+      "ip_cidr:2a03:2887:ff00::/48",
+      "ip_cidr:2a03:2887:ff03::/48",
+      "ip_cidr:2a03:2887:ff04::/46",
+      "ip_cidr:2a03:2887:ff09::/48",
+      "ip_cidr:2a03:2887:ff0a::/48",
+      "ip_cidr:2a03:2887:ff1b::/48",
+      "ip_cidr:2a03:2887:ff1e::/48",
+      "ip_cidr:2a03:2887:ff20::/48",
+      "ip_cidr:2a03:2887:ff22::/47",
+      "ip_cidr:2a03:2887:ff27::/48",
+      "ip_cidr:2a03:2887:ff28::/46",
+      "ip_cidr:2a03:2887:ff2e::/47",
+      "ip_cidr:2a03:2887:ff30::/48",
+      "ip_cidr:2a03:2887:ff33::/48",
+      "ip_cidr:2a03:2887:ff37::/48",
+      "ip_cidr:2a03:2887:ff38::/46",
+      "ip_cidr:2a03:2887:ff3e::/47",
+      "ip_cidr:2a03:2887:ff40::/46",
+      "ip_cidr:2a03:2887:ff44::/47",
+      "ip_cidr:2a03:2887:ff48::/46",
+      "ip_cidr:2a03:2887:ff4d::/48",
+      "ip_cidr:2a03:2887:ff4e::/47",
+      "ip_cidr:2a03:2887:ff50::/45",
+      "ip_cidr:2a03:2887:ff58::/47",
+      "ip_cidr:2a03:2887:ff5a::/48",
+      "ip_cidr:2a03:2887:ff5f::/48",
+      "ip_cidr:2a03:2887:ff60::/48",
+      "ip_cidr:2a03:2887:ff62::/47",
+      "ip_cidr:2a03:2887:ff64::/46",
+      "ip_cidr:2a03:2887:ff68::/46",
+      "ip_cidr:2a03:2887:ff6f::/48",
+      "ip_cidr:2a03:2887:ff70::/46",
+      "ip_cidr:2c0f:ef78:10::/47",
+      "ip_cidr:2c0f:ef78:3::/48",
+      "ip_cidr:2c0f:ef78:5::/48",
+      "ip_cidr:2c0f:ef78:9::/48",
+      "ip_cidr:2c0f:ef78:c::/47",
+      "ip_cidr:31.13.24.0/21",
+      "ip_cidr:31.13.64.0/18",
+      "ip_cidr:45.64.40.0/22",
+      "ip_cidr:57.141.0.0/24",
+      "ip_cidr:57.141.10.0/24",
+      "ip_cidr:57.141.12.0/23",
+      "ip_cidr:57.141.14.0/24",
+      "ip_cidr:57.141.16.0/22",
+      "ip_cidr:57.141.2.0/23",
+      "ip_cidr:57.141.20.0/24",
+      "ip_cidr:57.141.22.0/24",
+      "ip_cidr:57.141.24.0/24",
+      "ip_cidr:57.141.4.0/23",
+      "ip_cidr:57.141.6.0/24",
+      "ip_cidr:57.141.8.0/24",
+      "ip_cidr:57.144.0.0/14",
+      "ip_cidr:66.220.144.0/20",
+      "ip_cidr:69.171.224.0/19",
+      "ip_cidr:69.63.176.0/20",
+      "ip_cidr:74.119.76.0/22"
     ]
   },
   "scoped_rules": [
@@ -154,9 +282,10 @@
     }
   ],
   "limitations": [
+    "Ежедневная пересборка получает проверяемые upstream-источники, но не обнаруживает автоматически все новые домены в интернете. WhatsApp использует общие сети Meta, а не отдельный полный реестр WhatsApp-IP.",
     "Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах."
   ],
-  "domains": 3609,
+  "domains": 3616,
   "prefixes": 127,
   "ipv4": 84,
   "ipv6": 43,
@@ -201,7 +330,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
+      "fetched_at": "2026-10-11T16:36:04.311737+00:00"
     },
     "44907": {
       "prefixes": [
@@ -209,7 +338,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
+      "fetched_at": "2026-10-11T16:36:04.311737+00:00"
     },
     "59930": {
       "prefixes": [
@@ -218,7 +347,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
+      "fetched_at": "2026-10-11T16:36:04.311737+00:00"
     },
     "62014": {
       "prefixes": [
@@ -228,7 +357,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
+      "fetched_at": "2026-10-11T16:36:04.311737+00:00"
     },
     "62041": {
       "prefixes": [
@@ -240,7 +369,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
+      "fetched_at": "2026-10-11T16:36:04.311737+00:00"
     },
     "63293": {
       "prefixes": [
@@ -325,7 +454,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
+      "fetched_at": "2026-10-11T16:36:04.311737+00:00"
     },
     "211157": {
       "prefixes": [
@@ -334,25 +463,33 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
+      "fetched_at": "2026-10-11T16:36:04.311737+00:00"
     }
   },
   "matchers": {
-    "domain_suffix": 3520,
+    "domain_suffix": 3527,
     "domain": 89,
     "domain_regex": 7,
     "ip_cidr": 127
   },
   "sha256": {
-    "routing.json": "5913260799917a3b6c3ac1fcf1ff22a46bd3475f741fb7bef8ba3cfd4aef3443",
-    "routing.srs": "7fa1f4f97dcaeee780f57f474d32bb74642afa621f64d91443d4cb4405c7c5d4"
+    "routing.json": "b010341575265546f0722ec96e93e671688ef8fa7de1f131e0e4309a0387686c",
+    "routing.srs": "a191d6353b9a9a8f22261a508986196fc341f0e9876c3f9030eec768814c4952"
   },
   "changes": {
     "domains": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain_suffix:signal.art",
+        "domain_suffix:signal.group",
+        "domain_suffix:signal.link",
+        "domain_suffix:signal.me",
+        "domain_suffix:signal.tube",
+        "domain_suffix:signalusers.org",
+        "domain_suffix:whispersystems.org"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 7,
       "removed_count": 0
     },
     "scoped_udp": {
@@ -553,6 +690,13 @@
       "added_count": 0,
       "removed_count": 0
     },
+    "v2fly:signal": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
     "v2fly:soundcloud": {
       "baseline": true,
       "added": [],
@@ -640,16 +784,102 @@
     "custom-domains.txt": {
       "baseline": true,
       "added": [],
-      "removed": [],
+      "removed": [
+        "domain_suffix:1337x.to",
+        "domain_suffix:account.google.com",
+        "domain_suffix:accounts.google.com",
+        "domain_suffix:alt1-mtalk.google.com",
+        "domain_suffix:alt2-mtalk.google.com",
+        "domain_suffix:alt3-mtalk.google.com",
+        "domain_suffix:alt4-mtalk.google.com",
+        "domain_suffix:android.apis.google.com",
+        "domain_suffix:android.clients.google.com",
+        "domain_suffix:android.googleapis.com",
+        "domain_suffix:booktracker.org",
+        "domain_suffix:cast.googleapis.com",
+        "domain_suffix:checkin.gstatic.com",
+        "domain_suffix:clients.google.com",
+        "domain_suffix:clients.googleapis.com",
+        "domain_suffix:clients.l.google.com",
+        "domain_suffix:clients1.google.com",
+        "domain_suffix:clients2.google.com",
+        "domain_suffix:clients3.google.com",
+        "domain_suffix:clients4.google.com",
+        "domain_suffix:clients5.google.com",
+        "domain_suffix:clients6.google.com",
+        "domain_suffix:connectivitycheck.android.com",
+        "domain_suffix:connectivitycheck.gstatic.com",
+        "domain_suffix:content.googleapis.com",
+        "domain_suffix:device-provisioning.googleapis.com",
+        "domain_suffix:deviceintegrity.googleapis.com",
+        "domain_suffix:dl.google.com",
+        "domain_suffix:fcm.googleapis.com",
+        "domain_suffix:fcmregistrations.googleapis.com",
+        "domain_suffix:filmitorrent.net",
+        "domain_suffix:firebase-settings.crashlytics.com",
+        "domain_suffix:firebase.googleapis.com",
+        "domain_suffix:firebaseinstallations.googleapis.com",
+        "domain_suffix:firebaselogging.googleapis.com",
+        "domain_suffix:firebaseremoteconfig.googleapis.com",
+        "domain_suffix:fonts.gstatic.com",
+        "domain_suffix:ggpht.com",
+        "domain_suffix:google.com",
+        "domain_suffix:google.lv",
+        "domain_suffix:google.ru",
+        "domain_suffix:googleadapis.com",
+        "domain_suffix:googleapis.com",
+        "domain_suffix:googleusercontent.com",
+        "domain_suffix:googlevideo.com",
+        "domain_suffix:googlezip.net",
+        "domain_suffix:gstatic.com",
+        "domain_suffix:gvt1.com",
+        "domain_suffix:gvt2.com",
+        "domain_suffix:identitytoolkit.googleapis.com",
+        "domain_suffix:jnn-pa.googleapis.com",
+        "domain_suffix:kinozal.me",
+        "domain_suffix:mtalk.google.com",
+        "domain_suffix:myaccount.google.com",
+        "domain_suffix:nnmclub.to",
+        "domain_suffix:nnmstatic.win",
+        "domain_suffix:oauth2.googleapis.com",
+        "domain_suffix:oauthaccountmanager.googleapis.com",
+        "domain_suffix:people.googleapis.com",
+        "domain_suffix:play-fe.googleapis.com",
+        "domain_suffix:play-lh.googleusercontent.com",
+        "domain_suffix:play.google.com",
+        "domain_suffix:play.googleapis.com",
+        "domain_suffix:playintegrity.googleapis.com",
+        "domain_suffix:proactivebackend-pa.googleapis.com",
+        "domain_suffix:redirector.gvt1.com",
+        "domain_suffix:remotedisplay.googleapis.com",
+        "domain_suffix:rocksdb.org",
+        "domain_suffix:rustorka.com",
+        "domain_suffix:rutor.info",
+        "domain_suffix:rutor.is",
+        "domain_suffix:rutor.org",
+        "domain_suffix:rutracker.cc",
+        "domain_suffix:rutracker.net",
+        "domain_suffix:rutracker.org",
+        "domain_suffix:rutracker.wiki",
+        "domain_suffix:safebrowsing.googleapis.com",
+        "domain_suffix:ssl.gstatic.com",
+        "domain_suffix:suggestqueries.google.com",
+        "domain_suffix:thepiratebay.org",
+        "domain_suffix:time.google.com",
+        "domain_suffix:update.googleapis.com",
+        "domain_suffix:warnerbrosgames.com",
+        "domain_suffix:wbagora.com",
+        "domain_suffix:wbgames.com",
+        "domain_suffix:wbinsights.com",
+        "domain_suffix:www.googleapis.com",
+        "domain_suffix:www.gstatic.com",
+        "domain_suffix:youtube.googleapis.com",
+        "domain_suffix:youtubeembeddedplayer.googleapis.com",
+        "domain_suffix:youtubei.googleapis.com",
+        "domain_suffix:ytimg.com"
+      ],
       "added_count": 0,
-      "removed_count": 0
-    },
-    "service-domains.txt": {
-      "baseline": true,
-      "added": [],
-      "removed": [],
-      "added_count": 0,
-      "removed_count": 0
+      "removed_count": 92
     },
     "BGP:AS32934": {
       "baseline": true,
@@ -700,6 +930,13 @@
       "added_count": 0,
       "removed_count": 0
     },
+    "telegram:official-cidr": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
     "service-cdn.json": {
       "baseline": true,
       "added": [],
@@ -710,9 +947,14 @@
     "custom-ip-cidrs.txt": {
       "baseline": true,
       "added": [],
-      "removed": [],
+      "removed": [
+        "149.154.168.0/22",
+        "2001:b28:f23f::/48",
+        "2a0a:f280::/32",
+        "91.108.16.0/22"
+      ],
       "added_count": 0,
-      "removed_count": 0
+      "removed_count": 4
     },
     "ITDog:discord:scoped-udp": {
       "baseline": true,
@@ -720,15 +962,55 @@
       "removed": [],
       "added_count": 0,
       "removed_count": 0
+    },
+    "service-domains.txt": {
+      "baseline": true,
+      "added": [],
+      "removed": [
+        "domain_suffix:cdn-telegram.org",
+        "domain_suffix:cdninstagram.com",
+        "domain_suffix:discord.com",
+        "domain_suffix:discord.gg",
+        "domain_suffix:discord.media",
+        "domain_suffix:discordapp.com",
+        "domain_suffix:discordapp.net",
+        "domain_suffix:facebook.com",
+        "domain_suffix:facebook.net",
+        "domain_suffix:fb.com",
+        "domain_suffix:fbcdn.net",
+        "domain_suffix:fbsbx.com",
+        "domain_suffix:ig.me",
+        "domain_suffix:instagram.com",
+        "domain_suffix:messenger.com",
+        "domain_suffix:meta.com",
+        "domain_suffix:nexus-cdn.com",
+        "domain_suffix:nexusmods.com",
+        "domain_suffix:t.me",
+        "domain_suffix:tdesktop.com",
+        "domain_suffix:telegra.ph",
+        "domain_suffix:telegram-cdn.org",
+        "domain_suffix:telegram.dog",
+        "domain_suffix:telegram.me",
+        "domain_suffix:telegram.org",
+        "domain_suffix:telesco.pe",
+        "domain_suffix:threads.com",
+        "domain_suffix:threads.net",
+        "domain_suffix:usercontent.dev",
+        "domain_suffix:wa.me",
+        "domain_suffix:whatsapp.com",
+        "domain_suffix:whatsapp.net"
+      ],
+      "added_count": 0,
+      "removed_count": 32
     }
   },
-  "compared_to": "2026-10-11T14:54:27.231489+00:00",
+  "compared_to": "2026-10-11T15:31:29.848965+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 2641.4,
-        "delta": 0
+        "average": 2884.6,
+        "delta": 7
       },
       "ipv4": {
         "average": 84.0,
