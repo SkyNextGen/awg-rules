@@ -1,8 +1,6 @@
 {
-  "built_at": "2026-10-11T14:54:27.231489+00:00",
-  "warnings": [
-    "Discord voice CIDRs are community-derived shared networks, limited to upstream UDP ports; dynamic endpoints and IPv6 low-port Cloudflare coverage are not guaranteed"
-  ],
+  "built_at": "2026-10-11T15:31:29.848965+00:00",
+  "warnings": [],
   "sources": {
     "itdog": 1181,
     "v2fly:anthropic": 9,
@@ -155,6 +153,9 @@
       ]
     }
   ],
+  "limitations": [
+    "Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах."
+  ],
   "domains": 3609,
   "prefixes": 127,
   "ipv4": 84,
@@ -200,7 +201,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T14:54:39.663402+00:00"
+      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
     },
     "44907": {
       "prefixes": [
@@ -208,7 +209,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T14:54:39.663402+00:00"
+      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
     },
     "59930": {
       "prefixes": [
@@ -217,7 +218,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T14:54:39.663402+00:00"
+      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
     },
     "62014": {
       "prefixes": [
@@ -227,7 +228,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T14:54:39.663402+00:00"
+      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
     },
     "62041": {
       "prefixes": [
@@ -239,7 +240,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T14:54:39.663402+00:00"
+      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
     },
     "63293": {
       "prefixes": [
@@ -324,7 +325,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T14:54:39.663402+00:00"
+      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
     },
     "211157": {
       "prefixes": [
@@ -333,7 +334,7 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-11T14:54:39.663402+00:00"
+      "fetched_at": "2026-10-11T15:31:44.324480+00:00"
     }
   },
   "matchers": {
@@ -721,12 +722,12 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-11T14:06:27.499443+00:00",
+  "compared_to": "2026-10-11T14:54:27.231489+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 2397.4,
+        "average": 2641.4,
         "delta": 0
       },
       "ipv4": {

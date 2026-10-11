@@ -1,32 +1,13 @@
-📦 BUILD SYSTEM · AWG RULES
-🟠 GitHub Actions
-━━━━━━━━━━━━━━━━━━
-⚠️ WARNING
+✅ AWG · Сборка успешна
+🕒 11.10.2026, 18:31 МСК
 
-🟠 СТАТУС СБОРКИ: ПРЕДУПРЕЖДЕНИЕ
-
-🚀 Сборка завершена успешно
-🕒 11.10.2026, 17:54 МСК
-
-📊 ИТОГ И ИЗМЕНЕНИЯ
+📊 Итог · добавлено / удалено
 Домены: 3609 (+0 / -0)
 IPv4: 84 (+0 / -0)
 IPv6: 43 (+0 / -0)
 
-📌 ИСТОЧНИКИ
-ITDog: 1181 (+0 / -0)
-Custom домены: 124 (+0 / -0)
-Сервисные домены: 32 (+0 / -0)
-Custom IP: 4 (+0 / -0)
-V2Fly: 34 категорий, ошибок нет
+Изменений нет
 
-📈 ТРЕНД ЗА 7 УСПЕШНЫХ ЗАПУСКОВ (до 7)
-Среднее доменов: 2397.4
-Δ к прошлой: +0
-➡️ Стабильно
+📈 Домены: Δ +0 к прошлой сборке · среднее за 7 запусков: 2641.4
 
-⚠️ Замечания:
-• Discord voice CIDRs are community-derived shared networks, limited to upstream UDP ports; dynamic endpoints and IPv6 low-port Cloudflare coverage are not guaranteed
-
-🔐 sha256 SRS: 7fa1f4f9…05c7c5d4
 🔗 Отчёт: https://github.com/SkyNextGen/awg-rules/blob/main/dist/report.md
