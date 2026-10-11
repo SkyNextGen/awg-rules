@@ -5,7 +5,8 @@ import unittest
 import json
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
-from build import ROOT, domain, lines, prune, service_prefixes
+from build import ROOT, domain, lines, prune, service_prefixes, network
+import ipaddress
 from check_service_coverage import covered_suffix, covers_network
 from unittest.mock import patch
 
@@ -40,14 +41,20 @@ class ServiceCoverage(unittest.TestCase):
 
     def test_no_static_service_domain_list(self):
         self.assertFalse((ROOT / 'config/service-domains.txt').exists())
-        self.assertEqual(len(lines((ROOT / 'config/custom-domains.txt').read_text())), 32)
+        custom = lines((ROOT / 'config/custom-domains.txt').read_text())
+        self.assertTrue(custom)
+        self.assertEqual(len(custom), len(set(custom)))
+        self.assertEqual(set(custom), set(prune(domain(value) for value in custom)))
 
     def test_service_ips_are_fresh_and_mapped_to_reviewed_asns(self):
         cfg = json.loads((ROOT / 'config/sources.json').read_text())
         self.assertEqual(cfg['service_ip_sources']['telegram']['url'],
                          'https://core.telegram.org/resources/cidr.txt')
         self.assertEqual(cfg['custom_service_asn_groups'], {'telegram': 'telegram', 'whatsapp': 'meta'})
-        self.assertFalse(lines((ROOT / 'config/custom-ip-cidrs.txt').read_text()))
+        custom_ips = lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())
+        self.assertEqual(len(custom_ips), len(set(custom_ips)))
+        for cidr in custom_ips:
+            network(cidr)
 
     def test_service_prefix_source_rejects_empty_unsafe_or_missing_family(self):
         source = {'url': 'https://official.test/cidr', 'min_prefixes': 2, 'max_prefixes': 20}
@@ -71,10 +78,28 @@ class ServiceCoverage(unittest.TestCase):
         audit = json.loads((ROOT / 'docs/custom-domain-audit.json').read_text())
         self.assertEqual(len(audit['removed_custom']), 92)
         self.assertEqual(len(audit['removed_service_domains']), 32)
-        self.assertEqual(set(audit['kept_custom']),
-                         set(lines((ROOT / 'config/custom-domains.txt').read_text())))
+        self.assertTrue(set(audit['kept_custom']).issubset(
+            set(lines((ROOT / 'config/custom-domains.txt').read_text()))))
         for entry in audit['removed_custom'] + audit['removed_service_domains']:
             self.assertTrue(entry['coverage'])
             for match in entry['coverage']:
                 self.assertTrue(match['rule'].startswith('domain_suffix:'))
                 self.assertTrue(covered_suffix(entry['domain'], {match['rule'].split(':', 1)[1]}))
+
+    def test_personal_import_has_no_baseline_or_internal_overlap(self):
+        audit = json.loads((ROOT / 'docs/custom-import-audit-2026-10-11.json').read_text())
+        domains = [row['domain'] for row in audit['domains'] if row['decision'] == 'added']
+        cidrs = [row['cidr'] for row in audit['cidrs'] if row['decision'] == 'added']
+        self.assertTrue(set(domains).issubset(lines((ROOT / 'config/custom-domains.txt').read_text())))
+        self.assertTrue(set(cidrs).issubset(lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())))
+        self.assertEqual(audit['summary']['added_domains'], len(domains))
+        self.assertEqual(audit['summary']['added_cidrs'], len(cidrs))
+        self.assertFalse(audit['baseline_suffixes'])
+        self.assertFalse(audit['baseline_exact'])
+        self.assertEqual(set(prune(domains)), set(domains))
+        baseline = [network(value) for value in audit['baseline_unrestricted_cidrs']]
+        added = [network(value) for value in cidrs]
+        for i, value in enumerate(added):
+            for other in baseline + added[:i]:
+                if value.version == other.version:
+                    self.assertFalse(value.overlaps(other), (value, other))

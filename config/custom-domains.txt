@@ -35,3 +35,43 @@ torrindex.net
 wstracker.online
 ysagin.top
 dnschecker.org
+
+# User-collected personal additions reviewed 2026-10-11.
+# These names are not asserted to belong to Telegram/Meta.
+# Only suffixes with no overlap in the selected baseline were imported.
+# Audit: docs/custom-import-audit-2026-10-11.json
+nicegram.app
+teleg.xyz
+telegram.ai
+telegram.asia
+telegram.biz
+telegram.cloud
+telegram.cn
+telegram.co
+telegram.com
+telegram.de
+telegram.dev
+telegram.eu
+telegram.fr
+telegram.host
+telegram.in
+telegram.info
+telegram.io
+telegram.jp
+telegram.net
+telegram.qa
+telegram.ru
+telegram.services
+telegram.solutions
+telegram.team
+telegram.tech
+telegram.uk
+telegram.us
+telegram.website
+telegram.xyz
+telegramapp.org
+telegramdownload.com
+tg.org
+tgram.org
+torg.org
+whatsapp-plus.org
