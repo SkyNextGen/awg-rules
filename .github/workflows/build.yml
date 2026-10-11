@@ -38,6 +38,11 @@ jobs:
         run: python src/check_itdog.py
       - name: Install official sing-box
         run: python src/install_sing_box.py
+      - name: Verify AWGM DNS matching
+        run: |
+          python tests/dns_probe.py .tools/sing-box 203.0.113.42
+          python src/install_sing_box.py --version 1.14.1 --directory .tools-dns
+          python tests/dns_probe.py .tools-dns/sing-box 127.0.0.1
       - name: Build and verify
         run: python src/build.py
         env:
@@ -63,3 +68,4 @@ jobs:
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           BUILD_STATUS: ${{ job.status }}
         run: python src/notify.py
+
