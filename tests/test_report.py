@@ -62,3 +62,81 @@ class Reports(unittest.TestCase):
         self.assertLessEqual(len(text.encode('utf-16-le')) // 2, 4096)
         self.assertIn('https://github.com/run/1', text)
         self.assertIn('dist/report.md', text)
+
+    def compact_sample(self):
+        report = self.sample()
+        report['changes'] = {k: delta([], []) for k in ('domains', 'ipv4', 'ipv6', 'scoped_udp')}
+        return report
+
+    def test_compact_success_does_not_promote_limitations_to_warnings(self):
+        report = self.compact_sample()
+        report['limitations'] = ['Discord: динамические IP не гарантированы']
+        text = telegram_text(report)
+        self.assertTrue(text.startswith('✅'))
+        self.assertIn('Изменений нет', text)
+        self.assertNotIn('Discord', text)
+        self.assertNotIn('WARNING', text)
+        self.assertLessEqual(len(text.splitlines()), 13)
+
+    def test_operational_warning_remains_visible_and_bounded(self):
+        report = self.compact_sample()
+        report['warnings'] = ['AS62041: snapshot age 2 days', 'x' * 6000, 'third warning']
+        text = telegram_text(report)
+        self.assertTrue(text.startswith('⚠️'))
+        self.assertIn('AS62041: snapshot age 2 days', text)
+        self.assertIn('Ещё предупреждений: 1', text)
+        self.assertLess(len(text), 1000)
+
+    def test_compact_report_detects_scoped_udp_change(self):
+        report = self.compact_sample()
+        report['changes']['scoped_udp'] = delta(['new voice rule'], ['old voice rule'])
+        text = telegram_text(report)
+        self.assertIn('UDP-правила +1 / -1', text)
+        self.assertNotIn('Изменений нет', text)
+
+    def test_permanent_limitations_remain_in_full_report(self):
+        with tempfile.TemporaryDirectory() as d:
+            dist, stage = Path(d) / 'dist', Path(d) / 'stage'
+            dist.mkdir()
+            stage.mkdir()
+            report = self.sample()
+            report['limitations'] = ['Discord: ограничения IPv6']
+            payload = {'version': 1, 'rules': [{'domain_suffix': ['a.com', 'b.com'],
+                       'ip_cidr': ['1.1.1.0/24', '2606:4700::/32']}]}
+            write_report(report, payload, {}, stage, dist, {})
+            full = (stage / 'report.md').read_text(encoding='utf-8')
+            self.assertIn('Постоянные ограничения', full)
+            self.assertIn('Discord: ограничения IPv6', full)
+            self.assertIn('Предупреждений нет', full)
+
+    def test_changed_sources_are_identified_even_if_output_is_unchanged(self):
+        report = self.compact_sample()
+        report['source_changes'] = {
+            'v2fly:google': delta(['domain_suffix:new.example'], ['domain_suffix:old.example']),
+            'itdog': delta(['domain_suffix:a.com'], ['domain_suffix:a.com']),
+            'BGP:AS62041': delta(['1.1.1.0/24'], []),
+        }
+        report['sources'] = {'v2fly:google': 1, 'itdog': 1, 'BGP:AS62041': 1}
+        text = telegram_text(report)
+        self.assertIn('V2Fly / google: 1 (+1 / -1)', text)
+        self.assertIn('BGP / AS62041: 1 (+1 / -0)', text)
+        self.assertNotIn('• ITDog:', text)
+        self.assertNotIn('Изменений нет', text)
+
+    def test_total_deltas_and_short_trend_are_visible(self):
+        report = self.compact_sample()
+        report['changes']['domains'] = delta(['new.com', 'same.com'], ['old.com', 'same.com'])
+        report['trend'] = {'runs': 7, 'metrics': {'domains': {'average': 2.0, 'delta': 0}}}
+        text = telegram_text(report)
+        self.assertIn('Домены: 2 (+1 / -1)', text)
+        self.assertIn('Δ +0 к прошлой сборке', text)
+        self.assertIn('среднее за 7 запусков: 2.0', text)
+
+    def test_removed_and_new_sources_are_not_reported_as_unchanged(self):
+        report = self.compact_sample()
+        report['source_changes'] = {'removed': delta([], ['old']), 'new': delta(['value'], None)}
+        report['sources'] = {'new': 1}
+        text = telegram_text(report)
+        self.assertIn('removed: 0 (+0 / -1)', text)
+        self.assertIn('new: 1 (новый источник)', text)
+        self.assertNotIn('Изменений нет', text)

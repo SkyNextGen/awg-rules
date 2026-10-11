@@ -74,6 +74,8 @@ def write_report(report, payload, source_records, staging, dist, old):
     ]
     warnings = report['warnings']
     body += ['### ⚠️ Предупреждения', ''] + ['- ' + x for x in warnings] if warnings else ['### 🟢 Предупреждений нет']
+    if report.get('limitations'):
+        body += ['', '### ℹ️ Постоянные ограничения', ''] + ['- ' + x for x in report['limitations']]
     body += ['', '## 📌 Сводка источников', '', '| Источник | Уникальных записей до объединения | Добавлено / удалено |', '|---|---:|---|']
     for name in sorted(source_changes):
         body.append(f"| {name} | {len(source_records.get(name, []))} | {change_text(source_changes[name])} |")
@@ -123,33 +125,62 @@ def write_report(report, payload, source_records, staging, dist, old):
 
 def telegram_text(report, status='success', run_url=''):
     if status != 'success':
-        return '\n'.join(['📦 BUILD SYSTEM · AWG RULES', '🔴 GitHub Actions', '━━━━━━━━━━━━━━━━━━', '🔥 CRITICAL', '', '🔴 СТАТУС СБОРКИ: ОШИБКА' if status == 'failure' else '🟠 СТАТУС СБОРКИ: ' + status, '', 'Новый список не опубликован. Используется последний проверенный результат.', 'Подробности ошибки — в Actions.', '', '🔗 Actions: ' + run_url])
-    warnings = report['warnings']
-    change = report['changes']
-    trend = report['trend']
-    domain_delta = trend['metrics']['domains']['delta']
-    direction = '➡️ Стабильно' if domain_delta == 0 else ('📈 Рост' if domain_delta and domain_delta > 0 else ('📉 Падение' if domain_delta is not None else 'Первый запуск'))
-    text = ['📦 BUILD SYSTEM · AWG RULES', '🟠 GitHub Actions' if warnings else '🟢 GitHub Actions', '━━━━━━━━━━━━━━━━━━', '⚠️ WARNING' if warnings else '🧩 INFO', '', '🟠 СТАТУС СБОРКИ: ПРЕДУПРЕЖДЕНИЕ' if warnings else '🟢 СТАТУС СБОРКИ: ОК', '', '🚀 Сборка завершена успешно', '🕒 ' + moscow_time(report['built_at']), '',
-            '📊 ИТОГ И ИЗМЕНЕНИЯ', f"Домены: {report['domains']} ({change_text(change['domains'])})", f"IPv4: {report['ipv4']} ({change_text(change['ipv4'])})", f"IPv6: {report['ipv6']} ({change_text(change['ipv6'])})", '', '📌 ИСТОЧНИКИ']
-    for key, label in (('itdog', 'ITDog'), ('custom-domains.txt', 'Custom домены'), ('service-domains.txt', 'Сервисные домены'), ('custom-ip-cidrs.txt', 'Custom IP')):
-        if key in report['source_changes']:
-            text.append(f"{label}: {report['sources'][key]} ({change_text(report['source_changes'][key])})")
-    cats = [k for k in report['sources'] if k.startswith('v2fly:')]
-    text.append(f'V2Fly: {len(cats)} категорий, ошибок нет')
-    text += ['', f"📈 ТРЕНД ЗА {trend['runs']} УСПЕШНЫХ ЗАПУСКОВ (до 7)", f"Среднее доменов: {trend['metrics']['domains']['average']}", f"Δ к прошлой: {domain_delta:+d}" if domain_delta is not None else 'Δ к прошлой: —', direction]
-    for key, label in (('domains', 'Доменные условия'), ('ipv4', 'IPv4'), ('ipv6', 'IPv6')):
-        for field, verb in (('added', '➕'), ('removed', '➖')):
-            values = change[key][field]
-            if values:
-                text += ['', verb + ' ' + label + ':'] + ['• ' + x for x in values[:3]]
-                if len(values) > 3:
-                    text.append(f'… ещё {len(values) - 3} в отчёте')
-    text += ['', '⚠️ Замечания:' if warnings else '✅ Замечаний нет']
-    text += ['• ' + x for x in warnings[:5]]
-    footer = f"\n\n🔐 sha256 SRS: {report['sha256']['routing.srs'][:8]}…{report['sha256']['routing.srs'][-8:]}\n🔗 Отчёт: {REPORT_URL}"
+        label = '❌ AWG · ОШИБКА СБОРКИ' if status == 'failure' else '⚠️ AWG · Сборка не завершена'
+        return '\n'.join([label, 'Новый набор не опубликован. Сохранён последний проверенный.',
+                          '🔗 Actions: ' + run_url if run_url else 'Подробности — в GitHub Actions.'])
+    warnings = report.get('warnings', [])
+    changes = report['changes']
+    text = ['⚠️ AWG · Сборка успешна, есть предупреждения' if warnings else '✅ AWG · Сборка успешна',
+            '🕒 ' + moscow_time(report['built_at']), '', '📊 Итог · добавлено / удалено']
+    changed = False
+    first = False
+    for key, label in (('domains', 'Домены'), ('ipv4', 'IPv4'), ('ipv6', 'IPv6')):
+        item = changes[key]
+        first |= not item['baseline']
+        changed |= bool(item['added_count'] or item['removed_count'])
+        summary = change_text(item) if item['baseline'] else 'первый снимок'
+        text.append(f"{label}: {report[key]} ({summary})")
+    udp = changes.get('scoped_udp')
+    if udp:
+        first |= not udp['baseline']
+        if udp['baseline'] and (udp['added_count'] or udp['removed_count']):
+            changed = True
+            text.append('UDP-правила ' + change_text(udp))
+    source_changes = report.get('source_changes', {})
+    active = [(name, item) for name, item in sorted(source_changes.items())
+              if not item['baseline'] or item['added_count'] or item['removed_count']]
+    labels = {'itdog': 'ITDog', 'custom-domains.txt': 'Custom-домены',
+              'custom-ip-cidrs.txt': 'Custom-IP', 'service-domains.txt': 'Сервисные домены',
+              'service-cdn.json': 'Сервисные CDN', 'ITDog:discord:scoped-udp': 'Discord UDP'}
+    if active:
+        text += ['', '📌 Где изменилось']
+        for name, item in active[:12]:
+            label = labels.get(name, name.replace('v2fly:', 'V2Fly / ').replace('BGP:', 'BGP / ')
+                               .replace('ITDog:service:', 'ITDog / '))
+            count = report.get('sources', {}).get(name, 0)
+            summary = change_text(item) if item['baseline'] else 'новый источник'
+            text.append(f"• {label}: {count} ({summary})")
+        if len(active) > 12:
+            text.append(f'Ещё источников: {len(active) - 12} — в полном отчёте.')
+        text.append('Дельты источников до объединения; записи могут пересекаться.')
+    elif not changed:
+        text += ['', 'Первый снимок — сравнение со следующей сборки.' if first else 'Изменений нет']
+    trend = report.get('trend', {})
+    metrics = trend.get('metrics', {})
+    domain_trend = metrics.get('domains', {})
+    if domain_trend.get('delta') is not None:
+        text += ['', f"📈 Домены: Δ {domain_trend['delta']:+d} к прошлой сборке · "
+                     f"среднее за {trend['runs']} запусков: {domain_trend['average']}"]
+    if warnings:
+        # Operational warnings stay visible; permanent limitations live in the full report.
+        text += ['', '⚠️ Предупреждения']
+        text += ['• ' + x.replace('\n', ' ')[:160] for x in warnings[:2]]
+        if len(warnings) > 2:
+            text.append(f'Ещё предупреждений: {len(warnings) - 2} — в отчёте.')
+    footer = '\n\n🔗 Отчёт: ' + REPORT_URL
     if run_url:
         footer += '\n🔗 Actions: ' + run_url
-    # Reserve room for links and trim safely by Telegram's UTF-16 length limit.
-    budget = 3900 - len(footer.encode('utf-16-le')) // 2
+    # Keep the links intact even if many source names or warnings are long.
+    budget = max(0, 3900 - len(footer.encode('utf-16-le')) // 2)
     body = '\n'.join(text).encode('utf-16-le')[:budget * 2].decode('utf-16-le', errors='ignore')
     return body + footer
