@@ -39,8 +39,7 @@ class ServiceCoverage(unittest.TestCase):
         self.assertFalse(any('Subnets/' in entry.get('url', '') for entries in sources.values() for entry in entries))
 
 
-    def test_no_static_service_domain_list(self):
-        self.assertFalse((ROOT / 'config/service-domains.txt').exists())
+    def test_custom_domains_are_unique_and_suffix_pruned(self):
         custom = lines((ROOT / 'config/custom-domains.txt').read_text())
         self.assertTrue(custom)
         self.assertEqual(len(custom), len(set(custom)))

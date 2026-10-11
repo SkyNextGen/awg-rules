@@ -59,7 +59,6 @@
     "BGP:AS63293": 79,
     "BGP:AS211157": 3,
     "telegram:official-cidr": 11,
-    "service-cdn.json": 0,
     "custom-ip-cidrs.txt": 23,
     "ITDog:discord:scoped-udp": 2
   },
@@ -1523,13 +1522,6 @@
       "added_count": 0,
       "removed_count": 0
     },
-    "service-cdn.json": {
-      "baseline": true,
-      "added": [],
-      "removed": [],
-      "added_count": 0,
-      "removed_count": 0
-    },
     "custom-ip-cidrs.txt": {
       "baseline": true,
       "added": [],
@@ -1558,7 +1550,7 @@
         "delta": 0
       },
       "ipv6": {
-        "average": 43.0,
+        "average": 43,
         "delta": 0
       }
     }
