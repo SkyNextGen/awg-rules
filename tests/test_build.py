@@ -65,11 +65,15 @@ class SafetyTests(unittest.TestCase):
             (root / 'dist').mkdir()
             target = root / 'dist/routing.srs'
             target.write_bytes(b'last-good')
+            text_target = root / 'dist/routing.txt'
+            text_target.write_bytes(b'last-good-txt')
             with patch.object(b, 'ROOT', root), patch.object(b, 'fetch', side_effect=RuntimeError('source unavailable')):
                 with self.assertRaises(RuntimeError):
                     b.build()
             self.assertEqual(target.read_bytes(), b'last-good')
+            self.assertEqual(text_target.read_bytes(), b'last-good-txt')
 
 
 if __name__ == '__main__':
     unittest.main()
+

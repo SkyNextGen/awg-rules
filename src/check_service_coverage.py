@@ -3,6 +3,7 @@ import ipaddress
 import json
 from pathlib import Path
 from routing_rules import scoped_rules, unrestricted
+from build import verify_ndms
 
 ROOT = Path(__file__).resolve().parents[1]
 HOSTS = (
@@ -29,6 +30,7 @@ def covers_network(value, prefixes):
 
 def verify(root=ROOT):
     payload = json.loads((root / 'dist/routing.json').read_text(encoding='utf-8'))
+    verify_ndms((root / 'dist/routing.txt').read_text(encoding='utf-8'), payload)
     snapshot = json.loads((root / 'dist/source-snapshot.json').read_text(encoding='utf-8'))
     base = unrestricted(payload)
     for host in HOSTS:
@@ -70,4 +72,5 @@ def verify(root=ROOT):
 
 if __name__ == '__main__':
     verify()
+
 

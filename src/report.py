@@ -60,7 +60,7 @@ def write_report(report, payload, source_records, staging, dist, old):
         '# 📊 Отчёт сборки правил AWG', '', '## 🧭 Общая информация', '',
         f"> 🕒 **Сборка:** {moscow_time(report['built_at'])}  ",
         '> 📦 **Репозиторий:** SkyNextGen/awg-rules  ',
-        '> 📄 **Файлы:** `dist/routing.json` и `dist/routing.srs`  ',
+        '> 📄 **Файлы:** `dist/routing.json`, `dist/routing.srs` и `dist/routing.txt`  ',
         '> 🗓 **Расписание:** ежедневно, 23:17 МСК; также вручную и после изменения кода/настроек  ',
         f"> 🔄 **Сравнение со сборкой:** {moscow_time(report['compared_to']) if report['compared_to'] else 'первый запуск'}", '',
         '---', '', '## 🧮 Итог сборки', '',
@@ -69,10 +69,18 @@ def write_report(report, payload, source_records, staging, dist, old):
         f"| IPv4-префиксы | {report['ipv4']} | {change_text(changes['ipv4'])} |",
         f"| IPv6-префиксы | {report['ipv6']} | {change_text(changes['ipv6'])} |", '',
         f"Другие доменные условия (keyword/regexp): **{sum(report['matchers'].get(k, 0) for k in ('domain_keyword', 'domain_regex'))}**. Они также учитываются в списке изменений.", '',
-        '**Обрезка:** НЕТ. Проверены допустимые размеры, сети и обратное преобразование JSON → SRS → JSON.', '',
+        '**Обрезка SRS:** НЕТ. Проверены допустимые размеры, сети и обратное преобразование JSON → SRS → JSON.', '',
         'Изменения показывают записи правил: укрупнение CIDR или замена поддоменов одним suffix может изменить счётчики без потери покрытия.', '',
         '## 🚦 Статус', '', '### ✅ Сборка завершена', '',
     ]
+    if report.get('ndms'):
+        ndms = report['ndms']
+        body += ['### 📄 NDMS / routing.txt', '',
+                 f"Домены: **{ndms['domains']}**, IPv4: **{ndms['ipv4']}**, IPv6: **{ndms['ipv6']}**.",
+                 f"Точные домены становятся суффиксами: **{ndms['exact_to_suffix']}** исходных правил. "
+                 f"Исключены портовые UDP-правила: **{ndms['excluded_scoped_rules']}**; "
+                 f"keyword/regexp: **{sum(ndms['excluded_matchers'].values())}**. "
+                 'Оба формата собраны из одного снимка источников.', '']
     warnings = report['warnings']
     body += ['### ⚠️ Предупреждения', ''] + ['- ' + x for x in warnings] if warnings else ['### 🟢 Предупреждений нет']
     if report.get('limitations'):
@@ -185,4 +193,5 @@ def telegram_text(report, status='success', run_url=''):
     budget = max(0, 3900 - len(footer.encode('utf-16-le')) // 2)
     body = '\n'.join(text).encode('utf-16-le')[:budget * 2].decode('utf-16-le', errors='ignore')
     return body + footer
+
 
