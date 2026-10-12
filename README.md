@@ -4,7 +4,7 @@
 
 ### Выбранные сервисы через VPN — в одном наборе
 
-Автоматически обновляемые правила для **AWG Manager · TProxy · sing-box**
+Автоматически обновляемые правила для **AWG Manager · sing-box / TProxy · NDMS**
 
 [![Сборка](https://github.com/SkyNextGen/awg-rules/actions/workflows/build.yml/badge.svg)](https://github.com/SkyNextGen/awg-rules/actions/workflows/build.yml)
 
@@ -20,7 +20,7 @@
 |---|---|---|
 | Домены и IP для выбранных сервисов | Ежедневная сборка из актуальных источников | Удаление повторений и объединение поддоменов и сетей |
 
-**AWG Rules** помогает направлять трафик нужных сервисов через VPN. В одном файле объединены ITDog, выбранные категории V2Fly и личные дополнения. Направление трафика и VPN-подключение задаются в AWG Manager.
+**AWG Rules** помогает направлять трафик нужных сервисов через VPN. ITDog, выбранные категории V2Fly и личные дополнения собираются одновременно в два формата: **SRS для sing-box** и **TXT для NDMS**. Направление трафика и VPN-подключение задаются в AWG Manager.
 
 ## 🎯 Что внутри
 
@@ -41,6 +41,8 @@
 
 ## 🚀 Подключение
 
+### sing-box / TProxy — SRS
+
 **1.** Добавьте удалённый rule-set в AWG Manager / sing-box.  
 **2.** Выберите формат **binary** и укажите URL:
 
@@ -50,9 +52,22 @@ https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.srs
 
 **3.** Направьте совпадающий трафик в нужный VPN outbound и включите обновление набора.
 
-| [📦 routing.srs](https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.srs) | [📄 routing.json](dist/routing.json) | [📊 Отчёт](dist/report.md) |
-|---|---|---|
-| Файл для подключения | Правила в читаемом виде | Статус, изменения и источники |
+### NDMS — TXT
+
+**1.** Создайте DNS-маршрут в разделе NDMS в AWG Manager.  
+**2.** В «Подписки» добавьте URL:
+
+```text
+https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.txt
+```
+
+**3.** Добавьте нужный AWG-туннель в маршрут и сохраните. Устройства должны использовать DNS роутера; DoH/DoT на самом роутере можно оставить. Для сравнения режимов отключите перехват маршрутизации sing-box, сохранив работающий туннель. Для штатной DNS-маршрутизации Keenetic устройство должно находиться в политике «По умолчанию».
+
+В TXT находятся **домены, IPv4 и IPv6**, по одной записи на строку. Любой домен включает все поддомены; `*` не нужен. Точные условия SRS при переносе тоже становятся суффиксами. UDP-правила с портами, keyword и regexp исключены. [Документация Keenetic](https://support.keenetic.com/sprinter/kn-3711/en/51150-dns-based-routes.html) подтверждает включение поддоменов.
+
+| [📦 routing.srs](https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.srs) | [📄 routing.txt](https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.txt) | [🔎 routing.json](dist/routing.json) | [📊 Отчёт](dist/report.md) |
+|---|---|---|---|
+| sing-box / TProxy | NDMS / DNS-маршруты | Полные правила SRS в читаемом виде | Статус, изменения и источники |
 
 > Для доменных правил нужно определение имени через DNS/sniffing. В режиме TProxy сохраняйте UDP-порты Discord вместе с IP-условиями. Работу IPv6 и звонков проверяйте на своём устройстве.
 
@@ -62,9 +77,9 @@ https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.srs
 
 | ① Получение | ② Объединение | ③ Проверка | ④ Публикация |
 |---|---|---|---|
-| Загрузка доменов и IP | Удаление повторений, сокращение суффиксов и сетей | Тесты, формат SRS, покрытие сервисов | Готовый файл и отчёт в Telegram |
+| Загрузка доменов и IP | Удаление повторений, сокращение суффиксов и сетей | Тесты, формат SRS, покрытие TXT и сервисов | SRS и TXT одним коммитом; отчёт в Telegram |
 
-**При ошибке проверки остаётся последний успешно опубликованный набор.** Отчёт показывает изменения по источникам, дельты доменов и IP, а также динамику сборок. Ошибка доставки Telegram не отменяет публикацию.
+**При ошибке проверки остаётся последний успешно опубликованный комплект SRS и TXT.** Оба файла создаются из одного снимка источников на каждом успешном запуске. Отчёт показывает изменения по источникам, дельты доменов и IP, а также динамику сборок. Ошибка доставки Telegram не отменяет публикацию.
 
 ## 🌐 Источники
 
@@ -107,7 +122,8 @@ Telegram, WhatsApp и Discord пересобираются на каждом з�
 | Объединение | Удаление повторений, сокращение суффиксов и объединение CIDR |
 | Голос Discord | Добавление отдельных правил с протоколом UDP и портами |
 | Компиляция | JSON → SRS → JSON официальным sing-box |
-| Контроль | Сравнение правил после обратного преобразования и проверка сервисного покрытия |
+| NDMS | Создание TXT из общих доменов и сетей; точные домены становятся суффиксами, портовые правила и keyword/regexp пропускаются |
+| Контроль | Сравнение правил после обратного преобразования, сверка активных строк TXT с допустимым составом JSON и проверка сервисного покрытия |
 | Публикация | Коммит всех результатов в `main`, затем уведомление в Telegram |
 
 Сначала результат создаётся в промежуточной папке. После успешной компиляции и сравнения он переносится в локальный `dist`. GitHub публикует файлы только после дополнительной проверки покрытия. Ошибка до публикации сохраняет последнюю опубликованную версию.
@@ -255,8 +271,9 @@ Workflow: [.github/workflows/build.yml](.github/workflows/build.yml).
 |---|---|
 | `dist/routing.json` | Итоговые правила в JSON |
 | `dist/routing.srs` | Скомпилированный бинарный набор |
+| `dist/routing.txt` | NDMS: домены с поддоменами и общие IPv4/IPv6-сети; комментарии о непереносимых условиях |
 | `dist/report.md` | Читаемый отчёт: статус, источники, дельты, предупреждения |
-| `dist/report.json` | Полные изменения, параметры результата и SHA256 JSON/SRS |
+| `dist/report.json` | Полные изменения, параметры результата и SHA256 JSON/SRS/TXT |
 | `dist/tg_message.txt` | Текст сообщения для Telegram |
 | `dist/source-snapshot.json` | Записи каждого источника для сравнения следующей сборки |
 | `dist/bgp-snapshot.json` | Сети, источники и исходные даты получения BGP |
@@ -320,7 +337,8 @@ python src/check_service_coverage.py
 
 <div align="center">
 
-**[📦 Подключить SRS](https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.srs) · [📊 Посмотреть отчёт](dist/report.md) · [🔄 Открыть Actions](https://github.com/SkyNextGen/awg-rules/actions)**
+**[📦 Подключить SRS](https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.srs) · [📄 Подключить TXT](https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.txt) · [📊 Посмотреть отчёт](dist/report.md) · [🔄 Открыть Actions](https://github.com/SkyNextGen/awg-rules/actions)**
 
 </div>
+
 

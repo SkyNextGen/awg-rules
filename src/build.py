@@ -13,7 +13,7 @@ import time
 from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 from report import records, write_report
-from routing_rules import split_rule
+from routing_rules import MATCH_KEYS, split_rule, unrestricted
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
@@ -75,6 +75,51 @@ def prune(values):
         if not any('.'.join(d.split('.')[i:]) in keep for i in range(1, len(d.split('.')))):
             keep.add(d)
     return sorted(keep)
+
+
+def ndms_text(payload, built_at):
+    """NDMS treats every plain domain as a suffix; scoped rules cannot be flattened."""
+    for rule in payload['rules']:
+        unknown = set(rule) - set(MATCH_KEYS)
+        if unknown and (unknown != {'network', 'port_range'} or rule.get('network') != ['udp']):
+            raise ValueError('Unsupported rule conditions in NDMS export')
+    base = unrestricted(payload)
+    domains = prune(domain(d, allow_tld=True) for d in base['domain_suffix'] + base['domain'])
+    prefixes = collapse(base['ip_cidr'])
+    ipv4 = [p for p in prefixes if network(p).version == 4]
+    ipv6 = [p for p in prefixes if network(p).version == 6]
+    omitted = {k: base[k] for k in ('domain_keyword', 'domain_regex')}
+    scoped_count = sum(bool(set(rule) - set(MATCH_KEYS)) for rule in payload['rules'])
+    summary = {'domains': len(domains), 'ipv4': len(ipv4), 'ipv6': len(ipv6),
+               'exact_to_suffix': len(base['domain']), 'excluded_scoped_rules': scoped_count,
+               'excluded_matchers': {k: len(v) for k, v in omitted.items()}}
+    rows = ['# AWG Rules — NDMS / DNS-маршруты AWG Manager',
+            '# Источник: тот же проверенный набор, что routing.srs.',
+            '# Сборка UTC: ' + built_at,
+            '# Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.',
+            f'# Домены: {len(domains)}; IPv4: {len(ipv4)}; IPv6: {len(ipv6)}.',
+            f"# Точных правил, преобразованных в суффиксы: {len(base['domain'])}.",
+            f'# Исключены UDP-правила с портами: {scoped_count}; keyword/regexp не исполняются.',
+            '# Сети Meta общие для компании, не только для WhatsApp.',
+            '', '# Домены', *domains, '', '# IPv4', *ipv4, '', '# IPv6', *ipv6]
+    if any(omitted.values()):
+        rows += ['', '# Непереносимые доменные условия SRS — только комментарии']
+        for key, values in omitted.items():
+            rows += ['# ' + key + ': ' + value.replace('\n', '\\n').replace('\r', '\\r') for value in values]
+    return '\n'.join(rows) + '\n', summary
+
+
+def verify_ndms(text, payload):
+    """Validate active TXT lines against the supported source projection."""
+    active = lines(text)
+    if len(active) != len(set(active)):
+        raise ValueError('Duplicate NDMS entries')
+    actual_domains = [domain(v, allow_tld=True) for v in active if '/' not in v]
+    actual_ips = [str(network(v)) for v in active if '/' in v]
+    base = unrestricted(payload)
+    expected_domains = prune(base['domain_suffix'] + base['domain'])
+    if actual_domains != expected_domains or actual_ips != collapse(base['ip_cidr']):
+        raise ValueError('NDMS text differs from supported routing coverage')
 
 
 def service_prefixes(source):
@@ -352,8 +397,11 @@ def build():
         return [{k: sorted(v if isinstance(v, list) else [v]) for k, v in rule.items() if k != 'type'} for rule in obj['rules']]
     if canonical(roundtrip) != canonical(payload):
         raise ValueError('SRS round-trip differs from JSON')
+    text, report['ndms'] = ndms_text(payload, report['built_at'])
+    (staging / 'routing.txt').write_text(text, encoding='utf-8', newline='\n')
+    verify_ndms((staging / 'routing.txt').read_text(encoding='utf-8'), payload)
     report.update(domains=total, prefixes=len(prefixes), ipv4=sum(network(p).version == 4 for p in prefixes), ipv6=sum(network(p).version == 6 for p in prefixes), asns=snapshot, matchers={k: len(v) for k, v in merged.items()})
-    report['sha256'] = {f: hashlib.sha256((staging / f).read_bytes()).hexdigest() for f in ('routing.json', 'routing.srs')}
+    report['sha256'] = {f: hashlib.sha256((staging / f).read_bytes()).hexdigest() for f in ('routing.json', 'routing.srs', 'routing.txt')}
     custom_stage = staging / 'custom'
     custom_stage.mkdir(exist_ok=True)
     for service, entries in report['custom_services'].items():
@@ -366,7 +414,7 @@ def build():
     (staging / 'bgp-snapshot.json').write_text(json.dumps(snapshot, indent=2) + '\n')
     write_report(report, payload, source_records, staging, dist, old)
     dist.mkdir(exist_ok=True)
-    for f in ('routing.json', 'routing.srs', 'report.json', 'report.md', 'bgp-snapshot.json', 'source-snapshot.json', 'history.json', 'tg_message.txt'):
+    for f in ('routing.json', 'routing.srs', 'routing.txt', 'report.json', 'report.md', 'bgp-snapshot.json', 'source-snapshot.json', 'history.json', 'tg_message.txt'):
         shutil.copyfile(staging / f, dist / f)
     shutil.copytree(custom_stage, dist / 'custom', dirs_exist_ok=True)
     print(f'Build OK: {total} domains, {len(prefixes)} prefixes')
@@ -378,4 +426,5 @@ if __name__ == '__main__':
     except Exception as error:
         print('Build failed; published dist unchanged: ' + str(error), file=sys.stderr)
         sys.exit(1)
+
 

@@ -43,7 +43,7 @@ jobs:
           python tests/dns_probe.py .tools/sing-box 203.0.113.42
           python src/install_sing_box.py --version 1.14.1 --directory .tools-dns
           python tests/dns_probe.py .tools-dns/sing-box 127.0.0.1
-      - name: Build and verify
+      - name: Build and verify SRS and TXT
         run: python src/build.py
         env:
           SING_BOX: .tools/sing-box
@@ -68,4 +68,5 @@ jobs:
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           BUILD_STATUS: ${{ job.status }}
         run: python src/notify.py
+
 
