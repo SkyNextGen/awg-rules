@@ -4268,7 +4268,9 @@
         "^chatgpt-async-webps-prod-\\S+-\\d+\\.webpubsub\\.azure\\.com$",
         "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.googlevideo\\.com$",
         "^r+[0-9]+(---|\\.)sn-(2x3|ni5|j5o)\\w{5}\\.xn--ngstr-lra8j\\.com$"
-      ],
+      ]
+    },
+    {
       "ip_cidr": [
         "3.33.221.48/32",
         "3.33.252.61/32",
