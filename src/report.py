@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 import ipaddress
 import json
 from pathlib import Path
+from routing_rules import scoped_rules, unrestricted
 
 REPORT_URL = 'https://github.com/SkyNextGen/awg-rules/blob/main/dist/report.md'
 KEYS = ('domain_suffix', 'domain', 'domain_keyword', 'domain_regex')
@@ -29,11 +30,11 @@ def moscow_time(value):
 
 def write_report(report, payload, source_records, staging, dist, old):
     previous_payload = json.loads((dist / 'routing.json').read_text(encoding='utf-8')) if (dist / 'routing.json').exists() else None
-    previous_rule = previous_payload['rules'][0] if previous_payload else None
+    previous_rule = unrestricted(previous_payload) if previous_payload else None
     prior_sources = json.loads((dist / 'source-snapshot.json').read_text(encoding='utf-8')) if (dist / 'source-snapshot.json').exists() else {}
-    current_rule = payload['rules'][0]
+    current_rule = unrestricted(payload)
     changes = {'domains': delta(records(current_rule), records(previous_rule) if previous_rule else None)}
-    scoped_records = lambda obj: [json.dumps(r, sort_keys=True) for r in obj['rules'][1:]]
+    scoped_records = lambda obj: [json.dumps(r, sort_keys=True) for r in scoped_rules(obj)]
     changes['scoped_udp'] = delta(scoped_records(payload), scoped_records(previous_payload) if previous_payload else None)
     for version in (4, 6):
         current = [p for p in current_rule['ip_cidr'] if ipaddress.ip_network(p).version == version]
@@ -184,3 +185,4 @@ def telegram_text(report, status='success', run_url=''):
     budget = max(0, 3900 - len(footer.encode('utf-16-le')) // 2)
     body = '\n'.join(text).encode('utf-16-le')[:budget * 2].decode('utf-16-le', errors='ignore')
     return body + footer
+

@@ -1,5 +1,6 @@
 """Download a pinned official release and verify its published SHA256."""
 import hashlib
+import argparse
 import io
 import json
 import os
@@ -17,8 +18,8 @@ def download(url):
         return r.read()
 
 
-def install():
-    version = json.loads((ROOT / 'config/sources.json').read_text())['sing_box_version']
+def install(version=None, target=None):
+    version = version or json.loads((ROOT / 'config/sources.json').read_text())['sing_box_version']
     system = {'Windows': 'windows', 'Linux': 'linux'}[platform.system()]
     arch = {'AMD64': 'amd64', 'x86_64': 'amd64', 'aarch64': 'arm64', 'ARM64': 'arm64'}[platform.machine()]
     name = f'sing-box-{version}-{system}-{arch}'
@@ -33,7 +34,7 @@ def install():
     data = download(base + archive)
     if hashlib.sha256(data).hexdigest() != expected:
         raise ValueError('Official release checksum mismatch')
-    target = ROOT / '.tools'
+    target = Path(target) if target else ROOT / '.tools'
     target.mkdir(exist_ok=True)
     binary = 'sing-box.exe' if system == 'windows' else 'sing-box'
     member = name + '/' + binary
@@ -51,4 +52,9 @@ def install():
 
 
 if __name__ == '__main__':
-    install()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--version')
+    parser.add_argument('--directory', type=Path)
+    args = parser.parse_args()
+    install(args.version, args.directory)
+

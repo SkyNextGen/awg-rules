@@ -13,6 +13,7 @@ import time
 from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 from report import records, write_report
+from routing_rules import split_rule
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
@@ -341,7 +342,7 @@ def build():
         'Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. '
         'Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах.'
     ]
-    payload = {'version': 1, 'rules': [merged] + scoped}
+    payload = {'version': 1, 'rules': split_rule(merged) + scoped}
     (staging / 'routing.json').write_text(json.dumps(payload, indent=2, ensure_ascii=True) + '\n')
     exe = os.environ.get('SING_BOX', 'sing-box')
     subprocess.run([exe, 'rule-set', 'compile', '--output', str(staging / 'routing.srs'), str(staging / 'routing.json')], check=True)
@@ -360,7 +361,7 @@ def build():
         for entry in entries:
             key, value = entry.split(':', 1)
             service_rule.setdefault(key, []).append(value)
-        service_rules = [service_rule] + (scoped if service == 'discord' else [])
+        service_rules = split_rule(service_rule) + (scoped if service == 'discord' else [])
         (custom_stage / (service + '.json')).write_text(json.dumps({'version': 1, 'rules': service_rules}, indent=2) + '\n', encoding='utf-8')
     (staging / 'bgp-snapshot.json').write_text(json.dumps(snapshot, indent=2) + '\n')
     write_report(report, payload, source_records, staging, dist, old)
@@ -377,3 +378,4 @@ if __name__ == '__main__':
     except Exception as error:
         print('Build failed; published dist unchanged: ' + str(error), file=sys.stderr)
         sys.exit(1)
+

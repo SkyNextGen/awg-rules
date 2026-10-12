@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 import build as b
 from check_itdog import verify
+from routing_rules import scoped_rules, unrestricted
 
 UPSTREAM = '''
 discord_cf_subnets = ["104.16.0.0/12"]
@@ -52,12 +53,12 @@ class DiscordVoice(unittest.TestCase):
         payload = json.loads(target.read_text())
         if len(payload['rules']) == 1:
             self.skipTest('Pre-migration artifact')
-        for rule in payload['rules'][1:]:
+        for rule in scoped_rules(payload):
             self.assertEqual(rule['network'], ['udp'])
             self.assertTrue(rule['port_range'])
             for value in rule['ip_cidr']:
                 net = b.network(value)
-                self.assertFalse(any(net.overlaps(b.network(p)) for p in payload['rules'][0]['ip_cidr'] if b.network(p).version == net.version))
+                self.assertFalse(any(net.overlaps(b.network(p)) for p in unrestricted(payload)['ip_cidr'] if b.network(p).version == net.version))
 
 
 class UpstreamReadiness(unittest.TestCase):
@@ -77,3 +78,4 @@ class UpstreamReadiness(unittest.TestCase):
                 verify(changed, now)
         with self.assertRaises(ValueError):
             verify(runs[:1], now)
+

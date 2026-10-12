@@ -2,6 +2,7 @@
 import ipaddress
 import json
 from pathlib import Path
+from routing_rules import scoped_rules, unrestricted
 
 ROOT = Path(__file__).resolve().parents[1]
 HOSTS = (
@@ -29,7 +30,7 @@ def covers_network(value, prefixes):
 def verify(root=ROOT):
     payload = json.loads((root / 'dist/routing.json').read_text(encoding='utf-8'))
     snapshot = json.loads((root / 'dist/source-snapshot.json').read_text(encoding='utf-8'))
-    base = payload['rules'][0]
+    base = unrestricted(payload)
     for host in HOSTS:
         if not covered_suffix(host, base['domain_suffix']):
             raise ValueError('Missing generated service coverage: ' + host)
@@ -52,20 +53,21 @@ def verify(root=ROOT):
                 if not covered_suffix(suffix, base['domain_suffix']):
                     raise ValueError('Service domain missing from final output: ' + suffix)
             if rule.get('port_range'):
-                if rule.get('network') != ['udp'] or rule not in payload['rules'][1:]:
+                if rule.get('network') != ['udp'] or rule not in scoped_rules(payload):
                     raise ValueError('Scoped Discord UDP conditions differ from final output')
                 continue
             for prefix in rule.get('ip_cidr', []):
                 if not covers_network(prefix, base['ip_cidr']):
                     raise ValueError('Service IP missing from final output: ' + prefix)
-        if service != 'discord' and not data['rules'][0].get('ip_cidr'):
+        if service != 'discord' and not unrestricted(data)['ip_cidr']:
             raise ValueError('Missing generated service IPs: ' + service)
     telegram = json.loads((root / 'dist/custom/telegram.json').read_text(encoding='utf-8'))
     for prefix in snapshot['telegram:official-cidr']:
-        if not covers_network(prefix, telegram['rules'][0]['ip_cidr']):
+        if not covers_network(prefix, unrestricted(telegram)['ip_cidr']):
             raise ValueError('Official Telegram prefix missing from generated source: ' + prefix)
     print('Service coverage OK: Discord media/UDP, Nexus, Signal, Telegram official CIDR and all custom service sets')
 
 
 if __name__ == '__main__':
     verify()
+
