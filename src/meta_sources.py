@@ -4,14 +4,52 @@ from datetime import datetime, timezone
 import csv
 import io
 import ipaddress
+from http.client import HTTPSConnection
 import json
 import re
+import socket
+import ssl
 import time
 from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.request import Request, HTTPSHandler, build_opener
 
 APPROVED_ROOTS = ('whatsapp.com', 'whatsapp.net', 'whatsapp.biz', 'wa.me', 'wl.co',
                   'facebook.com', 'facebook.net', 'fbcdn.net', 'fbsbx.com')
+
+
+def ipv4_connection(address, timeout=socket._GLOBAL_DEFAULT_TIMEOUT, source_address=None):
+    """Use IPv4 for the HTTPS transport; AAAA queries still return IPv6 records."""
+    last = None
+    for family, kind, proto, _, sockaddr in socket.getaddrinfo(
+            address[0], address[1], socket.AF_INET, socket.SOCK_STREAM):
+        sock = socket.socket(family, kind, proto)
+        try:
+            if timeout is not socket._GLOBAL_DEFAULT_TIMEOUT:
+                sock.settimeout(timeout)
+            if source_address:
+                sock.bind(source_address)
+            sock.connect(sockaddr)
+            return sock
+        except OSError as exc:
+            last = exc
+            sock.close()
+    if last:
+        raise last
+    raise OSError('DNS resolver transport has no IPv4 address')
+
+
+class IPv4HTTPSConnection(HTTPSConnection):
+    def connect(self):
+        self._create_connection = ipv4_connection
+        super().connect()  # Keep original hostname for SNI/certificate checks.
+
+
+class IPv4HTTPSHandler(HTTPSHandler):
+    def https_open(self, request):
+        return self.do_open(IPv4HTTPSConnection, request, context=self._context)
+
+
+DNS_OPENER = build_opener(IPv4HTTPSHandler(context=ssl.create_default_context()))
 
 
 def matches(host, roots=APPROVED_ROOTS):
@@ -111,7 +149,7 @@ def query_dns(host, kind, endpoint):
         try:
             request = Request(url, headers={'User-Agent': 'awg-rules WhatsApp inventory',
                                             'Accept': 'application/dns-json'})
-            with urlopen(request, timeout=10) as response:
+            with DNS_OPENER.open(request, timeout=10) as response:
                 return dns_answer(json.load(response), host, kind)
         except Exception as exc:
             error = exc

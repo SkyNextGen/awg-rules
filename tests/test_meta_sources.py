@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import sys
 import unittest
+from unittest.mock import patch, MagicMock
 from datetime import datetime, timezone
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
@@ -10,6 +11,18 @@ import meta_sources as m
 
 
 class MetaSourceTests(unittest.TestCase):
+    def test_doh_transport_uses_ipv4_without_changing_aaaa_queries(self):
+        sock = MagicMock()
+        with patch.object(m.socket, 'getaddrinfo', return_value=[(m.socket.AF_INET, m.socket.SOCK_STREAM, 6, '', ('8.8.8.8', 443))]) as lookup, patch.object(m.socket, 'socket', return_value=sock):
+            self.assertIs(m.ipv4_connection(('dns.google',443),10), sock)
+            self.assertEqual(lookup.call_args.args[2],m.socket.AF_INET)
+            sock.connect.assert_called_once_with(('8.8.8.8',443))
+        payload=self.answer('2606:4700::1111',number=28)
+        response=MagicMock();response.__enter__.return_value.read.return_value=json.dumps(payload)
+        with patch.object(m.DNS_OPENER,'open',return_value=response) as opened:
+            self.assertEqual(m.query_dns('mmg.whatsapp.net','AAAA','https://dns.google/resolve')['ips'],['2606:4700::1111'])
+            self.assertIn('type=AAAA',opened.call_args.args[0].full_url)
+
     def test_geofeed_date_cidr_and_family_are_checked(self):
         cfg = {'name': 'geofeed', 'format': 'geofeed', 'min_entries': 2,
                'max_entries': 10, 'families': [4, 6], 'max_age_days': 8}
