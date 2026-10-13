@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-13T17:27:23.940027+00:00",
+  "built_at": "2026-10-13T19:06:39.612591+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -47,6 +47,7 @@
     "v2fly:ubisoft": 31,
     "v2fly:wbgames": 6,
     "v2fly:whatsapp": 11,
+    "v2fly:unity": 10,
     "v2fly:youtube": 178,
     "ITDog:service:discord": 20,
     "ITDog:service:telegram": 20,
@@ -68,7 +69,7 @@
     "Meta:MetaCubeX": 119,
     "Meta:Loyalsoldier": 119,
     "WhatsApp:cdn-hosts": 2269,
-    "WhatsApp:cdn-dns": 1889,
+    "WhatsApp:cdn-dns": 1888,
     "telegram:official-cidr": 11,
     "custom-ip-cidrs.txt": 23,
     "ITDog:discord:scoped-udp": 2
@@ -4338,15 +4339,15 @@
   "whatsapp_dns": {
     "hosts": 2269,
     "resolved_hosts": 1467,
-    "ips": 1892,
-    "ipv4": 1186,
-    "ipv6": 706,
+    "ips": 1891,
+    "ipv4": 1183,
+    "ipv6": 708,
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "failed_questions": 0,
     "questions": 4538,
-    "fallback_answers": 33,
-    "checked_at": "2026-10-13T17:32:02.256818+00:00"
+    "fallback_answers": 52,
+    "checked_at": "2026-10-13T19:11:26.235202+00:00"
   },
   "scoped_rules": [
     {
@@ -4385,7 +4386,7 @@
     "Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах."
   ],
   "ndms": {
-    "domains": 4257,
+    "domains": 4259,
     "ipv4": 1150,
     "ipv6": 788,
     "exact_to_suffix": 90,
@@ -4395,7 +4396,7 @@
       "domain_regex": 7
     }
   },
-  "domains": 4259,
+  "domains": 4261,
   "prefixes": 1938,
   "ipv4": 1150,
   "ipv6": 788,
@@ -4408,7 +4409,7 @@
         "2620:10b:b000::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "32934": {
       "prefixes": [
@@ -4450,7 +4451,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "44907": {
       "prefixes": [
@@ -4458,7 +4459,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "54115": {
       "prefixes": [
@@ -4467,7 +4468,7 @@
         "2620:10d:c090::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "59930": {
       "prefixes": [
@@ -4476,7 +4477,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "62014": {
       "prefixes": [
@@ -4486,7 +4487,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "62041": {
       "prefixes": [
@@ -4498,7 +4499,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "63293": {
       "prefixes": [
@@ -4584,7 +4585,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     },
     "211157": {
       "prefixes": [
@@ -4593,34 +4594,30 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-13T17:27:34.096692+00:00"
+      "fetched_at": "2026-10-13T19:06:47.742731+00:00"
     }
   },
   "matchers": {
-    "domain_suffix": 4169,
+    "domain_suffix": 4171,
     "domain": 90,
     "domain_regex": 7,
     "ip_cidr": 1938
   },
   "sha256": {
-    "routing.json": "a72ef09080730994de911e934e763e51b3ae47d16ff62e7e20a44aa46ed47652",
-    "routing.srs": "c6aea2f6085f4a40c4be11d06fac673cc0eb46233249926a57d2444dbfc1a589",
-    "routing.txt": "4b7619cec223b4d534b06cb7555c061f3c5b7bfab6233b210cd6b85f0dd52a6f"
+    "routing.json": "1792b4d86833e7a83276631dc418c9728b33d3e562104709c12f2f02be987fa0",
+    "routing.srs": "04be0bd2e5d3d538c818799d4c300b7f73aba8b52b66c2caf619a1c5bb3ad63d",
+    "routing.txt": "6c62353266bed492fad93293fd3e6252e3d5f76397d12171fb414d5a2b99e626"
   },
   "changes": {
     "domains": {
       "baseline": true,
       "added": [
-        "domain_suffix:asphaltlegends.com",
-        "domain_suffix:asphaltlegendsunite.com",
-        "domain_suffix:gameloft.com",
-        "domain_suffix:gameloft.helpshift.com"
+        "domain_suffix:unity.com",
+        "domain_suffix:unity3d.com"
       ],
-      "removed": [
-        "domain_suffix:shop.gameloft.com"
-      ],
-      "added_count": 4,
-      "removed_count": 1
+      "removed": [],
+      "added_count": 2,
+      "removed_count": 0
     },
     "scoped_udp": {
       "baseline": true,
@@ -4631,22 +4628,16 @@
     },
     "ipv4": {
       "baseline": true,
-      "added": [
-        "162.244.88.0/22",
-        "198.136.44.0/22",
-        "208.71.184.0/22"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 3,
+      "added_count": 0,
       "removed_count": 0
     },
     "ipv6": {
       "baseline": true,
-      "added": [
-        "2620:10b:b000::/44"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 1,
+      "added_count": 0,
       "removed_count": 0
     }
   },
@@ -4966,6 +4957,13 @@
       "added_count": 0,
       "removed_count": 0
     },
+    "v2fly:unity": {
+      "baseline": false,
+      "added": [],
+      "removed": [],
+      "added_count": null,
+      "removed_count": null
+    },
     "v2fly:youtube": {
       "baseline": true,
       "added": [],
@@ -4996,22 +4994,17 @@
     },
     "custom-domains.txt": {
       "baseline": true,
-      "added": [
-        "domain_suffix:asphaltlegends.com",
-        "domain_suffix:asphaltlegendsunite.com",
-        "domain_suffix:gameloft.com",
-        "domain_suffix:gameloft.helpshift.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 4,
+      "added_count": 0,
       "removed_count": 0
     },
     "BGP:AS11807": {
-      "baseline": false,
+      "baseline": true,
       "added": [],
       "removed": [],
-      "added_count": null,
-      "removed_count": null
+      "added_count": 0,
+      "removed_count": 0
     },
     "BGP:AS32934": {
       "baseline": true,
@@ -5121,21 +5114,63 @@
     "WhatsApp:cdn-dns": {
       "baseline": true,
       "added": [
+        "157.240.234.60/32",
+        "2a03:2880:f212:1d1:face:b00c:0:167/128",
+        "2a03:2880:f346:120:face:b00c:0:167/128",
+        "2a03:2880:f354:120:face:b00c:0:167/128",
+        "2a03:2880:f364:120:face:b00c:0:167/128",
+        "2a03:2880:f364:121:face:b00c:0:7260/128",
+        "2a03:2880:f364:196:face:b00c:0:69e0/128",
+        "2a03:2880:f364:80:face:b00c:0:3/128",
+        "2a03:2880:f36b:120:face:b00c:0:167/128",
+        "2a03:2880:f36e:120:face:b00c:0:167/128",
+        "2a03:2880:f36e:121:face:b00c:0:7260/128",
+        "2a03:2880:f36e:195:face:b00c:0:4619/128",
+        "2a03:2880:f36e:196:face:b00c:0:69e0/128",
+        "2a03:2880:f36e:1:face:b00c:0:25de/128",
+        "2a03:2880:f36e:80:face:b00c:0:3/128",
+        "2a03:2880:f36e:8d:face:b00c:0:2/128",
+        "2a03:2880:f37c:120:face:b00c:0:167/128",
+        "2a03:2880:f381:120:face:b00c:0:167/128",
+        "2a03:2880:f386:120:face:b00c:0:167/128",
+        "31.13.71.50/32",
+        "57.144.117.32/32",
+        "57.144.17.32/32",
+        "57.144.195.32/32",
+        "57.144.200.128/32",
+        "57.144.201.150/32",
+        "57.144.201.32/31",
+        "57.144.205.32/32",
+        "57.144.207.32/32",
+        "57.144.220.1/32",
+        "57.144.220.128/32",
+        "57.144.220.141/32",
+        "57.144.221.149/32",
+        "57.144.221.150/32",
+        "57.144.221.32/31",
+        "57.144.74.141/32",
+        "57.144.87.32/32",
+        "57.145.9.32/32"
+      ],
+      "removed": [
         "157.240.241.60/32",
         "2a03:2880:f325:120:face:b00c:0:167/128",
-        "2a03:2880:f32a:120:face:b00c:0:167/128",
+        "2a03:2880:f328:120:face:b00c:0:167/128",
         "2a03:2880:f347:120:face:b00c:0:167/128",
         "2a03:2880:f361:120:face:b00c:0:167/128",
         "2a03:2880:f361:121:face:b00c:0:7260/128",
         "2a03:2880:f361:196:face:b00c:0:69e0/128",
         "2a03:2880:f361:80:face:b00c:0:3/128",
+        "2a03:2880:f366:120:face:b00c:0:167/128",
         "2a03:2880:f366:121:face:b00c:0:7260/128",
         "2a03:2880:f366:195:face:b00c:0:4619/128",
         "2a03:2880:f366:196:face:b00c:0:69e0/128",
         "2a03:2880:f366:1:face:b00c:0:25de/128",
         "2a03:2880:f366:80:face:b00c:0:3/128",
         "2a03:2880:f366:8d:face:b00c:0:2/128",
+        "2a03:2880:f37a:120:face:b00c:0:167/128",
         "2a03:2880:f37f:120:face:b00c:0:167/128",
+        "57.144.103.32/32",
         "57.144.105.32/32",
         "57.144.141.32/32",
         "57.144.169.32/32",
@@ -5151,52 +5186,14 @@
         "57.144.205.32/31",
         "57.144.217.32/32",
         "57.144.229.32/32",
-        "57.144.239.32/32",
-        "57.144.253.32/32",
         "57.144.255.32/32",
         "57.144.79.32/32",
-        "57.144.85.32/32",
         "57.144.93.32/32",
         "57.145.19.32/32",
         "57.145.3.32/32"
       ],
-      "removed": [
-        "157.240.241.1/32",
-        "157.240.241.17/32",
-        "157.240.241.199/32",
-        "157.240.241.200/32",
-        "157.240.241.35/32",
-        "157.240.241.60/31",
-        "163.70.151.60/32",
-        "2a03:2880:f012:100:face:b00c:0:2/128",
-        "2a03:2880:f012:10c:face:b00c:0:3/128",
-        "2a03:2880:f012:1d2:face:b00c:0:69e0/128",
-        "2a03:2880:f012:1db:face:b00c:0:4619/128",
-        "2a03:2880:f112:182:face:b00c:0:25de/128",
-        "2a03:2880:f212:1c4:face:b00c:0:7260/128",
-        "2a03:2880:f212:1d1:face:b00c:0:167/128",
-        "2a03:2880:f346:120:face:b00c:0:167/128",
-        "2a03:2880:f367:120:face:b00c:0:167/128",
-        "2a03:2880:f36b:120:face:b00c:0:167/128",
-        "2a03:2880:f37e:120:face:b00c:0:167/128",
-        "2a03:2880:f37e:121:face:b00c:0:7260/128",
-        "2a03:2880:f37e:196:face:b00c:0:69e0/128",
-        "2a03:2880:f37e:80:face:b00c:0:3/128",
-        "31.13.71.50/32",
-        "57.144.115.32/32",
-        "57.144.143.32/32",
-        "57.144.195.32/32",
-        "57.144.205.32/32",
-        "57.144.215.32/32",
-        "57.144.221.32/32",
-        "57.144.252.128/32",
-        "57.144.253.150/32",
-        "57.144.253.32/31",
-        "57.144.63.32/32",
-        "57.145.15.32/32"
-      ],
-      "added_count": 38,
-      "removed_count": 33
+      "added_count": 37,
+      "removed_count": 38
     },
     "telegram:official-cidr": {
       "baseline": true,
@@ -5220,21 +5217,21 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-13T07:44:53.348139+00:00",
+  "compared_to": "2026-10-13T17:27:23.940027+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 4255.0,
-        "delta": 3
+        "average": 4256.0,
+        "delta": 2
       },
       "ipv4": {
-        "average": 404.9,
-        "delta": 3
+        "average": 553.9,
+        "delta": 0
       },
       "ipv6": {
-        "average": 255.7,
-        "delta": 1
+        "average": 362.1,
+        "delta": 0
       }
     }
   }

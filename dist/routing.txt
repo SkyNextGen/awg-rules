@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-13T17:27:23.940027+00:00
+# Сборка UTC: 2026-10-13T19:06:39.612591+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4257; IPv4: 1150; IPv6: 788.
+# Домены: 4259; IPv4: 1150; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 90.
 # Исключены UDP-правила с портами: 2; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -3824,6 +3824,8 @@ ukrinform.net
 ukrtelcdn.net
 unfiltered.news
 unian.ua
+unity.com
+unity3d.com
 unlocklimitlesslearning.com
 unscreen.com
 unsplash.com
