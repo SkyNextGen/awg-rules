@@ -334,7 +334,7 @@ def build():
     source_records['custom-domains.txt'] = sorted('domain_suffix:' + d for d in domains)
     previous = json.loads((dist / 'bgp-snapshot.json').read_text()) if (dist / 'bgp-snapshot.json').exists() else {}
     asns = sorted({x for group in cfg['service_asns'].values() for x in group})
-    if not set(asns) <= {62041, 62014, 59930, 44907, 211157, 32934, 63293, 54115}:
+    if not set(asns) <= {62041, 62014, 59930, 44907, 211157, 32934, 63293, 54115, 11807}:
         raise ValueError('Unreviewed ASN expansion forbidden')
     snapshot = bgp(asns, previous, cfg, report)
     for asn, row in snapshot.items():
