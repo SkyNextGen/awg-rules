@@ -81,6 +81,14 @@ def write_report(report, payload, source_records, staging, dist, old):
                  f"Исключены портовые UDP-правила: **{ndms['excluded_scoped_rules']}**; "
                  f"keyword/regexp: **{sum(ndms['excluded_matchers'].values())}**. "
                  'Оба формата собраны из одного снимка источников.', '']
+    if report.get('whatsapp_dns'):
+        dns = report['whatsapp_dns']
+        body += ['### 💬 WhatsApp / свежий DNS CDN', '',
+                 f"Проверено имён: **{dns['hosts']}**; с публичными адресами: **{dns['resolved_hosts']}**. "
+                 f"Наблюдалось IP: **{dns['ips']}** (IPv4: {dns['ipv4']}, IPv6: {dns['ipv6']}).", '',
+                 'Google Public DNS через DoH используется только при сборке. DNS роутера не меняется. '
+                 'Точные адреса узлов вне ASN Meta входят в общие IP-правила SRS и TXT. '
+                 'TTL и ответы сохранены в `whatsapp-dns.json`; старые DNS-адреса при ошибке не подмешиваются.', '']
     warnings = report['warnings']
     body += ['### ⚠️ Предупреждения', ''] + ['- ' + x for x in warnings] if warnings else ['### 🟢 Предупреждений нет']
     if report.get('limitations'):

@@ -72,3 +72,6 @@ tg.org
 tgram.org
 torg.org
 whatsapp-plus.org
+
+# Проверено 12.10.2026: домен Instagram из старых списков, DNS указывает на Meta.
+instagr.am

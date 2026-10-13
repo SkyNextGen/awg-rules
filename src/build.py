@@ -14,6 +14,7 @@ from datetime import datetime, timezone
 from urllib.request import Request, urlopen
 from report import records, write_report
 from routing_rules import MATCH_KEYS, split_rule, unrestricted
+from meta_sources import collect_feeds, collect_dns
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
@@ -243,7 +244,8 @@ def bgp(asns, previous, cfg, report):
         result[str(asn)] = {'prefixes': prefixes, 'source': source, 'fetched_at': timestamp}
     for asn in asns:
         try:
-            data = json.loads(fetch(f'https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS{asn}'))
+            peers = '&min_peers_seeing=1' if asn in cfg.get('service_asns', {}).get('meta', []) else ''
+            data = json.loads(fetch(f'https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS{asn}' + peers))
             if data['status'] != 'ok':
                 raise ValueError('RIPEstat status')
             accept(asn, [x['prefix'] for x in data['data']['prefixes']], 'RIPEstat', now.isoformat())
@@ -332,12 +334,35 @@ def build():
     source_records['custom-domains.txt'] = sorted('domain_suffix:' + d for d in domains)
     previous = json.loads((dist / 'bgp-snapshot.json').read_text()) if (dist / 'bgp-snapshot.json').exists() else {}
     asns = sorted({x for group in cfg['service_asns'].values() for x in group})
-    if not set(asns) <= {62041, 62014, 59930, 44907, 211157, 32934, 63293}:
+    if not set(asns) <= {62041, 62014, 59930, 44907, 211157, 32934, 63293, 54115}:
         raise ValueError('Unreviewed ASN expansion forbidden')
     snapshot = bgp(asns, previous, cfg, report)
     for asn, row in snapshot.items():
         source_records['BGP:AS' + asn] = row['prefixes']
         report['sources']['BGP:AS' + asn] = len(row['prefixes'])
+    old = json.loads((dist / 'report.json').read_text(encoding='utf-8')) if (dist / 'report.json').exists() else {}
+    meta_feeds = collect_feeds(cfg.get('meta_ip_sources', []), fetch, network, collapse)
+    meta_ips = []
+    for name, values in meta_feeds.items():
+        source_name = 'Meta:' + name
+        source_records[source_name] = values
+        report['sources'][source_name] = len(values)
+        meta_ips.extend(values)
+    dns_cfg = cfg.get('whatsapp_dns')
+    dns_observations = None
+    if dns_cfg:
+        hosts, values, report['whatsapp_dns'], dns_observations = collect_dns(
+            dns_cfg, fetch, domain, collapse, old.get('whatsapp_dns'))
+        rules['domain_suffix'].update(hosts)
+        source_records['WhatsApp:cdn-hosts'] = sorted('domain_suffix:' + host for host in hosts)
+        source_records['WhatsApp:cdn-dns'] = values
+        report['sources']['WhatsApp:cdn-hosts'] = len(hosts)
+        report['sources']['WhatsApp:cdn-dns'] = len(values)
+        report['custom_services']['whatsapp'] += source_records['WhatsApp:cdn-hosts']
+        meta_ips.extend(values)
+        (staging / 'whatsapp-dns.json').write_text(json.dumps(
+            {'summary': report['whatsapp_dns'], 'observations': dns_observations},
+            indent=2, sort_keys=True) + '\n', encoding='utf-8')
     live_service_ips = {}
     for service, source in cfg.get('service_ip_sources', {}).items():
         if service not in service_sources:
@@ -352,7 +377,7 @@ def build():
             raise ValueError('Unknown custom service ASN mapping: ' + service)
     for service in service_sources:
         group_asns = cfg['service_asns'].get(service_ip_groups.get(service), [])
-        values = live_service_ips.get(service, []) + [
+        values = live_service_ips.get(service, []) + (meta_ips if service == 'whatsapp' else []) + [
             p for asn in group_asns for p in snapshot[str(asn)]['prefixes']]
         report['custom_services'][service] = sorted(set(report['custom_services'][service] +
             ['ip_cidr:' + p for p in collapse(values)]))
@@ -367,15 +392,16 @@ def build():
     custom_ips = lines((ROOT / 'config/custom-ip-cidrs.txt').read_text())
     report['sources']['custom-ip-cidrs.txt'] = len(custom_ips)
     source_records['custom-ip-cidrs.txt'] = sorted(set(custom_ips))
-    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + custom_ips + [p for values in live_service_ips.values() for p in values])
+    prefixes = collapse([p for row in snapshot.values() for p in row['prefixes']] + custom_ips + meta_ips + [p for values in live_service_ips.values() for p in values])
     merged['ip_cidr'] = prefixes
     total = len(suffix) + len(exact)
     if not cfg['min_total_domains'] <= total <= cfg['max_total_domains'] or len(prefixes) > cfg['max_prefixes']:
         raise ValueError('Output size outside safety limits')
-    old = json.loads((dist / 'report.json').read_text(encoding='utf-8')) if (dist / 'report.json').exists() else {}
     added_sources = set(report['sources']) - set(old.get('sources', {}))
     for key, count in [('domains', total), ('prefixes', len(prefixes))]:
         max_ratio = cfg.get('max_source_expansion_ratio', cfg['max_previous_ratio']) if key == 'domains' and added_sources else cfg['max_previous_ratio']
+        if key == 'prefixes' and any(name.startswith('Meta:') or name == 'WhatsApp:cdn-dns' for name in added_sources):
+            max_ratio = cfg['max_new_ip_source_expansion_ratio']
         if old.get(key) and not cfg['min_previous_ratio'] <= count / old[key] <= max_ratio:
             raise ValueError(key + ' changed beyond safety threshold')
     scoped = discord_voice(cfg['discord_voice'])
@@ -383,7 +409,7 @@ def build():
     report['sources']['ITDog:discord:scoped-udp'] = len(scoped)
     report['scoped_rules'] = scoped
     report['limitations'] = [
-        'Ежедневная пересборка получает проверяемые upstream-источники, но не обнаруживает автоматически все новые домены в интернете. WhatsApp использует общие сети Meta, а не отдельный полный реестр WhatsApp-IP.',
+        'WhatsApp: свежие BGP/geofeed Meta и DNS известных CDN-узлов не гарантируют все региональные адреса. Корпоративные сети Meta не подтверждены как необходимые медиасети. DNS-адреса меняются; рабочая загрузка файлов проверяется на устройстве.',
         'Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. '
         'Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах.'
     ]
@@ -409,6 +435,13 @@ def build():
         for entry in entries:
             key, value = entry.split(':', 1)
             service_rule.setdefault(key, []).append(value)
+        if service_rule.get('domain_suffix'):
+            service_rule['domain_suffix'] = prune(service_rule['domain_suffix'])
+            if service_rule.get('domain'):
+                service_rule['domain'] = sorted(d for d in service_rule['domain'] if not any(
+                    d == suffix or d.endswith('.' + suffix) for suffix in service_rule['domain_suffix']))
+                if not service_rule['domain']:
+                    service_rule.pop('domain')
         service_rules = split_rule(service_rule) + (scoped if service == 'discord' else [])
         (custom_stage / (service + '.json')).write_text(json.dumps({'version': 1, 'rules': service_rules}, indent=2) + '\n', encoding='utf-8')
     (staging / 'bgp-snapshot.json').write_text(json.dumps(snapshot, indent=2) + '\n')
@@ -416,6 +449,8 @@ def build():
     dist.mkdir(exist_ok=True)
     for f in ('routing.json', 'routing.srs', 'routing.txt', 'report.json', 'report.md', 'bgp-snapshot.json', 'source-snapshot.json', 'history.json', 'tg_message.txt'):
         shutil.copyfile(staging / f, dist / f)
+    if dns_observations is not None:
+        shutil.copyfile(staging / 'whatsapp-dns.json', dist / 'whatsapp-dns.json')
     shutil.copytree(custom_stage, dist / 'custom', dirs_exist_ok=True)
     print(f'Build OK: {total} domains, {len(prefixes)} prefixes')
 
