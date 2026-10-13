@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-13T07:44:53.348139+00:00
+# Сборка UTC: 2026-10-13T17:27:23.940027+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4254; IPv4: 1147; IPv6: 787.
+# Домены: 4257; IPv4: 1150; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 90.
 # Исключены UDP-правила с портами: 2; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -236,6 +236,8 @@ askfacebook.org
 asobostudio.com
 asp-cc.com
 asp.net
+asphaltlegends.com
+asphaltlegendsunite.com
 aspnetcdn.com
 assemblesystems.com
 assets.heroku.com
@@ -1557,6 +1559,8 @@ g2a.com
 gacebook.com
 gagadget.com
 gamedistribution.com
+gameloft.com
+gameloft.helpshift.com
 gamepass.com
 gameroom.com
 gamesrepack.com
@@ -3354,7 +3358,6 @@ shikimori.me
 shikimori.one
 shinyhardware.co.uk
 shiza-project.com
-shop.gameloft.com
 shopfacebook.com
 shotgridsoftware.com
 shotgridstudio.com
@@ -4761,6 +4764,7 @@ zukunftswerkstatt.de
 161.0.238.33/32
 161.0.238.98/32
 162.221.212.226/32
+162.244.88.0/22
 163.70.128.0/17
 163.77.132.0/23
 163.77.136.0/23
@@ -5194,6 +5198,7 @@ zukunftswerkstatt.de
 197.239.62.97/32
 197.250.5.161/32
 197.254.94.162/32
+198.136.44.0/22
 198.231.30.162/32
 199.201.0.0/16
 200.6.138.98/32
@@ -5341,6 +5346,7 @@ zukunftswerkstatt.de
 207.194.87.34/32
 207.228.173.226/32
 208.66.49.36/32
+208.71.184.0/22
 208.104.86.226/32
 209.52.156.34/32
 209.52.156.162/32
@@ -5678,6 +5684,7 @@ zukunftswerkstatt.de
 2607:fe68:1300:1:face:b00c:3333:7020/128
 2610:170:7400:1:face:b00c:3333:7020/128
 2620:0:1c00::/40
+2620:10b:b000::/44
 2620:10d:c090::/44
 2800:68:dc0:fb:face:b00c:3333:7020/128
 2800:a0:10:503:face:b00c:3333:7020/128
