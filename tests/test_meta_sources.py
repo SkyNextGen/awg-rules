@@ -89,5 +89,31 @@ class MetaSourceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             m.collect_dns(self.cfg(),lambda url:'mmg.whatsapp.net',b.domain,b.collapse,query=empty)
 
+    def test_small_transport_failure_is_reported_but_poison_is_fatal(self):
+        cfg=self.cfg();cfg.update(max_failed_questions=1,max_failed_ratio=0.25)
+        def query(host,kind,endpoint):
+            if host=='g.whatsapp.net' and kind=='AAAA':raise m.TemporaryDNSFailure('timeout')
+            return {'status':0,'ips':['8.8.8.8' if kind=='A' else '2606:4700::1111'],'ttl':60}
+        fetch=lambda url:'g.whatsapp.net\nmmg.whatsapp.net'
+        hosts,ips,stats,observations=m.collect_dns(cfg,fetch,b.domain,b.collapse,query=query)
+        self.assertEqual(stats['failed_questions'],1)
+        self.assertEqual(observations['g.whatsapp.net']['AAAA']['ips'],[])
+        cfg['max_failed_ratio']=0.1
+        with self.assertRaises(RuntimeError):m.collect_dns(cfg,fetch,b.domain,b.collapse,query=query)
+        def poison(*args):raise ValueError('unsafe answer')
+        with self.assertRaises(ValueError):m.collect_dns(self.cfg(),fetch,b.domain,b.collapse,query=poison)
+
+    def test_query_uses_fresh_fallback_and_never_retries_poison(self):
+        payload=self.answer()
+        response=MagicMock();response.__enter__.return_value.read.return_value=json.dumps(payload)
+        with patch.object(m.DNS_OPENER,'open',side_effect=[OSError('offline')]*3+[response]) as opened, patch.object(m.time,'sleep'):
+            result=m.query_dns('mmg.whatsapp.net','A','https://dns.google/resolve')
+            self.assertEqual(result['resolver'],'https://cloudflare-dns.com/dns-query')
+            self.assertEqual(opened.call_count,4)
+        response.__enter__.return_value.read.return_value=json.dumps(self.answer('127.0.0.1'))
+        with patch.object(m.DNS_OPENER,'open',return_value=response) as opened:
+            with self.assertRaises(ValueError):m.query_dns('mmg.whatsapp.net','A','https://dns.google/resolve')
+            self.assertEqual(opened.call_count,1)
+
 
 if __name__ == '__main__':unittest.main()

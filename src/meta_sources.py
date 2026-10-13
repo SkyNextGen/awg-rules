@@ -52,6 +52,10 @@ class IPv4HTTPSHandler(HTTPSHandler):
 DNS_OPENER = build_opener(IPv4HTTPSHandler(context=ssl.create_default_context()))
 
 
+class TemporaryDNSFailure(ValueError):
+    pass
+
+
 def matches(host, roots=APPROVED_ROOTS):
     return any(host == root or host.endswith('.' + root) for root in roots)
 
@@ -105,6 +109,8 @@ def dns_answer(payload, host, kind):
     if len(question) != 1 or question[0].get('name', '').lower().rstrip('.') != host or question[0].get('type') != number:
         raise ValueError('DNS question differs from requested host/family')
     status = payload.get('Status')
+    if status in (2, 5):
+        raise TemporaryDNSFailure('Temporary DNS status: ' + str(status))
     if status not in (0, 3):
         raise ValueError('Temporary/invalid DNS status: ' + str(status))
     answers = payload.get('Answer', [])
@@ -143,19 +149,22 @@ def dns_answer(payload, host, kind):
 
 
 def query_dns(host, kind, endpoint):
-    url = endpoint + '?' + urlencode({'name': host, 'type': kind})
     error = None
-    for attempt in range(3):
-        try:
-            request = Request(url, headers={'User-Agent': 'awg-rules WhatsApp inventory',
-                                            'Accept': 'application/dns-json'})
-            with DNS_OPENER.open(request, timeout=10) as response:
-                return dns_answer(json.load(response), host, kind)
-        except Exception as exc:
-            error = exc
-            if attempt < 2:
-                time.sleep(0.5 * (attempt + 1))
-    raise RuntimeError('WhatsApp DNS failed: ' + host + ' / ' + kind + ': ' + str(error))
+    for resolver in (endpoint, 'https://cloudflare-dns.com/dns-query'):
+        url = resolver + '?' + urlencode({'name': host, 'type': kind})
+        for attempt in range(3):
+            try:
+                request = Request(url, headers={'User-Agent': 'awg-rules WhatsApp inventory',
+                                                'Accept': 'application/dns-json'})
+                with DNS_OPENER.open(request, timeout=10) as response:
+                    result = dns_answer(json.load(response), host, kind)
+                    result['resolver'] = resolver
+                    return result
+            except (OSError, json.JSONDecodeError, TemporaryDNSFailure) as exc:
+                error = exc
+                if attempt < 2:
+                    time.sleep(0.5 * (attempt + 1))
+    raise TemporaryDNSFailure('WhatsApp DNS failed: ' + host + ' / ' + kind + ': ' + str(error))
 
 
 def collect_dns(cfg, fetch, domain, collapse, previous=None, query=query_dns):
@@ -169,13 +178,21 @@ def collect_dns(cfg, fetch, domain, collapse, previous=None, query=query_dns):
         raise ValueError('WhatsApp host inventory empty, truncated or excessive')
     observations = {host: {} for host in hosts}
     tasks = [(host, kind) for host in hosts for kind in ('A', 'AAAA')]
+    failures = 0
     with ThreadPoolExecutor(max_workers=cfg['workers']) as executor:
         futures = {executor.submit(query, host, kind, cfg['resolver']): (host, kind)
                    for host, kind in tasks}
         try:
             for future in as_completed(futures, timeout=cfg['deadline_seconds']):
                 host, kind = futures[future]
-                observations[host][kind] = future.result()
+                try:
+                    observations[host][kind] = future.result()
+                except TemporaryDNSFailure as exc:
+                    failures += 1
+                    if failures > cfg.get('max_failed_questions', 0) or failures / len(tasks) > cfg.get('max_failed_ratio', 0):
+                        raise RuntimeError('WhatsApp DNS failures exceed allowed threshold') from exc
+                    observations[host][kind] = {'status': None, 'ips': [], 'ttl': None,
+                                               'error': str(exc), 'resolver': None}
         except BaseException:
             for future in futures:
                 future.cancel()
@@ -192,6 +209,9 @@ def collect_dns(cfg, fetch, domain, collapse, previous=None, query=query_dns):
              'ipv4': sum(ipaddress.ip_address(ip).version == 4 for ip in ips),
              'ipv6': sum(ipaddress.ip_address(ip).version == 6 for ip in ips),
              'resolver': cfg['resolver'], 'transport': 'DoH',
+             'failed_questions': failures, 'questions': len(tasks),
+             'fallback_answers': sum(family.get('resolver') == 'https://cloudflare-dns.com/dns-query'
+                                     for row in observations.values() for family in row.values()),
              'checked_at': datetime.now(timezone.utc).isoformat()}
     if previous:
         for metric in ('hosts', 'resolved_hosts', 'ips'):

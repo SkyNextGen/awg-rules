@@ -353,6 +353,9 @@ def build():
     if dns_cfg:
         hosts, values, report['whatsapp_dns'], dns_observations = collect_dns(
             dns_cfg, fetch, domain, collapse, old.get('whatsapp_dns'))
+        if report['whatsapp_dns']['failed_questions']:
+            dns = report['whatsapp_dns']
+            report['warnings'].append(f"WhatsApp DNS: недоступны {dns['failed_questions']}/{dns['questions']} запросов; их IP не добавлены. Подробности: whatsapp-dns.json")
         rules['domain_suffix'].update(hosts)
         source_records['WhatsApp:cdn-hosts'] = sorted('domain_suffix:' + host for host in hosts)
         source_records['WhatsApp:cdn-dns'] = values

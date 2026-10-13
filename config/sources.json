@@ -152,6 +152,8 @@
     "min_ips": 100,
     "max_ips": 6000,
     "min_previous_ratio": 0.75,
-    "max_previous_ratio": 1.5
+    "max_previous_ratio": 1.5,
+    "max_failed_questions": 20,
+    "max_failed_ratio": 0.005
   }
 }

@@ -86,7 +86,8 @@ def write_report(report, payload, source_records, staging, dist, old):
         body += ['### 💬 WhatsApp / свежий DNS CDN', '',
                  f"Проверено имён: **{dns['hosts']}**; с публичными адресами: **{dns['resolved_hosts']}**. "
                  f"Наблюдалось IP: **{dns['ips']}** (IPv4: {dns['ipv4']}, IPv6: {dns['ipv6']}).", '',
-                 'Google Public DNS через DoH используется только при сборке. DNS роутера не меняется. '
+                 f"Пропущено запросов: **{dns['failed_questions']}**; ответов резервного Cloudflare: **{dns['fallback_answers']}**. ", '',
+                 'Google Public DNS и резервный Cloudflare через DoH используются только при сборке. DNS роутера не меняется. '
                  'Точные адреса узлов вне ASN Meta входят в общие IP-правила SRS и TXT. '
                  'TTL и ответы сохранены в `whatsapp-dns.json`; старые DNS-адреса при ошибке не подмешиваются.', '']
     warnings = report['warnings']
