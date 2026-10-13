@@ -75,3 +75,10 @@ whatsapp-plus.org
 
 # Проверено 12.10.2026: домен Instagram из старых списков, DNS указывает на Meta.
 instagr.am
+
+# Gameloft / Asphalt Legends: официальные домены и поддержка, 13.10.2026.
+# gameloft.com включает API, авторизацию и assets.gameloft.com.
+gameloft.com
+asphaltlegends.com
+asphaltlegendsunite.com
+gameloft.helpshift.com

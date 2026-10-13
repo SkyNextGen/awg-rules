@@ -31,7 +31,7 @@
 | 🔎 Google и Microsoft | Google, YouTube, Google Play, FCM, Microsoft и инструменты разработчика |
 | 🤖 Нейросети | OpenAI, Anthropic, Gemini, DeepMind, Perplexity, DeepSeek, Doubao и категории AI Китая, России и других стран |
 | 🎬 Видео и музыка | Netflix, HDRezka, TMDB, Spotify, SoundCloud |
-| 🎮 Игры | PlayStation, NVIDIA, Ubisoft, WB Games, Nexus Mods |
+| 🎮 Игры | PlayStation, NVIDIA, Ubisoft, WB Games, Nexus Mods, Gameloft / Asphalt Legends |
 | 💼 Работа и облако | Autodesk, Canva, JetBrains, Notion, MEGA, Proton |
 | 🌍 Сообщества и дополнения | Patreon, RuTracker, весь ITDog Russia inside и личные домены/IP |
 
@@ -88,7 +88,7 @@ https://raw.githubusercontent.com/SkyNextGen/awg-rules/main/dist/routing.txt
 | [ITDog](https://github.com/itdoginfo/allow-domains) | Весь Russia inside; дополнительные списки Telegram, Discord и Meta; сети Meta и UDP-правила Discord |
 | [V2Fly](https://github.com/v2fly/domain-list-community) | Домены выбранных сервисов и категорий |
 | [Официальный список Telegram](https://core.telegram.org/resources/cidr.txt) | IP-сети Telegram |
-| [RIPEstat](https://stat.ripe.net/) / [bgp.tools](https://bgp.tools/) | Опубликованные IP-маршруты Telegram и Meta |
+| [RIPEstat](https://stat.ripe.net/) / [bgp.tools](https://bgp.tools/) | Опубликованные IP-маршруты Telegram, Meta и Gameloft |
 | [Meta geofeed](https://www.meta.com/peering/geofeed/) / [корпоративный geofeed](https://www.meta.com/peering/geofeed_corp/) | Сети, опубликованные самой Meta, включая дополнительные диапазоны вне текущего BGP-снимка |
 | [MetaCubeX](https://github.com/MetaCubeX/meta-rules-dat) / [Loyalsoldier](https://github.com/Loyalsoldier/geoip) | Обновляемые списки IP Facebook/Meta; пересечения объединяются |
 | [WhatsApp domains](https://github.com/amartinawi/whatsapp-domains) | Имена известных узлов WhatsApp/CDN; их IPv4 и IPv6 заново получаются по DNS при каждой сборке |
@@ -167,6 +167,7 @@ IP получаются независимо от доменных списко�
 | Официальные CIDR Telegram | В общем наборе и отдельном наборе Telegram |
 | BGP Telegram | В общем наборе и отдельном наборе Telegram |
 | BGP Meta | В общем наборе и отдельном наборе WhatsApp |
+| BGP Gameloft | В общем SRS и TXT, без ограничения TCP/UDP или портов |
 | Личные CIDR | В общем наборе; задаются вручную |
 | Подсети Discord ITDog | Только в отдельных правилах с UDP и портами |
 
@@ -175,7 +176,8 @@ IP получаются независимо от доменных списко�
 | Группа | ASN |
 |---|---|
 | Telegram | `62041`, `62014`, `59930`, `44907`, `211157` |
-| Meta | `32934`, `63293` |
+| Meta | `32934`, `63293`, `54115` |
+| Gameloft | `11807` |
 
 Добавление другого ASN в конфигурацию требует изменения проверки в коде. Общие ASN Google, Cloudflare, Amazon и других CDN автоматически не включаются. Сети Meta принадлежат инфраструктуре компании и не выделяют исключительно трафик WhatsApp.
 
@@ -198,6 +200,10 @@ BGP отражает наблюдавшиеся анонсы сетей, по у
 Для каждого ASN нужны IPv4 и IPv6, непустой ответ и допустимый размер. При наличии предыдущего снимка количество объединённых префиксов сравнивается с ним.
 
 Снимок принимается только при возрасте от 0 до **8 дней**. При его использовании исходная дата получения сохраняется. Переход на bgp.tools или снимок отображается в предупреждениях. Если допустимых данных нет, публикация останавливается.
+
+**Gameloft / Asphalt Legends:** AS11807 обновляется на каждом запуске по той же схеме. На момент подключения RIPEstat возвращал `162.244.88.0/22`, `198.136.44.0/22`, `208.71.184.0/22` и `2620:10b:b000::/44`; это наблюдаемые сети компании, а не полный перечень серверов каждой игры. Домены `gameloft.com`, `asphaltlegends.com`, `asphaltlegendsunite.com` и `gameloft.helpshift.com` заданы в `custom-domains.txt` с покрытием поддоменов. После сборки проверяется их покрытие и включение всех полученных префиксов AS11807 в общий набор.
+
+Источники для проверки: [официальный сайт Asphalt](https://asphaltlegends.com/), [Netify — Gameloft](https://www.netify.ai/resources/applications/gameloft) и [RIPEstat — AS11807](https://stat.ripe.net/AS11807). Весь AWS/Akamai не добавляется: сторонние игровые узлы вне этих доменов и сетей требуют подтверждения по журналу соединений игры. Отдельный JSON Gameloft не создаётся; правила уже находятся в основном SRS и TXT.
 
 ### 5. Отдельные наборы мессенджеров
 

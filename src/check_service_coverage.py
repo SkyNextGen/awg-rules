@@ -17,6 +17,8 @@ HOSTS = (
     'telegram.org', 't.me', 'whatsapp.com', 'whatsapp.net', 'wa.me',
     'mmg.whatsapp.net', 'mmg-fallback.whatsapp.net', 'g-fallback.whatsapp.net',
     'lookaside.fbsbx.com', 'media.fopo2-2.fna.whatsapp.net',
+    'gameloft.com', 'asphalt9.assets.gameloft.com', 'vgold.gameloft.com',
+    'asphaltlegends.com', 'asphaltlegendsunite.com', 'gameloft.helpshift.com',
 )
 
 
@@ -38,6 +40,10 @@ def verify(root=ROOT):
     for host in HOSTS:
         if not covered_suffix(host, base['domain_suffix']):
             raise ValueError('Missing generated service coverage: ' + host)
+    # BGP routes include connections without an observable DNS name or TLS SNI.
+    for prefix in snapshot['BGP:AS11807']:
+        if not covers_network(prefix, base['ip_cidr']):
+            raise ValueError('Gameloft BGP prefix missing from final output: ' + prefix)
     upstream_suffixes = {
         value.split(':', 1)[1] for name, values in snapshot.items()
         if name == 'itdog' or name.startswith(('v2fly:', 'ITDog:service:', 'WhatsApp:cdn-hosts'))
@@ -89,7 +95,7 @@ def verify(root=ROOT):
                     address = ipaddress.ip_address(ip)
                     if not covers_network(str(address) + '/' + str(address.max_prefixlen), base['ip_cidr']):
                         raise ValueError('WhatsApp observed IP missing from output: ' + ip)
-    print('Service coverage OK: Discord media/UDP, Nexus, Signal, Telegram official CIDR and all custom service sets')
+    print('Service coverage OK: Gameloft domains/BGP, Discord media/UDP, Nexus, Signal, Telegram official CIDR and all custom service sets')
 
 
 if __name__ == '__main__':
