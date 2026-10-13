@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-12T19:39:42.841715+00:00",
+  "built_at": "2026-10-13T02:03:47.292023+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -351,7 +351,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-12T19:40:00.650004+00:00"
+      "fetched_at": "2026-10-13T02:03:58.866907+00:00"
     },
     "44907": {
       "prefixes": [
@@ -359,7 +359,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-12T19:40:00.650004+00:00"
+      "fetched_at": "2026-10-13T02:03:58.866907+00:00"
     },
     "59930": {
       "prefixes": [
@@ -368,7 +368,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-12T19:40:00.650004+00:00"
+      "fetched_at": "2026-10-13T02:03:58.866907+00:00"
     },
     "62014": {
       "prefixes": [
@@ -378,7 +378,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-12T19:40:00.650004+00:00"
+      "fetched_at": "2026-10-13T02:03:58.866907+00:00"
     },
     "62041": {
       "prefixes": [
@@ -390,7 +390,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-12T19:40:00.650004+00:00"
+      "fetched_at": "2026-10-13T02:03:58.866907+00:00"
     },
     "63293": {
       "prefixes": [
@@ -476,7 +476,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-12T19:40:00.650004+00:00"
+      "fetched_at": "2026-10-13T02:03:58.866907+00:00"
     },
     "211157": {
       "prefixes": [
@@ -485,7 +485,7 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-12T19:40:00.650004+00:00"
+      "fetched_at": "2026-10-13T02:03:58.866907+00:00"
     }
   },
   "matchers": {
@@ -497,7 +497,7 @@
   "sha256": {
     "routing.json": "1b0d1fe97d97922ce0d5b85fd5d94d267de96668bb258310fc9753c0da3630b7",
     "routing.srs": "2b78d9bc5eb85db27ec24ae40748795c452f57b765e1c1e2a75ef85e146ad24e",
-    "routing.txt": "cb9e57845bb9e191159b946b6e24ca66bc1e8052454e512f49c85e074d850b03"
+    "routing.txt": "f3be55804671fb510698a38b99b970690c7913e265820e3f7bcd3c7414eaa794"
   },
   "changes": {
     "domains": {
@@ -516,15 +516,10 @@
     },
     "ipv4": {
       "baseline": true,
-      "added": [
-        "157.240.156.0/23",
-        "157.240.158.0/24"
-      ],
-      "removed": [
-        "157.240.156.0/22"
-      ],
-      "added_count": 2,
-      "removed_count": 1
+      "added": [],
+      "removed": [],
+      "added_count": 0,
+      "removed_count": 0
     },
     "ipv6": {
       "baseline": true,
@@ -915,15 +910,10 @@
     },
     "BGP:AS63293": {
       "baseline": true,
-      "added": [
-        "157.240.156.0/23",
-        "157.240.158.0/24"
-      ],
-      "removed": [
-        "157.240.156.0/22"
-      ],
-      "added_count": 2,
-      "removed_count": 1
+      "added": [],
+      "removed": [],
+      "added_count": 0,
+      "removed_count": 0
     },
     "BGP:AS211157": {
       "baseline": true,
@@ -954,17 +944,17 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-12T05:11:09.162974+00:00",
+  "compared_to": "2026-10-12T19:39:42.841715+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 4167.9,
+        "average": 4254.0,
         "delta": 0
       },
       "ipv4": {
-        "average": 107.1,
-        "delta": 1
+        "average": 107.3,
+        "delta": 0
       },
       "ipv6": {
         "average": 43.0,
