@@ -15,6 +15,8 @@ HOSTS = (
     'signal.art', 'signal.group', 'signal.link', 'signal.me', 'signal.tube',
     'signal.org', 'signalusers.org', 'whispersystems.org',
     'telegram.org', 't.me', 'whatsapp.com', 'whatsapp.net', 'wa.me',
+    'mmg.whatsapp.net', 'mmg-fallback.whatsapp.net', 'g-fallback.whatsapp.net',
+    'lookaside.fbsbx.com', 'media.fopo2-2.fna.whatsapp.net',
 )
 
 
@@ -38,7 +40,7 @@ def verify(root=ROOT):
             raise ValueError('Missing generated service coverage: ' + host)
     upstream_suffixes = {
         value.split(':', 1)[1] for name, values in snapshot.items()
-        if name == 'itdog' or name.startswith(('v2fly:', 'ITDog:service:'))
+        if name == 'itdog' or name.startswith(('v2fly:', 'ITDog:service:', 'WhatsApp:cdn-hosts'))
         for value in values if value.startswith('domain_suffix:')}
     custom = [value.split('#', 1)[0].strip()
               for value in (root / 'config/custom-domains.txt').read_text(encoding='utf-8').splitlines()]
@@ -67,6 +69,26 @@ def verify(root=ROOT):
     for prefix in snapshot['telegram:official-cidr']:
         if not covers_network(prefix, unrestricted(telegram)['ip_cidr']):
             raise ValueError('Official Telegram prefix missing from generated source: ' + prefix)
+    whatsapp = unrestricted(json.loads((root / 'dist/custom/whatsapp.json').read_text(encoding='utf-8')))
+    for name, prefixes in snapshot.items():
+        if name.startswith('Meta:') or name == 'WhatsApp:cdn-dns':
+            for prefix in prefixes:
+                if not covers_network(prefix, whatsapp['ip_cidr']):
+                    raise ValueError('Meta/CDN IP missing from WhatsApp source: ' + prefix)
+    dns_file = root / 'dist/whatsapp-dns.json'
+    if 'WhatsApp:cdn-dns' in snapshot:
+        dns = json.loads(dns_file.read_text(encoding='utf-8'))
+        report = json.loads((root / 'dist/report.json').read_text(encoding='utf-8'))
+        if dns['summary'] != report['whatsapp_dns']:
+            raise ValueError('WhatsApp DNS snapshot and report differ')
+        for host, row in dns['observations'].items():
+            if not covered_suffix(host, base['domain_suffix']):
+                raise ValueError('WhatsApp observed host missing from output: ' + host)
+            for family in row.values():
+                for ip in family['ips']:
+                    address = ipaddress.ip_address(ip)
+                    if not covers_network(str(address) + '/' + str(address.max_prefixlen), base['ip_cidr']):
+                        raise ValueError('WhatsApp observed IP missing from output: ' + ip)
     print('Service coverage OK: Discord media/UDP, Nexus, Signal, Telegram official CIDR and all custom service sets')
 
 

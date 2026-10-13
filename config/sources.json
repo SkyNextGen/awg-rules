@@ -26,6 +26,10 @@
       {
         "kind": "v2fly",
         "category": "whatsapp"
+      },
+      {
+        "kind": "domains",
+        "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Services/meta.lst"
       }
     ]
   },
@@ -39,7 +43,8 @@
     ],
     "meta": [
       32934,
-      63293
+      63293,
+      54115
     ]
   },
   "min_itdog_domains": 500,
@@ -66,5 +71,89 @@
   "custom_service_asn_groups": {
     "telegram": "telegram",
     "whatsapp": "meta"
+  },
+  "max_new_ip_source_expansion_ratio": 20,
+  "meta_ip_sources": [
+    {
+      "name": "geofeed",
+      "url": "https://www.meta.com/peering/geofeed/",
+      "format": "geofeed",
+      "min_entries": 100,
+      "max_entries": 5000,
+      "families": [
+        4,
+        6
+      ],
+      "max_age_days": 8
+    },
+    {
+      "name": "geofeed-corp",
+      "url": "https://www.meta.com/peering/geofeed_corp/",
+      "format": "geofeed",
+      "min_entries": 50,
+      "max_entries": 5000,
+      "families": [
+        4,
+        6
+      ],
+      "max_age_days": 8
+    },
+    {
+      "name": "ITDog-IPv4",
+      "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv4/meta.lst",
+      "format": "cidr",
+      "min_entries": 10,
+      "max_entries": 2000,
+      "families": [
+        4
+      ]
+    },
+    {
+      "name": "ITDog-IPv6",
+      "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv6/meta.lst",
+      "format": "cidr",
+      "min_entries": 5,
+      "max_entries": 2000,
+      "families": [
+        6
+      ]
+    },
+    {
+      "name": "MetaCubeX",
+      "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.list",
+      "format": "cidr",
+      "min_entries": 20,
+      "max_entries": 5000,
+      "families": [
+        4,
+        6
+      ]
+    },
+    {
+      "name": "Loyalsoldier",
+      "url": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/facebook.txt",
+      "format": "cidr",
+      "min_entries": 20,
+      "max_entries": 5000,
+      "families": [
+        4,
+        6
+      ]
+    }
+  ],
+  "whatsapp_dns": {
+    "hosts_url": "https://raw.githubusercontent.com/amartinawi/whatsapp-domains/main/whatsapp-domains.txt",
+    "resolver": "https://dns.google/resolve",
+    "workers": 24,
+    "deadline_seconds": 600,
+    "min_hosts": 1000,
+    "max_hosts": 10000,
+    "min_resolved_hosts": 500,
+    "min_ips": 100,
+    "max_ips": 6000,
+    "min_previous_ratio": 0.75,
+    "max_previous_ratio": 1.5,
+    "max_failed_questions": 20,
+    "max_failed_ratio": 0.005
   }
 }
