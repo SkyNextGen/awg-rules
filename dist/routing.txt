@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-16T22:53:07.196507+00:00
+# Сборка UTC: 2026-10-17T22:23:39.327896+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4260; IPv4: 1150; IPv6: 788.
+# Домены: 4263; IPv4: 1150; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 90.
 # Исключены UDP-правила с портами: 2; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -892,6 +892,7 @@ cursor.com
 cursor.sh
 cursorapi.com
 cursorinfo.co.il
+cursorvm.com
 cvedetails.com
 cyberghostvpn.com
 cyxymu.info
@@ -2958,6 +2959,7 @@ onmschina.cn
 onshape.com
 openai.com
 openai.com.cdn.cloudflare.net
+openai.org
 openai.qualtrics.com
 openaicom.imgix.net
 openart.ai
@@ -3781,6 +3783,7 @@ twvid.com
 tx.me
 txcloud.net
 txvia.com
+typesafe.ai
 typing.com
 tyre-cadcam.com
 tyrecadcam.com
