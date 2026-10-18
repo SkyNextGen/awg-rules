@@ -34,6 +34,15 @@ torrindex.net
 wstracker.online
 ysagin.top
 dnschecker.org
+lampa.mx
+lampa.stream
+lampa.tilda.ws
+bylampa.online
+cub.red
+cub.watch
+cub.rip
+arkmv.ru
+modss.tv
 
 # Личные дополнения из пользовательских списков, проверены 11.10.2026.
 # Эти имена не подтверждают принадлежность Telegram/Meta.
