@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-18T12:45:24.963707+00:00
+# Сборка UTC: 2026-10-18T15:06:27.721990+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4261; IPv4: 1150; IPv6: 788.
+# Домены: 4269; IPv4: 1150; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 90.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -223,6 +223,7 @@ arduino.cc
 area120.com
 arena.ai
 aria.ms
+arkmv.ru
 arnoldrenderer.com
 artcam.com
 artcamexpress.com
@@ -682,6 +683,7 @@ butterflyai.cn
 buyingfacebooklikes.com
 buymeacoffee.com
 buyoculus.com
+bylampa.online
 byspotify.com
 bytedapm.com
 byteoversea.com
@@ -883,6 +885,8 @@ crunchyroll.com
 cs4hs.com
 csskor.ill.in.ua
 cub.red
+cub.rip
+cub.watch
 cueme-api.quark.cn
 cueme.cn
 currenttime.tv
@@ -2300,6 +2304,9 @@ kynogon.com
 l-msedge.net
 lambdalabs.com
 lamcdn.net
+lampa.mx
+lampa.stream
+lampa.tilda.ws
 langchain.com
 langdock.com
 lantern.io
@@ -2625,6 +2632,7 @@ mncmsidlab1.cn
 mobilefacebook.com
 mobileview.page
 modrinth.com
+modss.tv
 mojang.com
 moldflow.com
 moldflowexpress.com

@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-18T12:45:24.963707+00:00",
+  "built_at": "2026-10-18T15:06:27.721990+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -52,7 +52,7 @@
     "ITDog:service:discord": 20,
     "ITDog:service:telegram": 20,
     "ITDog:service:whatsapp": 18,
-    "custom-domains.txt": 72,
+    "custom-domains.txt": 81,
     "BGP:AS11807": 4,
     "BGP:AS32934": 36,
     "BGP:AS44907": 2,
@@ -69,7 +69,7 @@
     "Meta:MetaCubeX": 119,
     "Meta:Loyalsoldier": 119,
     "WhatsApp:cdn-hosts": 2269,
-    "WhatsApp:cdn-dns": 1892,
+    "WhatsApp:cdn-dns": 1891,
     "telegram:official-cidr": 11,
     "custom-ip-cidrs.txt": 23,
     "ITDog:discord:scoped-udp": 2,
@@ -4342,17 +4342,17 @@
     "hosts": 2269,
     "resolved_hosts": 1467,
     "ips": 1894,
-    "ipv4": 1187,
-    "ipv6": 707,
+    "ipv4": 1185,
+    "ipv6": 709,
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "failed_questions": 0,
     "questions": 4538,
-    "fallback_answers": 50,
-    "checked_at": "2026-10-18T12:50:25.677810+00:00"
+    "fallback_answers": 43,
+    "checked_at": "2026-10-18T15:11:13.543523+00:00"
   },
   "discord_https": {
-    "checked_at": "2026-10-18T12:50:27.163727+00:00",
+    "checked_at": "2026-10-18T15:11:14.674601+00:00",
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "ips": 10,
@@ -4523,7 +4523,7 @@
     "Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. Общие подсети ограничены UDP-портами. Точные DNS-адреса CDN ограничены TCP/UDP 443, но тоже могут обслуживать другие сайты. ECH скрывает имя; DNS при сборке не гарантирует все региональные IP."
   ],
   "ndms": {
-    "domains": 4261,
+    "domains": 4269,
     "ipv4": 1150,
     "ipv6": 788,
     "exact_to_suffix": 90,
@@ -4533,7 +4533,7 @@
       "domain_regex": 7
     }
   },
-  "domains": 4263,
+  "domains": 4271,
   "prefixes": 1938,
   "ipv4": 1150,
   "ipv6": 788,
@@ -4546,7 +4546,7 @@
         "2620:10b:b000::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "32934": {
       "prefixes": [
@@ -4588,7 +4588,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "44907": {
       "prefixes": [
@@ -4596,7 +4596,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "54115": {
       "prefixes": [
@@ -4605,7 +4605,7 @@
         "2620:10d:c090::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "59930": {
       "prefixes": [
@@ -4614,7 +4614,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "62014": {
       "prefixes": [
@@ -4624,7 +4624,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "62041": {
       "prefixes": [
@@ -4636,7 +4636,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "63293": {
       "prefixes": [
@@ -4722,7 +4722,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     },
     "211157": {
       "prefixes": [
@@ -4731,38 +4731,42 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-18T12:45:37.780855+00:00"
+      "fetched_at": "2026-10-18T15:06:36.358337+00:00"
     }
   },
   "matchers": {
-    "domain_suffix": 4173,
+    "domain_suffix": 4181,
     "domain": 90,
     "domain_regex": 7,
     "ip_cidr": 1938
   },
   "sha256": {
-    "routing.json": "ab55a62a340284980421faf733690a0727c754e25e7917450beaa8513ceecdad",
-    "routing.srs": "d2a13794ad9aa1efe2bf6a5f3bd78b412ecae4dff632396d19c25931400bd09e",
-    "routing.txt": "254b2be4ed92cd28e2797a624ebc9a670168e61d290deaf85334462105af9f4c"
+    "routing.json": "a464b9070cfc6f2e13f44ca5a398e991a5551fc1f9f5ec70fe605fabc9a4018d",
+    "routing.srs": "8727f6cb8e131ac0e42bb5f4d1e9208bd43696f18f99ce21a4a097ebe84d6383",
+    "routing.txt": "bb2fcbbab414311e3c0bab94054858d474af007d3aa8fd3ca39f8c7d7f9e9390"
   },
   "changes": {
     "domains": {
       "baseline": true,
-      "added": [],
-      "removed": [
-        "domain_suffix:asobostudio.com",
-        "domain_suffix:flightsimulator.com"
+      "added": [
+        "domain_suffix:arkmv.ru",
+        "domain_suffix:bylampa.online",
+        "domain_suffix:cub.rip",
+        "domain_suffix:cub.watch",
+        "domain_suffix:lampa.mx",
+        "domain_suffix:lampa.stream",
+        "domain_suffix:lampa.tilda.ws",
+        "domain_suffix:modss.tv"
       ],
-      "added_count": 0,
-      "removed_count": 2
+      "removed": [],
+      "added_count": 8,
+      "removed_count": 0
     },
     "scoped_udp": {
       "baseline": true,
-      "added": [
-        "{\"ip_cidr\": [\"5.200.14.128/25\", \"34.0.0.0/15\", \"34.2.0.0/16\", \"34.3.0.0/23\", \"34.3.2.0/24\", \"35.192.0.0/11\", \"35.224.0.0/12\", \"35.240.0.0/13\", \"66.22.192.0/18\", \"104.29.0.0/16\", \"138.128.136.0/21\", \"162.158.0.0/15\", \"172.64.0.0/13\"], \"network\": [\"udp\"], \"port_range\": [\"50000:50099\", \"19200:19400\"]}"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 1,
+      "added_count": 0,
       "removed_count": 0
     },
     "scoped_https": {
@@ -4945,13 +4949,9 @@
     "v2fly:microsoft": {
       "baseline": true,
       "added": [],
-      "removed": [
-        "domain:flightsimulator.azureedge.net",
-        "domain_suffix:asobostudio.com",
-        "domain_suffix:flightsimulator.com"
-      ],
+      "removed": [],
       "added_count": 0,
-      "removed_count": 3
+      "removed_count": 0
     },
     "v2fly:microsoft-dev": {
       "baseline": true,
@@ -5144,9 +5144,19 @@
     },
     "custom-domains.txt": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain_suffix:arkmv.ru",
+        "domain_suffix:bylampa.online",
+        "domain_suffix:cub.red",
+        "domain_suffix:cub.rip",
+        "domain_suffix:cub.watch",
+        "domain_suffix:lampa.mx",
+        "domain_suffix:lampa.stream",
+        "domain_suffix:lampa.tilda.ws",
+        "domain_suffix:modss.tv"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 9,
       "removed_count": 0
     },
     "BGP:AS11807": {
@@ -5264,17 +5274,48 @@
     "WhatsApp:cdn-dns": {
       "baseline": true,
       "added": [
+        "157.240.241.60/32",
+        "163.70.151.60/32",
+        "2a03:2880:f31e:120:face:b00c:0:167/128",
+        "2a03:2880:f31e:121:face:b00c:0:7260/128",
+        "2a03:2880:f31e:196:face:b00c:0:69e0/128",
+        "2a03:2880:f31e:80:face:b00c:0:3/128",
+        "2a03:2880:f32a:120:face:b00c:0:167/128",
+        "2a03:2880:f32f:121:face:b00c:0:167/128",
+        "2a03:2880:f366:120:face:b00c:0:167/128",
+        "2a03:2880:f36b:120:face:b00c:0:167/128",
+        "2a03:2880:f37a:120:face:b00c:0:167/128",
+        "2a03:2880:f381:120:face:b00c:0:167/128",
+        "2a03:2880:f381:121:face:b00c:0:7260/128",
+        "2a03:2880:f381:195:face:b00c:0:4619/128",
+        "2a03:2880:f381:196:face:b00c:0:69e0/128",
+        "2a03:2880:f381:1:face:b00c:0:25de/128",
+        "2a03:2880:f381:80:face:b00c:0:3/128",
+        "2a03:2880:f381:8d:face:b00c:0:2/128",
+        "31.13.66.51/32",
+        "57.144.103.32/32",
+        "57.144.221.32/32",
+        "57.144.78.128/32",
+        "57.144.79.150/32",
+        "57.144.79.32/31",
+        "57.145.2.1/32",
+        "57.145.2.128/32",
+        "57.145.2.141/32",
+        "57.145.3.149/32",
+        "57.145.3.150/32",
+        "57.145.3.32/31",
+        "57.145.9.32/32"
+      ],
+      "removed": [
         "157.240.210.60/32",
         "157.240.22.206/32",
         "157.240.22.25/32",
         "157.240.22.54/32",
-        "157.240.234.60/32",
         "2a03:2880:f031:19:face:b00c:0:3/128",
         "2a03:2880:f031:ce:face:b00c:0:69e0/128",
         "2a03:2880:f231:c7:face:b00c:0:7260/128",
         "2a03:2880:f307:120:face:b00c:0:167/128",
         "2a03:2880:f321:120:face:b00c:0:167/128",
-        "2a03:2880:f347:120:face:b00c:0:167/128",
         "2a03:2880:f367:120:face:b00c:0:167/128",
         "2a03:2880:f36c:120:face:b00c:0:167/128",
         "2a03:2880:f36c:121:face:b00c:0:7260/128",
@@ -5284,12 +5325,9 @@
         "2a03:2880:f36c:80:face:b00c:0:3/128",
         "2a03:2880:f36c:8d:face:b00c:0:2/128",
         "2a03:2880:f37c:120:face:b00c:0:167/128",
-        "2a03:2880:f389:120:face:b00c:0:167/128",
         "57.144.117.32/32",
-        "57.144.141.32/32",
         "57.144.199.32/32",
         "57.144.207.32/32",
-        "57.144.21.32/32",
         "57.144.216.1/32",
         "57.144.216.128/32",
         "57.144.216.141/32",
@@ -5297,50 +5335,13 @@
         "57.144.217.150/32",
         "57.144.217.32/31",
         "57.144.220.141/32",
-        "57.144.229.32/32",
         "57.144.61.32/32",
         "57.144.63.32/32",
-        "57.144.75.32/32",
-        "57.144.99.32/32"
+        "57.144.99.32/32",
+        "57.145.3.32/32"
       ],
-      "removed": [
-        "157.240.241.17/32",
-        "163.70.151.60/32",
-        "2a03:2880:f212:1d1:face:b00c:0:167/128",
-        "2a03:2880:f309:120:face:b00c:0:167/128",
-        "2a03:2880:f309:121:face:b00c:0:7260/128",
-        "2a03:2880:f309:196:face:b00c:0:69e0/128",
-        "2a03:2880:f309:80:face:b00c:0:3/128",
-        "2a03:2880:f323:120:face:b00c:0:167/128",
-        "2a03:2880:f32a:120:face:b00c:0:167/128",
-        "2a03:2880:f32f:121:face:b00c:0:167/128",
-        "2a03:2880:f34d:120:face:b00c:0:167/128",
-        "2a03:2880:f34f:120:face:b00c:0:167/128",
-        "2a03:2880:f35a:120:face:b00c:0:167/128",
-        "2a03:2880:f366:120:face:b00c:0:167/128",
-        "2a03:2880:f366:121:face:b00c:0:7260/128",
-        "2a03:2880:f366:195:face:b00c:0:4619/128",
-        "2a03:2880:f366:196:face:b00c:0:69e0/128",
-        "2a03:2880:f366:1:face:b00c:0:25de/128",
-        "2a03:2880:f366:80:face:b00c:0:3/128",
-        "2a03:2880:f366:8d:face:b00c:0:2/128",
-        "57.144.103.32/32",
-        "57.144.159.32/32",
-        "57.144.20.128/32",
-        "57.144.204.1/32",
-        "57.144.204.128/32",
-        "57.144.204.141/32",
-        "57.144.205.149/32",
-        "57.144.205.150/32",
-        "57.144.205.32/31",
-        "57.144.21.150/32",
-        "57.144.21.32/31",
-        "57.144.221.32/32",
-        "57.144.75.32/31",
-        "57.144.93.32/32"
-      ],
-      "added_count": 38,
-      "removed_count": 34
+      "added_count": 31,
+      "removed_count": 32
     },
     "telegram:official-cidr": {
       "baseline": true,
@@ -5364,11 +5365,11 @@
       "removed_count": 0
     },
     "Custom:discord:scoped-udp": {
-      "baseline": false,
+      "baseline": true,
       "added": [],
       "removed": [],
-      "added_count": null,
-      "removed_count": null
+      "added_count": 0,
+      "removed_count": 0
     },
     "Discord:cdn-dns:https": {
       "baseline": true,
@@ -5378,13 +5379,13 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-18T09:04:14.373265+00:00",
+  "compared_to": "2026-10-18T12:45:24.963707+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 4262.7,
-        "delta": -2
+        "average": 4264.1,
+        "delta": 8
       },
       "ipv4": {
         "average": 1150.0,
