@@ -3,7 +3,7 @@ import ipaddress
 import json
 from pathlib import Path
 from routing_rules import MATCH_KEYS, scoped_rules, unrestricted
-from build import verify_ndms
+from build import verify_ndms, custom_discord_voice
 from discord_https import verify_https
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -77,6 +77,13 @@ def verify(root=ROOT):
         verify_https(payload, prefixes)
         discord = json.loads((root / 'dist/custom/discord.json').read_text(encoding='utf-8'))
         verify_https(discord, prefixes)
+    cfg = json.loads((root / 'config/sources.json').read_text(encoding='utf-8'))
+    custom_voice = cfg['discord_voice'].get('custom_rules_file')
+    if custom_voice:
+        discord = json.loads((root / 'dist/custom/discord.json').read_text(encoding='utf-8'))
+        for rule in custom_discord_voice(root / custom_voice):
+            if rule not in scoped_rules(payload) or rule not in scoped_rules(discord):
+                raise ValueError('Custom Discord UDP coverage missing or constraints changed')
     telegram = json.loads((root / 'dist/custom/telegram.json').read_text(encoding='utf-8'))
     for prefix in snapshot['telegram:official-cidr']:
         if not covers_network(prefix, unrestricted(telegram)['ip_cidr']):

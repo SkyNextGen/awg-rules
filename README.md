@@ -109,9 +109,12 @@ Telegram, WhatsApp и Discord пересобираются на каждом з�
 | Сервис или категорию V2Fly | [v2fly-categories.txt](config/v2fly-categories.txt) |
 | Личный домен | [custom-domains.txt](config/custom-domains.txt) |
 | Личный IP или сеть | [custom-ip-cidrs.txt](config/custom-ip-cidrs.txt) |
+| Дополнительные UDP-маршруты Discord с ограничениями портов | [custom-discord-voice.json](config/custom-discord-voice.json) |
 | Источники и параметры сборки | [sources.json](config/sources.json) |
 
 **Домены добавляются с поддоменами:** `google.com` уже покрывает `clients6.google.com`. Повторять обе записи не требуется. Для одного IP используйте `/32` у IPv4 или `/128` у IPv6.
+
+Дополнения голоса Discord взяты из [проверенного набора автора AWGM](https://github.com/hoaxisr/rulesets/blob/289c233cd2564134dcd0ea84781700f3aa5a6f2f/json/discord-full.json). Они дополняют ITDog в общем `routing.srs` и существующем `dist/custom/discord.json`: только UDP, порты `50000–50099` и `19200–19400`. В частности, добавлены сети `35.224.0.0/12` и `35.240.0.0/13`. Эти записи нельзя переносить в обычный `custom-ip-cidrs.txt`: там ограничения портов и протокола будут потеряны. В NDMS TXT эти правила не включаются.
 
 <details>
 <summary><b>⚙️ Технические подробности</b></summary>

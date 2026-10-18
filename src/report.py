@@ -179,7 +179,8 @@ def telegram_text(report, status='success', run_url=''):
               if not item['baseline'] or item['added_count'] or item['removed_count']]
     labels = {'itdog': 'ITDog', 'custom-domains.txt': 'Custom-домены',
               'custom-ip-cidrs.txt': 'Custom-IP', 'telegram:official-cidr': 'Telegram / официальный CIDR',
-              'ITDog:discord:scoped-udp': 'Discord UDP', 'Discord:cdn-dns:https': 'Discord CDN / HTTPS'}
+              'ITDog:discord:scoped-udp': 'Discord UDP', 'Custom:discord:scoped-udp': 'Discord UDP / Custom',
+              'Discord:cdn-dns:https': 'Discord CDN / HTTPS'}
     if active:
         text += ['', '📌 Где изменилось']
         for name, item in active[:12]:

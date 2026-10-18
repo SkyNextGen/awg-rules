@@ -1,8 +1,10 @@
 import copy
+import ipaddress
 import json
 from pathlib import Path
 import sys
 import unittest
+import tempfile
 from unittest.mock import patch
 from datetime import datetime, timezone
 
@@ -61,6 +63,57 @@ class DiscordVoice(unittest.TestCase):
             for value in rule['ip_cidr']:
                 net = b.network(value)
                 self.assertFalse(any(net.overlaps(b.network(p)) for p in unrestricted(payload)['ip_cidr'] if b.network(p).version == net.version))
+
+
+class CustomDiscordVoice(unittest.TestCase):
+    def setUp(self):
+        self.path = b.ROOT / 'config/custom-discord-voice.json'
+        self.payload = json.loads(self.path.read_text(encoding='utf-8'))
+
+    def test_new_voice_networks_and_relay_ports_are_covered(self):
+        rules = b.custom_discord_voice(self.path)
+        for address in ('35.224.0.1', '35.239.255.254', '35.240.0.1',
+                        '35.247.255.254', '66.22.192.1', '104.29.0.1'):
+            for port in (19200, 19400, 50000, 50099):
+                self.assertTrue(any(
+                    any(ipaddress.ip_address(address) in b.network(p) for p in rule['ip_cidr'])
+                    and any(int(lo) <= port <= int(hi) for lo, hi in
+                            (p.split(':') for p in rule['port_range']))
+                    for rule in rules), (address, port))
+        for rule in rules:
+            self.assertEqual(rule['network'], ['udp'])
+            for port in (443, 19199, 19401, 49999, 50100, 65535):
+                self.assertFalse(any(int(lo) <= port <= int(hi) for lo, hi in
+                                     (p.split(':') for p in rule['port_range'])))
+            self.assertFalse(any(ipaddress.ip_address('35.248.0.1') in b.network(p)
+                                 for p in rule['ip_cidr']))
+
+    def test_rejects_unrestricted_tcp_and_unsafe_network_changes(self):
+        mutations = [dict(network=['tcp']), dict(network=['tcp', 'udp']),
+                     dict(port_range=['1:65535']), dict(port_range=[]),
+                     dict(ip_cidr=['0.0.0.0/0']), dict(ip_cidr=['35.0.0.0/8']),
+                     dict(ip_cidr=['192.168.0.0/16']), dict(ip_cidr=[])]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'custom.json'
+            for changes in mutations:
+                payload = copy.deepcopy(self.payload)
+                payload['rules'][0].update(changes)
+                path.write_text(json.dumps(payload), encoding='utf-8')
+                with self.subTest(changes=changes), self.assertRaises(ValueError):
+                    b.custom_discord_voice(path)
+            for key in ('network', 'port_range'):
+                payload = copy.deepcopy(self.payload)
+                payload['rules'][0].pop(key)
+                path.write_text(json.dumps(payload), encoding='utf-8')
+                with self.subTest(removed=key), self.assertRaises(ValueError):
+                    b.custom_discord_voice(path)
+
+    def test_ndms_does_not_flatten_shared_voice_prefixes(self):
+        rules = b.custom_discord_voice(self.path)
+        payload = {'version': 1, 'rules': [{'domain_suffix': ['discord.com']}] + rules}
+        text, summary = b.ndms_text(payload, '2026-10-18T00:00:00+00:00')
+        self.assertEqual(summary['excluded_scoped_rules'], len(rules))
+        self.assertEqual(b.lines(text), ['discord.com'])
 
 
 class UpstreamReadiness(unittest.TestCase):

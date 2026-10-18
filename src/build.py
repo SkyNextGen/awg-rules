@@ -204,6 +204,30 @@ def discord_voice(cfg):
             dict(network=['udp'], ip_cidr=cloudflare, port_range=ports['discord_cf_subnets'])]
 
 
+def custom_discord_voice(path):
+    """Reviewed local additions must never become unrestricted shared IP routes."""
+    payload = json.loads(path.read_text(encoding='utf-8'))
+    if payload.get('version') != 1 or not isinstance(payload.get('rules'), list) or not payload['rules']:
+        raise ValueError('Invalid custom Discord voice rules')
+    result = []
+    for rule in payload['rules']:
+        if set(rule) != {'network', 'ip_cidr', 'port_range'} or rule['network'] != ['udp']:
+            raise ValueError('Custom Discord voice requires UDP, CIDRs and ports')
+        if (not isinstance(rule['port_range'], list)
+                or sorted(rule['port_range']) != ['19200:19400', '50000:50099']):
+            raise ValueError('Custom Discord voice ports changed; review required')
+        prefixes = rule['ip_cidr']
+        if not isinstance(prefixes, list) or not 1 <= len(prefixes) <= 64:
+            raise ValueError('Invalid custom Discord voice prefixes')
+        for prefix in prefixes:
+            net = network(prefix)
+            if net.version != 4 or net.prefixlen < 12:
+                raise ValueError('Custom Discord voice prefix too broad or wrong family')
+        result.append(dict(network=['udp'], ip_cidr=collapse(prefixes),
+                           port_range=list(rule['port_range'])))
+    return result
+
+
 class V2Fly:
     def __init__(self, base):
         self.base, self.cache = base, {}
@@ -427,6 +451,11 @@ def build():
     scoped = discord_voice(cfg['discord_voice'])
     source_records['ITDog:discord:scoped-udp'] = [json.dumps(r, sort_keys=True) for r in scoped]
     report['sources']['ITDog:discord:scoped-udp'] = len(scoped)
+    if cfg['discord_voice'].get('custom_rules_file'):
+        additions = custom_discord_voice(ROOT / cfg['discord_voice']['custom_rules_file'])
+        source_records['Custom:discord:scoped-udp'] = [json.dumps(r, sort_keys=True) for r in additions]
+        report['sources']['Custom:discord:scoped-udp'] = len(additions)
+        scoped.extend(additions)
     if cfg.get('discord_https'):
         https_rule, report['discord_https'] = collect_https(cfg['discord_https'], domain)
         source_records['Discord:cdn-dns:https'] = https_rule['ip_cidr']
