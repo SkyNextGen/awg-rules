@@ -226,7 +226,6 @@
         "askdiandian.com",
         "askfacebook.net",
         "askfacebook.org",
-        "asobostudio.com",
         "asp-cc.com",
         "asp.net",
         "asphaltlegends.com",
@@ -1446,7 +1445,6 @@
         "flameunleashed.com",
         "flibusta.is",
         "flibusta.net",
-        "flightsimulator.com",
         "flipboard.com",
         "flipwithsurface.com",
         "flir.com",
@@ -6251,6 +6249,30 @@
       ],
       "port_range": [
         "19000:20000"
+      ]
+    },
+    {
+      "network": [
+        "udp"
+      ],
+      "ip_cidr": [
+        "5.200.14.128/25",
+        "34.0.0.0/15",
+        "34.2.0.0/16",
+        "34.3.0.0/23",
+        "34.3.2.0/24",
+        "35.192.0.0/11",
+        "35.224.0.0/12",
+        "35.240.0.0/13",
+        "66.22.192.0/18",
+        "104.29.0.0/16",
+        "138.128.136.0/21",
+        "162.158.0.0/15",
+        "172.64.0.0/13"
+      ],
+      "port_range": [
+        "50000:50099",
+        "19200:19400"
       ]
     },
     {

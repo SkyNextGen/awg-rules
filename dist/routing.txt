@@ -1,10 +1,10 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-18T09:04:14.373265+00:00
+# Сборка UTC: 2026-10-18T12:45:24.963707+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4263; IPv4: 1150; IPv6: 788.
+# Домены: 4261; IPv4: 1150; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 90.
-# Исключены правила с протоколами/портами: 3; keyword/regexp не исполняются.
+# Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
 
 # Домены
@@ -233,7 +233,6 @@ as6723.net
 askdiandian.com
 askfacebook.net
 askfacebook.org
-asobostudio.com
 asp-cc.com
 asp.net
 asphaltlegends.com
@@ -1462,7 +1461,6 @@ fivetran.com
 flameunleashed.com
 flibusta.is
 flibusta.net
-flightsimulator.com
 flipboard.com
 flipwithsurface.com
 flir.com
