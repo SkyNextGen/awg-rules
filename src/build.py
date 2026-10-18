@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 from report import records, write_report
 from routing_rules import MATCH_KEYS, split_rule, unrestricted
 from meta_sources import collect_feeds, collect_dns
+from discord_https import collect_https
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
@@ -70,6 +71,20 @@ def collapse(values):
     return [str(n) for v in (4, 6) for n in ipaddress.collapse_addresses(n for n in nets if n.version == v)]
 
 
+def canonical(obj):
+    """Compare rule semantics even when SRS merges adjacent CIDRs or scalar lists."""
+    result = []
+    for rule in obj['rules']:
+        normalized = {}
+        for key, value in rule.items():
+            if key == 'type':
+                continue
+            values = value if isinstance(value, list) else [value]
+            normalized[key] = sorted(collapse(values) if key == 'ip_cidr' else values)
+        result.append(normalized)
+    return result
+
+
 def prune(values):
     keep = set()
     for d in sorted(set(values), key=lambda x: (x.count('.'), x)):
@@ -82,7 +97,9 @@ def ndms_text(payload, built_at):
     """NDMS treats every plain domain as a suffix; scoped rules cannot be flattened."""
     for rule in payload['rules']:
         unknown = set(rule) - set(MATCH_KEYS)
-        if unknown and (unknown != {'network', 'port_range'} or rule.get('network') != ['udp']):
+        voice = unknown == {'network', 'port_range'} and rule.get('network') == ['udp']
+        https = unknown == {'network', 'port'} and rule.get('network') == ['tcp', 'udp'] and rule.get('port') == [443]
+        if unknown and not (voice or https):
             raise ValueError('Unsupported rule conditions in NDMS export')
     base = unrestricted(payload)
     domains = prune(domain(d, allow_tld=True) for d in base['domain_suffix'] + base['domain'])
@@ -100,7 +117,7 @@ def ndms_text(payload, built_at):
             '# Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.',
             f'# Домены: {len(domains)}; IPv4: {len(ipv4)}; IPv6: {len(ipv6)}.',
             f"# Точных правил, преобразованных в суффиксы: {len(base['domain'])}.",
-            f'# Исключены UDP-правила с портами: {scoped_count}; keyword/regexp не исполняются.',
+            f'# Исключены правила с протоколами/портами: {scoped_count}; keyword/regexp не исполняются.',
             '# Сети Meta общие для компании, не только для WhatsApp.',
             '', '# Домены', *domains, '', '# IPv4', *ipv4, '', '# IPv6', *ipv6]
     if any(omitted.values()):
@@ -410,11 +427,17 @@ def build():
     scoped = discord_voice(cfg['discord_voice'])
     source_records['ITDog:discord:scoped-udp'] = [json.dumps(r, sort_keys=True) for r in scoped]
     report['sources']['ITDog:discord:scoped-udp'] = len(scoped)
+    if cfg.get('discord_https'):
+        https_rule, report['discord_https'] = collect_https(cfg['discord_https'], domain)
+        source_records['Discord:cdn-dns:https'] = https_rule['ip_cidr']
+        report['sources']['Discord:cdn-dns:https'] = len(https_rule['ip_cidr'])
+        scoped.append(https_rule)
     report['scoped_rules'] = scoped
     report['limitations'] = [
         'WhatsApp: свежие BGP/geofeed Meta и DNS известных CDN-узлов не гарантируют все региональные адреса. Корпоративные сети Meta не подтверждены как необходимые медиасети. DNS-адреса меняются; рабочая загрузка файлов проверяется на устройстве.',
         'Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. '
-        'Общие подсети ограничены UDP-портами, но могут захватывать сторонний трафик на тех же портах.'
+        'Общие подсети ограничены UDP-портами. Точные DNS-адреса CDN ограничены TCP/UDP 443, '
+        'но тоже могут обслуживать другие сайты. ECH скрывает имя; DNS при сборке не гарантирует все региональные IP.'
     ]
     payload = {'version': 1, 'rules': split_rule(merged) + scoped}
     (staging / 'routing.json').write_text(json.dumps(payload, indent=2, ensure_ascii=True) + '\n')
@@ -422,8 +445,6 @@ def build():
     subprocess.run([exe, 'rule-set', 'compile', '--output', str(staging / 'routing.srs'), str(staging / 'routing.json')], check=True)
     subprocess.run([exe, 'rule-set', 'decompile', '--output', str(staging / 'roundtrip.json'), str(staging / 'routing.srs')], check=True)
     roundtrip = json.loads((staging / 'roundtrip.json').read_text())
-    def canonical(obj):
-        return [{k: sorted(v if isinstance(v, list) else [v]) for k, v in rule.items() if k != 'type'} for rule in obj['rules']]
     if canonical(roundtrip) != canonical(payload):
         raise ValueError('SRS round-trip differs from JSON')
     text, report['ndms'] = ndms_text(payload, report['built_at'])

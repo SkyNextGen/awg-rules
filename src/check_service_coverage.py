@@ -2,8 +2,9 @@
 import ipaddress
 import json
 from pathlib import Path
-from routing_rules import scoped_rules, unrestricted
+from routing_rules import MATCH_KEYS, scoped_rules, unrestricted
 from build import verify_ndms
+from discord_https import verify_https
 
 ROOT = Path(__file__).resolve().parents[1]
 HOSTS = (
@@ -62,15 +63,20 @@ def verify(root=ROOT):
             for suffix in rule.get('domain_suffix', []):
                 if not covered_suffix(suffix, base['domain_suffix']):
                     raise ValueError('Service domain missing from final output: ' + suffix)
-            if rule.get('port_range'):
-                if rule.get('network') != ['udp'] or rule not in scoped_rules(payload):
-                    raise ValueError('Scoped Discord UDP conditions differ from final output')
+            if set(rule) - set(MATCH_KEYS):
+                if service != 'discord' or rule not in scoped_rules(payload):
+                    raise ValueError('Scoped service conditions differ from final output')
                 continue
             for prefix in rule.get('ip_cidr', []):
                 if not covers_network(prefix, base['ip_cidr']):
                     raise ValueError('Service IP missing from final output: ' + prefix)
         if service != 'discord' and not unrestricted(data)['ip_cidr']:
             raise ValueError('Missing generated service IPs: ' + service)
+    if 'Discord:cdn-dns:https' in snapshot:
+        prefixes = snapshot['Discord:cdn-dns:https']
+        verify_https(payload, prefixes)
+        discord = json.loads((root / 'dist/custom/discord.json').read_text(encoding='utf-8'))
+        verify_https(discord, prefixes)
     telegram = json.loads((root / 'dist/custom/telegram.json').read_text(encoding='utf-8'))
     for prefix in snapshot['telegram:official-cidr']:
         if not covers_network(prefix, unrestricted(telegram)['ip_cidr']):
@@ -95,7 +101,7 @@ def verify(root=ROOT):
                     address = ipaddress.ip_address(ip)
                     if not covers_network(str(address) + '/' + str(address.max_prefixlen), base['ip_cidr']):
                         raise ValueError('WhatsApp observed IP missing from output: ' + ip)
-    print('Service coverage OK: Gameloft domains/BGP, Discord media/UDP, Nexus, Signal, Telegram official CIDR and all custom service sets')
+    print('Service coverage OK: Gameloft domains/BGP, Discord media/HTTPS/UDP, Nexus, Signal, Telegram official CIDR and all custom service sets')
 
 
 if __name__ == '__main__':

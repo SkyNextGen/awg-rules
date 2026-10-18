@@ -34,8 +34,11 @@ def write_report(report, payload, source_records, staging, dist, old):
     prior_sources = json.loads((dist / 'source-snapshot.json').read_text(encoding='utf-8')) if (dist / 'source-snapshot.json').exists() else {}
     current_rule = unrestricted(payload)
     changes = {'domains': delta(records(current_rule), records(previous_rule) if previous_rule else None)}
-    scoped_records = lambda obj: [json.dumps(r, sort_keys=True) for r in scoped_rules(obj)]
+    def scoped_records(obj, https=False):
+        return [json.dumps(r, sort_keys=True) for r in scoped_rules(obj)
+                if (r.get('port') == [443]) == https]
     changes['scoped_udp'] = delta(scoped_records(payload), scoped_records(previous_payload) if previous_payload else None)
+    changes['scoped_https'] = delta(scoped_records(payload, True), scoped_records(previous_payload, True) if previous_payload else None)
     for version in (4, 6):
         current = [p for p in current_rule['ip_cidr'] if ipaddress.ip_network(p).version == version]
         before = [p for p in previous_rule['ip_cidr'] if ipaddress.ip_network(p).version == version] if previous_rule else None
@@ -78,7 +81,7 @@ def write_report(report, payload, source_records, staging, dist, old):
         body += ['### 📄 NDMS / routing.txt', '',
                  f"Домены: **{ndms['domains']}**, IPv4: **{ndms['ipv4']}**, IPv6: **{ndms['ipv6']}**.",
                  f"Точные домены становятся суффиксами: **{ndms['exact_to_suffix']}** исходных правил. "
-                 f"Исключены портовые UDP-правила: **{ndms['excluded_scoped_rules']}**; "
+                 f"Исключены правила с протоколами/портами: **{ndms['excluded_scoped_rules']}**; "
                  f"keyword/regexp: **{sum(ndms['excluded_matchers'].values())}**. "
                  'Оба формата собраны из одного снимка источников.', '']
     if report.get('whatsapp_dns'):
@@ -128,12 +131,13 @@ def write_report(report, payload, source_records, staging, dist, old):
             body.append('')
     body += ['</details>', '']
     if report.get('scoped_rules'):
-        body += ['', '## Discord: scoped UDP', '',
+        body += ['', '## Discord: правила с протоколами и портами', '',
                  '| Network | Destination ports | IPv4 CIDRs | IPv6 CIDRs |',
                  '|---|---|---:|---:|']
         for rule in report['scoped_rules']:
-            body.append('| udp | ' + ', '.join(rule['port_range']) + ' | ' + str(sum(ipaddress.ip_network(p).version == 4 for p in rule['ip_cidr'])) + ' | ' + str(sum(ipaddress.ip_network(p).version == 6 for p in rule['ip_cidr'])) + ' |')
-        body += ['', 'These shared CIDRs are restricted by BOTH UDP and destination ports; they are excluded from the unrestricted IP rule.', 'Counts above for ordinary IPv4/IPv6 prefixes exclude scoped UDP rules.', '']
+            ports = [str(p) for p in rule.get('port', rule.get('port_range', []))]
+            body.append('| ' + ', '.join(rule['network']) + ' | ' + ', '.join(ports) + ' | ' + str(sum(ipaddress.ip_network(p).version == 4 for p in rule['ip_cidr'])) + ' | ' + str(sum(ipaddress.ip_network(p).version == 6 for p in rule['ip_cidr'])) + ' |')
+        body += ['', 'Each rule requires BOTH its transport and destination-port conditions; these entries are not promoted to the unrestricted IP rule.', 'Counts above for ordinary IPv4/IPv6 prefixes exclude all scoped rules.', '']
     (staging / 'report.md').write_text('\n'.join(body), encoding='utf-8')
     (staging / 'report.json').write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
     (staging / 'source-snapshot.json').write_text(json.dumps(source_records, indent=2) + '\n', encoding='utf-8')
@@ -164,12 +168,18 @@ def telegram_text(report, status='success', run_url=''):
         if udp['baseline'] and (udp['added_count'] or udp['removed_count']):
             changed = True
             text.append('UDP-правила ' + change_text(udp))
+    https = changes.get('scoped_https')
+    if https:
+        first |= not https['baseline']
+        if https['baseline'] and (https['added_count'] or https['removed_count']):
+            changed = True
+            text.append('HTTPS-правила ' + change_text(https))
     source_changes = report.get('source_changes', {})
     active = [(name, item) for name, item in sorted(source_changes.items())
               if not item['baseline'] or item['added_count'] or item['removed_count']]
     labels = {'itdog': 'ITDog', 'custom-domains.txt': 'Custom-домены',
               'custom-ip-cidrs.txt': 'Custom-IP', 'telegram:official-cidr': 'Telegram / официальный CIDR',
-              'ITDog:discord:scoped-udp': 'Discord UDP'}
+              'ITDog:discord:scoped-udp': 'Discord UDP', 'Discord:cdn-dns:https': 'Discord CDN / HTTPS'}
     if active:
         text += ['', '📌 Где изменилось']
         for name, item in active[:12]:

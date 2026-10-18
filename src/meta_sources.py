@@ -154,7 +154,7 @@ def query_dns(host, kind, endpoint):
         url = resolver + '?' + urlencode({'name': host, 'type': kind})
         for attempt in range(3):
             try:
-                request = Request(url, headers={'User-Agent': 'awg-rules WhatsApp inventory',
+                request = Request(url, headers={'User-Agent': 'awg-rules DNS inventory',
                                                 'Accept': 'application/dns-json'})
                 with DNS_OPENER.open(request, timeout=10) as response:
                     result = dns_answer(json.load(response), host, kind)

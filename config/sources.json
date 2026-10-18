@@ -158,5 +158,15 @@
     "max_previous_ratio": 1.5,
     "max_failed_questions": 20,
     "max_failed_ratio": 0.005
+  },
+  "discord_https": {
+    "hosts": [
+      "cdn.discordapp.com",
+      "media.discordapp.net",
+      "images-ext-1.discordapp.net",
+      "images-ext-2.discordapp.net"
+    ],
+    "resolver": "https://dns.google/resolve",
+    "max_ips": 64
   }
 }

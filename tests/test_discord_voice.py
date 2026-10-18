@@ -54,6 +54,8 @@ class DiscordVoice(unittest.TestCase):
         if len(payload['rules']) == 1:
             self.skipTest('Pre-migration artifact')
         for rule in scoped_rules(payload):
+            if rule.get('port') == [443]:
+                continue
             self.assertEqual(rule['network'], ['udp'])
             self.assertTrue(rule['port_range'])
             for value in rule['ip_cidr']:

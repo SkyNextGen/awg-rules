@@ -140,3 +140,11 @@ class Reports(unittest.TestCase):
         self.assertIn('removed: 0 (+0 / -1)', text)
         self.assertIn('new: 1 (новый источник)', text)
         self.assertNotIn('Изменений нет', text)
+
+    def test_https_change_is_not_reported_as_voice_udp(self):
+        report = self.compact_sample()
+        report["changes"]["scoped_https"] = delta(["new HTTPS rule"], [])
+        text = telegram_text(report)
+        self.assertIn("HTTPS-правила +1 / -0", text)
+        self.assertNotIn("UDP-правила", text)
+        self.assertNotIn("Изменений нет", text)
