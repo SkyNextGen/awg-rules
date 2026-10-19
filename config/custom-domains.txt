@@ -43,6 +43,10 @@ cub.watch
 cub.rip
 arkmv.ru
 modss.tv
+unstability.ai
+unstable-diffusion.com
+clerk.com
+stripe.com
 
 # Личные дополнения из пользовательских списков, проверены 11.10.2026.
 # Эти имена не подтверждают принадлежность Telegram/Meta.
