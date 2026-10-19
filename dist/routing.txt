@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-18T22:27:38.013519+00:00
+# Сборка UTC: 2026-10-19T11:26:45.995781+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4269; IPv4: 1150; IPv6: 788.
+# Домены: 4274; IPv4: 1150; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 90.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -785,6 +785,7 @@ claudemcpcontent.com
 claudeusercontent.com
 clawhub-mirror.com
 clawhub.ai
+clerk.com
 clevelandclinic.org
 click-url.com
 clickserve.cc-dt.com
@@ -2379,6 +2380,7 @@ madewithmaya.com
 madewithstudiotools.com
 magaz.global
 magestic.com
+magnific.com
 mailerlite.com
 mailfence.com
 mailinator.com
@@ -3511,6 +3513,7 @@ strana.news
 strana.today
 strava.com
 streamable.com
+stripe.com
 studiopaint.com
 studiosucks.com
 studywatchbyverily.com
@@ -3839,6 +3842,8 @@ unity3d.com
 unlocklimitlesslearning.com
 unscreen.com
 unsplash.com
+unstability.ai
+unstable-diffusion.com
 upfrontcfd.com
 upfrontfea.com
 uplay.com
