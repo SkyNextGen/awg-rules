@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-20T23:12:43.586631+00:00
+# Сборка UTC: 2026-10-21T23:24:47.158537+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4274; IPv4: 1150; IPv6: 788.
+# Домены: 4284; IPv4: 1150; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 90.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -182,10 +182,13 @@ anistars.ru
 ankarazirvesi2018.com
 annas-archive.org
 ansys.com
+ant.dev
 antafu.com
 antaq.com
 anthropic.com
 anthropic.qualtrics.com
+anthropic.team
+antspace.dev
 any.do
 anythingllm.com
 aol.com
@@ -735,6 +738,7 @@ charhub.io
 charlestonroadregistry.com
 charticulator.com
 chat.com
+chatbotclaude.com
 chatglm.cn
 chatgpt.com
 chatgpt.livekit.cloud
@@ -778,10 +782,16 @@ clashofclans.com
 clashroyaleapp.com
 clau.de
 claude.ai
+claude.app
 claude.com
 claude.dev
+claude.new
+claude.site
+claudeacademy.com
 claudemcpclient.com
 claudemcpcontent.com
+claudepages.dev
+claudestudio.com
 claudeusercontent.com
 clawhub-mirror.com
 clawhub.ai
