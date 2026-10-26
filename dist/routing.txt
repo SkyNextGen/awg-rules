@@ -1,9 +1,9 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-25T22:36:41.044455+00:00
+# Сборка UTC: 2026-10-26T13:37:33.854049+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4288; IPv4: 1151; IPv6: 788.
-# Точных правил, преобразованных в суффиксы: 90.
+# Домены: 4291; IPv4: 1151; IPv6: 788.
+# Точных правил, преобразованных в суффиксы: 88.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
 
@@ -2259,6 +2259,7 @@ kaggle.com
 kaggle.io
 kaggle.net
 kaggleusercontent.com
+kakaxing.com
 kaktus.media
 kaleido.ai
 kamatera.com
@@ -3473,6 +3474,8 @@ spacelift.io
 speedtest.net
 spektr.press
 spiceworks.com
+spicyapi.ai
+spicyapi.com
 spicywriter.com
 spiegel.de
 spitfireaudio.com

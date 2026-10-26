@@ -1,22 +1,22 @@
 {
-  "built_at": "2026-10-25T22:36:41.044455+00:00",
+  "built_at": "2026-10-26T13:37:33.854049+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
     "v2fly:anthropic": 19,
     "v2fly:autodesk": 558,
     "v2fly:canva": 6,
-    "v2fly:category-ai-!cn": 205,
-    "v2fly:category-ai-chat-!cn": 205,
-    "v2fly:category-ai-cn": 115,
+    "v2fly:category-ai-!cn": 208,
+    "v2fly:category-ai-chat-!cn": 208,
+    "v2fly:category-ai-cn": 116,
     "v2fly:category-ai-ru": 12,
     "v2fly:deepseek": 2,
     "v2fly:discord": 28,
     "v2fly:doubao": 32,
     "v2fly:facebook": 397,
-    "v2fly:google": 1122,
-    "v2fly:google-deepmind": 46,
-    "v2fly:google-gemini": 46,
+    "v2fly:google": 1125,
+    "v2fly:google-deepmind": 49,
+    "v2fly:google-gemini": 49,
     "v2fly:google-play": 10,
     "v2fly:googlefcm": 12,
     "v2fly:hdrezka": 16,
@@ -24,8 +24,8 @@
     "v2fly:jetbrains": 25,
     "v2fly:mega": 7,
     "v2fly:meta": 555,
-    "v2fly:microsoft": 751,
-    "v2fly:microsoft-dev": 74,
+    "v2fly:microsoft": 758,
+    "v2fly:microsoft-dev": 76,
     "v2fly:netflix": 28,
     "v2fly:nexusmods": 2,
     "v2fly:notion": 7,
@@ -52,7 +52,7 @@
     "ITDog:service:discord": 20,
     "ITDog:service:telegram": 20,
     "ITDog:service:whatsapp": 18,
-    "custom-domains.txt": 85,
+    "custom-domains.txt": 87,
     "BGP:AS11807": 4,
     "BGP:AS32934": 36,
     "BGP:AS44907": 2,
@@ -69,7 +69,7 @@
     "Meta:MetaCubeX": 118,
     "Meta:Loyalsoldier": 118,
     "WhatsApp:cdn-hosts": 2269,
-    "WhatsApp:cdn-dns": 1884,
+    "WhatsApp:cdn-dns": 1890,
     "telegram:official-cidr": 11,
     "custom-ip-cidrs.txt": 23,
     "ITDog:discord:scoped-udp": 2,
@@ -4342,18 +4342,18 @@
   "whatsapp_dns": {
     "hosts": 2269,
     "resolved_hosts": 1466,
-    "ips": 1887,
-    "ipv4": 1182,
+    "ips": 1893,
+    "ipv4": 1188,
     "ipv6": 705,
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "failed_questions": 0,
     "questions": 4538,
-    "fallback_answers": 52,
-    "checked_at": "2026-10-25T22:41:29.340031+00:00"
+    "fallback_answers": 53,
+    "checked_at": "2026-10-26T13:42:11.771398+00:00"
   },
   "discord_https": {
-    "checked_at": "2026-10-25T22:41:30.730686+00:00",
+    "checked_at": "2026-10-26T13:42:13.294813+00:00",
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "ips": 10,
@@ -4524,17 +4524,17 @@
     "Discord: голосовые IP меняются; покрытие IPv6 для UDP 19000–20000 не подтверждено. Общие подсети ограничены UDP-портами. Точные DNS-адреса CDN ограничены TCP/UDP 443, но тоже могут обслуживать другие сайты. ECH скрывает имя; DNS при сборке не гарантирует все региональные IP."
   ],
   "ndms": {
-    "domains": 4288,
+    "domains": 4291,
     "ipv4": 1151,
     "ipv6": 788,
-    "exact_to_suffix": 90,
+    "exact_to_suffix": 88,
     "excluded_scoped_rules": 4,
     "excluded_matchers": {
       "domain_keyword": 0,
       "domain_regex": 7
     }
   },
-  "domains": 4290,
+  "domains": 4293,
   "prefixes": 1939,
   "ipv4": 1151,
   "ipv6": 788,
@@ -4547,7 +4547,7 @@
         "2620:10b:b000::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "32934": {
       "prefixes": [
@@ -4589,7 +4589,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "44907": {
       "prefixes": [
@@ -4597,7 +4597,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "54115": {
       "prefixes": [
@@ -4606,7 +4606,7 @@
         "2620:10d:c090::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "59930": {
       "prefixes": [
@@ -4615,7 +4615,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "62014": {
       "prefixes": [
@@ -4625,7 +4625,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "62041": {
       "prefixes": [
@@ -4637,7 +4637,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "63293": {
       "prefixes": [
@@ -4724,7 +4724,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     },
     "211157": {
       "prefixes": [
@@ -4733,32 +4733,36 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-25T22:36:56.605691+00:00"
+      "fetched_at": "2026-10-26T13:37:47.717548+00:00"
     }
   },
   "matchers": {
-    "domain_suffix": 4200,
-    "domain": 90,
+    "domain_suffix": 4205,
+    "domain": 88,
     "domain_regex": 7,
     "ip_cidr": 1939
   },
   "sha256": {
-    "routing.json": "ee83cf436dacf7647976762b1294522bbae7cedfb8b16cff8ed58e51006da155",
-    "routing.srs": "4d43aed3b200f984415957805c6bf8a108c0283eab207b11bd2e8615411b7378",
-    "routing.txt": "38731df1368aa780e98fd94d40f05f9606476d26e43f8213593a12580466e6be"
+    "routing.json": "59959ccf6d3998e1dfc20c4067c1be9a63a6b4cb0d6a89734d32b1495f1db3f3",
+    "routing.srs": "59bf14cef6c48dff660b59cf58afca7761d6e3a5aa68daebc824011e986ea5fe",
+    "routing.txt": "f00042bc06770448576da93977bfd8a2482f29e1bd46127c68a5e1df55fa195a"
   },
   "changes": {
     "domains": {
       "baseline": true,
       "added": [
-        "domain_suffix:static.voidboost.com",
-        "domain_suffix:statichdrezka.ac",
-        "domain_suffix:stream.voidboost.one",
-        "domain_suffix:voidslam.org"
+        "domain_suffix:kakaxing.com",
+        "domain_suffix:netflix.com.edgesuite.net",
+        "domain_suffix:spicyapi.ai",
+        "domain_suffix:spicyapi.com",
+        "domain_suffix:spotify.com.edgesuite.net"
       ],
-      "removed": [],
-      "added_count": 4,
-      "removed_count": 0
+      "removed": [
+        "domain:netflix.com.edgesuite.net",
+        "domain:spotify.com.edgesuite.net"
+      ],
+      "added_count": 5,
+      "removed_count": 2
     },
     "scoped_udp": {
       "baseline": true,
@@ -4820,23 +4824,33 @@
     },
     "v2fly:category-ai-!cn": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain:appsgenaiserver-pa.clients.google.com",
+        "domain:appsgenaiserver-pa.clients6.google.com",
+        "domain:appsgenaiserver-pa.googleapis.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 3,
       "removed_count": 0
     },
     "v2fly:category-ai-chat-!cn": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain:appsgenaiserver-pa.clients.google.com",
+        "domain:appsgenaiserver-pa.clients6.google.com",
+        "domain:appsgenaiserver-pa.googleapis.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 3,
       "removed_count": 0
     },
     "v2fly:category-ai-cn": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain_suffix:kakaxing.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 1,
       "removed_count": 0
     },
     "v2fly:category-ai-ru": {
@@ -4876,23 +4890,35 @@
     },
     "v2fly:google": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain:appsgenaiserver-pa.clients.google.com",
+        "domain:appsgenaiserver-pa.clients6.google.com",
+        "domain:appsgenaiserver-pa.googleapis.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 3,
       "removed_count": 0
     },
     "v2fly:google-deepmind": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain:appsgenaiserver-pa.clients.google.com",
+        "domain:appsgenaiserver-pa.clients6.google.com",
+        "domain:appsgenaiserver-pa.googleapis.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 3,
       "removed_count": 0
     },
     "v2fly:google-gemini": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain:appsgenaiserver-pa.clients.google.com",
+        "domain:appsgenaiserver-pa.clients6.google.com",
+        "domain:appsgenaiserver-pa.googleapis.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 3,
       "removed_count": 0
     },
     "v2fly:google-play": {
@@ -4911,15 +4937,9 @@
     },
     "v2fly:hdrezka": {
       "baseline": true,
-      "added": [
-        "domain_suffix:rezka.fi",
-        "domain_suffix:static.voidboost.com",
-        "domain_suffix:statichdrezka.ac",
-        "domain_suffix:stream.voidboost.one",
-        "domain_suffix:voidslam.org"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 5,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:instagram": {
@@ -4952,24 +4972,39 @@
     },
     "v2fly:microsoft": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain:dc.applicationinsights.azure.com",
+        "domain:dc.services.visualstudio.com",
+        "domain:live.applicationinsights.azure.com",
+        "domain:rt.services.visualstudio.com",
+        "domain_suffix:data.microsoft.com",
+        "domain_suffix:in.applicationinsights.azure.com",
+        "domain_suffix:telemetry.microsoft.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 7,
       "removed_count": 0
     },
     "v2fly:microsoft-dev": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain:dc.services.visualstudio.com",
+        "domain:rt.services.visualstudio.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 2,
       "removed_count": 0
     },
     "v2fly:netflix": {
       "baseline": true,
-      "added": [],
-      "removed": [],
-      "added_count": 0,
-      "removed_count": 0
+      "added": [
+        "domain_suffix:netflix.com.edgesuite.net"
+      ],
+      "removed": [
+        "domain:netflix.com.edgesuite.net"
+      ],
+      "added_count": 1,
+      "removed_count": 1
     },
     "v2fly:nexusmods": {
       "baseline": true,
@@ -5050,10 +5085,14 @@
     },
     "v2fly:spotify": {
       "baseline": true,
-      "added": [],
-      "removed": [],
-      "added_count": 0,
-      "removed_count": 0
+      "added": [
+        "domain_suffix:spotify.com.edgesuite.net"
+      ],
+      "removed": [
+        "domain:spotify.com.edgesuite.net"
+      ],
+      "added_count": 1,
+      "removed_count": 1
     },
     "v2fly:telegram": {
       "baseline": true,
@@ -5148,9 +5187,12 @@
     },
     "custom-domains.txt": {
       "baseline": true,
-      "added": [],
+      "added": [
+        "domain_suffix:spicyapi.ai",
+        "domain_suffix:spicyapi.com"
+      ],
       "removed": [],
-      "added_count": 0,
+      "added_count": 2,
       "removed_count": 0
     },
     "BGP:AS11807": {
@@ -5268,7 +5310,48 @@
     "WhatsApp:cdn-dns": {
       "baseline": true,
       "added": [
+        "157.240.234.60/32",
+        "157.240.241.1/32",
+        "157.240.241.200/32",
+        "157.240.241.60/31",
+        "157.240.254.12/32",
+        "2a03:2880:f012:10c:face:b00c:0:3/128",
+        "2a03:2880:f012:1d2:face:b00c:0:69e0/128",
+        "2a03:2880:f212:1c4:face:b00c:0:7260/128",
+        "2a03:2880:f212:1d1:face:b00c:0:167/128",
+        "2a03:2880:f307:120:face:b00c:0:167/128",
+        "2a03:2880:f322:120:face:b00c:0:167/128",
+        "2a03:2880:f366:120:face:b00c:0:167/128",
+        "2a03:2880:f367:120:face:b00c:0:167/128",
+        "2a03:2880:f381:120:face:b00c:0:167/128",
+        "2a03:2880:f381:121:face:b00c:0:7260/128",
+        "2a03:2880:f381:195:face:b00c:0:4619/128",
+        "2a03:2880:f381:196:face:b00c:0:69e0/128",
+        "2a03:2880:f381:1:face:b00c:0:25de/128",
+        "2a03:2880:f381:80:face:b00c:0:3/128",
+        "2a03:2880:f381:8d:face:b00c:0:2/128",
+        "2a03:2880:f386:120:face:b00c:0:167/128",
+        "31.13.66.51/32",
+        "57.144.1.32/32",
+        "57.144.123.32/32",
+        "57.144.159.32/32",
+        "57.144.205.32/32",
+        "57.144.207.32/32",
+        "57.144.229.32/32",
+        "57.144.255.32/32",
+        "57.144.83.32/32",
+        "57.144.89.32/32",
+        "57.144.99.32/32",
+        "57.145.2.1/32",
+        "57.145.2.128/32",
+        "57.145.2.141/32",
+        "57.145.3.149/32",
+        "57.145.3.150/32",
+        "57.145.3.32/31"
+      ],
+      "removed": [
         "2a03:2880:f31a:120:face:b00c:0:167/128",
+        "2a03:2880:f32a:120:face:b00c:0:167/128",
         "2a03:2880:f346:120:face:b00c:0:167/128",
         "2a03:2880:f36b:120:face:b00c:0:167/128",
         "2a03:2880:f36e:120:face:b00c:0:167/128",
@@ -5278,64 +5361,30 @@
         "2a03:2880:f36e:1:face:b00c:0:25de/128",
         "2a03:2880:f36e:80:face:b00c:0:3/128",
         "2a03:2880:f36e:8d:face:b00c:0:2/128",
+        "2a03:2880:f389:120:face:b00c:0:167/128",
         "2a03:2880:f38a:120:face:b00c:0:167/128",
         "2a03:2880:f38a:121:face:b00c:0:7260/128",
         "2a03:2880:f38a:196:face:b00c:0:69e0/128",
         "2a03:2880:f38a:80:face:b00c:0:3/128",
         "31.13.78.60/32",
+        "57.144.103.32/32",
         "57.144.105.32/32",
-        "57.144.117.32/32",
+        "57.144.143.32/32",
         "57.144.17.32/32",
         "57.144.183.32/32",
-        "57.144.195.32/32",
         "57.144.220.1/32",
         "57.144.220.128/32",
         "57.144.220.141/32",
         "57.144.221.149/32",
         "57.144.221.150/32",
         "57.144.221.32/31",
-        "57.144.239.32/32",
+        "57.145.19.32/32",
         "57.145.20.128/32",
         "57.145.21.150/32",
         "57.145.21.32/31"
       ],
-      "removed": [
-        "2a03:2880:f328:120:face:b00c:0:167/128",
-        "2a03:2880:f347:120:face:b00c:0:167/128",
-        "2a03:2880:f34d:120:face:b00c:0:167/128",
-        "2a03:2880:f354:120:face:b00c:0:167/128",
-        "2a03:2880:f35a:120:face:b00c:0:167/128",
-        "2a03:2880:f35a:121:face:b00c:0:7260/128",
-        "2a03:2880:f35a:195:face:b00c:0:4619/128",
-        "2a03:2880:f35a:196:face:b00c:0:69e0/128",
-        "2a03:2880:f35a:1:face:b00c:0:25de/128",
-        "2a03:2880:f35a:80:face:b00c:0:3/128",
-        "2a03:2880:f35a:8d:face:b00c:0:2/128",
-        "2a03:2880:f364:120:face:b00c:0:167/128",
-        "2a03:2880:f364:121:face:b00c:0:7260/128",
-        "2a03:2880:f364:196:face:b00c:0:69e0/128",
-        "2a03:2880:f364:80:face:b00c:0:3/128",
-        "2a03:2880:f366:120:face:b00c:0:167/128",
-        "2a03:2880:f37c:120:face:b00c:0:167/128",
-        "2a03:2880:f381:120:face:b00c:0:167/128",
-        "57.144.180.1/32",
-        "57.144.180.128/32",
-        "57.144.180.141/32",
-        "57.144.181.149/32",
-        "57.144.181.150/32",
-        "57.144.181.32/31",
-        "57.144.195.32/31",
-        "57.144.200.128/32",
-        "57.144.201.150/32",
-        "57.144.201.32/31",
-        "57.144.221.32/32",
-        "57.144.229.32/32",
-        "57.144.255.32/32",
-        "57.144.63.32/32",
-        "57.144.91.32/32"
-      ],
-      "added_count": 30,
-      "removed_count": 33
+      "added_count": 38,
+      "removed_count": 32
     },
     "telegram:official-cidr": {
       "baseline": true,
@@ -5373,16 +5422,16 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-24T22:31:56.851753+00:00",
+  "compared_to": "2026-10-25T22:36:41.044455+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 4283.7,
-        "delta": 4
+        "average": 4286.1,
+        "delta": 3
       },
       "ipv4": {
-        "average": 1150.3,
+        "average": 1150.4,
         "delta": 0
       },
       "ipv6": {

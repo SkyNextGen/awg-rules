@@ -1,16 +1,26 @@
 ✅ AWG · Сборка успешна
-🕒 26.10.2026, 01:36 МСК
+🕒 26.10.2026, 16:37 МСК
 
 📊 Итог · добавлено / удалено
-Домены: 4290 (+4 / -0)
+Домены: 4293 (+5 / -2)
 IPv4: 1151 (+0 / -0)
 IPv6: 788 (+0 / -0)
 
 📌 Где изменилось
-• WhatsApp:cdn-dns: 1884 (+30 / -33)
-• V2Fly / hdrezka: 16 (+5 / -0)
+• WhatsApp:cdn-dns: 1890 (+38 / -32)
+• Custom-домены: 87 (+2 / -0)
+• V2Fly / category-ai-!cn: 208 (+3 / -0)
+• V2Fly / category-ai-chat-!cn: 208 (+3 / -0)
+• V2Fly / category-ai-cn: 116 (+1 / -0)
+• V2Fly / google: 1125 (+3 / -0)
+• V2Fly / google-deepmind: 49 (+3 / -0)
+• V2Fly / google-gemini: 49 (+3 / -0)
+• V2Fly / microsoft: 758 (+7 / -0)
+• V2Fly / microsoft-dev: 76 (+2 / -0)
+• V2Fly / netflix: 28 (+1 / -1)
+• V2Fly / spotify: 28 (+1 / -1)
 Дельты источников до объединения; записи могут пересекаться.
 
-📈 Домены: Δ +4 к прошлой сборке · среднее за 7 запусков: 4283.7
+📈 Домены: Δ +3 к прошлой сборке · среднее за 7 запусков: 4286.1
 
 🔗 Отчёт: https://github.com/SkyNextGen/awg-rules/blob/main/dist/report.md
