@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-26T23:55:49.926178+00:00
+# Сборка UTC: 2026-10-27T23:48:28.893928+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4291; IPv4: 1151; IPv6: 788.
+# Домены: 4296; IPv4: 1151; IPv6: 788.
 # Точных правил, преобразованных в суффиксы: 88.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -233,6 +233,7 @@ artcamexpress.com
 artcaminsignia.com
 artcamjewelsmith.com
 artcampro.com
+artificialanalysis.ai
 as6723.net
 askdiandian.com
 askfacebook.net
@@ -801,6 +802,7 @@ click-url.com
 clickserve.cc-dt.com
 clickup.com
 climate-server.com
+cline.bot
 clip.opus.pro
 clipdrop.co
 cloudapp.net
@@ -834,6 +836,7 @@ colta.ru
 comfy.org
 comfyci.org
 comfyregistry.org
+commandcode.ai
 comments.app
 como-hackearfacebook.com
 compass-system.com
@@ -846,6 +849,7 @@ constructware.com
 contabo.com
 contechacademy.com
 contest.com
+context7.com
 cookiechoices.org
 coomer.su
 coova.com
@@ -923,7 +927,6 @@ darwindimensions.com
 dashboard.algolia.com
 dashboard.gitguardian.com
 data-cdn.mbamupdates.com
-data.cline.bot
 dataliberation.org
 datalore.io
 dbbuilding.fun
@@ -2488,6 +2491,7 @@ messengerdevelopers.com
 meta.ai
 meta.com
 meta.law
+metaaiusercontent.com
 metaaivm.com
 metacritic.com
 metal-archives.com
@@ -2845,6 +2849,7 @@ notion.new
 notion.site
 notion.so
 notionusercontent.com
+nousresearch.com
 novaline.fm
 novaya.no
 novayagazeta.eu
