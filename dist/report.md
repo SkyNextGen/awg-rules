@@ -2,11 +2,11 @@
 
 ## 🧭 Общая информация
 
-> 🕒 **Сборка:** 26.10.2026, 16:37 МСК  
+> 🕒 **Сборка:** 27.10.2026, 02:55 МСК  
 > 📦 **Репозиторий:** SkyNextGen/awg-rules  
 > 📄 **Файлы:** `dist/routing.json`, `dist/routing.srs` и `dist/routing.txt`  
 > 🗓 **Расписание:** ежедневно, 23:17 МСК; также вручную и после изменения кода/настроек  
-> 🔄 **Сравнение со сборкой:** 26.10.2026, 01:36 МСК
+> 🔄 **Сравнение со сборкой:** 26.10.2026, 16:37 МСК
 
 ---
 
@@ -14,7 +14,7 @@
 
 | Показатель | Всего | Добавлено / удалено |
 |---|---:|---|
-| Доменные правила | 4293 | +5 / -2 |
+| Доменные правила | 4293 | +0 / -0 |
 | IPv4-префиксы | 1151 | +0 / -0 |
 | IPv6-префиксы | 788 | +0 / -0 |
 
@@ -35,9 +35,9 @@
 
 ### 💬 WhatsApp / свежий DNS CDN
 
-Проверено имён: **2269**; с публичными адресами: **1466**. Наблюдалось IP: **1893** (IPv4: 1188, IPv6: 705).
+Проверено имён: **2269**; с публичными адресами: **1466**. Наблюдалось IP: **1891** (IPv4: 1183, IPv6: 708).
 
-Пропущено запросов: **0**; ответов резервного Cloudflare: **53**. 
+Пропущено запросов: **0**; ответов резервного Cloudflare: **59**. 
 
 Google Public DNS и резервный Cloudflare через DoH используются только при сборке. DNS роутера не меняется. Точные адреса узлов вне ASN Meta входят в общие IP-правила SRS и TXT. TTL и ответы сохранены в `whatsapp-dns.json`; старые DNS-адреса при ошибке не подмешиваются.
 
@@ -67,32 +67,32 @@ Google Public DNS и резервный Cloudflare через DoH использ
 | ITDog:service:discord | 20 | +0 / -0 |
 | ITDog:service:telegram | 20 | +0 / -0 |
 | ITDog:service:whatsapp | 18 | +0 / -0 |
-| Meta:ITDog-IPv4 | 79 | +0 / -0 |
+| Meta:ITDog-IPv4 | 80 | +1 / -0 |
 | Meta:ITDog-IPv6 | 40 | +0 / -0 |
 | Meta:Loyalsoldier | 118 | +0 / -0 |
 | Meta:MetaCubeX | 118 | +0 / -0 |
 | Meta:geofeed | 373 | +0 / -0 |
 | Meta:geofeed-corp | 153 | +0 / -0 |
-| WhatsApp:cdn-dns | 1890 | +38 / -32 |
+| WhatsApp:cdn-dns | 1888 | +31 / -33 |
 | WhatsApp:cdn-hosts | 2269 | +0 / -0 |
-| custom-domains.txt | 87 | +2 / -0 |
+| custom-domains.txt | 87 | +0 / -0 |
 | custom-ip-cidrs.txt | 23 | +0 / -0 |
 | itdog | 1181 | +0 / -0 |
 | telegram:official-cidr | 11 | +0 / -0 |
 | v2fly:anthropic | 19 | +0 / -0 |
 | v2fly:autodesk | 558 | +0 / -0 |
 | v2fly:canva | 6 | +0 / -0 |
-| v2fly:category-ai-!cn | 208 | +3 / -0 |
-| v2fly:category-ai-chat-!cn | 208 | +3 / -0 |
-| v2fly:category-ai-cn | 116 | +1 / -0 |
+| v2fly:category-ai-!cn | 208 | +0 / -0 |
+| v2fly:category-ai-chat-!cn | 208 | +0 / -0 |
+| v2fly:category-ai-cn | 116 | +0 / -0 |
 | v2fly:category-ai-ru | 12 | +0 / -0 |
 | v2fly:deepseek | 2 | +0 / -0 |
 | v2fly:discord | 28 | +0 / -0 |
 | v2fly:doubao | 32 | +0 / -0 |
 | v2fly:facebook | 397 | +0 / -0 |
-| v2fly:google | 1125 | +3 / -0 |
-| v2fly:google-deepmind | 49 | +3 / -0 |
-| v2fly:google-gemini | 49 | +3 / -0 |
+| v2fly:google | 1125 | +0 / -0 |
+| v2fly:google-deepmind | 49 | +0 / -0 |
+| v2fly:google-gemini | 49 | +0 / -0 |
 | v2fly:google-play | 10 | +0 / -0 |
 | v2fly:googlefcm | 12 | +0 / -0 |
 | v2fly:hdrezka | 16 | +0 / -0 |
@@ -100,9 +100,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 | v2fly:jetbrains | 25 | +0 / -0 |
 | v2fly:mega | 7 | +0 / -0 |
 | v2fly:meta | 555 | +0 / -0 |
-| v2fly:microsoft | 758 | +7 / -0 |
-| v2fly:microsoft-dev | 76 | +2 / -0 |
-| v2fly:netflix | 28 | +1 / -1 |
+| v2fly:microsoft | 758 | +0 / -0 |
+| v2fly:microsoft-dev | 76 | +0 / -0 |
+| v2fly:netflix | 28 | +0 / -0 |
 | v2fly:nexusmods | 2 | +0 / -0 |
 | v2fly:notion | 7 | +0 / -0 |
 | v2fly:nvidia | 66 | +0 / -0 |
@@ -114,7 +114,7 @@ Google Public DNS и резервный Cloudflare через DoH использ
 | v2fly:rutracker | 9 | +0 / -0 |
 | v2fly:signal | 8 | +0 / -0 |
 | v2fly:soundcloud | 3 | +0 / -0 |
-| v2fly:spotify | 28 | +1 / -1 |
+| v2fly:spotify | 28 | +0 / -0 |
 | v2fly:telegram | 21 | +0 / -0 |
 | v2fly:threads | 2 | +0 / -0 |
 | v2fly:tiktok | 37 | +0 / -0 |
@@ -134,57 +134,52 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 | Показатель | Среднее | Δ к прошлой |
 |---|---:|---:|
-| Домены | 4286.1 | +3 |
-| IPv4 | 1150.4 | +0 |
+| Домены | 4288.6 | +0 |
+| IPv4 | 1150.6 | +0 |
 | IPv6 | 788.0 | +0 |
 
 | Сборка (МСК) | Домены | IPv4 | IPv6 |
 |---|---:|---:|---:|
-| 21.10.2026, 02:12 МСК | 4276 | 1150 | 788 |
 | 22.10.2026, 02:24 МСК | 4286 | 1150 | 788 |
 | 23.10.2026, 02:26 МСК | 4286 | 1150 | 788 |
 | 24.10.2026, 02:11 МСК | 4286 | 1150 | 788 |
 | 25.10.2026, 01:31 МСК | 4286 | 1151 | 788 |
 | 26.10.2026, 01:36 МСК | 4290 | 1151 | 788 |
 | 26.10.2026, 16:37 МСК | 4293 | 1151 | 788 |
+| 27.10.2026, 02:55 МСК | 4293 | 1151 | 788 |
 
 ## 🌐 BGP и fallback
 
 | ASN | Источник | Префиксов до общего объединения | Получено (МСК) |
 |---|---|---:|---|
-| AS11807 | RIPEstat | 4 | 26.10.2026, 16:37 МСК |
-| AS32934 | RIPEstat | 36 | 26.10.2026, 16:37 МСК |
-| AS44907 | RIPEstat | 2 | 26.10.2026, 16:37 МСК |
-| AS54115 | RIPEstat | 3 | 26.10.2026, 16:37 МСК |
-| AS59930 | RIPEstat | 3 | 26.10.2026, 16:37 МСК |
-| AS62014 | RIPEstat | 4 | 26.10.2026, 16:37 МСК |
-| AS62041 | RIPEstat | 6 | 26.10.2026, 16:37 МСК |
-| AS63293 | RIPEstat | 81 | 26.10.2026, 16:37 МСК |
-| AS211157 | RIPEstat | 3 | 26.10.2026, 16:37 МСК |
+| AS11807 | RIPEstat | 4 | 27.10.2026, 02:56 МСК |
+| AS32934 | RIPEstat | 36 | 27.10.2026, 02:56 МСК |
+| AS44907 | RIPEstat | 2 | 27.10.2026, 02:56 МСК |
+| AS54115 | RIPEstat | 3 | 27.10.2026, 02:56 МСК |
+| AS59930 | RIPEstat | 3 | 27.10.2026, 02:56 МСК |
+| AS62014 | RIPEstat | 4 | 27.10.2026, 02:56 МСК |
+| AS62041 | RIPEstat | 6 | 27.10.2026, 02:56 МСК |
+| AS63293 | RIPEstat | 81 | 27.10.2026, 02:56 МСК |
+| AS211157 | RIPEstat | 3 | 27.10.2026, 02:56 МСК |
 
 ## 🔐 SHA256
 
 - `routing.json`: `59959ccf6d3998e1dfc20c4067c1be9a63a6b4cb0d6a89734d32b1495f1db3f3`
 - `routing.srs`: `59bf14cef6c48dff660b59cf58afca7761d6e3a5aa68daebc824011e986ea5fe`
-- `routing.txt`: `f00042bc06770448576da93977bfd8a2482f29e1bd46127c68a5e1df55fa195a`
+- `routing.txt`: `a4111572390e6367489775108e7611df95b025f2986209caa792d6ec240d81b6`
 
 <details>
 <summary>🔄 Изменения — первые 20 записей в каждой группе</summary>
 
 ### domains
 
-**➕ Добавлено: 5**
+**➕ Добавлено: 0**
 
-- `domain_suffix:kakaxing.com`
-- `domain_suffix:netflix.com.edgesuite.net`
-- `domain_suffix:spicyapi.ai`
-- `domain_suffix:spicyapi.com`
-- `domain_suffix:spotify.com.edgesuite.net`
+- —
 
-**➖ Удалено: 2**
+**➖ Удалено: 0**
 
-- `domain:netflix.com.edgesuite.net`
-- `domain:spotify.com.edgesuite.net`
+- —
 
 ### scoped_udp
 
@@ -378,9 +373,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### Meta:ITDog-IPv4
 
-**➕ Добавлено: 0**
+**➕ Добавлено: 1**
 
-- —
+- `157.240.144.0/24`
 
 **➖ Удалено: 0**
 
@@ -438,9 +433,32 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### WhatsApp:cdn-dns
 
-**➕ Добавлено: 38**
+**➕ Добавлено: 31**
 
-- `157.240.234.60/32`
+- `157.240.17.60/32`
+- `163.70.131.60/32`
+- `163.70.151.60/32`
+- `2a03:2880:f31a:120:face:b00c:0:167/128`
+- `2a03:2880:f36c:120:face:b00c:0:167/128`
+- `2a03:2880:f36c:121:face:b00c:0:7260/128`
+- `2a03:2880:f36c:195:face:b00c:0:4619/128`
+- `2a03:2880:f36c:196:face:b00c:0:69e0/128`
+- `2a03:2880:f36c:1:face:b00c:0:25de/128`
+- `2a03:2880:f36c:80:face:b00c:0:3/128`
+- `2a03:2880:f36c:8d:face:b00c:0:2/128`
+- `2a03:2880:f36e:120:face:b00c:0:167/128`
+- `2a03:2880:f36e:121:face:b00c:0:7260/128`
+- `2a03:2880:f36e:196:face:b00c:0:69e0/128`
+- `2a03:2880:f36e:80:face:b00c:0:3/128`
+- `2a03:2880:f37c:120:face:b00c:0:167/128`
+- `2a03:2880:f389:120:face:b00c:0:167/128`
+- `57.144.115.32/32`
+- `57.144.17.32/32`
+- `57.144.216.1/32`
+- … ещё 11; полный список в `dist/report.json`.
+
+**➖ Удалено: 33**
+
 - `157.240.241.1/32`
 - `157.240.241.200/32`
 - `157.240.241.60/31`
@@ -449,42 +467,19 @@ Google Public DNS и резервный Cloudflare через DoH использ
 - `2a03:2880:f012:1d2:face:b00c:0:69e0/128`
 - `2a03:2880:f212:1c4:face:b00c:0:7260/128`
 - `2a03:2880:f212:1d1:face:b00c:0:167/128`
-- `2a03:2880:f307:120:face:b00c:0:167/128`
-- `2a03:2880:f322:120:face:b00c:0:167/128`
-- `2a03:2880:f366:120:face:b00c:0:167/128`
-- `2a03:2880:f367:120:face:b00c:0:167/128`
-- `2a03:2880:f381:120:face:b00c:0:167/128`
 - `2a03:2880:f381:121:face:b00c:0:7260/128`
 - `2a03:2880:f381:195:face:b00c:0:4619/128`
 - `2a03:2880:f381:196:face:b00c:0:69e0/128`
 - `2a03:2880:f381:1:face:b00c:0:25de/128`
 - `2a03:2880:f381:80:face:b00c:0:3/128`
 - `2a03:2880:f381:8d:face:b00c:0:2/128`
-- … ещё 18; полный список в `dist/report.json`.
-
-**➖ Удалено: 32**
-
-- `2a03:2880:f31a:120:face:b00c:0:167/128`
-- `2a03:2880:f32a:120:face:b00c:0:167/128`
-- `2a03:2880:f346:120:face:b00c:0:167/128`
-- `2a03:2880:f36b:120:face:b00c:0:167/128`
-- `2a03:2880:f36e:120:face:b00c:0:167/128`
-- `2a03:2880:f36e:121:face:b00c:0:7260/128`
-- `2a03:2880:f36e:195:face:b00c:0:4619/128`
-- `2a03:2880:f36e:196:face:b00c:0:69e0/128`
-- `2a03:2880:f36e:1:face:b00c:0:25de/128`
-- `2a03:2880:f36e:80:face:b00c:0:3/128`
-- `2a03:2880:f36e:8d:face:b00c:0:2/128`
-- `2a03:2880:f389:120:face:b00c:0:167/128`
-- `2a03:2880:f38a:120:face:b00c:0:167/128`
-- `2a03:2880:f38a:121:face:b00c:0:7260/128`
-- `2a03:2880:f38a:196:face:b00c:0:69e0/128`
-- `2a03:2880:f38a:80:face:b00c:0:3/128`
-- `31.13.78.60/32`
-- `57.144.103.32/32`
-- `57.144.105.32/32`
-- `57.144.143.32/32`
-- … ещё 12; полный список в `dist/report.json`.
+- `2a03:2880:f386:120:face:b00c:0:167/128`
+- `3.33.221.48/32`
+- `31.13.66.51/32`
+- `57.144.1.32/32`
+- `57.144.117.32/32`
+- `57.144.123.32/32`
+- … ещё 13; полный список в `dist/report.json`.
 
 ### WhatsApp:cdn-hosts
 
@@ -498,10 +493,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### custom-domains.txt
 
-**➕ Добавлено: 2**
+**➕ Добавлено: 0**
 
-- `domain_suffix:spicyapi.ai`
-- `domain_suffix:spicyapi.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -569,11 +563,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:category-ai-!cn
 
-**➕ Добавлено: 3**
+**➕ Добавлено: 0**
 
-- `domain:appsgenaiserver-pa.clients.google.com`
-- `domain:appsgenaiserver-pa.clients6.google.com`
-- `domain:appsgenaiserver-pa.googleapis.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -581,11 +573,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:category-ai-chat-!cn
 
-**➕ Добавлено: 3**
+**➕ Добавлено: 0**
 
-- `domain:appsgenaiserver-pa.clients.google.com`
-- `domain:appsgenaiserver-pa.clients6.google.com`
-- `domain:appsgenaiserver-pa.googleapis.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -593,9 +583,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:category-ai-cn
 
-**➕ Добавлено: 1**
+**➕ Добавлено: 0**
 
-- `domain_suffix:kakaxing.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -653,11 +643,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:google
 
-**➕ Добавлено: 3**
+**➕ Добавлено: 0**
 
-- `domain:appsgenaiserver-pa.clients.google.com`
-- `domain:appsgenaiserver-pa.clients6.google.com`
-- `domain:appsgenaiserver-pa.googleapis.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -665,11 +653,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:google-deepmind
 
-**➕ Добавлено: 3**
+**➕ Добавлено: 0**
 
-- `domain:appsgenaiserver-pa.clients.google.com`
-- `domain:appsgenaiserver-pa.clients6.google.com`
-- `domain:appsgenaiserver-pa.googleapis.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -677,11 +663,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:google-gemini
 
-**➕ Добавлено: 3**
+**➕ Добавлено: 0**
 
-- `domain:appsgenaiserver-pa.clients.google.com`
-- `domain:appsgenaiserver-pa.clients6.google.com`
-- `domain:appsgenaiserver-pa.googleapis.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -759,15 +743,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:microsoft
 
-**➕ Добавлено: 7**
+**➕ Добавлено: 0**
 
-- `domain:dc.applicationinsights.azure.com`
-- `domain:dc.services.visualstudio.com`
-- `domain:live.applicationinsights.azure.com`
-- `domain:rt.services.visualstudio.com`
-- `domain_suffix:data.microsoft.com`
-- `domain_suffix:in.applicationinsights.azure.com`
-- `domain_suffix:telemetry.microsoft.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -775,10 +753,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:microsoft-dev
 
-**➕ Добавлено: 2**
+**➕ Добавлено: 0**
 
-- `domain:dc.services.visualstudio.com`
-- `domain:rt.services.visualstudio.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -786,13 +763,13 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:netflix
 
-**➕ Добавлено: 1**
+**➕ Добавлено: 0**
 
-- `domain_suffix:netflix.com.edgesuite.net`
+- —
 
-**➖ Удалено: 1**
+**➖ Удалено: 0**
 
-- `domain:netflix.com.edgesuite.net`
+- —
 
 ### v2fly:nexusmods
 
@@ -906,13 +883,13 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:spotify
 
-**➕ Добавлено: 1**
+**➕ Добавлено: 0**
 
-- `domain_suffix:spotify.com.edgesuite.net`
+- —
 
-**➖ Удалено: 1**
+**➖ Удалено: 0**
 
-- `domain:spotify.com.edgesuite.net`
+- —
 
 ### v2fly:telegram
 
