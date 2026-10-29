@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-10-27T23:48:28.893928+00:00",
+  "built_at": "2026-10-29T00:02:07.317549+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -62,14 +62,14 @@
     "BGP:AS62041": 6,
     "BGP:AS63293": 81,
     "BGP:AS211157": 3,
-    "Meta:geofeed": 373,
+    "Meta:geofeed": 363,
     "Meta:geofeed-corp": 153,
     "Meta:ITDog-IPv4": 80,
     "Meta:ITDog-IPv6": 40,
     "Meta:MetaCubeX": 118,
     "Meta:Loyalsoldier": 118,
     "WhatsApp:cdn-hosts": 2269,
-    "WhatsApp:cdn-dns": 1889,
+    "WhatsApp:cdn-dns": 1891,
     "telegram:official-cidr": 11,
     "custom-ip-cidrs.txt": 23,
     "ITDog:discord:scoped-udp": 2,
@@ -4341,19 +4341,19 @@
   },
   "whatsapp_dns": {
     "hosts": 2269,
-    "resolved_hosts": 1465,
-    "ips": 1893,
-    "ipv4": 1186,
-    "ipv6": 707,
+    "resolved_hosts": 1466,
+    "ips": 1895,
+    "ipv4": 1185,
+    "ipv6": 710,
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "failed_questions": 0,
     "questions": 4538,
-    "fallback_answers": 29,
-    "checked_at": "2026-10-27T23:52:22.007332+00:00"
+    "fallback_answers": 49,
+    "checked_at": "2026-10-29T00:06:49.976623+00:00"
   },
   "discord_https": {
-    "checked_at": "2026-10-27T23:53:04.500755+00:00",
+    "checked_at": "2026-10-29T00:06:51.154943+00:00",
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "ips": 10,
@@ -4547,7 +4547,7 @@
         "2620:10b:b000::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "32934": {
       "prefixes": [
@@ -4589,7 +4589,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "44907": {
       "prefixes": [
@@ -4597,7 +4597,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "54115": {
       "prefixes": [
@@ -4606,7 +4606,7 @@
         "2620:10d:c090::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "59930": {
       "prefixes": [
@@ -4615,7 +4615,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "62014": {
       "prefixes": [
@@ -4625,7 +4625,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "62041": {
       "prefixes": [
@@ -4637,7 +4637,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "63293": {
       "prefixes": [
@@ -4724,7 +4724,7 @@
         "2c0f:ef78:10::/47"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     },
     "211157": {
       "prefixes": [
@@ -4733,7 +4733,7 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-10-27T23:48:34.543575+00:00"
+      "fetched_at": "2026-10-29T00:02:15.544145+00:00"
     }
   },
   "matchers": {
@@ -4745,24 +4745,15 @@
   "sha256": {
     "routing.json": "e56f78b1ae0f89f65634ce361cd9343d354f92676d19782ec8c104ab7b81bc1a",
     "routing.srs": "9edf5069aebbb62affde397f0d6bc39824340771402ebe5d87a5968984943705",
-    "routing.txt": "b2ae4c8ae52119fb9035987b00832661c450db6c44b9d30bdf789626e31a9385"
+    "routing.txt": "d923403eaa80c4150a8e99bedc5ee54ea8f8cf38d090b830b72d00d23a8938cf"
   },
   "changes": {
     "domains": {
       "baseline": true,
-      "added": [
-        "domain_suffix:artificialanalysis.ai",
-        "domain_suffix:cline.bot",
-        "domain_suffix:commandcode.ai",
-        "domain_suffix:context7.com",
-        "domain_suffix:metaaiusercontent.com",
-        "domain_suffix:nousresearch.com"
-      ],
-      "removed": [
-        "domain_suffix:data.cline.bot"
-      ],
-      "added_count": 6,
-      "removed_count": 1
+      "added": [],
+      "removed": [],
+      "added_count": 0,
+      "removed_count": 0
     },
     "scoped_udp": {
       "baseline": true,
@@ -4824,30 +4815,16 @@
     },
     "v2fly:category-ai-!cn": {
       "baseline": true,
-      "added": [
-        "domain_suffix:artificialanalysis.ai",
-        "domain_suffix:cline.bot",
-        "domain_suffix:commandcode.ai",
-        "domain_suffix:context7.com",
-        "domain_suffix:metaaiusercontent.com",
-        "domain_suffix:nousresearch.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 6,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:category-ai-chat-!cn": {
       "baseline": true,
-      "added": [
-        "domain_suffix:artificialanalysis.ai",
-        "domain_suffix:cline.bot",
-        "domain_suffix:commandcode.ai",
-        "domain_suffix:context7.com",
-        "domain_suffix:metaaiusercontent.com",
-        "domain_suffix:nousresearch.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 6,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:category-ai-cn": {
@@ -4957,11 +4934,9 @@
     },
     "v2fly:meta": {
       "baseline": true,
-      "added": [
-        "domain_suffix:metaaiusercontent.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 1,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:microsoft": {
@@ -5232,10 +5207,34 @@
     },
     "Meta:geofeed": {
       "baseline": true,
-      "added": [],
-      "removed": [],
-      "added_count": 0,
-      "removed_count": 0
+      "added": [
+        "2a03:2880:f329::/48",
+        "2a03:2880:f32a::/47",
+        "2a03:2880:f360::/43",
+        "57.144.100.0/22",
+        "57.144.192.0/18",
+        "57.144.96.0/23"
+      ],
+      "removed": [
+        "2a03:2880:f003::/48",
+        "2a03:2880:f103::/48",
+        "2a03:2880:f203::/48",
+        "2a03:2880:f328::/46",
+        "2a03:2880:f360::/44",
+        "2a03:2880:f370::/47",
+        "2a03:2880:f372::/48",
+        "2a03:2880:f374::/46",
+        "2a03:2880:f378::/45",
+        "31.13.66.0/24",
+        "57.144.192.0/19",
+        "57.144.224.0/22",
+        "57.144.228.0/23",
+        "57.144.232.0/21",
+        "57.144.240.0/20",
+        "57.144.96.0/21"
+      ],
+      "added_count": 6,
+      "removed_count": 16
     },
     "Meta:geofeed-corp": {
       "baseline": true,
@@ -5282,17 +5281,56 @@
     "WhatsApp:cdn-dns": {
       "baseline": true,
       "added": [
+        "157.240.241.1/32",
+        "157.240.241.200/32",
+        "157.240.241.60/31",
+        "163.70.151.60/32",
+        "2a03:2880:f012:10c:face:b00c:0:3/128",
+        "2a03:2880:f012:1d2:face:b00c:0:69e0/128",
+        "2a03:2880:f212:1c4:face:b00c:0:7260/128",
+        "2a03:2880:f212:1d1:face:b00c:0:167/128",
+        "2a03:2880:f325:120:face:b00c:0:167/128",
+        "2a03:2880:f366:120:face:b00c:0:167/128",
+        "2a03:2880:f373:120:face:b00c:0:167/128",
+        "2a03:2880:f37a:120:face:b00c:0:167/128",
+        "2a03:2880:f37e:120:face:b00c:0:167/128",
+        "2a03:2880:f381:120:face:b00c:0:167/128",
+        "2a03:2880:f381:121:face:b00c:0:7260/128",
+        "2a03:2880:f381:195:face:b00c:0:4619/128",
+        "2a03:2880:f381:196:face:b00c:0:69e0/128",
+        "2a03:2880:f381:1:face:b00c:0:25de/128",
+        "2a03:2880:f381:80:face:b00c:0:3/128",
+        "57.144.115.32/32",
+        "57.144.141.32/32",
+        "57.144.143.32/32",
+        "57.144.17.32/32",
+        "57.144.181.32/32",
+        "57.144.207.32/32",
+        "57.144.231.32/32",
+        "57.144.45.32/32",
+        "57.144.79.32/32",
+        "57.145.2.1/32",
+        "57.145.2.128/32",
+        "57.145.2.141/32",
+        "57.145.3.149/32",
+        "57.145.3.150/32",
+        "57.145.3.32/31"
+      ],
+      "removed": [
         "157.240.210.60/32",
-        "2a03:2880:f32a:120:face:b00c:0:167/128",
-        "2a03:2880:f354:120:face:b00c:0:167/128",
         "2a03:2880:f35a:120:face:b00c:0:167/128",
         "2a03:2880:f35a:121:face:b00c:0:7260/128",
         "2a03:2880:f35a:196:face:b00c:0:69e0/128",
         "2a03:2880:f35a:80:face:b00c:0:3/128",
+        "2a03:2880:f36c:120:face:b00c:0:167/128",
+        "2a03:2880:f36c:121:face:b00c:0:7260/128",
+        "2a03:2880:f36c:195:face:b00c:0:4619/128",
+        "2a03:2880:f36c:196:face:b00c:0:69e0/128",
+        "2a03:2880:f36c:1:face:b00c:0:25de/128",
+        "2a03:2880:f36c:80:face:b00c:0:3/128",
+        "2a03:2880:f36c:8d:face:b00c:0:2/128",
         "2a03:2880:f374:120:face:b00c:0:167/128",
-        "2a03:2880:f37f:120:face:b00c:0:167/128",
-        "2a03:2880:f381:8d:face:b00c:0:2/128",
-        "3.33.221.48/32",
+        "31.13.66.56/32",
         "57.144.103.32/32",
         "57.144.117.32/32",
         "57.144.180.128/32",
@@ -5300,44 +5338,20 @@
         "57.144.181.32/31",
         "57.144.183.32/32",
         "57.144.215.32/32",
+        "57.144.216.1/32",
+        "57.144.216.128/32",
+        "57.144.216.141/32",
+        "57.144.217.149/32",
+        "57.144.217.150/32",
+        "57.144.217.32/31",
         "57.144.221.32/32",
         "57.144.239.32/32",
         "57.144.39.32/32",
-        "57.144.74.141/32",
-        "57.144.75.32/31",
         "57.144.85.32/32",
-        "57.144.87.32/32",
-        "57.145.19.32/32"
+        "57.144.87.32/32"
       ],
-      "removed": [
-        "157.240.17.60/32",
-        "163.70.131.60/32",
-        "163.70.151.60/32",
-        "2a03:2880:f203:c5:face:b00c:0:167/128",
-        "2a03:2880:f307:120:face:b00c:0:167/128",
-        "2a03:2880:f366:120:face:b00c:0:167/128",
-        "2a03:2880:f367:120:face:b00c:0:167/128",
-        "2a03:2880:f36e:120:face:b00c:0:167/128",
-        "2a03:2880:f36e:121:face:b00c:0:7260/128",
-        "2a03:2880:f36e:196:face:b00c:0:69e0/128",
-        "2a03:2880:f36e:80:face:b00c:0:3/128",
-        "2a03:2880:f37c:120:face:b00c:0:167/128",
-        "2a03:2880:f381:120:face:b00c:0:167/128",
-        "57.144.115.32/32",
-        "57.144.159.32/32",
-        "57.144.169.32/32",
-        "57.144.17.32/32",
-        "57.144.207.32/32",
-        "57.144.220.128/32",
-        "57.144.221.150/32",
-        "57.144.221.32/31",
-        "57.144.67.32/32",
-        "57.144.75.32/32",
-        "57.144.93.32/32",
-        "57.145.3.32/32"
-      ],
-      "added_count": 26,
-      "removed_count": 25
+      "added_count": 34,
+      "removed_count": 32
     },
     "telegram:official-cidr": {
       "baseline": true,
@@ -5375,16 +5389,16 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-10-26T23:55:49.926178+00:00",
+  "compared_to": "2026-10-27T23:48:28.893928+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 4290.3,
-        "delta": 5
+        "average": 4292.0,
+        "delta": 0
       },
       "ipv4": {
-        "average": 1150.7,
+        "average": 1150.9,
         "delta": 0
       },
       "ipv6": {
