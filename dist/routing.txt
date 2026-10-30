@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-10-29T23:57:55.259220+00:00
+# Сборка UTC: 2026-10-30T23:51:59.471948+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4296; IPv4: 1151; IPv6: 788.
+# Домены: 4304; IPv4: 1152; IPv6: 789.
 # Точных правил, преобразованных в суффиксы: 88.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -553,6 +553,7 @@ bingapis.com
 bingapistatistics.com
 bingparachute.com
 bingsandbox.com
+bingstatic.com
 bingvisualsearch.com
 bingworld.com
 binoculus.com
@@ -1392,6 +1393,9 @@ fastpic.org
 fasttext.cc
 fasttrackreadysupport.com
 favebook.com
+favonis.cloud
+favonis.com
+favonis.space
 faxingbao.com
 faycbok.com
 fb.careers
@@ -2699,6 +2703,7 @@ msftconnecttest.com
 msfteducation.ca
 msftncsi.com
 msftnet.org
+msftstatic.com
 msgamesresearch.com
 msgamestudios.com
 mshome.net
@@ -3707,11 +3712,14 @@ tiktokeu-cdn.com
 tiktokglobalshopv.com
 tiktokminis.us
 tiktokrow-cdn.com
+tiktokshop.com
+tiktokstaticb.com
 tiktokv.com
 tiktokv.com.edgekey.net
 tiktokv.com.edgesuite.net
 tiktokv.eu
 tiktokv.us
+tiktokvapp.com
 tiktokw.eu
 tiktokw.us
 tiltbrush.com
@@ -4780,6 +4788,7 @@ zukunftswerkstatt.de
 157.240.140.0/24
 157.240.141.34/32
 157.240.142.34/32
+157.240.143.0/24
 157.240.144.0/24
 157.240.148.36/32
 157.240.151.34/32
@@ -6074,6 +6083,7 @@ zukunftswerkstatt.de
 2a03:2887:ff62::/47
 2a03:2887:ff64::/46
 2a03:2887:ff68::/46
+2a03:2887:ff6c::/48
 2a03:2887:ff6f::/48
 2a03:2887:ff70::/46
 2a03:32c0:2008:4000:face:b00c:3333:7020/128
