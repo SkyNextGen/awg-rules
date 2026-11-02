@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-11-01T23:39:45.672853+00:00
+# Сборка UTC: 2026-11-02T15:43:59.228481+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4305; IPv4: 1152; IPv6: 790.
+# Домены: 4420; IPv4: 1152; IPv6: 791.
 # Точных правил, преобразованных в суффиксы: 88.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -1636,6 +1636,7 @@ ghostrc.game.idtech.services
 gifyu.com
 giga.chat
 gigjam.com
+ginzasonypark.jp
 gipscorp.com
 git.io
 git.new
@@ -2136,6 +2137,7 @@ iichan.hk
 ikea.com
 ilook.tv
 imagemodeler.com
+imageworks.com
 imaginationsengine.com
 imaginecup.pl
 img-prod-cms-rt-microsoft-com.akamaized.net
@@ -2677,6 +2679,7 @@ morphcharts.com
 mortalkombat.com
 moscowtimes.ru
 motiongraphicsandmore.com
+motionpictureser.com
 mouser.com
 mouser.fi
 mozilla.ai
@@ -2869,6 +2872,7 @@ ntc.party
 nude-moon.org
 nuget.org
 nugettest.org
+nuro.jp
 nvidia.asia
 nvidia.at
 nvidia.be
@@ -3101,6 +3105,8 @@ platform.activestate.com
 playboy.com
 playfab.com
 playfabapi.com
+playshow.io
+playshowtv.com
 playstation
 playstation.com
 playstation.net
@@ -3337,6 +3343,7 @@ savoycomputing.com
 saynow.com
 scaleform.com
 scdn.co
+scea.com
 schemer.com
 schneider-electric.com
 sci-hub.se
@@ -3462,6 +3469,8 @@ snaptu.com
 sndcdn.com
 snort.org
 snyk.io
+so-net.ne.jp
+so-net.net.tw
 sobesednik.com
 socailcam.com
 socialcam.com
@@ -3470,7 +3479,109 @@ socialkam.com
 solarwinds.com
 solveforx.com
 sonara.ai
+sony
+sony-africa.com
+sony-asia.com
+sony-europe.com
+sony-hes.co.jp
+sony-latin.com
+sony-mea.com
+sony-olympus-medical.com
+sony-promotion.eu
+sony-semicon.co.jp
+sony-semicon.com
+sony.at
+sony.ba
+sony.be
+sony.bg
+sony.biz
+sony.ca
+sony.ch
+sony.cl
+sony.co.cr
+sony.co.id
+sony.co.in
+sony.co.jp
+sony.co.kr
+sony.co.nz
+sony.co.th
+sony.co.uk
+sony.com
+sony.com.ar
+sony.com.au
+sony.com.bo
+sony.com.br
+sony.com.co
+sony.com.do
+sony.com.ec
+sony.com.gt
+sony.com.hk
+sony.com.hn
+sony.com.mk
+sony.com.mx
+sony.com.my
+sony.com.ni
+sony.com.pa
+sony.com.pe
+sony.com.ph
+sony.com.py
+sony.com.sg
+sony.com.sv
+sony.com.tr
+sony.com.tw
+sony.com.vn
+sony.cz
+sony.de
+sony.dk
+sony.ee
+sony.es
+sony.eu
+sony.fi
+sony.fr
+sony.gr
+sony.hr
+sony.hu
+sony.ie
+sony.it
+sony.kz
+sony.lt
+sony.lu
+sony.lv
+sony.net
+sony.nl
+sony.no
+sony.pl
+sony.pt
+sony.ro
+sony.rs
+sony.ru
+sony.se
+sony.si
+sony.sk
+sony.ua
+sonybo.co.jp
+sonybsc.com
+sonybuilding.jp
+sonyclassics.com
+sonydesign.com
+sonydna.com
 sonyentertainmentnetwork.com
+sonyglobalsolutions.jp
+sonyinteractive.com
+sonykigyo.jp
+sonylatvija.com
+sonymusic.com.hk
+sonynetwork.co.jp
+sonypcl.jp
+sonypictures.com
+sonypicturesanimation.com
+sonypicturesmuseum.com
+sonypicturesstudios.com
+sonypicturestelevision.com
+sonypicturestelevisiongames.com
+sonyprotechnosupport.co.jp
+sonystoragemedia.co.jp
+sonytc.co.jp
 sophos.com
 sora.com
 sotaproject.com
@@ -3480,6 +3591,7 @@ sovcloud-mx.cn
 sovcloud-static.cn
 sovcloud-usercontent.cn
 sovcloud.cn
+sovec.net
 sovetromantica.com
 spacelift.io
 speedtest.net
@@ -4002,6 +4114,7 @@ whatsapp.net
 whatsapp.org
 whatsapp.tv
 whatsappbrand.com
+wheelpop.com
 whispersystems.org
 whyfacebook.com
 widevine.com
@@ -4046,6 +4159,7 @@ worldhack.com
 wpengine.com
 wstracker.online
 wunderground.com
+wwtbam.com
 www-facebook.com
 www.destinationurl.com
 www.pxcc.com
@@ -4123,6 +4237,7 @@ yoma.cn
 youmind.ai
 youmind.com
 youmind.site
+yourfantasybeginsnow.com
 youtrack.cloud
 youtu.be
 youtube
@@ -5700,6 +5815,7 @@ zukunftswerkstatt.de
 2407:1400:0:100a:face:b00c:3333:7020/128
 2407:3100:8112:0:face:b00c:3333:7020/128
 2407:4280:0:2:face:b00c:3333:7020/128
+2407:5000:a:5:face:b00c:3333:7020/128
 2407:7000:cdcd:13:face:b00c:3333:7020/128
 2407:8800:bf00:2c:face:b00c:3333:7020/128
 2407:8800:bf00:2f:face:b00c:3333:7020/128
