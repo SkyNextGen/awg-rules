@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-11-06T00:58:14.151739+00:00
+# Сборка UTC: 2026-11-06T11:50:56.296562+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4420; IPv4: 1150; IPv6: 790.
+# Домены: 4437; IPv4: 1150; IPv6: 790.
 # Точных правил, преобразованных в суффиксы: 88.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -123,6 +123,7 @@ affinity.studio
 agentclientprotocol.com
 agents.media
 aggresmart.com
+ahc.ovh
 ahrefs.com
 ai-chat.bsg.brave.com
 ai.com
@@ -196,6 +197,7 @@ aorizon.cn
 api-building.fun
 api-extractor.com
 api.ai
+api.alador.space
 api.service-kp.com
 api.theins.info
 apigee.com
@@ -716,9 +718,12 @@ carstagram.com
 cats.com
 cbilling.eu
 cbilling.vip
+cdn-service.space
 cdn-spotify-experiments.conductrics.com
 cdn-telegram.org
 cdn.web-platform.io
+cdn2cdn.com
+cdn2site.com
 cdnbunny.org
 cdninstagram.com
 cdromance.org
@@ -1625,6 +1630,7 @@ getoutline.com
 getoutline.org
 gfacecbook.com
 gfn.am
+gfw.ovh
 gfx.ms
 ggoogle.com
 ggpht.cn
@@ -2293,10 +2299,12 @@ kimi.ai
 kimi.com
 kingstagram.com
 kino.pub
+kino.watch
 kinogo.ec
 kinogo.la
 kinogo.uk
 kinopub.me
+kinopub.online
 kinovod.net
 kinozal.guru
 kinozal.me
@@ -2317,6 +2325,7 @@ kotl.in
 kotlinconf.com
 kotlinlang.org
 kovcheg.live
+kpdl.link
 krymr.com
 ktor.io
 kumo.com
@@ -2393,6 +2402,7 @@ lucid.app
 lunchwithpype.com
 lync.cn
 lyst.com
+m.alador.space
 m.me
 m12.vc
 machine-dna.com
@@ -2677,6 +2687,7 @@ more.fm
 morewithautodesk.com
 morphcharts.com
 mortalkombat.com
+mos-gorsud.co
 moscowtimes.ru
 motiongraphicsandmore.com
 motionpictureser.com
@@ -3191,6 +3202,7 @@ psiphon.ca
 pub.dev
 public.parsec.app
 publishproxy.com
+pushbr.com
 pvpessence.com
 pwabuilder.com
 pxt.io
@@ -3461,6 +3473,7 @@ smartbear.com
 smartdeploy.com
 smartfea.com
 smartnastran.com
+smarttvcdn.online
 sms-activate.io
 snapgametech.com
 snapgene.com
@@ -3629,6 +3642,7 @@ squadbustersgame.com
 squareup.com
 squidplatform.com
 squietpc.com
+srvkp.com
 ssttest.net
 stadia.dev
 staffhub.ms
@@ -3665,6 +3679,7 @@ submittal-log.com
 successwithteams.com
 supercell.com
 supersliv.biz
+support-kp.com
 support.anydesk.com
 support.xerox.com
 supportfacebook.com
@@ -3759,6 +3774,7 @@ telegramapp.org
 telegramdownload.com
 telegraph.co.uk
 telemetr.io
+teleos.club
 telesco.pe
 tellapart.com
 tellmewhygame.com
@@ -3895,6 +3911,7 @@ tryfunctions.com
 tsmc.com
 tspline.com
 tsplines.com
+tsx.ovh
 ttcdn-us.com
 ttlivecdn.com
 ttoverseaus.net
@@ -6374,6 +6391,7 @@ zukunftswerkstatt.de
 2c0f:fef0:0:d:face:b00c:3333:7020/128
 
 # Непереносимые доменные условия SRS — только комментарии
+# domain_regex: (\w+)-static-[0-9]+\.cdntogo\.net$
 # domain_regex: (^|\.)apiproxy-device-prod-nlb-.+\.amazonaws\.com$
 # domain_regex: (^|\.)apiproxy-website-nlb-prod-.+\.amazonaws\.com$
 # domain_regex: (^|\.)dualstack\.apiproxy-.+\.amazonaws\.com$
