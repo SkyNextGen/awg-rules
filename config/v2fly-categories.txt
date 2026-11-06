@@ -45,3 +45,4 @@ whatsapp
 unity
 youtube
 sony
+kinopub
