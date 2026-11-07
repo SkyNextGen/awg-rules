@@ -1,9 +1,9 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-11-07T00:08:20.835784+00:00
+# Сборка UTC: 2026-11-07T23:39:24.038639+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4445; IPv4: 1150; IPv6: 790.
-# Точных правил, преобразованных в суффиксы: 88.
+# Домены: 4447; IPv4: 1150; IPv6: 790.
+# Точных правил, преобразованных в суффиксы: 89.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
 
@@ -1996,6 +1996,7 @@ greenbuildingstudio.com
 gridaware.app
 grizzlysms.com
 grok.com
+grokbot.com
 grokipedia.com
 groq.com
 groupon.com
@@ -2107,6 +2108,7 @@ hsmworks.com
 hsmxpress.com
 htmhell.dev
 html5rocks.com
+http-intake.logs.us5.datadoghq.com
 httpfacebook.com
 httpsfacebook.com
 httptoolkit.com

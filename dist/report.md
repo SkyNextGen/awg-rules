@@ -2,11 +2,11 @@
 
 ## 🧭 Общая информация
 
-> 🕒 **Сборка:** 07.11.2026, 03:08 МСК  
+> 🕒 **Сборка:** 08.11.2026, 02:39 МСК  
 > 📦 **Репозиторий:** SkyNextGen/awg-rules  
 > 📄 **Файлы:** `dist/routing.json`, `dist/routing.srs` и `dist/routing.txt`  
 > 🗓 **Расписание:** ежедневно, 23:17 МСК; также вручную и после изменения кода/настроек  
-> 🔄 **Сравнение со сборкой:** 06.11.2026, 14:50 МСК
+> 🔄 **Сравнение со сборкой:** 07.11.2026, 03:08 МСК
 
 ---
 
@@ -14,7 +14,7 @@
 
 | Показатель | Всего | Добавлено / удалено |
 |---|---:|---|
-| Доменные правила | 4447 | +8 / -0 |
+| Доменные правила | 4449 | +2 / -0 |
 | IPv4-префиксы | 1150 | +0 / -0 |
 | IPv6-префиксы | 790 | +0 / -0 |
 
@@ -30,14 +30,14 @@
 
 ### 📄 NDMS / routing.txt
 
-Домены: **4445**, IPv4: **1150**, IPv6: **790**.
-Точные домены становятся суффиксами: **88** исходных правил. Исключены правила с протоколами/портами: **4**; keyword/regexp: **8**. Оба формата собраны из одного снимка источников.
+Домены: **4447**, IPv4: **1150**, IPv6: **790**.
+Точные домены становятся суффиксами: **89** исходных правил. Исключены правила с протоколами/портами: **4**; keyword/regexp: **8**. Оба формата собраны из одного снимка источников.
 
 ### 💬 WhatsApp / свежий DNS CDN
 
-Проверено имён: **2269**; с публичными адресами: **1465**. Наблюдалось IP: **1887** (IPv4: 1181, IPv6: 706).
+Проверено имён: **2269**; с публичными адресами: **1465**. Наблюдалось IP: **1888** (IPv4: 1180, IPv6: 708).
 
-Пропущено запросов: **0**; ответов резервного Cloudflare: **49**. 
+Пропущено запросов: **0**; ответов резервного Cloudflare: **61**. 
 
 Google Public DNS и резервный Cloudflare через DoH используются только при сборке. DNS роутера не меняется. Точные адреса узлов вне ASN Meta входят в общие IP-правила SRS и TXT. TTL и ответы сохранены в `whatsapp-dns.json`; старые DNS-адреса при ошибке не подмешиваются.
 
@@ -73,18 +73,18 @@ Google Public DNS и резервный Cloudflare через DoH использ
 | Meta:MetaCubeX | 123 | +0 / -0 |
 | Meta:geofeed | 365 | +0 / -0 |
 | Meta:geofeed-corp | 153 | +0 / -0 |
-| WhatsApp:cdn-dns | 1884 | +36 / -37 |
+| WhatsApp:cdn-dns | 1886 | +35 / -33 |
 | WhatsApp:cdn-hosts | 2269 | +0 / -0 |
 | custom-domains.txt | 87 | +0 / -0 |
 | custom-ip-cidrs.txt | 23 | +0 / -0 |
 | itdog | 1181 | +0 / -0 |
 | telegram:official-cidr | 11 | +0 / -0 |
-| v2fly:anthropic | 19 | +0 / -0 |
+| v2fly:anthropic | 21 | +2 / -0 |
 | v2fly:autodesk | 558 | +0 / -0 |
 | v2fly:canva | 6 | +0 / -0 |
-| v2fly:category-ai-!cn | 214 | +0 / -0 |
-| v2fly:category-ai-chat-!cn | 214 | +0 / -0 |
-| v2fly:category-ai-cn | 128 | +8 / -0 |
+| v2fly:category-ai-!cn | 218 | +4 / -0 |
+| v2fly:category-ai-chat-!cn | 218 | +4 / -0 |
+| v2fly:category-ai-cn | 128 | +0 / -0 |
 | v2fly:category-ai-ru | 12 | +0 / -0 |
 | v2fly:deepseek | 2 | +0 / -0 |
 | v2fly:discord | 28 | +0 / -0 |
@@ -101,7 +101,7 @@ Google Public DNS и резервный Cloudflare через DoH использ
 | v2fly:kinopub | 19 | +0 / -0 |
 | v2fly:mega | 7 | +0 / -0 |
 | v2fly:meta | 556 | +0 / -0 |
-| v2fly:microsoft | 760 | +0 / -0 |
+| v2fly:microsoft | 761 | +1 / -0 |
 | v2fly:microsoft-dev | 76 | +0 / -0 |
 | v2fly:netflix | 28 | +0 / -0 |
 | v2fly:nexusmods | 2 | +0 / -0 |
@@ -136,55 +136,49 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 | Показатель | Среднее | Δ к прошлой |
 |---|---:|---:|
-| Домены | 4428.0 | +8 |
-| IPv4 | 1150.6 | +0 |
-| IPv6 | 790.1 | +0 |
+| Домены | 4431.9 | +2 |
+| IPv4 | 1150.3 | +0 |
+| IPv6 | 790.0 | +0 |
 
 | Сборка (МСК) | Домены | IPv4 | IPv6 |
 |---|---:|---:|---:|
-| 02.11.2026, 18:43 МСК | 4422 | 1152 | 791 |
 | 03.11.2026, 05:23 МСК | 4422 | 1151 | 790 |
 | 04.11.2026, 03:38 МСК | 4422 | 1151 | 790 |
 | 05.11.2026, 03:55 МСК | 4422 | 1150 | 790 |
 | 06.11.2026, 03:58 МСК | 4422 | 1150 | 790 |
 | 06.11.2026, 14:50 МСК | 4439 | 1150 | 790 |
 | 07.11.2026, 03:08 МСК | 4447 | 1150 | 790 |
+| 08.11.2026, 02:39 МСК | 4449 | 1150 | 790 |
 
 ## 🌐 BGP и fallback
 
 | ASN | Источник | Префиксов до общего объединения | Получено (МСК) |
 |---|---|---:|---|
-| AS11807 | RIPEstat | 4 | 07.11.2026, 03:08 МСК |
-| AS32934 | RIPEstat | 36 | 07.11.2026, 03:08 МСК |
-| AS44907 | RIPEstat | 2 | 07.11.2026, 03:08 МСК |
-| AS54115 | RIPEstat | 3 | 07.11.2026, 03:08 МСК |
-| AS59930 | RIPEstat | 3 | 07.11.2026, 03:08 МСК |
-| AS62014 | RIPEstat | 4 | 07.11.2026, 03:08 МСК |
-| AS62041 | RIPEstat | 6 | 07.11.2026, 03:08 МСК |
-| AS63293 | RIPEstat | 84 | 07.11.2026, 03:08 МСК |
-| AS211157 | RIPEstat | 3 | 07.11.2026, 03:08 МСК |
+| AS11807 | RIPEstat | 4 | 08.11.2026, 02:39 МСК |
+| AS32934 | RIPEstat | 36 | 08.11.2026, 02:39 МСК |
+| AS44907 | RIPEstat | 2 | 08.11.2026, 02:39 МСК |
+| AS54115 | RIPEstat | 3 | 08.11.2026, 02:39 МСК |
+| AS59930 | RIPEstat | 3 | 08.11.2026, 02:39 МСК |
+| AS62014 | RIPEstat | 4 | 08.11.2026, 02:39 МСК |
+| AS62041 | RIPEstat | 6 | 08.11.2026, 02:39 МСК |
+| AS63293 | RIPEstat | 84 | 08.11.2026, 02:39 МСК |
+| AS211157 | RIPEstat | 3 | 08.11.2026, 02:39 МСК |
 
 ## 🔐 SHA256
 
-- `routing.json`: `8717e3e343e339f85ecd7fd1cc2daacf528e9862e286871a5f02fb0f17bde432`
-- `routing.srs`: `b416917cdd46bb71d581a1e38b3590e5d09657d9ba6cd948f74fd20fb0970759`
-- `routing.txt`: `c9b4f47537068c1cef95b1a8e58d4bb14d0ea7debd5f94be3c6e29e904a14b7b`
+- `routing.json`: `385bc57c4413db9f68b7dfa6557a825e309738bcd1435e679cb4d30b35904907`
+- `routing.srs`: `d687d81645c363f6dea6476dd6cf39845a02f4369f8eeaed8e673ec65dc7c344`
+- `routing.txt`: `bba4e3a72e84f0bafe7ca9662c40054a0cc64346febb419cc62f53f113f08e75`
 
 <details>
 <summary>🔄 Изменения — первые 20 записей в каждой группе</summary>
 
 ### domains
 
-**➕ Добавлено: 8**
+**➕ Добавлено: 2**
 
-- `domain_suffix:ai-indeed.com`
-- `domain_suffix:senseaudio.cn`
-- `domain_suffix:senseavatar.com`
-- `domain_suffix:sensecore.cn`
-- `domain_suffix:sensefoundry.cn`
-- `domain_suffix:sensenova.cn`
-- `domain_suffix:sensetime.com`
-- `domain_suffix:xiaohuanxiong.com`
+- `domain:http-intake.logs.us5.datadoghq.com`
+- `domain_suffix:grokbot.com`
 
 **➖ Удалено: 0**
 
@@ -442,13 +436,35 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### WhatsApp:cdn-dns
 
-**➕ Добавлено: 36**
+**➕ Добавлено: 35**
 
-- `157.240.234.60/32`
-- `157.240.254.60/32`
+- `157.240.22.206/32`
+- `157.240.22.25/32`
+- `157.240.22.54/32`
+- `163.70.131.60/32`
+- `2a03:2880:f031:19:face:b00c:0:3/128`
+- `2a03:2880:f031:ce:face:b00c:0:69e0/128`
+- `2a03:2880:f231:c7:face:b00c:0:7260/128`
+- `2a03:2880:f23b:c7:face:b00c:0:167/128`
+- `2a03:2880:f307:120:face:b00c:0:167/128`
+- `2a03:2880:f346:120:face:b00c:0:167/128`
+- `2a03:2880:f366:120:face:b00c:0:167/128`
+- `2a03:2880:f367:120:face:b00c:0:167/128`
+- `2a03:2880:f36c:120:face:b00c:0:167/128`
+- `2a03:2880:f36c:121:face:b00c:0:7260/128`
+- `2a03:2880:f36c:195:face:b00c:0:4619/128`
+- `2a03:2880:f36c:196:face:b00c:0:69e0/128`
+- `2a03:2880:f36c:1:face:b00c:0:25de/128`
+- `2a03:2880:f36c:80:face:b00c:0:3/128`
+- `2a03:2880:f36c:8d:face:b00c:0:2/128`
+- `2a03:2880:f374:120:face:b00c:0:167/128`
+- … ещё 15; полный список в `dist/report.json`.
+
+**➖ Удалено: 33**
+
 - `163.70.151.60/32`
-- `2a03:2880:f31a:120:face:b00c:0:167/128`
-- `2a03:2880:f321:120:face:b00c:0:167/128`
+- `2a03:2880:f32a:120:face:b00c:0:167/128`
+- `2a03:2880:f337:120:face:b00c:0:167/128`
 - `2a03:2880:f34f:120:face:b00c:0:167/128`
 - `2a03:2880:f354:120:face:b00c:0:167/128`
 - `2a03:2880:f361:120:face:b00c:0:167/128`
@@ -463,32 +479,10 @@ Google Public DNS и резервный Cloudflare через DoH использ
 - `2a03:2880:f37e:121:face:b00c:0:7260/128`
 - `2a03:2880:f37e:196:face:b00c:0:69e0/128`
 - `2a03:2880:f37e:80:face:b00c:0:3/128`
-- `2a03:2880:f389:120:face:b00c:0:167/128`
-- … ещё 16; полный список в `dist/report.json`.
-
-**➖ Удалено: 37**
-
-- `157.240.254.12/32`
-- `157.240.254.201/32`
-- `157.240.254.202/32`
-- `157.240.254.35/32`
-- `157.240.254.60/31`
-- `157.240.254.7/32`
-- `2a03:2880:f082:108:face:b00c:0:3/128`
-- `2a03:2880:f082:10d:face:b00c:0:2/128`
-- `2a03:2880:f082:1c9:face:b00c:0:4619/128`
-- `2a03:2880:f082:1ca:face:b00c:0:69e0/128`
-- `2a03:2880:f175:181:face:b00c:0:25de/128`
-- `2a03:2880:f23b:c7:face:b00c:0:167/128`
-- `2a03:2880:f275:1c6:face:b00c:0:7260/128`
-- `2a03:2880:f322:120:face:b00c:0:167/128`
-- `2a03:2880:f325:120:face:b00c:0:167/128`
-- `2a03:2880:f32f:121:face:b00c:0:167/128`
-- `2a03:2880:f34d:120:face:b00c:0:167/128`
-- `2a03:2880:f366:120:face:b00c:0:167/128`
-- `2a03:2880:f37a:120:face:b00c:0:167/128`
-- `2a03:2880:f386:120:face:b00c:0:167/128`
-- … ещё 17; полный список в `dist/report.json`.
+- `57.144.103.32/32`
+- `57.144.194.1/32`
+- `57.144.194.128/32`
+- … ещё 13; полный список в `dist/report.json`.
 
 ### WhatsApp:cdn-hosts
 
@@ -542,9 +536,10 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:anthropic
 
-**➕ Добавлено: 0**
+**➕ Добавлено: 2**
 
-- —
+- `domain:http-intake.logs.us5.datadoghq.com`
+- `domain:o1158394.ingest.us.sentry.io`
 
 **➖ Удалено: 0**
 
@@ -572,9 +567,12 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:category-ai-!cn
 
-**➕ Добавлено: 0**
+**➕ Добавлено: 4**
 
-- —
+- `domain:http-intake.logs.us5.datadoghq.com`
+- `domain:o1158394.ingest.us.sentry.io`
+- `domain:production-copilot-host-westus.webpubsub.azure.com`
+- `domain_suffix:grokbot.com`
 
 **➖ Удалено: 0**
 
@@ -582,9 +580,12 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:category-ai-chat-!cn
 
-**➕ Добавлено: 0**
+**➕ Добавлено: 4**
 
-- —
+- `domain:http-intake.logs.us5.datadoghq.com`
+- `domain:o1158394.ingest.us.sentry.io`
+- `domain:production-copilot-host-westus.webpubsub.azure.com`
+- `domain_suffix:grokbot.com`
 
 **➖ Удалено: 0**
 
@@ -592,16 +593,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:category-ai-cn
 
-**➕ Добавлено: 8**
+**➕ Добавлено: 0**
 
-- `domain_suffix:ai-indeed.com`
-- `domain_suffix:senseaudio.cn`
-- `domain_suffix:senseavatar.com`
-- `domain_suffix:sensecore.cn`
-- `domain_suffix:sensefoundry.cn`
-- `domain_suffix:sensenova.cn`
-- `domain_suffix:sensetime.com`
-- `domain_suffix:xiaohuanxiong.com`
+- —
 
 **➖ Удалено: 0**
 
@@ -769,9 +763,9 @@ Google Public DNS и резервный Cloudflare через DoH использ
 
 ### v2fly:microsoft
 
-**➕ Добавлено: 0**
+**➕ Добавлено: 1**
 
-- —
+- `domain:production-copilot-host-westus.webpubsub.azure.com`
 
 **➖ Удалено: 0**
 
