@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-11-06T11:50:56.296562+00:00
+# Сборка UTC: 2026-11-07T00:08:20.835784+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4437; IPv4: 1150; IPv6: 790.
+# Домены: 4445; IPv4: 1150; IPv6: 790.
 # Точных правил, преобразованных в суффиксы: 88.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -126,6 +126,7 @@ aggresmart.com
 ahc.ovh
 ahrefs.com
 ai-chat.bsg.brave.com
+ai-indeed.com
 ai.com
 ai.studio
 ai.zhaomi.cn
@@ -3389,6 +3390,12 @@ seconddinnertech.com
 selezen.org
 semnasem.org
 semrush.com
+senseaudio.cn
+senseavatar.com
+sensecore.cn
+sensefoundry.cn
+sensenova.cn
+sensetime.com
 sentry.dev
 sentry.io
 sephora.com
@@ -4215,6 +4222,7 @@ xhamster.com
 xhamsterlive.com
 xhcdn.com
 xiaoaiassist.com
+xiaohuanxiong.com
 xiaomi.eu
 xiaomimimo.com
 xiezuocat.com
