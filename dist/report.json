@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-11-07T23:39:24.038639+00:00",
+  "built_at": "2026-11-08T23:46:05.530901+00:00",
   "warnings": [],
   "sources": {
     "itdog": 1181,
@@ -71,7 +71,7 @@
     "Meta:MetaCubeX": 123,
     "Meta:Loyalsoldier": 123,
     "WhatsApp:cdn-hosts": 2269,
-    "WhatsApp:cdn-dns": 1886,
+    "WhatsApp:cdn-dns": 1889,
     "telegram:official-cidr": 11,
     "custom-ip-cidrs.txt": 23,
     "ITDog:discord:scoped-udp": 2,
@@ -4345,18 +4345,18 @@
   "whatsapp_dns": {
     "hosts": 2269,
     "resolved_hosts": 1465,
-    "ips": 1888,
-    "ipv4": 1180,
-    "ipv6": 708,
+    "ips": 1892,
+    "ipv4": 1185,
+    "ipv6": 707,
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "failed_questions": 0,
     "questions": 4538,
-    "fallback_answers": 61,
-    "checked_at": "2026-11-07T23:44:11.907074+00:00"
+    "fallback_answers": 0,
+    "checked_at": "2026-11-08T23:46:38.224418+00:00"
   },
   "discord_https": {
-    "checked_at": "2026-11-07T23:44:13.409755+00:00",
+    "checked_at": "2026-11-08T23:46:39.703567+00:00",
     "resolver": "https://dns.google/resolve",
     "transport": "DoH",
     "ips": 10,
@@ -4550,7 +4550,7 @@
         "2620:10b:b000::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "32934": {
       "prefixes": [
@@ -4592,7 +4592,7 @@
         "2a03:2880::/32"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "44907": {
       "prefixes": [
@@ -4600,7 +4600,7 @@
         "2001:b28:f23c::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "54115": {
       "prefixes": [
@@ -4609,7 +4609,7 @@
         "2620:10d:c090::/44"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "59930": {
       "prefixes": [
@@ -4618,7 +4618,7 @@
         "2001:b28:f23d::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "62014": {
       "prefixes": [
@@ -4628,7 +4628,7 @@
         "2001:b28:f23f::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "62041": {
       "prefixes": [
@@ -4640,7 +4640,7 @@
         "2001:67c:4e8::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "63293": {
       "prefixes": [
@@ -4730,7 +4730,7 @@
         "2c0f:ef78:12::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     },
     "211157": {
       "prefixes": [
@@ -4739,7 +4739,7 @@
         "2a0a:f280:203::/48"
       ],
       "source": "RIPEstat",
-      "fetched_at": "2026-11-07T23:39:36.732879+00:00"
+      "fetched_at": "2026-11-08T23:46:19.846100+00:00"
     }
   },
   "matchers": {
@@ -4751,17 +4751,14 @@
   "sha256": {
     "routing.json": "385bc57c4413db9f68b7dfa6557a825e309738bcd1435e679cb4d30b35904907",
     "routing.srs": "d687d81645c363f6dea6476dd6cf39845a02f4369f8eeaed8e673ec65dc7c344",
-    "routing.txt": "bba4e3a72e84f0bafe7ca9662c40054a0cc64346febb419cc62f53f113f08e75"
+    "routing.txt": "b22bf910e441be3876864298294d68a84bd0c237948d879f7c4f81dbb10f029d"
   },
   "changes": {
     "domains": {
       "baseline": true,
-      "added": [
-        "domain:http-intake.logs.us5.datadoghq.com",
-        "domain_suffix:grokbot.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 2,
+      "added_count": 0,
       "removed_count": 0
     },
     "scoped_udp": {
@@ -4803,12 +4800,9 @@
     },
     "v2fly:anthropic": {
       "baseline": true,
-      "added": [
-        "domain:http-intake.logs.us5.datadoghq.com",
-        "domain:o1158394.ingest.us.sentry.io"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 2,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:autodesk": {
@@ -4827,26 +4821,16 @@
     },
     "v2fly:category-ai-!cn": {
       "baseline": true,
-      "added": [
-        "domain:http-intake.logs.us5.datadoghq.com",
-        "domain:o1158394.ingest.us.sentry.io",
-        "domain:production-copilot-host-westus.webpubsub.azure.com",
-        "domain_suffix:grokbot.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 4,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:category-ai-chat-!cn": {
       "baseline": true,
-      "added": [
-        "domain:http-intake.logs.us5.datadoghq.com",
-        "domain:o1158394.ingest.us.sentry.io",
-        "domain:production-copilot-host-westus.webpubsub.azure.com",
-        "domain_suffix:grokbot.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 4,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:category-ai-cn": {
@@ -4963,11 +4947,9 @@
     },
     "v2fly:microsoft": {
       "baseline": true,
-      "added": [
-        "domain:production-copilot-host-westus.webpubsub.azure.com"
-      ],
+      "added": [],
       "removed": [],
-      "added_count": 1,
+      "added_count": 0,
       "removed_count": 0
     },
     "v2fly:microsoft-dev": {
@@ -5295,79 +5277,48 @@
     "WhatsApp:cdn-dns": {
       "baseline": true,
       "added": [
+        "163.70.151.60/32",
+        "2a03:2880:f322:120:face:b00c:0:167/128",
+        "2a03:2880:f32f:121:face:b00c:0:167/128",
+        "2a03:2880:f34d:120:face:b00c:0:167/128",
+        "2a03:2880:f354:120:face:b00c:0:167/128",
+        "2a03:2880:f36e:120:face:b00c:0:167/128",
+        "2a03:2880:f36e:121:face:b00c:0:7260/128",
+        "2a03:2880:f36e:196:face:b00c:0:69e0/128",
+        "2a03:2880:f36e:80:face:b00c:0:3/128",
+        "57.144.117.32/32",
+        "57.144.169.32/32",
+        "57.144.17.32/32",
+        "57.144.197.32/32",
+        "57.144.203.32/32",
+        "57.144.220.128/32",
+        "57.144.221.150/32",
+        "57.144.221.32/31",
+        "57.144.26.141/32",
+        "57.144.87.32/32",
+        "57.145.9.32/32"
+      ],
+      "removed": [
         "157.240.22.206/32",
         "157.240.22.25/32",
         "157.240.22.54/32",
-        "163.70.131.60/32",
         "2a03:2880:f031:19:face:b00c:0:3/128",
         "2a03:2880:f031:ce:face:b00c:0:69e0/128",
         "2a03:2880:f231:c7:face:b00c:0:7260/128",
-        "2a03:2880:f23b:c7:face:b00c:0:167/128",
         "2a03:2880:f307:120:face:b00c:0:167/128",
+        "2a03:2880:f321:120:face:b00c:0:167/128",
         "2a03:2880:f346:120:face:b00c:0:167/128",
-        "2a03:2880:f366:120:face:b00c:0:167/128",
-        "2a03:2880:f367:120:face:b00c:0:167/128",
-        "2a03:2880:f36c:120:face:b00c:0:167/128",
-        "2a03:2880:f36c:121:face:b00c:0:7260/128",
-        "2a03:2880:f36c:195:face:b00c:0:4619/128",
-        "2a03:2880:f36c:196:face:b00c:0:69e0/128",
-        "2a03:2880:f36c:1:face:b00c:0:25de/128",
-        "2a03:2880:f36c:80:face:b00c:0:3/128",
-        "2a03:2880:f36c:8d:face:b00c:0:2/128",
-        "2a03:2880:f374:120:face:b00c:0:167/128",
         "2a03:2880:f37c:120:face:b00c:0:167/128",
         "2a03:2880:f381:120:face:b00c:0:167/128",
+        "2a03:2880:f389:120:face:b00c:0:167/128",
         "57.144.115.32/32",
-        "57.144.195.32/32",
-        "57.144.205.32/32",
-        "57.144.207.32/32",
+        "57.144.141.32/32",
         "57.144.215.32/32",
-        "57.144.216.1/32",
-        "57.144.216.128/32",
-        "57.144.216.141/32",
-        "57.144.217.149/32",
-        "57.144.217.150/32",
-        "57.144.217.32/31",
-        "57.144.253.32/32",
-        "57.144.63.32/32"
+        "57.144.221.32/32",
+        "57.145.3.32/32"
       ],
-      "removed": [
-        "163.70.151.60/32",
-        "2a03:2880:f32a:120:face:b00c:0:167/128",
-        "2a03:2880:f337:120:face:b00c:0:167/128",
-        "2a03:2880:f34f:120:face:b00c:0:167/128",
-        "2a03:2880:f354:120:face:b00c:0:167/128",
-        "2a03:2880:f361:120:face:b00c:0:167/128",
-        "2a03:2880:f361:121:face:b00c:0:7260/128",
-        "2a03:2880:f361:195:face:b00c:0:4619/128",
-        "2a03:2880:f361:196:face:b00c:0:69e0/128",
-        "2a03:2880:f361:1:face:b00c:0:25de/128",
-        "2a03:2880:f361:80:face:b00c:0:3/128",
-        "2a03:2880:f361:8d:face:b00c:0:2/128",
-        "2a03:2880:f36b:120:face:b00c:0:167/128",
-        "2a03:2880:f37e:120:face:b00c:0:167/128",
-        "2a03:2880:f37e:121:face:b00c:0:7260/128",
-        "2a03:2880:f37e:196:face:b00c:0:69e0/128",
-        "2a03:2880:f37e:80:face:b00c:0:3/128",
-        "57.144.103.32/32",
-        "57.144.194.1/32",
-        "57.144.194.128/32",
-        "57.144.194.141/32",
-        "57.144.195.149/32",
-        "57.144.195.150/32",
-        "57.144.195.32/31",
-        "57.144.217.32/32",
-        "57.144.252.128/32",
-        "57.144.253.150/32",
-        "57.144.253.32/31",
-        "57.144.255.32/32",
-        "57.144.83.32/32",
-        "57.144.89.32/32",
-        "57.145.19.32/32",
-        "57.145.20.141/32"
-      ],
-      "added_count": 35,
-      "removed_count": 33
+      "added_count": 20,
+      "removed_count": 17
     },
     "telegram:official-cidr": {
       "baseline": true,
@@ -5405,16 +5356,16 @@
       "removed_count": 0
     }
   },
-  "compared_to": "2026-11-07T00:08:20.835784+00:00",
+  "compared_to": "2026-11-07T23:39:24.038639+00:00",
   "trend": {
     "runs": 7,
     "metrics": {
       "domains": {
-        "average": 4431.9,
-        "delta": 2
+        "average": 4435.7,
+        "delta": 0
       },
       "ipv4": {
-        "average": 1150.3,
+        "average": 1150.1,
         "delta": 0
       },
       "ipv6": {
