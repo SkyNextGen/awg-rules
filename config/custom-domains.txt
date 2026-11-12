@@ -49,6 +49,7 @@ clerk.com
 stripe.com
 spicyapi.ai
 spicyapi.com
+pornpics.com
 
 # Личные дополнения из пользовательских списков, проверены 11.10.2026.
 # Эти имена не подтверждают принадлежность Telegram/Meta.
