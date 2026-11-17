@@ -6,26 +6,25 @@ import sys
 import unittest
 import tempfile
 from unittest.mock import patch
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 import build as b
 from check_itdog import verify
 from routing_rules import scoped_rules, unrestricted
 
-UPSTREAM = '''
-discord_cf_subnets = ["104.16.0.0/12"]
-srs_rule('discord', [
- {"domain_suffix": discord_domains},
- {"network": ["udp"], "ip_cidr": discord_subnets, "port_range": ["50000:65535"]},
- {"network": ["udp"], "ip_cidr": discord_cf_subnets, "port_range": ["19000:20000"]}])
-'''
+UPSTREAM = {'version': 3, 'rules': [
+    {'domain_suffix': ['discord.com']},
+    {'network': 'udp', 'ip_cidr': ['104.16.0.0/12', '66.22.192.0/18'], 'port_range': '50000:65535'},
+    {'network': 'udp', 'ip_cidr': '104.16.0.0/12', 'port_range': '19000:20000'},
+]}
 
 
 class DiscordVoice(unittest.TestCase):
-    def run_source(self, source=UPSTREAM, v6='2606:4700::/32'):
+    def run_source(self, source=UPSTREAM, v6='2606:4700::/32', v4='104.16.0.0/12\n66.22.192.0/18'):
         cfg = {'rule_source': 'rules', 'ipv4_url': 'v4', 'ipv6_url': 'v6'}
-        with patch.object(b, 'fetch', side_effect={'rules': source, 'v4': '104.16.0.0/12\n66.22.192.0/18', 'v6': v6}.__getitem__):
+        with patch.object(b, 'published_discord_rules', return_value=source), patch.object(
+                b, 'fetch', side_effect={'v4': v4, 'v6': v6}.__getitem__):
             return b.discord_voice(cfg)
 
     def test_ports_and_network_stay_on_every_ip_rule(self):
@@ -38,13 +37,58 @@ class DiscordVoice(unittest.TestCase):
             self.assertTrue(rule['port_range'])
 
     def test_rejects_removed_constraints_and_changed_cidr(self):
-        for source in (UPSTREAM.replace('"network": ["udp"], ', ''),
-                       UPSTREAM.replace('"50000:65535"', '"1:65535"'),
-                       UPSTREAM.replace('104.16.0.0/12', '0.0.0.0/0')):
+        for mutation in ({'network': 'tcp'}, {'port_range': '1:65535'},
+                         {'ip_cidr': '0.0.0.0/0'}, {'ip_cidr': '104.16.0.0/13'}):
+            source = copy.deepcopy(UPSTREAM)
+            source['rules'][1].update(mutation)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                self.run_source(source)
+        for key in ('network', 'port_range'):
+            source = copy.deepcopy(UPSTREAM)
+            source['rules'][1].pop(key)
             with self.assertRaises(ValueError):
                 self.run_source(source)
         with self.assertRaises(ValueError):
             self.run_source(v6='1.1.1.0/24')
+        with self.assertRaises(ValueError):
+            self.run_source(v4='104.16.0.0/12\n66.22.192.0/19')
+
+    def test_rule_order_and_scalar_or_list_encoding_do_not_matter(self):
+        source = copy.deepcopy(UPSTREAM)
+        source['rules'].reverse()
+        for rule in source['rules']:
+            for key in ('network', 'port_range'):
+                if key in rule:
+                    rule[key] = [rule[key]]
+        self.assertEqual(self.run_source(source), self.run_source())
+
+    def test_rejects_added_logical_or_unrestricted_rules(self):
+        for rule in ({'ip_cidr': ['66.22.192.0/18']},
+                     {'type': 'logical', 'mode': 'or', 'rules': []}):
+            source = copy.deepcopy(UPSTREAM)
+            source['rules'][1] = rule
+            with self.assertRaises(ValueError):
+                self.run_source(source)
+
+    def test_release_is_verified_and_decompiled_with_the_pinned_binary(self):
+        release = {'tag_name': 'test', 'published_at': datetime.now(timezone.utc).isoformat(),
+                   'assets': [{'name': 'discord.srs', 'size': 429}]}
+        def decompile(args, **kwargs):
+            Path(args[args.index('--output') + 1]).write_text(json.dumps(UPSTREAM))
+        with patch.object(b, 'fetch', return_value=json.dumps(release)), patch.object(
+                b, 'verified_asset', return_value=b'SRS') as asset, patch.object(
+                b.subprocess, 'run', side_effect=decompile) as run:
+            self.assertEqual(b.published_discord_rules({'rule_source': 'release'}), UPSTREAM)
+        asset.assert_called_once_with('itdoginfo/allow-domains', 'test', 'discord.srs', release=release)
+        self.assertEqual(run.call_args.args[0][1:3], ['rule-set', 'decompile'])
+        self.assertEqual(run.call_args.kwargs['timeout'], 30)
+        for date in (datetime.now(timezone.utc) - timedelta(days=9),
+                     datetime.now(timezone.utc) + timedelta(days=1)):
+            release['published_at'] = date.isoformat()
+            with patch.object(b, 'fetch', return_value=json.dumps(release)), patch.object(
+                    b, 'verified_asset') as asset, self.assertRaises(ValueError):
+                b.published_discord_rules({'rule_source': 'release'})
+            asset.assert_not_called()
 
     def test_final_output_preserves_scopes(self):
         # If a built artifact exists, verify it cannot accidentally contain

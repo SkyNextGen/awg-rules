@@ -18,8 +18,9 @@ def download(url):
         return r.read()
 
 
-def verified_asset(repository, tag, name):
-    release = json.loads(download(f'https://api.github.com/repos/{repository}/releases/tags/{tag}'))
+def verified_asset(repository, tag, name, release=None):
+    if release is None:
+        release = json.loads(download(f'https://api.github.com/repos/{repository}/releases/tags/{tag}'))
     asset = next(a for a in release['assets'] if a['name'] == name)
     digest = asset.get('digest', '')
     if not digest.startswith('sha256:'):
