@@ -16,7 +16,7 @@ from report import records, write_report
 from routing_rules import MATCH_KEYS, split_rule, unrestricted
 from meta_sources import collect_feeds, collect_dns
 from discord_https import collect_https
-from install_sing_box import verified_asset
+from install_sing_box import github_headers, verified_asset
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
@@ -36,7 +36,7 @@ def fetch(url):
         return value.decode('utf-8')
     for attempt in range(3):
         try:
-            with urlopen(Request(url, headers={'User-Agent': UA}), timeout=60) as response:
+            with urlopen(Request(url, headers={'User-Agent': UA, **github_headers(url)}), timeout=60) as response:
                 return response.read().decode('utf-8')
         except OSError as error:
             if attempt == 2:

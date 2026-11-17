@@ -16,6 +16,18 @@ spec.loader.exec_module(b)
 
 
 class SafetyTests(unittest.TestCase):
+    def test_job_token_is_used_only_for_https_github_api(self):
+        with patch.dict(b.os.environ, {'GITHUB_TOKEN': 'test-token'}):
+            self.assertEqual(installer.github_headers('https://api.github.com/repos/owner/repo'),
+                             {'Authorization': 'Bearer test-token'})
+            for url in ('https://github.com/owner/repo/releases/download/tag/file',
+                        'https://raw.githubusercontent.com/owner/repo/main/file',
+                        'https://dns.google/resolve', 'https://api.github.com.evil.example/',
+                        'https://api.github.com@evil.example/', 'http://api.github.com/repos/'):
+                self.assertEqual(installer.github_headers(url), {})
+        with patch.dict(b.os.environ, {'GITHUB_TOKEN': ''}):
+            self.assertEqual(installer.github_headers('https://api.github.com/repos/owner/repo'), {})
+
     def test_release_asset_checksum_is_verified_without_refetching_metadata(self):
         data = b'published rule-set'
         release = {'assets': [{'name': 'discord.srs', 'browser_download_url': 'https://asset.example/file',
