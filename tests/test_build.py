@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import hashlib
 from pathlib import Path
 import unittest
 import tempfile
@@ -8,12 +9,39 @@ from datetime import datetime, timezone, timedelta
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
+import install_sing_box as installer
 spec = importlib.util.spec_from_file_location('builder', Path(__file__).parents[1] / 'src/build.py')
 b = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(b)
 
 
 class SafetyTests(unittest.TestCase):
+    def test_job_token_is_used_only_for_https_github_api(self):
+        with patch.dict(b.os.environ, {'GITHUB_TOKEN': 'test-token'}):
+            self.assertEqual(installer.github_headers('https://api.github.com/repos/owner/repo'),
+                             {'Authorization': 'Bearer test-token'})
+            for url in ('https://github.com/owner/repo/releases/download/tag/file',
+                        'https://raw.githubusercontent.com/owner/repo/main/file',
+                        'https://dns.google/resolve', 'https://api.github.com.evil.example/',
+                        'https://api.github.com@evil.example/', 'http://api.github.com/repos/'):
+                self.assertEqual(installer.github_headers(url), {})
+        with patch.dict(b.os.environ, {'GITHUB_TOKEN': ''}):
+            self.assertEqual(installer.github_headers('https://api.github.com/repos/owner/repo'), {})
+
+    def test_release_asset_checksum_is_verified_without_refetching_metadata(self):
+        data = b'published rule-set'
+        release = {'assets': [{'name': 'discord.srs', 'browser_download_url': 'https://asset.example/file',
+                               'digest': 'sha256:' + hashlib.sha256(data).hexdigest()}]}
+        with patch.object(installer, 'download', return_value=data) as download:
+            self.assertEqual(installer.verified_asset('owner/repo', 'tag', 'discord.srs', release), data)
+        download.assert_called_once_with('https://asset.example/file')
+        with patch.object(installer, 'download', return_value=b'corrupt'), self.assertRaises(ValueError):
+            installer.verified_asset('owner/repo', 'tag', 'discord.srs', release)
+        release['assets'][0]['digest'] = ''
+        with patch.object(installer, 'download') as download, self.assertRaises(ValueError):
+            installer.verified_asset('owner/repo', 'tag', 'discord.srs', release)
+        download.assert_not_called()
+
     def test_domains(self):
         self.assertEqual(b.domain('*.EXAMPLE.com.'), 'example.com')
         for d in ['com', 'http://example.com', '1.2.3.4', '-bad.com', '']:

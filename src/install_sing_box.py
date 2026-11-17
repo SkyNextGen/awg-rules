@@ -13,13 +13,20 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def github_headers(url):
+    """Use the job token only for GitHub API, never for downloaded assets."""
+    token = os.getenv('GITHUB_TOKEN')
+    return {'Authorization': 'Bearer ' + token} if token and url.startswith('https://api.github.com/') else {}
+
+
 def download(url):
-    with urlopen(Request(url, headers={'User-Agent': 'awg-rules-builder'}), timeout=120) as r:
+    with urlopen(Request(url, headers={'User-Agent': 'awg-rules-builder', **github_headers(url)}), timeout=120) as r:
         return r.read()
 
 
-def verified_asset(repository, tag, name):
-    release = json.loads(download(f'https://api.github.com/repos/{repository}/releases/tags/{tag}'))
+def verified_asset(repository, tag, name, release=None):
+    if release is None:
+        release = json.loads(download(f'https://api.github.com/repos/{repository}/releases/tags/{tag}'))
     asset = next(a for a in release['assets'] if a['name'] == name)
     digest = asset.get('digest', '')
     if not digest.startswith('sha256:'):

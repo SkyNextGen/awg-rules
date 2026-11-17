@@ -1,6 +1,5 @@
 """Fail-closed source merger. Only promote output after official SRS compilation."""
 import hashlib
-import ast
 import ipaddress
 import json
 import os
@@ -17,6 +16,7 @@ from report import records, write_report
 from routing_rules import MATCH_KEYS, split_rule, unrestricted
 from meta_sources import collect_feeds, collect_dns
 from discord_https import collect_https
+from install_sing_box import github_headers, verified_asset
 
 ROOT = Path(__file__).resolve().parents[1]
 UA = 'awg-rules - https://github.com/SkyNextGen/awg-rules/issues'
@@ -36,7 +36,7 @@ def fetch(url):
         return value.decode('utf-8')
     for attempt in range(3):
         try:
-            with urlopen(Request(url, headers={'User-Agent': UA}), timeout=60) as response:
+            with urlopen(Request(url, headers={'User-Agent': UA, **github_headers(url)}), timeout=60) as response:
                 return response.read().decode('utf-8')
         except OSError as error:
             if attempt == 2:
@@ -178,48 +178,49 @@ def verify_voice_ports(ranges):
             raise ValueError('Discord ports outside reviewed voice bands')
 
 
+def published_discord_rules(cfg):
+    """Read ITDog's published data instead of depending on its Python syntax."""
+    release = json.loads(fetch(cfg['rule_source']))
+    age = datetime.now(timezone.utc) - datetime.fromisoformat(release['published_at'].replace('Z', '+00:00'))
+    if not 0 <= age.total_seconds() <= 8 * 86400:
+        raise ValueError('Discord release is expired or in the future')
+    assets = [a for a in release['assets'] if a['name'] == 'discord.srs']
+    if len(assets) != 1 or not 0 < assets[0]['size'] <= 1024 * 1024:
+        raise ValueError('Missing or excessive Discord release asset')
+    data = verified_asset('itdoginfo/allow-domains', release['tag_name'], 'discord.srs', release=release)
+    with tempfile.TemporaryDirectory(prefix='awg-discord-') as directory:
+        source, output = Path(directory) / 'discord.srs', Path(directory) / 'discord.json'
+        source.write_bytes(data)
+        subprocess.run([os.environ.get('SING_BOX', 'sing-box'), 'rule-set', 'decompile',
+                        '--output', str(output), str(source)], check=True, timeout=30)
+        return json.loads(output.read_text(encoding='utf-8'))
+
+
 def discord_voice(cfg):
-    """Preserve ITDog's network AND CIDR AND destination-port semantics."""
-    source = cfg['rule_source']
-    tree = ast.parse(fetch(source))
-    calls = [n for n in ast.walk(tree) if isinstance(n, ast.Call)
-             and isinstance(n.func, ast.Name) and n.func.id == 'srs_rule'
-             and len(n.args) == 2 and isinstance(n.args[0], ast.Constant)
-             and n.args[0].value == 'discord']
-    if len(calls) != 1 or not isinstance(calls[0].args[1], ast.List):
-        raise ValueError('Discord upstream rule structure changed')
-    ports = {}
-    for item in calls[0].args[1].elts:
-        if not isinstance(item, ast.Dict):
-            raise ValueError('Unexpected Discord rule')
-        values = {ast.literal_eval(k): v for k, v in zip(item.keys, item.values)}
-        if 'ip_cidr' not in values:
-            continue
-        if set(values) != {'network', 'ip_cidr', 'port_range'} or ast.literal_eval(values['network']) != ['udp']:
+    """Keep published UDP/port conditions and the separately refreshed IPv6 list."""
+    payload = published_discord_rules(cfg)
+    if payload.get('version') not in (1, 2, 3) or len(payload.get('rules', [])) != 3:
+        raise ValueError('Unexpected published Discord rule structure')
+    scoped = []
+    for rule in payload['rules']:
+        if set(rule) == {'domain_suffix'}:
+            continue  # Domains already come from the service-domain sources.
+        rule = {key: value if isinstance(value, list) else [value] for key, value in rule.items()}
+        if set(rule) != {'network', 'ip_cidr', 'port_range'} or rule['network'] != ['udp']:
             raise ValueError('Discord rule must retain UDP and port restrictions')
-        name = values['ip_cidr']
-        if not isinstance(name, ast.Name) or name.id not in {'discord_subnets', 'discord_cf_subnets'}:
-            raise ValueError('Unexpected Discord subnet source')
-        ranges = ast.literal_eval(values['port_range'])
-        verify_voice_ports(ranges)
-        ports[name.id] = ranges
-    if set(ports) != {'discord_subnets', 'discord_cf_subnets'}:
-        raise ValueError('Missing Discord scoped upstream rules')
-    prefixes = []
+        verify_voice_ports(rule['port_range'])
+        scoped.append(dict(rule, ip_cidr=collapse(rule['ip_cidr'])))
+    prefixes = {}
     for family in (4, 6):
         values = lines(fetch(cfg['ipv' + str(family) + '_url']))
         if not values or len(values) > 2000 or any(network(p).version != family for p in values):
             raise ValueError('Invalid Discord IPv' + str(family) + ' source')
-        prefixes.extend(values)
-    assignments = [n for n in ast.walk(tree) if isinstance(n, ast.Assign)
-                   and any(isinstance(t, ast.Name) and t.id == 'discord_cf_subnets' for t in n.targets)]
-    if len(assignments) != 1:
-        raise ValueError('Missing Discord Cloudflare source')
-    cloudflare = collapse(ast.literal_eval(assignments[0].value))
-    if cloudflare != ['104.16.0.0/12']:
-        raise ValueError('Discord Cloudflare prefixes changed; review required')
-    return [dict(network=['udp'], ip_cidr=collapse(prefixes), port_range=ports['discord_subnets']),
-            dict(network=['udp'], ip_cidr=cloudflare, port_range=ports['discord_cf_subnets'])]
+        prefixes[family] = collapse(values)
+    main = [rule for rule in scoped if rule['ip_cidr'] == prefixes[4]]
+    cloudflare = [rule for rule in scoped if rule['ip_cidr'] == ['104.16.0.0/12']]
+    if len(scoped) != 2 or len(main) != 1 or len(cloudflare) != 1 or main[0] is cloudflare[0]:
+        raise ValueError('Published Discord IPv4 differs from source, or Cloudflare scope changed')
+    return [dict(main[0], ip_cidr=collapse(prefixes[4] + prefixes[6])), cloudflare[0]]
 
 
 def custom_discord_voice(path):

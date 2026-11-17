@@ -26,8 +26,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout published baseline
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
+          path: .baseline
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -35,6 +43,8 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Install official sing-box
         run: python src/install_sing_box.py
+      - name: Replay published inputs without network
+        run: python tests/replay_build.py --baseline .baseline --sing-box .tools/sing-box
       - name: Verify AWGM DNS matching
         run: |
           python tests/dns_probe.py .tools/sing-box 203.0.113.42
