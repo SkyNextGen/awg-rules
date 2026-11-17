@@ -2,8 +2,10 @@ import json
 from pathlib import Path
 import sys
 import unittest
+import threading
+import time
 from unittest.mock import patch, MagicMock
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 import build as b
@@ -11,6 +13,58 @@ import meta_sources as m
 
 
 class MetaSourceTests(unittest.TestCase):
+    def test_feed_snapshot_is_bounded_and_invalid_live_data_is_fatal(self):
+        cfg = [{'name': 'test', 'url': 'https://source.example/cidr', 'format': 'cidr',
+                'min_entries': 2, 'max_entries': 10, 'families': [4, 6]}]
+        snapshot, warnings = {}, []
+        valid = '8.8.8.0/24\n2606:4700::/32'
+        expected = m.collect_feeds(cfg, lambda url: valid, b.network, b.collapse, snapshot, warnings)
+        original_timestamp = snapshot['test']['fetched_at']
+        def offline(url):
+            raise RuntimeError('test outage')
+        self.assertEqual(m.collect_feeds(cfg, offline, b.network, b.collapse, snapshot, warnings), expected)
+        self.assertEqual(snapshot['test']['fetched_at'], original_timestamp)
+        self.assertIn('snapshot', warnings[0])
+        with self.assertRaises(ValueError):
+            m.collect_feeds(cfg, lambda url: '10.0.0.0/8', b.network, b.collapse, snapshot)
+        snapshot['test']['expires_at'] = (datetime.now(timezone.utc) - timedelta(seconds=1)).isoformat()
+        with self.assertRaises(ValueError):
+            m.collect_feeds(cfg, offline, b.network, b.collapse, snapshot)
+        with self.assertRaises(ValueError):
+            m.collect_feeds(cfg, offline, b.network, b.collapse)
+
+    def test_geofeed_snapshot_does_not_extend_publication_lifetime(self):
+        now = datetime.now(timezone.utc)
+        published = now - timedelta(days=7)
+        cfg = [{'name': 'test', 'url': 'https://source.example/feed', 'format': 'geofeed',
+                'min_entries': 2, 'max_entries': 10, 'families': [4, 6], 'max_age_days': 8}]
+        raw = '# Publication date: ' + published.strftime('%a %b %d %Y') + '\n'
+        raw += '8.8.8.0/24,US,,City,\n2606:4700::/32,US,,City,\n'
+        snapshot = {}
+        m.collect_feeds(cfg, lambda url: raw, b.network, b.collapse, snapshot)
+        self.assertLess(datetime.fromisoformat(snapshot['test']['expires_at']) - now, timedelta(days=1))
+
+    def test_inventory_deadline_does_not_wait_for_running_workers(self):
+        cfg = self.cfg(); cfg['deadline_seconds'] = .02
+        release, started = threading.Event(), threading.Event()
+        def query(*args):
+            started.set()
+            release.wait(2)
+            return {'status': 3, 'ips': [], 'ttl': None}
+        start = time.monotonic()
+        try:
+            with self.assertRaises(TimeoutError):
+                m.collect_dns(cfg, lambda url: 'mmg.whatsapp.net', b.domain, b.collapse, query=query)
+            self.assertTrue(started.is_set())
+            self.assertLess(time.monotonic() - start, .5)
+        finally:
+            release.set()
+
+    def test_query_does_not_start_a_request_after_deadline(self):
+        with patch.object(m.DNS_OPENER, 'open') as opened, self.assertRaises(m.TemporaryDNSFailure):
+            m.query_dns('mmg.whatsapp.net', 'A', 'https://dns.google/resolve', deadline=time.monotonic() - 1)
+        opened.assert_not_called()
+
     def test_doh_transport_uses_ipv4_without_changing_aaaa_queries(self):
         sock = MagicMock()
         with patch.object(m.socket, 'getaddrinfo', return_value=[(m.socket.AF_INET, m.socket.SOCK_STREAM, 6, '', ('8.8.8.8', 443))]) as lookup, patch.object(m.socket, 'socket', return_value=sock):

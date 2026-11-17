@@ -33,9 +33,6 @@ jobs:
           python-version: '3.12'
       - name: Tests
         run: python -m unittest discover -s tests -v
-      - name: Verify ITDog scheduled publication
-        if: github.event_name == 'schedule'
-        run: python src/check_itdog.py
       - name: Install official sing-box
         run: python src/install_sing_box.py
       - name: Verify AWGM DNS matching
@@ -47,8 +44,17 @@ jobs:
         run: python src/build.py
         env:
           SING_BOX: .tools/sing-box
+          CHECK_ITDOG_PUBLICATION: ${{ github.event_name == 'schedule' && '1' || '0' }}
       - name: Verify service coverage
         run: python src/check_service_coverage.py
+      - name: Verify actual rule matching (upstream and AWGM)
+        run: |
+          python tests/routing_probe.py .tools-dns/sing-box
+          for version in 41 42; do
+            python src/install_sing_box.py --awgm-version "$version" --directory ".tools-awgm-$version"
+            python tests/routing_probe.py ".tools-awgm-$version/sing-box"
+            python tests/dns_probe.py ".tools-awgm-$version/sing-box" 127.0.0.1
+          done
       - name: Build report
         run: cat dist/report.md >> "$GITHUB_STEP_SUMMARY"
       - name: Publish verified output

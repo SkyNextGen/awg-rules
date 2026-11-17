@@ -108,6 +108,13 @@ class CustomDiscordVoice(unittest.TestCase):
                 with self.subTest(removed=key), self.assertRaises(ValueError):
                     b.custom_discord_voice(path)
 
+    def test_voice_port_validation_is_shared_and_keeps_bands_bounded(self):
+        for ranges in (['19200:19400'], ['19000:20000', '50000:65535']):
+            b.verify_voice_ports(ranges)
+        for ranges in ([], ['1:65535'], ['443:443'], ['20000:50000'], ['50099:50000'], [True]):
+            with self.subTest(ranges=ranges), self.assertRaises(ValueError):
+                b.verify_voice_ports(ranges)
+
     def test_ndms_does_not_flatten_shared_voice_prefixes(self):
         rules = b.custom_discord_voice(self.path)
         payload = {'version': 1, 'rules': [{'domain_suffix': ['discord.com']}] + rules}
@@ -117,6 +124,18 @@ class CustomDiscordVoice(unittest.TestCase):
 
 
 class UpstreamReadiness(unittest.TestCase):
+    def test_previous_week_success_survives_a_failed_new_publication(self):
+        now = datetime(2026, 11, 17, 2, 57, tzinfo=timezone.utc)
+        previous = [dict(path='.github/workflows/' + name, event='schedule', head_branch='main',
+                         created_at='2026-11-09T17:18:16Z', updated_at='2026-11-09T17:18:56Z',
+                         status='completed', conclusion='success')
+                    for name in ('create-lists.yml', 'create-subnets.yml')]
+        failed = dict(previous[1], created_at='2026-11-16T17:02:00Z',
+                      updated_at='2026-11-16T17:03:00Z', conclusion='failure')
+        self.assertEqual(len(verify(previous + [failed], now)), 2)
+        with self.assertRaises(ValueError):
+            verify(previous + [failed], datetime(2026, 11, 18, tzinfo=timezone.utc))
+
     def test_fresh_success_both_workflows_required(self):
         now = datetime(2026, 10, 5, 20, 17, tzinfo=timezone.utc)
         runs = [dict(path='.github/workflows/' + p, event='schedule', head_branch='main',
@@ -125,7 +144,7 @@ class UpstreamReadiness(unittest.TestCase):
                 for p in ('create-lists.yml', 'create-subnets.yml')]
         verify(runs, now)
         for field, value in (('conclusion', 'failure'), ('status', 'in_progress'),
-                             ('created_at', '2026-09-28T17:18:16Z'),
+                             ('created_at', '2026-09-21T17:18:16Z'),
                              ('updated_at', '2026-10-05T20:16:56Z')):
             changed = copy.deepcopy(runs)
             changed[1][field] = value

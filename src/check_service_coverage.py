@@ -1,6 +1,7 @@
 """Post-build coverage checks against fresh sources and the generated service sets."""
 import ipaddress
 import json
+from functools import lru_cache
 from pathlib import Path
 from routing_rules import MATCH_KEYS, scoped_rules, unrestricted
 from build import verify_ndms, custom_discord_voice
@@ -27,16 +28,22 @@ def covered_suffix(value, suffixes):
     return any(value == suffix or value.endswith('.' + suffix) for suffix in suffixes)
 
 
+@lru_cache(maxsize=32)
+def parsed_networks(prefixes):
+    return tuple(map(ipaddress.ip_network, prefixes))
+
+
 def covers_network(value, prefixes):
     wanted = ipaddress.ip_network(value)
     return any(wanted.version == net.version and wanted.subnet_of(net)
-               for net in map(ipaddress.ip_network, prefixes))
+               for net in parsed_networks(tuple(prefixes)))
 
 
-def verify(root=ROOT):
-    payload = json.loads((root / 'dist/routing.json').read_text(encoding='utf-8'))
-    verify_ndms((root / 'dist/routing.txt').read_text(encoding='utf-8'), payload)
-    snapshot = json.loads((root / 'dist/source-snapshot.json').read_text(encoding='utf-8'))
+def verify(root=ROOT, dist=None):
+    dist = dist if dist is not None else root / 'dist'
+    payload = json.loads((dist / 'routing.json').read_text(encoding='utf-8'))
+    verify_ndms((dist / 'routing.txt').read_text(encoding='utf-8'), payload)
+    snapshot = json.loads((dist / 'source-snapshot.json').read_text(encoding='utf-8'))
     base = unrestricted(payload)
     for host in HOSTS:
         if not covered_suffix(host, base['domain_suffix']):
@@ -56,7 +63,7 @@ def verify(root=ROOT):
     if overlaps:
         print('Custom domains now covered by upstream: ' + ', '.join(sorted(overlaps)))
     for service in ('telegram', 'whatsapp', 'discord'):
-        data = json.loads((root / ('dist/custom/' + service + '.json')).read_text(encoding='utf-8'))
+        data = json.loads((dist / ('custom/' + service + '.json')).read_text(encoding='utf-8'))
         if not data['rules']:
             raise ValueError('Empty generated service set: ' + service)
         for rule in data['rules']:
@@ -75,29 +82,29 @@ def verify(root=ROOT):
     if 'Discord:cdn-dns:https' in snapshot:
         prefixes = snapshot['Discord:cdn-dns:https']
         verify_https(payload, prefixes)
-        discord = json.loads((root / 'dist/custom/discord.json').read_text(encoding='utf-8'))
+        discord = json.loads((dist / 'custom/discord.json').read_text(encoding='utf-8'))
         verify_https(discord, prefixes)
     cfg = json.loads((root / 'config/sources.json').read_text(encoding='utf-8'))
     custom_voice = cfg['discord_voice'].get('custom_rules_file')
     if custom_voice:
-        discord = json.loads((root / 'dist/custom/discord.json').read_text(encoding='utf-8'))
+        discord = json.loads((dist / 'custom/discord.json').read_text(encoding='utf-8'))
         for rule in custom_discord_voice(root / custom_voice):
             if rule not in scoped_rules(payload) or rule not in scoped_rules(discord):
                 raise ValueError('Custom Discord UDP coverage missing or constraints changed')
-    telegram = json.loads((root / 'dist/custom/telegram.json').read_text(encoding='utf-8'))
+    telegram = unrestricted(json.loads((dist / 'custom/telegram.json').read_text(encoding='utf-8')))
     for prefix in snapshot['telegram:official-cidr']:
-        if not covers_network(prefix, unrestricted(telegram)['ip_cidr']):
+        if not covers_network(prefix, telegram['ip_cidr']):
             raise ValueError('Official Telegram prefix missing from generated source: ' + prefix)
-    whatsapp = unrestricted(json.loads((root / 'dist/custom/whatsapp.json').read_text(encoding='utf-8')))
+    whatsapp = unrestricted(json.loads((dist / 'custom/whatsapp.json').read_text(encoding='utf-8')))
     for name, prefixes in snapshot.items():
         if name.startswith('Meta:') or name == 'WhatsApp:cdn-dns':
             for prefix in prefixes:
                 if not covers_network(prefix, whatsapp['ip_cidr']):
                     raise ValueError('Meta/CDN IP missing from WhatsApp source: ' + prefix)
-    dns_file = root / 'dist/whatsapp-dns.json'
+    dns_file = dist / 'whatsapp-dns.json'
     if 'WhatsApp:cdn-dns' in snapshot:
         dns = json.loads(dns_file.read_text(encoding='utf-8'))
-        report = json.loads((root / 'dist/report.json').read_text(encoding='utf-8'))
+        report = json.loads((dist / 'report.json').read_text(encoding='utf-8'))
         if dns['summary'] != report['whatsapp_dns']:
             raise ValueError('WhatsApp DNS snapshot and report differ')
         for host, row in dns['observations'].items():
