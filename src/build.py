@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import sys
+import tempfile
 import time
 from datetime import datetime, timezone
 from urllib.request import Request, urlopen
@@ -37,9 +38,9 @@ def fetch(url):
         try:
             with urlopen(Request(url, headers={'User-Agent': UA}), timeout=60) as response:
                 return response.read().decode('utf-8')
-        except Exception:
+        except OSError as error:
             if attempt == 2:
-                raise RuntimeError('Source fetch failed: ' + url) from None
+                raise RuntimeError(f'Source fetch failed: {url}: {error}') from error
             time.sleep(2 ** attempt)
 
 
@@ -61,7 +62,8 @@ def domain(value, allow_tld=False):
 
 def network(value):
     n = ipaddress.ip_network(value, strict=True)
-    if n.prefixlen < (8 if n.version == 4 else 19) or not n.network_address.is_global or not n.broadcast_address.is_global:
+    if (n.prefixlen < (8 if n.version == 4 else 19) or n.is_multicast
+            or not n.network_address.is_global or not n.broadcast_address.is_global):
         raise ValueError('Unsafe network: ' + value)
     return n
 
@@ -69,6 +71,17 @@ def network(value):
 def collapse(values):
     nets = [network(x) for x in values]
     return [str(n) for v in (4, 6) for n in ipaddress.collapse_addresses(n for n in nets if n.version == v)]
+
+
+def verify_ip_coverage(current, previous, minimum, maximum):
+    """Count addresses, not CIDR records: aggregation must not hide expansion."""
+    current = list(map(network, collapse(current)))
+    previous = list(map(network, collapse(previous)))
+    for version in (4, 6):
+        before = sum(n.num_addresses for n in previous if n.version == version)
+        after = sum(n.num_addresses for n in current if n.version == version)
+        if before and not minimum <= after / before <= maximum:
+            raise ValueError(f'IPv{version} address coverage changed beyond safety threshold')
 
 
 def canonical(obj):
@@ -153,6 +166,18 @@ def service_prefixes(source):
     return prefixes
 
 
+def verify_voice_ports(ranges):
+    """Allow reviewed Discord voice bands, with configuration choosing subsets."""
+    if not isinstance(ranges, list) or not ranges:
+        raise ValueError('Missing Discord ports')
+    for value in ranges:
+        if not isinstance(value, str) or not re.fullmatch(r'\d+:\d+', value):
+            raise ValueError('Invalid Discord port range')
+        lo, hi = map(int, value.split(':'))
+        if not any(start <= lo <= hi <= end for start, end in ((19000, 20000), (50000, 65535))):
+            raise ValueError('Discord ports outside reviewed voice bands')
+
+
 def discord_voice(cfg):
     """Preserve ITDog's network AND CIDR AND destination-port semantics."""
     source = cfg['rule_source']
@@ -176,14 +201,7 @@ def discord_voice(cfg):
         if not isinstance(name, ast.Name) or name.id not in {'discord_subnets', 'discord_cf_subnets'}:
             raise ValueError('Unexpected Discord subnet source')
         ranges = ast.literal_eval(values['port_range'])
-        if not isinstance(ranges, list) or not ranges:
-            raise ValueError('Missing Discord ports')
-        for value in ranges:
-            if not re.fullmatch(r'\d+:\d+', value):
-                raise ValueError('Invalid Discord port range')
-            lo, hi = map(int, value.split(':'))
-            if not 1 <= lo <= hi <= 65535 or (lo == 1 and hi == 65535):
-                raise ValueError('Unsafe Discord ports')
+        verify_voice_ports(ranges)
         ports[name.id] = ranges
     if set(ports) != {'discord_subnets', 'discord_cf_subnets'}:
         raise ValueError('Missing Discord scoped upstream rules')
@@ -213,9 +231,7 @@ def custom_discord_voice(path):
     for rule in payload['rules']:
         if set(rule) != {'network', 'ip_cidr', 'port_range'} or rule['network'] != ['udp']:
             raise ValueError('Custom Discord voice requires UDP, CIDRs and ports')
-        if (not isinstance(rule['port_range'], list)
-                or sorted(rule['port_range']) != ['19200:19400', '50000:50099']):
-            raise ValueError('Custom Discord voice ports changed; review required')
+        verify_voice_ports(rule['port_range'])
         prefixes = rule['ip_cidr']
         if not isinstance(prefixes, list) or not 1 <= len(prefixes) <= 64:
             raise ValueError('Invalid custom Discord voice prefixes')
@@ -282,6 +298,8 @@ def bgp(asns, previous, cfg, report):
         old = previous.get(str(asn), {}).get('prefixes', [])
         if old and not cfg['min_previous_ratio'] <= len(prefixes) / len(old) <= cfg['max_previous_ratio']:
             raise ValueError('BGP size changed beyond safety threshold')
+        if old:
+            verify_ip_coverage(prefixes, old, cfg['min_previous_ratio'], cfg['max_previous_ratio'])
         result[str(asn)] = {'prefixes': prefixes, 'source': source, 'fetched_at': timestamp}
     for asn in asns:
         try:
@@ -290,7 +308,8 @@ def bgp(asns, previous, cfg, report):
             if data['status'] != 'ok':
                 raise ValueError('RIPEstat status')
             accept(asn, [x['prefix'] for x in data['data']['prefixes']], 'RIPEstat', now.isoformat())
-        except Exception:
+        except (RuntimeError, OSError, ValueError, KeyError) as error:
+            report['warnings'].append(f'AS{asn}: RIPEstat unavailable/rejected: {error}')
             missing.append(asn)
     if missing:
         try:
@@ -306,10 +325,10 @@ def bgp(asns, previous, cfg, report):
                 try:
                     accept(asn, found[asn], 'bgp.tools', now.isoformat())
                     report['warnings'].append(f'AS{asn}: bgp.tools fallback')
-                except Exception:
-                    pass
-        except Exception:
-            pass
+                except (ValueError, KeyError) as error:
+                    report['warnings'].append(f'AS{asn}: bgp.tools rejected: {error}')
+        except (OSError, RuntimeError, ValueError, KeyError) as error:
+            report['warnings'].append(f'bgp.tools unavailable/rejected: {error}')
     for asn in missing:
         if str(asn) in result:
             continue
@@ -323,10 +342,51 @@ def bgp(asns, previous, cfg, report):
 
 
 def build():
+    with tempfile.TemporaryDirectory(prefix='.staging-', dir=ROOT) as directory:
+        build_staged(Path(directory))
+
+
+def publish(staging, dist):
+    """Prepare a complete replacement and restore the old directory on failure."""
+    ready = staging / 'ready'
+    # Outside TemporaryDirectory: even failed rollback must retain the old data.
+    previous = staging.with_name(staging.name + '-previous')
+    if dist.exists():
+        shutil.copytree(dist, ready)
+    else:
+        ready.mkdir()
+    for source in list(staging.iterdir()):
+        if source.name in {'ready', 'roundtrip.json'}:
+            continue
+        target = ready / source.name
+        if source.is_dir():
+            shutil.copytree(source, target, dirs_exist_ok=True)
+        else:
+            shutil.copyfile(source, target)
+    had_previous = dist.exists()
+    if had_previous:
+        dist.rename(previous)
+    try:
+        ready.rename(dist)
+    except OSError:
+        if had_previous:
+            try:
+                previous.rename(dist)
+            except OSError as error:
+                raise RuntimeError(f'Publication rollback failed; previous output retained at {previous}') from error
+        raise
+    if had_previous:
+        shutil.rmtree(previous, ignore_errors=True)
+
+
+def build_staged(staging):
     cfg = json.loads((ROOT / 'config/sources.json').read_text())
-    dist, staging = ROOT / 'dist', ROOT / '.staging'
-    staging.mkdir(exist_ok=True)
+    dist = ROOT / 'dist'
     report = {'built_at': datetime.now(timezone.utc).isoformat(), 'warnings': [], 'sources': {}}
+    if os.environ.get('CHECK_ITDOG_PUBLICATION') == '1':
+        from check_itdog import verify
+        runs = json.loads(fetch('https://api.github.com/repos/itdoginfo/allow-domains/actions/runs?per_page=100'))
+        report['warnings'].extend(verify(runs['workflow_runs'], datetime.now(timezone.utc)))
     if os.environ.get('SOURCE_CACHE'):
         report['warnings'].append('Local review build from explicitly fetched SOURCE_CACHE; not a live Python HTTP build')
     source_records = {}
@@ -382,7 +442,12 @@ def build():
         source_records['BGP:AS' + asn] = row['prefixes']
         report['sources']['BGP:AS' + asn] = len(row['prefixes'])
     old = json.loads((dist / 'report.json').read_text(encoding='utf-8')) if (dist / 'report.json').exists() else {}
-    meta_feeds = collect_feeds(cfg.get('meta_ip_sources', []), fetch, network, collapse)
+    meta_path = dist / 'meta-feed-snapshot.json'
+    meta_snapshot = json.loads(meta_path.read_text()) if meta_path.exists() else {}
+    meta_feeds = collect_feeds(cfg.get('meta_ip_sources', []), fetch, network, collapse,
+                               snapshot=meta_snapshot, warnings=report['warnings'],
+                               max_age_days=cfg['max_snapshot_age_days'])
+    (staging / 'meta-feed-snapshot.json').write_text(json.dumps(meta_snapshot, indent=2) + '\n')
     meta_ips = []
     for name, values in meta_feeds.items():
         source_name = 'Meta:' + name
@@ -448,6 +513,9 @@ def build():
             max_ratio = cfg['max_new_ip_source_expansion_ratio']
         if old.get(key) and not cfg['min_previous_ratio'] <= count / old[key] <= max_ratio:
             raise ValueError(key + ' changed beyond safety threshold')
+    if (dist / 'routing.json').exists():
+        previous_ips = unrestricted(json.loads((dist / 'routing.json').read_text()))['ip_cidr']
+        verify_ip_coverage(prefixes, previous_ips, cfg['min_previous_ratio'], cfg['max_previous_ratio'])
     scoped = discord_voice(cfg['discord_voice'])
     source_records['ITDog:discord:scoped-udp'] = [json.dumps(r, sort_keys=True) for r in scoped]
     report['sources']['ITDog:discord:scoped-udp'] = len(scoped)
@@ -499,12 +567,9 @@ def build():
         (custom_stage / (service + '.json')).write_text(json.dumps({'version': 1, 'rules': service_rules}, indent=2) + '\n', encoding='utf-8')
     (staging / 'bgp-snapshot.json').write_text(json.dumps(snapshot, indent=2) + '\n')
     write_report(report, payload, source_records, staging, dist, old)
-    dist.mkdir(exist_ok=True)
-    for f in ('routing.json', 'routing.srs', 'routing.txt', 'report.json', 'report.md', 'bgp-snapshot.json', 'source-snapshot.json', 'history.json', 'tg_message.txt'):
-        shutil.copyfile(staging / f, dist / f)
-    if dns_observations is not None:
-        shutil.copyfile(staging / 'whatsapp-dns.json', dist / 'whatsapp-dns.json')
-    shutil.copytree(custom_stage, dist / 'custom', dirs_exist_ok=True)
+    from check_service_coverage import verify
+    verify(ROOT, staging)
+    publish(staging, dist)
     print(f'Build OK: {total} domains, {len(prefixes)} prefixes')
 
 
@@ -512,7 +577,7 @@ if __name__ == '__main__':
     try:
         build()
     except Exception as error:
-        print('Build failed; published dist unchanged: ' + str(error), file=sys.stderr)
+        print('Build failed: ' + str(error), file=sys.stderr)
         sys.exit(1)
 
 

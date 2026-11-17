@@ -18,22 +18,25 @@ def download(url):
         return r.read()
 
 
+def verified_asset(repository, tag, name):
+    release = json.loads(download(f'https://api.github.com/repos/{repository}/releases/tags/{tag}'))
+    asset = next(a for a in release['assets'] if a['name'] == name)
+    digest = asset.get('digest', '')
+    if not digest.startswith('sha256:'):
+        raise ValueError('Release lacks SHA256 digest')
+    data = download(asset['browser_download_url'])
+    if hashlib.sha256(data).hexdigest() != digest.split(':', 1)[1]:
+        raise ValueError('Release checksum mismatch')
+    return data
+
+
 def install(version=None, target=None):
     version = version or json.loads((ROOT / 'config/sources.json').read_text())['sing_box_version']
     system = {'Windows': 'windows', 'Linux': 'linux'}[platform.system()]
     arch = {'AMD64': 'amd64', 'x86_64': 'amd64', 'aarch64': 'arm64', 'ARM64': 'arm64'}[platform.machine()]
     name = f'sing-box-{version}-{system}-{arch}'
     archive = name + ('.zip' if system == 'windows' else '.tar.gz')
-    base = f'https://github.com/SagerNet/sing-box/releases/download/v{version}/'
-    release = json.loads(download(f'https://api.github.com/repos/SagerNet/sing-box/releases/tags/v{version}'))
-    asset = next(a for a in release['assets'] if a['name'] == archive)
-    digest = asset.get('digest', '')
-    if not digest.startswith('sha256:'):
-        raise ValueError('Official release lacks SHA256 digest')
-    expected = digest.split(':', 1)[1]
-    data = download(base + archive)
-    if hashlib.sha256(data).hexdigest() != expected:
-        raise ValueError('Official release checksum mismatch')
+    data = verified_asset('SagerNet/sing-box', 'v' + version, archive)
     target = Path(target) if target else ROOT / '.tools'
     target.mkdir(exist_ok=True)
     binary = 'sing-box.exe' if system == 'windows' else 'sing-box'
@@ -51,10 +54,26 @@ def install(version=None, target=None):
     print(path)
 
 
+def install_awgm(version, target):
+    """Host-only compatibility probe; never installs anything on the router."""
+    if platform.system() != 'Linux' or platform.machine() != 'x86_64':
+        raise ValueError('AWGM compatibility probes require Linux amd64')
+    data = verified_asset('hoaxisr/awgm-box', version, f'awgm-box-{version}-linux-amd64')
+    target.mkdir(exist_ok=True)
+    path = target / 'sing-box'
+    path.write_bytes(data)
+    path.chmod(0o755)
+    print(path)
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--version')
     parser.add_argument('--directory', type=Path)
+    parser.add_argument('--awgm-version')
     args = parser.parse_args()
-    install(args.version, args.directory)
+    if args.awgm_version:
+        install_awgm(args.awgm_version, args.directory or ROOT / '.tools-awgm')
+    else:
+        install(args.version, args.directory)
 

@@ -1,6 +1,6 @@
 """Fresh Meta feeds and bounded WhatsApp DNS inventory; no stale DNS fallback."""
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import csv
 import io
 import ipaddress
@@ -91,14 +91,42 @@ def feed_prefixes(text, source, network, collapse, now=None):
     return collapse(values)
 
 
-def collect_feeds(cfg, fetch, network, collapse):
+def collect_feeds(cfg, fetch, network, collapse, snapshot=None, warnings=None, max_age_days=8):
+    """Reuse validated CIDRs on transport failures, never on invalid live data."""
     result = {}
+    snapshot = snapshot if snapshot is not None else {}
+    warnings = warnings if warnings is not None else []
+    now = datetime.now(timezone.utc)
     for source in cfg:
         if not source['url'].startswith('https://'):
             raise ValueError('Meta feeds require HTTPS')
         if source['name'] in result:
             raise ValueError('Duplicate Meta feed name')
-        result[source['name']] = feed_prefixes(fetch(source['url']), source, network, collapse)
+        name = source['name']
+        try:
+            text = fetch(source['url'])
+        except (RuntimeError, OSError) as error:
+            old = snapshot.get(name, {})
+            fetched = datetime.fromisoformat(old['fetched_at']) if old else now
+            expires = datetime.fromisoformat(old['expires_at']) if old else now
+            if (not old or old.get('url') != source['url'] or not fetched <= now < expires
+                    or now - fetched > timedelta(days=max_age_days)):
+                raise ValueError('Meta feed has no fresh validated snapshot: ' + name) from error
+            values = collapse(old['prefixes'])
+            if (not values or len(values) > source['max_entries']
+                    or {network(p).version for p in values} != set(source['families'])):
+                raise ValueError('Invalid Meta feed snapshot: ' + name)
+            result[name] = values
+            warnings.append(f'Meta:{name}: snapshot from {old["fetched_at"]}; {error}')
+            continue
+        result[name] = feed_prefixes(text, source, network, collapse, now)
+        expires = now + timedelta(days=max_age_days)
+        if source['format'] == 'geofeed':
+            date = re.search(r'^# Publication date:\s*(.+)$', text, re.M)
+            published = datetime.strptime(date[1].strip(), '%a %b %d %Y').replace(tzinfo=timezone.utc)
+            expires = min(expires, published + timedelta(days=source['max_age_days']))
+        snapshot[name] = {'url': source['url'], 'fetched_at': now.isoformat(),
+                          'expires_at': expires.isoformat(), 'prefixes': result[name]}
     return result
 
 
@@ -148,26 +176,32 @@ def dns_answer(payload, host, kind):
     return {'status': status, 'ips': sorted(ips), 'ttl': min(ttls) if ttls else None}
 
 
-def query_dns(host, kind, endpoint):
+def query_dns(host, kind, endpoint, deadline=None):
     error = None
     for resolver in (endpoint, 'https://cloudflare-dns.com/dns-query'):
         url = resolver + '?' + urlencode({'name': host, 'type': kind})
         for attempt in range(3):
+            remaining = deadline - time.monotonic() if deadline is not None else 10
+            if remaining <= 0:
+                raise TemporaryDNSFailure('DNS inventory deadline exceeded')
             try:
                 request = Request(url, headers={'User-Agent': 'awg-rules DNS inventory',
                                                 'Accept': 'application/dns-json'})
-                with DNS_OPENER.open(request, timeout=10) as response:
+                with DNS_OPENER.open(request, timeout=min(10, remaining)) as response:
                     result = dns_answer(json.load(response), host, kind)
                     result['resolver'] = resolver
                     return result
             except (OSError, json.JSONDecodeError, TemporaryDNSFailure) as exc:
                 error = exc
                 if attempt < 2:
-                    time.sleep(0.5 * (attempt + 1))
-    raise TemporaryDNSFailure('WhatsApp DNS failed: ' + host + ' / ' + kind + ': ' + str(error))
+                    delay = 0.5 * (attempt + 1)
+                    if deadline is not None:
+                        delay = min(delay, max(0, deadline - time.monotonic()))
+                    time.sleep(delay)
+    raise TemporaryDNSFailure('DNS failed: ' + host + ' / ' + kind + ': ' + str(error))
 
 
-def collect_dns(cfg, fetch, domain, collapse, previous=None, query=query_dns):
+def collect_dns(cfg, fetch, domain, collapse, previous=None, query=None):
     if cfg['resolver'] != 'https://dns.google/resolve':
         raise ValueError('Unreviewed DNS resolver')
     # Domain validation happens before filtering, so malformed source lines fail closed.
@@ -179,24 +213,25 @@ def collect_dns(cfg, fetch, domain, collapse, previous=None, query=query_dns):
     observations = {host: {} for host in hosts}
     tasks = [(host, kind) for host in hosts for kind in ('A', 'AAAA')]
     failures = 0
-    with ThreadPoolExecutor(max_workers=cfg['workers']) as executor:
-        futures = {executor.submit(query, host, kind, cfg['resolver']): (host, kind)
+    deadline = time.monotonic() + cfg['deadline_seconds']
+    executor = ThreadPoolExecutor(max_workers=cfg['workers'])
+    try:
+        futures = {executor.submit(query or query_dns, host, kind, cfg['resolver'],
+                                   **({'deadline': deadline} if query is None else {})): (host, kind)
                    for host, kind in tasks}
-        try:
-            for future in as_completed(futures, timeout=cfg['deadline_seconds']):
-                host, kind = futures[future]
-                try:
-                    observations[host][kind] = future.result()
-                except TemporaryDNSFailure as exc:
-                    failures += 1
-                    if failures > cfg.get('max_failed_questions', 0) or failures / len(tasks) > cfg.get('max_failed_ratio', 0):
-                        raise RuntimeError('WhatsApp DNS failures exceed allowed threshold') from exc
-                    observations[host][kind] = {'status': None, 'ips': [], 'ttl': None,
-                                               'error': str(exc), 'resolver': None}
-        except BaseException:
-            for future in futures:
-                future.cancel()
-            raise
+        for future in as_completed(futures, timeout=max(0, deadline - time.monotonic())):
+            host, kind = futures[future]
+            try:
+                observations[host][kind] = future.result()
+            except TemporaryDNSFailure as exc:
+                failures += 1
+                if failures > cfg.get('max_failed_questions', 0) or failures / len(tasks) > cfg.get('max_failed_ratio', 0):
+                    raise RuntimeError('WhatsApp DNS failures exceed allowed threshold') from exc
+                observations[host][kind] = {'status': None, 'ips': [], 'ttl': None,
+                                           'error': str(exc), 'resolver': None}
+    finally:
+        # Do not wait for running requests after collection has failed/timed out.
+        executor.shutdown(wait=False, cancel_futures=True)
     ips = {ip for row in observations.values() for family in row.values() for ip in family['ips']}
     # Run the same strict network validator used by the rest of the build.
     prefixes = collapse(ip + '/' + str(ipaddress.ip_address(ip).max_prefixlen) for ip in ips)

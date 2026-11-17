@@ -1,5 +1,7 @@
 .tools/
+.tools-*/
 .staging/
+.staging-*/
 __pycache__/
 *.pyc
 .env
