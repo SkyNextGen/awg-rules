@@ -1,7 +1,8 @@
 """Bounded HTTPS fallback for Discord CDN when DNS/SNI is unavailable."""
 import ipaddress
 from datetime import datetime, timezone
-from meta_sources import query_dns
+from functools import partial
+from meta_sources import DNSResolverState, query_dns
 
 CDN_HOSTS = frozenset((
     'cdn.discordapp.com', 'media.discordapp.net',
@@ -11,7 +12,7 @@ CDN_HOSTS = frozenset((
 
 def collect_https(cfg, domain, query=None):
     """Refresh exact public hosts; never widen DNS answers to shared CDN subnets."""
-    query = query or query_dns
+    query = query or partial(query_dns, state=DNSResolverState())
     hosts = [domain(value) for value in cfg['hosts']]
     if not hosts or len(hosts) != len(set(hosts)) or not set(hosts) <= CDN_HOSTS:
         raise ValueError('Unreviewed or duplicate Discord CDN host')

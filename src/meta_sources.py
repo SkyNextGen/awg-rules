@@ -9,6 +9,7 @@ import json
 import re
 import socket
 import ssl
+from threading import Lock
 import time
 from urllib.parse import urlencode
 from urllib.request import Request, HTTPSHandler, build_opener
@@ -54,6 +55,21 @@ DNS_OPENER = build_opener(IPv4HTTPSHandler(context=ssl.create_default_context())
 
 class TemporaryDNSFailure(ValueError):
     pass
+
+
+class DNSResolverState:
+    """Share a short primary-transport backoff within one inventory only."""
+    def __init__(self):
+        self.lock = Lock()
+        self.fallback_until = 0
+
+    def order(self, primary, fallback):
+        with self.lock:
+            return (fallback, primary) if time.monotonic() < self.fallback_until else (primary, fallback)
+
+    def primary_failed(self):
+        with self.lock:
+            self.fallback_until = time.monotonic() + 60
 
 
 def matches(host, roots=APPROVED_ROOTS):
@@ -176,29 +192,40 @@ def dns_answer(payload, host, kind):
     return {'status': status, 'ips': sorted(ips), 'ttl': min(ttls) if ttls else None}
 
 
-def query_dns(host, kind, endpoint, deadline=None):
-    error = None
-    for resolver in (endpoint, 'https://cloudflare-dns.com/dns-query'):
-        url = resolver + '?' + urlencode({'name': host, 'type': kind})
-        for attempt in range(3):
+def query_dns(host, kind, endpoint, deadline=None, state=None):
+    errors, empty_answer = {}, None
+    fallback = 'https://cloudflare-dns.com/dns-query'
+    resolvers = state.order(endpoint, fallback) if state is not None else (endpoint, fallback)
+    for attempt in range(3):
+        for resolver in resolvers:
             remaining = deadline - time.monotonic() if deadline is not None else 10
             if remaining <= 0:
                 raise TemporaryDNSFailure('DNS inventory deadline exceeded')
+            timeout = 3 if resolver == endpoint and attempt == 0 else 10
             try:
+                url = resolver + '?' + urlencode({'name': host, 'type': kind})
                 request = Request(url, headers={'User-Agent': 'awg-rules DNS inventory',
                                                 'Accept': 'application/dns-json'})
-                with DNS_OPENER.open(request, timeout=min(10, remaining)) as response:
+                with DNS_OPENER.open(request, timeout=min(timeout, remaining)) as response:
                     result = dns_answer(json.load(response), host, kind)
                     result['resolver'] = resolver
-                    return result
+                    if (result['ips'] or resolver == endpoint
+                            or state is not None and state.order(endpoint, fallback)[0] == fallback):
+                        return result
+                    # Retry an empty fallback unless primary transport is in backoff.
+                    empty_answer = result
             except (OSError, json.JSONDecodeError, TemporaryDNSFailure) as exc:
-                error = exc
-                if attempt < 2:
-                    delay = 0.5 * (attempt + 1)
-                    if deadline is not None:
-                        delay = min(delay, max(0, deadline - time.monotonic()))
-                    time.sleep(delay)
-    raise TemporaryDNSFailure('DNS failed: ' + host + ' / ' + kind + ': ' + str(error))
+                errors[resolver] = str(exc)
+                if resolver == endpoint and state is not None and isinstance(exc, OSError):
+                    state.primary_failed()
+        if attempt < 2:
+            delay = 0.5 * (attempt + 1)
+            if deadline is not None:
+                delay = min(delay, max(0, deadline - time.monotonic()))
+            time.sleep(delay)
+    if empty_answer is not None:
+        return empty_answer
+    raise TemporaryDNSFailure('DNS failed: ' + host + ' / ' + kind + ': ' + str(errors))
 
 
 def collect_dns(cfg, fetch, domain, collapse, previous=None, query=None):
@@ -214,10 +241,11 @@ def collect_dns(cfg, fetch, domain, collapse, previous=None, query=None):
     tasks = [(host, kind) for host in hosts for kind in ('A', 'AAAA')]
     failures = 0
     deadline = time.monotonic() + cfg['deadline_seconds']
+    state = DNSResolverState()
     executor = ThreadPoolExecutor(max_workers=cfg['workers'])
     try:
         futures = {executor.submit(query or query_dns, host, kind, cfg['resolver'],
-                                   **({'deadline': deadline} if query is None else {})): (host, kind)
+                                   **({'deadline': deadline, 'state': state} if query is None else {})): (host, kind)
                    for host, kind in tasks}
         for future in as_completed(futures, timeout=max(0, deadline - time.monotonic())):
             host, kind = futures[future]
