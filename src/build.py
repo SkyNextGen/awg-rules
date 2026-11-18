@@ -2,6 +2,7 @@
 import hashlib
 import ipaddress
 import json
+import logging
 import os
 from pathlib import Path
 import re
@@ -288,6 +289,8 @@ class V2Fly:
 
 def bgp(asns, previous, cfg, report):
     result, missing = {}, []
+    primary_issues = {}
+    backup_issues = {}
     now = datetime.now(timezone.utc)
     def accept(asn, prefixes, source, timestamp):
         prefixes = collapse(prefixes)
@@ -310,7 +313,9 @@ def bgp(asns, previous, cfg, report):
                 raise ValueError('RIPEstat status')
             accept(asn, [x['prefix'] for x in data['data']['prefixes']], 'RIPEstat', now.isoformat())
         except (RuntimeError, OSError, ValueError, KeyError) as error:
-            report['warnings'].append(f'AS{asn}: RIPEstat unavailable/rejected: {error}')
+            logging.warning('AS%s: RIPEstat: %s', asn, error)
+            primary_issues[asn] = ('RIPEstat недоступен' if isinstance(error, (OSError, RuntimeError))
+                                   else 'данные RIPEstat не прошли проверку')
             missing.append(asn)
     if missing:
         try:
@@ -325,11 +330,15 @@ def bgp(asns, previous, cfg, report):
             for asn in missing:
                 try:
                     accept(asn, found[asn], 'bgp.tools', now.isoformat())
-                    report['warnings'].append(f'AS{asn}: bgp.tools fallback')
+                    report['warnings'].append(f'AS{asn}: {primary_issues[asn]}. Взяли свежие IP-подсети из bgp.tools.')
                 except (ValueError, KeyError) as error:
-                    report['warnings'].append(f'AS{asn}: bgp.tools rejected: {error}')
+                    logging.warning('AS%s: bgp.tools: %s', asn, error)
+                    backup_issues[asn] = 'данные bgp.tools не прошли проверку'
         except (OSError, RuntimeError, ValueError, KeyError) as error:
-            report['warnings'].append(f'bgp.tools unavailable/rejected: {error}')
+            logging.warning('bgp.tools: %s', error)
+            reason = ('bgp.tools недоступен' if isinstance(error, (OSError, RuntimeError))
+                      else 'данные bgp.tools не прошли проверку')
+            backup_issues.update(dict.fromkeys(missing, reason))
     for asn in missing:
         if str(asn) in result:
             continue
@@ -338,7 +347,10 @@ def bgp(asns, previous, cfg, report):
         if age < 0 or age > cfg['max_snapshot_age_days']:
             raise ValueError(f'AS{asn}: no valid live data or fresh snapshot')
         accept(asn, old['prefixes'], 'snapshot', old['fetched_at'])
-        report['warnings'].append(f'AS{asn}: snapshot age {age:.1f} days')
+        age_text = f'{age:.1f}'.replace('.', ',')
+        report['warnings'].append(
+            f'AS{asn}: {primary_issues[asn]}. Резервный источник: {backup_issues[asn]}. '
+            f'Взяли проверенную копию. Возраст в днях: {age_text}.')
     return result
 
 
@@ -387,7 +399,7 @@ def build_staged(staging):
     from check_itdog import check_publication
     report['warnings'].extend(check_publication(fetch, datetime.now(timezone.utc)))
     if os.environ.get('SOURCE_CACHE'):
-        report['warnings'].append('Local review build from explicitly fetched SOURCE_CACHE; not a live Python HTTP build')
+        report['warnings'].append('Для локальной проверки часть источников взяли из сохранённой копии вместо загрузки из сети.')
     source_records = {}
     itdog = {domain(x) for x in lines(fetch(cfg['itdog_url']))}
     if len(itdog) < cfg['min_itdog_domains']:
@@ -460,7 +472,9 @@ def build_staged(staging):
             dns_cfg, fetch, domain, collapse, old.get('whatsapp_dns'))
         if report['whatsapp_dns']['failed_questions']:
             dns = report['whatsapp_dns']
-            report['warnings'].append(f"WhatsApp DNS: недоступны {dns['failed_questions']}/{dns['questions']} запросов; их IP не добавлены. Подробности: whatsapp-dns.json")
+            report['warnings'].append(
+                f"WhatsApp: без ответа {dns['failed_questions']} из {dns['questions']} DNS-запросов. "
+                "Соответствующие IP из DNS не добавились, а домены остались в списке.")
         rules['domain_suffix'].update(hosts)
         source_records['WhatsApp:cdn-hosts'] = sorted('domain_suffix:' + host for host in hosts)
         source_records['WhatsApp:cdn-dns'] = values

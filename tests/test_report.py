@@ -80,10 +80,15 @@ class Reports(unittest.TestCase):
 
     def test_operational_warning_remains_visible_and_bounded(self):
         report = self.compact_sample()
-        report['warnings'] = ['AS62041: snapshot age 2 days', 'x' * 6000, 'third warning']
+        report['warnings'] = [
+            'AS62041: RIPEstat недоступен. Взяли свежие IP-подсети из bgp.tools.',
+            'x' * 6000, 'Для WhatsApp часть DNS-запросов осталась без ответа.',
+            'Предупреждение 4', 'Предупреждение 5', 'Предупреждение 6', 'Предупреждение 7',
+        ]
         text = telegram_text(report)
         self.assertTrue(text.startswith('⚠️'))
-        self.assertIn('AS62041: snapshot age 2 days', text)
+        self.assertIn('Взяли свежие IP-подсети из bgp.tools.', text)
+        self.assertIn('Для WhatsApp часть DNS-запросов осталась без ответа.', text)
         self.assertIn('Ещё предупреждений: 1', text)
         self.assertLess(len(text), 1000)
 

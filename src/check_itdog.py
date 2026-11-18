@@ -42,10 +42,11 @@ def publication_warnings(runs, now):
 def check_publication(fetch, now):
     try:
         data = json.loads(fetch(RUNS_URL))
-        return publication_warnings(data['workflow_runs'], now)
+        return [message + ' Сами списки проверяются отдельно.'
+                for message in publication_warnings(data['workflow_runs'], now)]
     except (OSError, RuntimeError, ValueError, KeyError, TypeError) as error:
         logging.warning('Could not check ITDog workflow history: %s', error)
-        return ['Не удалось проверить, когда ITDog обновлял свои списки.']
+        return ['Не удалось проверить, когда ITDog обновлял свои списки. Сами списки проверяются отдельно.']
 
 
 if __name__ == '__main__':

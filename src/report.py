@@ -203,9 +203,9 @@ def telegram_text(report, status='success', run_url=''):
     if warnings:
         # Operational warnings stay visible; permanent limitations live in the full report.
         text += ['', '⚠️ Предупреждения']
-        text += ['• ' + x.replace('\n', ' ')[:160] for x in warnings[:2]]
-        if len(warnings) > 2:
-            text.append(f'Ещё предупреждений: {len(warnings) - 2} — в отчёте.')
+        text += ['• ' + x.replace('\n', ' ')[:220] for x in warnings[:6]]
+        if len(warnings) > 6:
+            text.append(f'Ещё предупреждений: {len(warnings) - 6} — в отчёте.')
     footer = '\n\n🔗 Отчёт: ' + REPORT_URL
     if run_url:
         footer += '\n🔗 Actions: ' + run_url

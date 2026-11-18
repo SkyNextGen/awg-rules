@@ -75,7 +75,21 @@ class SafetyTests(unittest.TestCase):
             result = b.bgp([1], old, cfg, report)
         self.assertEqual(result['1']['source'], 'snapshot')
         self.assertEqual(result['1']['prefixes'], old['1']['prefixes'])
-        self.assertTrue(any('address coverage' in warning for warning in report['warnings']))
+        self.assertEqual(len(report['warnings']), 1)
+        self.assertIn('данные RIPEstat не прошли проверку', report['warnings'][0])
+        self.assertIn('bgp.tools недоступен', report['warnings'][0])
+        self.assertIn('Взяли проверенную копию', report['warnings'][0])
+
+    def test_bgp_reports_when_live_backup_supplies_the_networks(self):
+        from io import BytesIO
+        table = b'{"ASN":1,"CIDR":"8.8.8.0/24"}\n{"ASN":1,"CIDR":"2606:4700::/32"}\n'
+        report = {'warnings': []}
+        with patch.object(b, 'fetch', side_effect=OSError('timeout')), patch.object(
+                b, 'urlopen', return_value=BytesIO(table)):
+            result = b.bgp([1], {}, {'max_prefixes': 100}, report)
+        self.assertEqual(result['1']['source'], 'bgp.tools')
+        self.assertEqual(report['warnings'], [
+            'AS1: RIPEstat недоступен. Взяли свежие IP-подсети из bgp.tools.'])
 
     def test_source_error_preserves_the_failure_reason(self):
         with patch.object(b, 'urlopen', side_effect=OSError('test timeout')), patch.object(b.time, 'sleep'):

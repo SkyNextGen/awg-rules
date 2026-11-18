@@ -209,7 +209,7 @@ class UpstreamReadiness(unittest.TestCase):
         messages = check_publication(lambda url: json.dumps({'workflow_runs': runs}), now)
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0], 'У ITDog за последние 8 дней не было успешного обновления списка IP-подсетей. '
-                         'Последняя попытка завершилась ошибкой.')
+                         'Последняя попытка завершилась ошибкой. Сами списки проверяются отдельно.')
 
     def test_metadata_outage_or_invalid_response_is_only_a_warning(self):
         now = datetime(2026, 11, 18, tzinfo=timezone.utc)
