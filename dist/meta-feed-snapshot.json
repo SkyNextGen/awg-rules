@@ -1,7 +1,7 @@
 {
   "geofeed": {
     "url": "https://www.meta.com/peering/geofeed/",
-    "fetched_at": "2026-11-18T07:28:41.731247+00:00",
+    "fetched_at": "2026-11-18T07:38:26.527311+00:00",
     "expires_at": "2026-11-25T00:00:00+00:00",
     "prefixes": [
       "31.13.69.0/24",
@@ -369,7 +369,7 @@
   },
   "geofeed-corp": {
     "url": "https://www.meta.com/peering/geofeed_corp/",
-    "fetched_at": "2026-11-18T07:28:41.731247+00:00",
+    "fetched_at": "2026-11-18T07:38:26.527311+00:00",
     "expires_at": "2026-11-25T00:00:00+00:00",
     "prefixes": [
       "163.114.128.0/21",
@@ -529,8 +529,8 @@
   },
   "ITDog-IPv4": {
     "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv4/meta.lst",
-    "fetched_at": "2026-11-18T07:28:41.731247+00:00",
-    "expires_at": "2026-11-26T07:28:41.731247+00:00",
+    "fetched_at": "2026-11-18T07:38:26.527311+00:00",
+    "expires_at": "2026-11-26T07:38:26.527311+00:00",
     "prefixes": [
       "31.13.24.0/21",
       "31.13.64.0/18",
@@ -616,8 +616,8 @@
   },
   "ITDog-IPv6": {
     "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv6/meta.lst",
-    "fetched_at": "2026-11-18T07:28:41.731247+00:00",
-    "expires_at": "2026-11-26T07:28:41.731247+00:00",
+    "fetched_at": "2026-11-18T07:38:26.527311+00:00",
+    "expires_at": "2026-11-26T07:38:26.527311+00:00",
     "prefixes": [
       "2620:0:1c00::/40",
       "2620:10d:c090::/44",
@@ -665,8 +665,8 @@
   },
   "MetaCubeX": {
     "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.list",
-    "fetched_at": "2026-11-18T07:28:41.731247+00:00",
-    "expires_at": "2026-11-26T07:28:41.731247+00:00",
+    "fetched_at": "2026-11-18T07:38:26.527311+00:00",
+    "expires_at": "2026-11-26T07:38:26.527311+00:00",
     "prefixes": [
       "31.13.24.0/21",
       "31.13.64.0/18",
@@ -794,8 +794,8 @@
   },
   "Loyalsoldier": {
     "url": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/facebook.txt",
-    "fetched_at": "2026-11-18T07:28:41.731247+00:00",
-    "expires_at": "2026-11-26T07:28:41.731247+00:00",
+    "fetched_at": "2026-11-18T07:38:26.527311+00:00",
+    "expires_at": "2026-11-26T07:38:26.527311+00:00",
     "prefixes": [
       "31.13.24.0/21",
       "31.13.64.0/18",
