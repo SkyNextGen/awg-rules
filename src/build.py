@@ -384,10 +384,8 @@ def build_staged(staging):
     cfg = json.loads((ROOT / 'config/sources.json').read_text())
     dist = ROOT / 'dist'
     report = {'built_at': datetime.now(timezone.utc).isoformat(), 'warnings': [], 'sources': {}}
-    if os.environ.get('CHECK_ITDOG_PUBLICATION') == '1':
-        from check_itdog import verify
-        runs = json.loads(fetch('https://api.github.com/repos/itdoginfo/allow-domains/actions/runs?per_page=100'))
-        report['warnings'].extend(verify(runs['workflow_runs'], datetime.now(timezone.utc)))
+    from check_itdog import check_publication
+    report['warnings'].extend(check_publication(fetch, datetime.now(timezone.utc)))
     if os.environ.get('SOURCE_CACHE'):
         report['warnings'].append('Local review build from explicitly fetched SOURCE_CACHE; not a live Python HTTP build')
     source_records = {}
