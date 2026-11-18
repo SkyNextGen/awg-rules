@@ -24,7 +24,8 @@ class MetaSourceTests(unittest.TestCase):
             raise RuntimeError('test outage')
         self.assertEqual(m.collect_feeds(cfg, offline, b.network, b.collapse, snapshot, warnings), expected)
         self.assertEqual(snapshot['test']['fetched_at'], original_timestamp)
-        self.assertIn('snapshot', warnings[0])
+        self.assertIn('Не удалось скачать список сетей Meta (test)', warnings[0])
+        self.assertIn('Взяли проверенную копию', warnings[0])
         with self.assertRaises(ValueError):
             m.collect_feeds(cfg, lambda url: '10.0.0.0/8', b.network, b.collapse, snapshot)
         snapshot['test']['expires_at'] = (datetime.now(timezone.utc) - timedelta(seconds=1)).isoformat()

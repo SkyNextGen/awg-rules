@@ -6,6 +6,7 @@ import io
 import ipaddress
 from http.client import HTTPSConnection
 import json
+import logging
 import re
 import socket
 import ssl
@@ -133,7 +134,9 @@ def collect_feeds(cfg, fetch, network, collapse, snapshot=None, warnings=None, m
                     or {network(p).version for p in values} != set(source['families'])):
                 raise ValueError('Invalid Meta feed snapshot: ' + name)
             result[name] = values
-            warnings.append(f'Meta:{name}: snapshot from {old["fetched_at"]}; {error}')
+            logging.warning('Meta feed %s: %s', name, error)
+            date = fetched.astimezone(timezone(timedelta(hours=3))).strftime('%d.%m.%Y %H:%M МСК')
+            warnings.append(f'Не удалось скачать список сетей Meta ({name}). Взяли проверенную копию от {date}.')
             continue
         result[name] = feed_prefixes(text, source, network, collapse, now)
         expires = now + timedelta(days=max_age_days)
