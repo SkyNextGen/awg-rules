@@ -1,5 +1,6 @@
 """Report upstream workflow health; source data is validated by the builder."""
 import json
+import logging
 from datetime import datetime, timedelta, timezone
 
 RUNS_URL = 'https://api.github.com/repos/itdoginfo/allow-domains/actions/runs?per_page=100'
@@ -8,11 +9,12 @@ RUNS_URL = 'https://api.github.com/repos/itdoginfo/allow-domains/actions/runs?pe
 def publication_warnings(runs, now):
     monday = (now - timedelta(days=now.weekday())).replace(hour=0, minute=0, second=0, microsecond=0)
     warnings = []
-    for path in ('.github/workflows/create-lists.yml', '.github/workflows/create-subnets.yml'):
+    for path, list_name in (('.github/workflows/create-lists.yml', 'списка доменов'),
+                            ('.github/workflows/create-subnets.yml', 'списка IP-подсетей')):
         candidates = [r for r in runs if r['path'] == path and r['event'] == 'schedule'
                       and r['head_branch'] == 'main']
         if not candidates:
-            warnings.append('ITDog scheduled run missing; source data will be checked independently: ' + path)
+            warnings.append(f'В истории ITDog нет плановых запусков для обновления {list_name}.')
             continue
         latest = max(candidates, key=lambda r: r['created_at'])
         successful = []
@@ -23,11 +25,17 @@ def publication_warnings(runs, now):
                     and now - timedelta(days=8) <= start <= finish <= now - timedelta(minutes=10)):
                 successful.append(run)
         if not successful:
-            warnings.append('ITDog has no successful publication within 8 days; source data will be checked independently: ' + path)
+            message = f'У ITDog за последние 8 дней не было успешного обновления {list_name}.'
+            if latest['conclusion'] == 'failure':
+                message += ' Последняя попытка завершилась ошибкой.'
+            warnings.append(message)
             continue
         accepted = max(successful, key=lambda r: r['created_at'])
         if accepted is not latest or datetime.fromisoformat(accepted['created_at'].replace('Z', '+00:00')) < monday:
-            warnings.append('ITDog delayed/failed weekly publication; source data will be checked independently: ' + path)
+            if latest['conclusion'] == 'failure':
+                warnings.append(f'Последнее обновление {list_name} у ITDog завершилось ошибкой.')
+            else:
+                warnings.append(f'Еженедельное обновление {list_name} у ITDog ещё не подтверждено.')
     return warnings
 
 
@@ -36,7 +44,8 @@ def check_publication(fetch, now):
         data = json.loads(fetch(RUNS_URL))
         return publication_warnings(data['workflow_runs'], now)
     except (OSError, RuntimeError, ValueError, KeyError, TypeError) as error:
-        return ['ITDog workflow status unavailable; source data will be checked independently: ' + str(error)]
+        logging.warning('Could not check ITDog workflow history: %s', error)
+        return ['Не удалось проверить, когда ITDog обновлял свои списки.']
 
 
 if __name__ == '__main__':
