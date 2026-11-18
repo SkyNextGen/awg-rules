@@ -30,33 +30,43 @@ jobs:
       GITHUB_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
+        id: checkout
       - name: Checkout published baseline
+        id: baseline
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
           path: .baseline
           persist-credentials: false
       - uses: actions/setup-python@v5
+        id: python
         with:
           python-version: '3.12'
       - name: Tests
+        id: tests
         run: python -m unittest discover -s tests -v
       - name: Install official sing-box
+        id: compiler
         run: python src/install_sing_box.py
       - name: Replay published inputs without network
+        id: replay
         run: python tests/replay_build.py --baseline .baseline --sing-box .tools/sing-box
       - name: Verify AWGM DNS matching
+        id: dns_probe
         run: |
           python tests/dns_probe.py .tools/sing-box 203.0.113.42
           python src/install_sing_box.py --version 1.14.1 --directory .tools-dns
           python tests/dns_probe.py .tools-dns/sing-box 127.0.0.1
       - name: Build and verify SRS and TXT
+        id: build
         run: python src/build.py
         env:
           SING_BOX: .tools/sing-box
       - name: Verify service coverage
+        id: coverage
         run: python src/check_service_coverage.py
       - name: Verify actual rule matching (upstream and AWGM)
+        id: routing_probe
         run: |
           python tests/routing_probe.py .tools-dns/sing-box
           for version in 41 42; do
@@ -65,8 +75,10 @@ jobs:
             python tests/dns_probe.py ".tools-awgm-$version/sing-box" 127.0.0.1
           done
       - name: Build report
+        id: report
         run: cat dist/report.md >> "$GITHUB_STEP_SUMMARY"
       - name: Publish verified output
+        id: publish
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         run: |
           git config user.name 'github-actions[bot]'
@@ -82,6 +94,7 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           BUILD_STATUS: ${{ job.status }}
+          BUILD_STEPS: ${{ toJSON(steps) }}
         run: python src/notify.py
 
 

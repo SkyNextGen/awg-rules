@@ -145,10 +145,17 @@ def write_report(report, payload, source_records, staging, dist, old):
     (staging / 'tg_message.txt').write_text(telegram_text(report), encoding='utf-8')
 
 
-def telegram_text(report, status='success', run_url=''):
+def telegram_text(report, status='success', run_url='', reason='', publication='unknown'):
     if status != 'success':
         label = '❌ AWG · ОШИБКА СБОРКИ' if status == 'failure' else '⚠️ AWG · Сборка не завершена'
-        return '\n'.join([label, 'Новый набор не опубликован. Сохранён последний проверенный.',
+        publication_text = {
+            'previous': 'На GitHub остался предыдущий опубликованный список.',
+            'new': 'На GitHub уже опубликован новый список.',
+            'absent': 'В GitHub не найден опубликованный файл подписки.',
+            'unknown': 'Не удалось подтвердить, какой список сейчас опубликован на GitHub.',
+        }
+        return '\n'.join([label, reason or 'Причину можно уточнить в журнале запуска.',
+                          publication_text.get(publication, publication_text['unknown']),
                           '🔗 Actions: ' + run_url if run_url else 'Подробности — в GitHub Actions.'])
     warnings = report.get('warnings', [])
     changes = report['changes']

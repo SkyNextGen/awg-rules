@@ -591,6 +591,10 @@ if __name__ == '__main__':
         build()
     except Exception as error:
         print('Build failed: ' + str(error), file=sys.stderr)
+        if output := os.getenv('GITHUB_OUTPUT'):
+            from build_failure import build_reason
+            with Path(output).open('a', encoding='utf-8') as stream:
+                print('reason=' + build_reason(error), file=stream)
         sys.exit(1)
 
 
