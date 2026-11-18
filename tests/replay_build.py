@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 import build as builder
 import check_service_coverage
+from check_itdog import RUNS_URL
 
 
 def domain_records(values):
@@ -37,6 +38,8 @@ def replay(baseline, exe):
     payload = json.loads((dist / 'routing.json').read_text())
     dns = json.loads((dist / 'whatsapp-dns.json').read_text())
     urls = {cfg['itdog_url']: '\n'.join(domain_records(records['itdog'])['domain_suffix'])}
+    # Missing upstream job history is advisory even in an offline replay.
+    urls[RUNS_URL] = json.dumps({'workflow_runs': []})
     for service, sources in cfg['service_sources'].items():
         for source in sources:
             if source['kind'] == 'domains':
@@ -64,7 +67,7 @@ def replay(baseline, exe):
               patch.object(builder, 'collect_https', return_value=(
                   {'network': ['tcp', 'udp'], 'ip_cidr': records['Discord:cdn-dns:https'], 'port': [443]},
                   copy.deepcopy(old_report['discord_https']))),
-              patch.dict(os.environ, {'SING_BOX': str(exe), 'CHECK_ITDOG_PUBLICATION': '0', 'SOURCE_CACHE': ''})):
+              patch.dict(os.environ, {'SING_BOX': str(exe), 'SOURCE_CACHE': ''})):
             with patch.object(check_service_coverage, 'verify', side_effect=ValueError('test late validation failure')):
                 try:
                     builder.build()

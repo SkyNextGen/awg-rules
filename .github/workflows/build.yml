@@ -54,7 +54,6 @@ jobs:
         run: python src/build.py
         env:
           SING_BOX: .tools/sing-box
-          CHECK_ITDOG_PUBLICATION: ${{ github.event_name == 'schedule' && '1' || '0' }}
       - name: Verify service coverage
         run: python src/check_service_coverage.py
       - name: Verify actual rule matching (upstream and AWGM)

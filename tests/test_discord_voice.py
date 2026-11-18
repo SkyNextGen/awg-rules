@@ -5,12 +5,12 @@ from pathlib import Path
 import sys
 import unittest
 import tempfile
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 import build as b
-from check_itdog import verify
+from check_itdog import check_publication, publication_warnings
 from routing_rules import scoped_rules, unrestricted
 
 UPSTREAM = {'version': 3, 'rules': [
@@ -176,24 +176,48 @@ class UpstreamReadiness(unittest.TestCase):
                     for name in ('create-lists.yml', 'create-subnets.yml')]
         failed = dict(previous[1], created_at='2026-11-16T17:02:00Z',
                       updated_at='2026-11-16T17:03:00Z', conclusion='failure')
-        self.assertEqual(len(verify(previous + [failed], now)), 2)
-        with self.assertRaises(ValueError):
-            verify(previous + [failed], datetime(2026, 11, 18, tzinfo=timezone.utc))
+        self.assertEqual(len(publication_warnings(previous + [failed], now)), 2)
+        warnings = publication_warnings(previous + [failed], datetime(2026, 11, 18, tzinfo=timezone.utc))
+        self.assertEqual(len(warnings), 2)
+        self.assertTrue(any('within 8 days' in message for message in warnings))
 
-    def test_fresh_success_both_workflows_required(self):
+    def test_fresh_success_is_quiet_and_workflow_failures_are_advisory(self):
         now = datetime(2026, 10, 5, 20, 17, tzinfo=timezone.utc)
         runs = [dict(path='.github/workflows/' + p, event='schedule', head_branch='main',
                      created_at='2026-10-05T17:18:16Z', updated_at='2026-10-05T17:18:56Z',
                      status='completed', conclusion='success')
                 for p in ('create-lists.yml', 'create-subnets.yml')]
-        verify(runs, now)
+        self.assertEqual(publication_warnings(runs, now), [])
         for field, value in (('conclusion', 'failure'), ('status', 'in_progress'),
                              ('created_at', '2026-09-21T17:18:16Z'),
                              ('updated_at', '2026-10-05T20:16:56Z')):
             changed = copy.deepcopy(runs)
             changed[1][field] = value
-            with self.assertRaises(ValueError):
-                verify(changed, now)
-        with self.assertRaises(ValueError):
-            verify(runs[:1], now)
+            self.assertEqual(len(publication_warnings(changed, now)), 1)
+        self.assertEqual(len(publication_warnings(runs[:1], now)), 1)
+
+    def test_november_18_failed_subnets_do_not_block_valid_sources(self):
+        now = datetime(2026, 11, 18, 2, 27, 54, tzinfo=timezone.utc)
+        common = dict(event='schedule', head_branch='main', status='completed')
+        runs = [
+            dict(common, path='.github/workflows/create-lists.yml', conclusion='success',
+                 created_at='2026-11-16T18:48:01Z', updated_at='2026-11-16T18:48:54Z'),
+            dict(common, path='.github/workflows/create-subnets.yml', conclusion='failure',
+                 created_at='2026-11-16T17:02:26Z', updated_at='2026-11-16T17:03:19Z'),
+            dict(common, path='.github/workflows/create-subnets.yml', conclusion='success',
+                 created_at='2026-11-09T17:30:40Z', updated_at='2026-11-09T17:31:15Z')]
+        messages = check_publication(lambda url: json.dumps({'workflow_runs': runs}), now)
+        self.assertEqual(len(messages), 1)
+        self.assertIn('create-subnets.yml', messages[0])
+        self.assertIn('within 8 days', messages[0])
+
+    def test_metadata_outage_or_invalid_response_is_only_a_warning(self):
+        now = datetime(2026, 11, 18, tzinfo=timezone.utc)
+        for error in (OSError('timeout'), RuntimeError('API unavailable')):
+            with self.subTest(error=error), patch('check_itdog.json.loads') as decode:
+                fetch = Mock(side_effect=error)
+                self.assertIn('status unavailable', check_publication(fetch, now)[0])
+                decode.assert_not_called()
+        for payload in ('invalid JSON', '{}', '{"workflow_runs": null}'):
+            self.assertIn('status unavailable', check_publication(lambda url: payload, now)[0])
 
