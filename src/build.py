@@ -294,7 +294,6 @@ def bgp(asns, previous, cfg, report):
     result, missing = {}, []
     primary_issues = {}
     backup_issues = {}
-    now = datetime.now(timezone.utc)
     def accept(asn, prefixes, source, timestamp):
         prefixes = collapse(prefixes)
         if not prefixes or len(prefixes) > cfg['max_prefixes']:
@@ -314,7 +313,8 @@ def bgp(asns, previous, cfg, report):
             data = json.loads(fetch(f'https://stat.ripe.net/data/announced-prefixes/data.json?resource=AS{asn}' + peers))
             if data['status'] != 'ok':
                 raise ValueError('RIPEstat status')
-            accept(asn, [x['prefix'] for x in data['data']['prefixes']], 'RIPEstat', now.isoformat())
+            accept(asn, [x['prefix'] for x in data['data']['prefixes']], 'RIPEstat',
+                   datetime.now(timezone.utc).isoformat())
         except (RuntimeError, OSError, ValueError, KeyError) as error:
             logging.warning('AS%s: RIPEstat: %s', asn, error)
             primary_issues[asn] = ('RIPEstat недоступен' if isinstance(error, (OSError, RuntimeError))
@@ -330,9 +330,10 @@ def bgp(asns, previous, cfg, report):
                     a = int(row['ASN'])
                     if a in found:
                         found[a].append(row['CIDR'])
+            fetched_at = datetime.now(timezone.utc).isoformat()
             for asn in missing:
                 try:
-                    accept(asn, found[asn], 'bgp.tools', now.isoformat())
+                    accept(asn, found[asn], 'bgp.tools', fetched_at)
                     report['warnings'].append(f'AS{asn}: {primary_issues[asn]}. Взяли свежие IP-подсети из bgp.tools.')
                 except (ValueError, KeyError) as error:
                     logging.warning('AS%s: bgp.tools: %s', asn, error)
@@ -348,7 +349,7 @@ def bgp(asns, previous, cfg, report):
         old = previous.get(str(asn), {})
         if not old:
             raise ValueError(f'AS{asn}: no valid live data or fresh snapshot')
-        age = now - datetime.fromisoformat(old['fetched_at'])
+        age = datetime.now(timezone.utc) - datetime.fromisoformat(old['fetched_at'])
         if not timedelta(0) <= age <= timedelta(days=cfg['max_snapshot_age_days']):
             raise FreshnessError(f'Для AS{asn} не удалось получить свежие IP-подсети. '
                                  'Резервная копия не прошла проверку свежести. ' + age_detail(age))

@@ -115,7 +115,6 @@ def collect_feeds(cfg, fetch, network, collapse, snapshot=None, warnings=None, m
     result = {}
     snapshot = snapshot if snapshot is not None else {}
     warnings = warnings if warnings is not None else []
-    now = datetime.now(timezone.utc)
     for source in cfg:
         if not source['url'].startswith('https://'):
             raise ValueError('Meta feeds require HTTPS')
@@ -125,6 +124,7 @@ def collect_feeds(cfg, fetch, network, collapse, snapshot=None, warnings=None, m
         try:
             text = fetch(source['url'])
         except (RuntimeError, OSError) as error:
+            now = datetime.now(timezone.utc)
             old = snapshot.get(name, {})
             fetched = datetime.fromisoformat(old['fetched_at']) if old else now
             expires = datetime.fromisoformat(old['expires_at']) if old else now
@@ -146,6 +146,7 @@ def collect_feeds(cfg, fetch, network, collapse, snapshot=None, warnings=None, m
             warnings.append(f'Не удалось скачать список сетей Meta ({name}). Взяли проверенную копию. '
                             + age_detail(age))
             continue
+        now = datetime.now(timezone.utc)
         result[name] = feed_prefixes(text, source, network, collapse, now)
         expires = now + timedelta(days=max_age_days)
         if source['format'] == 'geofeed':
