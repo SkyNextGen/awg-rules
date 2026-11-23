@@ -2,10 +2,13 @@
 import re
 from subprocess import CalledProcessError, TimeoutExpired
 from urllib.parse import urlsplit
+from freshness import FreshnessError
 
 
 def build_reason(error):
     message = str(error)
+    if isinstance(error, FreshnessError):
+        return message
     if message.startswith('Source fetch failed: '):
         url = message.removeprefix('Source fetch failed: ').partition(': ')[0]
         try:

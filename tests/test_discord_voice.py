@@ -179,7 +179,7 @@ class UpstreamReadiness(unittest.TestCase):
         self.assertEqual(len(publication_warnings(previous + [failed], now)), 2)
         warnings = publication_warnings(previous + [failed], datetime(2026, 11, 18, tzinfo=timezone.utc))
         self.assertEqual(len(warnings), 2)
-        self.assertTrue(any('за последние 8 дней' in message for message in warnings))
+        self.assertTrue(all('8 дней 6 ч 41 мин назад' in message for message in warnings))
 
     def test_fresh_success_is_quiet_and_workflow_failures_are_advisory(self):
         now = datetime(2026, 10, 5, 20, 17, tzinfo=timezone.utc)
@@ -208,7 +208,7 @@ class UpstreamReadiness(unittest.TestCase):
                  created_at='2026-11-09T17:30:40Z', updated_at='2026-11-09T17:31:15Z')]
         messages = check_publication(lambda url: json.dumps({'workflow_runs': runs}), now)
         self.assertEqual(len(messages), 1)
-        self.assertEqual(messages[0], 'У ITDog за последние 8 дней не было успешного обновления списка IP-подсетей. '
+        self.assertEqual(messages[0], 'Последнее успешное обновление списка IP-подсетей у ITDog было 8 дней 8 ч 56 мин назад. '
                          'Последняя попытка завершилась ошибкой. Сами списки проверяются отдельно.')
 
     def test_metadata_outage_or_invalid_response_is_only_a_warning(self):
