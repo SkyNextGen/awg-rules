@@ -1,3 +1,4 @@
+from datetime import timedelta
 import subprocess
 import sys
 import unittest
@@ -6,11 +7,18 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 from build_failure import build_reason
+from freshness import FreshnessError, age_detail
 from notify import failure_reason, published_list
 from report import telegram_text
 
 
 class FailureNotificationTests(unittest.TestCase):
+    def test_freshness_error_reports_elapsed_time_in_telegram(self):
+        reason = build_reason(FreshnessError('Копия устарела. ' + age_detail(timedelta(days=14, hours=2))))
+        text = telegram_text({}, status='failure', reason=reason, publication='previous')
+        self.assertIn('Копия устарела. Возраст данных — 14 дней 2 ч.', text)
+        self.assertEqual(age_detail(timedelta(minutes=-17)), 'Дата на 17 мин позже текущего времени.')
+
     def test_build_error_reaches_telegram_without_raw_exception_details(self):
         reason = build_reason(RuntimeError(
             'Source fetch failed: https://www.meta.com/peering/geofeed/?secret=redacted: HTTP 503'))

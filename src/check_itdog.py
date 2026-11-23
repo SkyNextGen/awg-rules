@@ -2,6 +2,7 @@
 import json
 import logging
 from datetime import datetime, timedelta, timezone
+from freshness import format_age
 
 RUNS_URL = 'https://api.github.com/repos/itdoginfo/allow-domains/actions/runs?per_page=100'
 
@@ -18,24 +19,27 @@ def publication_warnings(runs, now):
             continue
         latest = max(candidates, key=lambda r: r['created_at'])
         successful = []
+        last_success = None
         for run in candidates:
             start = datetime.fromisoformat(run['created_at'].replace('Z', '+00:00'))
             finish = datetime.fromisoformat(run['updated_at'].replace('Z', '+00:00'))
-            if (run['status'] == 'completed' and run['conclusion'] == 'success'
-                    and now - timedelta(days=8) <= start <= finish <= now - timedelta(minutes=10)):
-                successful.append(run)
+            if run['status'] == 'completed' and run['conclusion'] == 'success' and start <= finish <= now:
+                if last_success is None or finish > last_success:
+                    last_success = finish
+                if now - timedelta(days=8) <= start and finish <= now - timedelta(minutes=10):
+                    successful.append(run)
+        if last_success is None:
+            message = f'В доступной истории ITDog нет успешного обновления {list_name}.'
+        else:
+            message = f'Последнее успешное обновление {list_name} у ITDog было {format_age(now - last_success)} назад.'
+        if latest['conclusion'] == 'failure':
+            message += ' Последняя попытка завершилась ошибкой.'
         if not successful:
-            message = f'У ITDog за последние 8 дней не было успешного обновления {list_name}.'
-            if latest['conclusion'] == 'failure':
-                message += ' Последняя попытка завершилась ошибкой.'
             warnings.append(message)
             continue
         accepted = max(successful, key=lambda r: r['created_at'])
         if accepted is not latest or datetime.fromisoformat(accepted['created_at'].replace('Z', '+00:00')) < monday:
-            if latest['conclusion'] == 'failure':
-                warnings.append(f'Последнее обновление {list_name} у ITDog завершилось ошибкой.')
-            else:
-                warnings.append(f'Еженедельное обновление {list_name} у ITDog ещё не подтверждено.')
+            warnings.append(message)
     return warnings
 
 

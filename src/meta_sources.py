@@ -14,6 +14,7 @@ from threading import Lock
 import time
 from urllib.parse import urlencode
 from urllib.request import Request, HTTPSHandler, build_opener
+from freshness import FreshnessError, age_detail, format_age
 
 APPROVED_ROOTS = ('whatsapp.com', 'whatsapp.net', 'whatsapp.biz', 'wa.me', 'wl.co',
                   'facebook.com', 'facebook.net', 'fbcdn.net', 'fbsbx.com')
@@ -86,7 +87,8 @@ def feed_prefixes(text, source, network, collapse, now=None):
         published = datetime.strptime(date[1].strip(), '%a %b %d %Y').replace(tzinfo=timezone.utc)
         age = (now - published).total_seconds() / 86400
         if not 0 <= age <= source['max_age_days']:
-            raise ValueError('Meta geofeed publication expired or in future')
+            raise FreshnessError(f'Список сетей Meta ({source["name"]}) не прошёл проверку свежести. '
+                                 + age_detail(now - published))
         rows = list(csv.reader(io.StringIO(text)))
         values = []
         for row in rows:
@@ -126,17 +128,23 @@ def collect_feeds(cfg, fetch, network, collapse, snapshot=None, warnings=None, m
             old = snapshot.get(name, {})
             fetched = datetime.fromisoformat(old['fetched_at']) if old else now
             expires = datetime.fromisoformat(old['expires_at']) if old else now
-            if (not old or old.get('url') != source['url'] or not fetched <= now < expires
-                    or now - fetched > timedelta(days=max_age_days)):
+            if not old or old.get('url') != source['url']:
                 raise ValueError('Meta feed has no fresh validated snapshot: ' + name) from error
+            age = now - fetched
+            if not fetched <= now < expires or age > timedelta(days=max_age_days):
+                message = f'Список Meta ({name}) недоступен. Резервная копия не прошла проверку свежести. '
+                message += age_detail(age)
+                if now >= expires:
+                    message += f' Срок её действия истёк {format_age(now - expires)} назад.'
+                raise FreshnessError(message) from error
             values = collapse(old['prefixes'])
             if (not values or len(values) > source['max_entries']
                     or {network(p).version for p in values} != set(source['families'])):
                 raise ValueError('Invalid Meta feed snapshot: ' + name)
             result[name] = values
             logging.warning('Meta feed %s: %s', name, error)
-            date = fetched.astimezone(timezone(timedelta(hours=3))).strftime('%d.%m.%Y %H:%M МСК')
-            warnings.append(f'Не удалось скачать список сетей Meta ({name}). Взяли проверенную копию от {date}.')
+            warnings.append(f'Не удалось скачать список сетей Meta ({name}). Взяли проверенную копию. '
+                            + age_detail(age))
             continue
         result[name] = feed_prefixes(text, source, network, collapse, now)
         expires = now + timedelta(days=max_age_days)

@@ -11,12 +11,13 @@ import subprocess
 import sys
 import tempfile
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from urllib.request import Request, urlopen
 from report import records, write_report
 from routing_rules import MATCH_KEYS, split_rule, unrestricted
 from meta_sources import collect_feeds, collect_dns
 from discord_https import collect_https
+from freshness import FreshnessError, age_detail
 from install_sing_box import github_headers, verified_asset
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,11 +30,13 @@ def fetch(url):
         path = Path(cache) / (hashlib.sha256(url.encode()).hexdigest() + '.txt')
         manifest = json.loads((Path(cache) / 'manifest.json').read_text(encoding='utf-8'))
         timestamp = datetime.fromisoformat(manifest['fetched_at'].replace('Z', '+00:00'))
-        age = (datetime.now(timezone.utc) - timestamp).total_seconds()
+        age = datetime.now(timezone.utc) - timestamp
         expected = {row['url']: row['sha256'] for row in manifest['sources']}
         value = path.read_bytes()
-        if not 0 <= age <= 86400 or hashlib.sha256(value).hexdigest() != expected.get(url):
-            raise ValueError('Expired or corrupted local source cache: ' + url)
+        if not timedelta(0) <= age <= timedelta(days=1):
+            raise FreshnessError('Локальная копия источников не прошла проверку свежести. ' + age_detail(age))
+        if hashlib.sha256(value).hexdigest() != expected.get(url):
+            raise ValueError('Local source cache checksum mismatch: ' + url)
         return value.decode('utf-8')
     for attempt in range(3):
         try:
@@ -184,7 +187,7 @@ def published_discord_rules(cfg):
     release = json.loads(fetch(cfg['rule_source']))
     age = datetime.now(timezone.utc) - datetime.fromisoformat(release['published_at'].replace('Z', '+00:00'))
     if not 0 <= age.total_seconds() <= 8 * 86400:
-        raise ValueError('Discord release is expired or in the future')
+        raise FreshnessError('Релиз Discord от ITDog не прошёл проверку свежести. ' + age_detail(age))
     assets = [a for a in release['assets'] if a['name'] == 'discord.srs']
     if len(assets) != 1 or not 0 < assets[0]['size'] <= 1024 * 1024:
         raise ValueError('Missing or excessive Discord release asset')
@@ -343,14 +346,16 @@ def bgp(asns, previous, cfg, report):
         if str(asn) in result:
             continue
         old = previous.get(str(asn), {})
-        age = (now - datetime.fromisoformat(old['fetched_at'])).total_seconds() / 86400 if old else float('inf')
-        if age < 0 or age > cfg['max_snapshot_age_days']:
+        if not old:
             raise ValueError(f'AS{asn}: no valid live data or fresh snapshot')
+        age = now - datetime.fromisoformat(old['fetched_at'])
+        if not timedelta(0) <= age <= timedelta(days=cfg['max_snapshot_age_days']):
+            raise FreshnessError(f'Для AS{asn} не удалось получить свежие IP-подсети. '
+                                 'Резервная копия не прошла проверку свежести. ' + age_detail(age))
         accept(asn, old['prefixes'], 'snapshot', old['fetched_at'])
-        age_text = f'{age:.1f}'.replace('.', ',')
         report['warnings'].append(
             f'AS{asn}: {primary_issues[asn]}. Резервный источник: {backup_issues[asn]}. '
-            f'Взяли проверенную копию. Возраст в днях: {age_text}.')
+            'Взяли проверенную копию. ' + age_detail(age))
     return result
 
 
