@@ -1,5 +1,7 @@
+Attempting to perform the InitializeDefaultDrives operation on the 'FileSystem' provider failed.
 """Exercise the generated SRS with real TCP/UDP traffic, entirely on loopback."""
 import argparse
+from contextlib import ExitStack
 import json
 from pathlib import Path
 import socket
@@ -11,10 +13,18 @@ import time
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def reserve_listener(network, reservations):
+    kind = socket.SOCK_STREAM if network == 'tcp' else socket.SOCK_DGRAM
+    listener = reservations.enter_context(socket.socket(socket.AF_INET, kind))
+    listener.bind(('127.0.0.1', 0))
+    return listener.getsockname()[1]
+
+
 def probe(exe, source):
     stop = threading.Event()
     sockets, workers = [], []
     process = None
+    reservations = ExitStack()
 
     def sink(label):
         tcp = socket.socket()
@@ -54,9 +64,7 @@ def probe(exe, source):
         cases = [(network, ip, port) for network in ('tcp', 'udp') for ip, port in destinations]
         inbounds = []
         for index, (network, ip, port) in enumerate(cases):
-            with socket.socket() as listener:
-                listener.bind(('127.0.0.1', 0))
-                listen = listener.getsockname()[1]
+            listen = reserve_listener(network, reservations)
             inbounds.append({'type': 'direct', 'tag': str(index), 'listen': '127.0.0.1',
                              'listen_port': listen, 'network': network,
                              'override_address': ip, 'override_port': port})
@@ -72,6 +80,8 @@ def probe(exe, source):
                                     {'action': 'route', 'outbound': 'fallback',
                                      'override_address': '127.0.0.1', 'override_port': ports['fallback']}],
                           'final': 'fallback'}}))
+            # Hold each port in its actual protocol until the engine takes over.
+            reservations.close()
             process = subprocess.Popen([exe, 'run', '-c', str(config)],
                                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
             for case, inbound in zip(cases, inbounds):
@@ -97,6 +107,7 @@ def probe(exe, source):
                     raise AssertionError(f'{case}: expected {expected}, got {actual}')
             print(f'Routing OK: {len(cases)} TCP/UDP cases on {exe}')
     finally:
+        reservations.close()
         if process is not None:
             process.terminate()
             process.communicate(timeout=5)
