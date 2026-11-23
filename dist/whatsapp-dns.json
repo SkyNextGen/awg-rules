@@ -21,7 +21,7 @@
     "account-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -29,7 +29,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -39,7 +39,7 @@
     "account.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -47,7 +47,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -57,7 +57,7 @@
     "acs-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -65,7 +65,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -75,7 +75,7 @@
     "acs.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -83,7 +83,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -107,7 +107,7 @@
     "api-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -115,7 +115,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -125,7 +125,7 @@
     "api.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -133,7 +133,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -157,7 +157,7 @@
     "b-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -165,7 +165,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -193,7 +193,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1161
+        "ttl": 17537
       },
       "AAAA": {
         "ips": [
@@ -207,7 +207,7 @@
     "b.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -215,7 +215,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -267,7 +267,7 @@
     "blog-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -275,7 +275,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -285,7 +285,7 @@
     "blog.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -293,7 +293,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -367,7 +367,7 @@
     "business.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.220.141"
+          "57.144.204.141"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -375,7 +375,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:8d:face:b00c:0:2"
+          "2a03:2880:f366:8d:face:b00c:0:2"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -389,7 +389,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 19345
+        "ttl": 21560
       },
       "AAAA": {
         "ips": [
@@ -403,11 +403,11 @@
     "c.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.252.61"
+          "3.33.221.48"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1216
+        "ttl": 1054
       },
       "AAAA": {
         "ips": [],
@@ -419,7 +419,7 @@
     "c0.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -427,7 +427,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -437,7 +437,7 @@
     "c3.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.221.48"
+          "15.197.206.217"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -453,7 +453,7 @@
     "call-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -461,7 +461,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -471,7 +471,7 @@
     "call.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -479,7 +479,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -503,7 +503,7 @@
     "chat-fallback.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.33"
+          "57.144.21.33"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -511,7 +511,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:121:face:b00c:0:7260"
+          "2a03:2880:f309:121:face:b00c:0:7260"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -521,7 +521,7 @@
     "chat-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -529,7 +529,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -539,7 +539,7 @@
     "chat.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.33"
+          "57.144.205.33"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -547,7 +547,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:121:face:b00c:0:7260"
+          "2a03:2880:f366:121:face:b00c:0:7260"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -557,7 +557,7 @@
     "chat.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -565,7 +565,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -607,7 +607,7 @@
     "crashlogs.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -615,7 +615,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -681,7 +681,7 @@
     "dev-web-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -689,7 +689,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -699,7 +699,7 @@
     "dev-web.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -707,7 +707,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -717,7 +717,7 @@
     "dit.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -725,7 +725,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -741,7 +741,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 37
+        "ttl": 48
       },
       "AAAA": {
         "ips": [],
@@ -781,11 +781,11 @@
     "e1.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.221.48"
+          "15.197.210.208"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1049
+        "ttl": 521
       },
       "AAAA": {
         "ips": [],
@@ -797,11 +797,11 @@
     "e10.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.221.48"
+          "3.33.252.61"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1209
+        "ttl": 841
       },
       "AAAA": {
         "ips": [],
@@ -813,11 +813,11 @@
     "e11.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.252.61"
+          "3.33.221.48"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1070
+        "ttl": 1326
       },
       "AAAA": {
         "ips": [],
@@ -829,11 +829,11 @@
     "e12.whatsapp.net": {
       "A": {
         "ips": [
-          "15.197.206.217"
+          "3.33.221.48"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 686
+        "ttl": 271
       },
       "AAAA": {
         "ips": [],
@@ -845,11 +845,11 @@
     "e13.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.252.61"
+          "15.197.206.217"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 408
+        "ttl": 590
       },
       "AAAA": {
         "ips": [],
@@ -861,11 +861,11 @@
     "e14.whatsapp.net": {
       "A": {
         "ips": [
-          "15.197.206.217"
+          "15.197.210.208"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 748
+        "ttl": 746
       },
       "AAAA": {
         "ips": [],
@@ -877,11 +877,11 @@
     "e15.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.221.48"
+          "15.197.206.217"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1467
+        "ttl": 51
       },
       "AAAA": {
         "ips": [],
@@ -897,7 +897,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 447
+        "ttl": 354
       },
       "AAAA": {
         "ips": [],
@@ -909,11 +909,11 @@
     "e2.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.221.48"
+          "3.33.252.61"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1615
+        "ttl": 87
       },
       "AAAA": {
         "ips": [],
@@ -925,11 +925,11 @@
     "e3.whatsapp.net": {
       "A": {
         "ips": [
-          "15.197.206.217"
+          "3.33.221.48"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 271
+        "ttl": 255
       },
       "AAAA": {
         "ips": [],
@@ -941,11 +941,11 @@
     "e4.whatsapp.net": {
       "A": {
         "ips": [
-          "15.197.210.208"
+          "15.197.206.217"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 62
+        "ttl": 1599
       },
       "AAAA": {
         "ips": [],
@@ -957,11 +957,11 @@
     "e5.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.221.48"
+          "15.197.210.208"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 856
+        "ttl": 296
       },
       "AAAA": {
         "ips": [],
@@ -973,11 +973,11 @@
     "e6.whatsapp.net": {
       "A": {
         "ips": [
-          "3.33.252.61"
+          "3.33.221.48"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 900
+        "ttl": 356
       },
       "AAAA": {
         "ips": [],
@@ -1007,7 +1007,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 507
+        "ttl": 579
       },
       "AAAA": {
         "ips": [],
@@ -1019,11 +1019,11 @@
     "e8.whatsapp.net": {
       "A": {
         "ips": [
-          "15.197.210.208"
+          "3.33.221.48"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 98
+        "ttl": 1032
       },
       "AAAA": {
         "ips": [],
@@ -1035,11 +1035,11 @@
     "e9.whatsapp.net": {
       "A": {
         "ips": [
-          "15.197.210.208"
+          "15.197.206.217"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 307
+        "ttl": 1450
       },
       "AAAA": {
         "ips": [],
@@ -1083,7 +1083,7 @@
     "external.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1091,7 +1091,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1101,7 +1101,7 @@
     "facebook.com": {
       "A": {
         "ips": [
-          "57.144.220.1"
+          "57.144.204.1"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1109,7 +1109,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:1:face:b00c:0:25de"
+          "2a03:2880:f366:1:face:b00c:0:25de"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1203,7 +1203,7 @@
     "faq-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1211,7 +1211,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1221,7 +1221,7 @@
     "faq.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1229,7 +1229,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1309,7 +1309,7 @@
     "fbcdn.net": {
       "A": {
         "ips": [
-          "57.144.220.1"
+          "57.144.204.1"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1317,7 +1317,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:1:face:b00c:0:25de"
+          "2a03:2880:f366:1:face:b00c:0:25de"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1411,7 +1411,7 @@
     "fbsbx.com": {
       "A": {
         "ips": [
-          "57.144.220.1"
+          "57.144.204.1"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -1419,7 +1419,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:1:face:b00c:0:25de"
+          "2a03:2880:f366:1:face:b00c:0:25de"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2281,7 +2281,7 @@
     "ftl-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2289,7 +2289,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2299,7 +2299,7 @@
     "ftl.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2307,7 +2307,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2415,7 +2415,7 @@
     "g-fallback.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.33"
+          "57.144.21.33"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2423,7 +2423,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:121:face:b00c:0:7260"
+          "2a03:2880:f309:121:face:b00c:0:7260"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2433,7 +2433,7 @@
     "g.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.33"
+          "57.144.205.33"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2441,7 +2441,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:121:face:b00c:0:7260"
+          "2a03:2880:f366:121:face:b00c:0:7260"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2465,15 +2465,15 @@
     "graph.facebook.com": {
       "A": {
         "ips": [
-          "57.144.220.141"
+          "157.240.254.12"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 60
+        "ttl": 37
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:8d:face:b00c:0:2"
+          "2a03:2880:f366:8d:face:b00c:0:2"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2483,7 +2483,7 @@
     "graph.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2491,7 +2491,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2501,7 +2501,7 @@
     "graph.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2509,7 +2509,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2519,7 +2519,7 @@
     "kaios-fallback.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2527,7 +2527,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2537,7 +2537,7 @@
     "lerecords-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.216.128"
+          "57.144.20.128"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2545,7 +2545,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:80:face:b00c:0:3"
+          "2a03:2880:f309:80:face:b00c:0:3"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2555,7 +2555,7 @@
     "lerecords.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.220.128"
+          "57.144.204.128"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2563,7 +2563,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:80:face:b00c:0:3"
+          "2a03:2880:f366:80:face:b00c:0:3"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2573,7 +2573,7 @@
     "lerequest-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.150"
+          "57.144.21.150"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2581,7 +2581,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:196:face:b00c:0:69e0"
+          "2a03:2880:f309:196:face:b00c:0:69e0"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2591,7 +2591,7 @@
     "lerequest-lookaside-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.150"
+          "57.144.21.150"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2599,7 +2599,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:196:face:b00c:0:69e0"
+          "2a03:2880:f309:196:face:b00c:0:69e0"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2609,7 +2609,7 @@
     "lerequest-lookaside.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.150"
+          "57.144.205.150"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2617,7 +2617,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:196:face:b00c:0:69e0"
+          "2a03:2880:f366:196:face:b00c:0:69e0"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2627,7 +2627,7 @@
     "lerequest.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.150"
+          "57.144.205.150"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2635,7 +2635,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:196:face:b00c:0:69e0"
+          "2a03:2880:f366:196:face:b00c:0:69e0"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2645,7 +2645,7 @@
     "lookaside.fbsbx.com": {
       "A": {
         "ips": [
-          "57.144.220.128"
+          "57.144.204.128"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2653,7 +2653,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:80:face:b00c:0:3"
+          "2a03:2880:f366:80:face:b00c:0:3"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2805,7 +2805,7 @@
     "media-bkk.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.145.11.32"
+          "57.145.19.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2813,7 +2813,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f389:120:face:b00c:0:167"
+          "2a03:2880:f385:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -2849,7 +2849,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f317:120:face:b00c:0:167"
+          "2a03:2880:f354:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3013,7 +3013,7 @@
     "media-ccu.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.159.32"
+          "57.144.141.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3031,7 +3031,7 @@
     "media-cdg.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.155.32"
+          "57.144.17.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3271,7 +3271,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f32a:120:face:b00c:0:167"
+          "2a03:2880:f367:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3385,7 +3385,7 @@
     "media-fra.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.245.32"
+          "57.144.249.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3393,7 +3393,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f277:1cd:face:b00c:0:167"
+          "2a03:2880:f37a:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3517,7 +3517,7 @@
     "media-gru.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.171.32"
+          "57.144.233.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3525,7 +3525,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f337:120:face:b00c:0:167"
+          "2a03:2880:f248:1cd:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3597,7 +3597,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f23b:1cf:face:b00c:0:167"
+          "2a03:2880:f23b:c7:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -3651,7 +3651,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f31a:120:face:b00c:0:167"
+          "2a03:2880:f386:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -4269,7 +4269,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f275:1c7:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -4633,7 +4633,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f325:120:face:b00c:0:167"
+          "2a03:2880:f217:c5:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -4839,7 +4839,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2926
       },
       "AAAA": {
         "ips": [
@@ -4871,7 +4871,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2221
       },
       "AAAA": {
         "ips": [
@@ -4977,7 +4977,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -5031,7 +5031,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -5109,7 +5109,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2521
+        "ttl": 3600
       }
     },
     "media.fadl6-1.fna.whatsapp.net": {
@@ -5215,7 +5215,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2220
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -5223,7 +5223,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fagu4-1.fna.whatsapp.net": {
@@ -5269,7 +5269,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2971
       },
       "AAAA": {
         "ips": [
@@ -5399,7 +5399,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -5407,7 +5407,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2445
       }
     },
     "media.falg1-1.fna.whatsapp.net": {
@@ -5445,7 +5445,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2599
       },
       "AAAA": {
         "ips": [
@@ -5453,7 +5453,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.famd7-1.fna.whatsapp.net": {
@@ -5495,7 +5495,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [],
@@ -5597,7 +5597,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -5673,7 +5673,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3402
+        "ttl": 3600
       }
     },
     "media.fasu2-1.fna.whatsapp.net": {
@@ -5751,7 +5751,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3298
       },
       "AAAA": {
         "ips": [
@@ -5777,7 +5777,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3408
+        "ttl": 3600
       }
     },
     "media.fatf2-1.fna.whatsapp.net": {
@@ -5855,7 +5855,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3527
       },
       "AAAA": {
         "ips": [
@@ -5915,7 +5915,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 4
+        "ttl": 3600
       }
     },
     "media.fbah2-1.fna.whatsapp.net": {
@@ -5993,7 +5993,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1488
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -6011,7 +6011,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2900
       },
       "AAAA": {
         "ips": [],
@@ -6089,7 +6089,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -6097,7 +6097,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1102
       }
     },
     "media.fbda2-1.fna.whatsapp.net": {
@@ -6141,7 +6141,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3322
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -6363,7 +6363,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1132
       }
     },
     "media.fbel4-1.fna.whatsapp.net": {
@@ -6405,7 +6405,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2976
       },
       "AAAA": {
         "ips": [
@@ -6441,7 +6441,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2054
       },
       "AAAA": {
         "ips": [
@@ -6675,7 +6675,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2243
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -6725,7 +6725,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1858
+        "ttl": 3163
       },
       "AAAA": {
         "ips": [
@@ -6751,7 +6751,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3424
       }
     },
     "media.fbis1-1.fna.whatsapp.net": {
@@ -6837,7 +6837,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3190
+        "ttl": 2930
       },
       "AAAA": {
         "ips": [
@@ -6923,7 +6923,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2041
       },
       "AAAA": {
         "ips": [
@@ -7013,7 +7013,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 189
       },
       "AAAA": {
         "ips": [
@@ -7049,7 +7049,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2425
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -7085,7 +7085,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [],
@@ -7163,7 +7163,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fbkk9-2.fna.whatsapp.net": {
@@ -7191,7 +7191,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2477
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -7207,7 +7207,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3216
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -7257,7 +7257,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3591
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -7307,7 +7307,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3567
       },
       "AAAA": {
         "ips": [
@@ -7315,7 +7315,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3214
       }
     },
     "media.fbog15-1.fna.whatsapp.net": {
@@ -7387,7 +7387,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1446
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -7453,7 +7453,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1686
       },
       "AAAA": {
         "ips": [],
@@ -7487,7 +7487,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3502
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -7495,7 +7495,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2802
+        "ttl": 3600
       }
     },
     "media.fbom8-1.fna.whatsapp.net": {
@@ -7559,7 +7559,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 225
       }
     },
     "media.fbsb6-1.fna.whatsapp.net": {
@@ -7577,7 +7577,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fbsb7-1.fna.whatsapp.net": {
@@ -7831,7 +7831,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fcag1-1.fna.whatsapp.net": {
@@ -7933,7 +7933,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2702
       },
       "AAAA": {
         "ips": [
@@ -7973,7 +7973,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fccs4-1.fna.whatsapp.net": {
@@ -8047,7 +8047,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 503
       },
       "AAAA": {
         "ips": [
@@ -8065,7 +8065,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2537
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -8083,7 +8083,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -8143,7 +8143,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3190
       },
       "AAAA": {
         "ips": [
@@ -8151,7 +8151,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 428
       }
     },
     "media.fcgh15-1.fna.whatsapp.net": {
@@ -8161,7 +8161,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1737
       },
       "AAAA": {
         "ips": [
@@ -8223,7 +8223,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fcgh5-1.fna.whatsapp.net": {
@@ -8233,7 +8233,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -8241,7 +8241,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1997
       }
     },
     "media.fcgh9-1.fna.whatsapp.net": {
@@ -8269,7 +8269,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1953
+        "ttl": 1103
       },
       "AAAA": {
         "ips": [
@@ -8277,7 +8277,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3194
+        "ttl": 3600
       }
     },
     "media.fcgk12-1.fna.whatsapp.net": {
@@ -8287,7 +8287,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1677
       },
       "AAAA": {
         "ips": [
@@ -8355,7 +8355,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -8433,7 +8433,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -8469,7 +8469,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3555
       },
       "AAAA": {
         "ips": [
@@ -8477,7 +8477,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2957
+        "ttl": 3600
       }
     },
     "media.fcgp7-1.fna.whatsapp.net": {
@@ -8487,7 +8487,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1193
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -8505,7 +8505,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -8559,7 +8559,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2654
       },
       "AAAA": {
         "ips": [],
@@ -8607,7 +8607,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1273
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -8637,7 +8637,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -8669,7 +8669,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3440
+        "ttl": 3189
       },
       "AAAA": {
         "ips": [
@@ -8767,7 +8767,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fcmb8-1.fna.whatsapp.net": {
@@ -8785,7 +8785,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fcmb9-1.fna.whatsapp.net": {
@@ -8835,7 +8835,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 434
+        "ttl": 3600
       }
     },
     "media.fcnf1-1.fna.whatsapp.net": {
@@ -8845,7 +8845,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3304
       },
       "AAAA": {
         "ips": [
@@ -8941,7 +8941,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fcor3-1.fna.whatsapp.net": {
@@ -8951,7 +8951,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 260
       },
       "AAAA": {
         "ips": [
@@ -9055,7 +9055,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3231
       },
       "AAAA": {
         "ips": [
@@ -9203,7 +9203,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -9239,7 +9239,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2689
+        "ttl": 1381
       },
       "AAAA": {
         "ips": [
@@ -9247,7 +9247,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 809
+        "ttl": 2921
       }
     },
     "media.fcue3-1.fna.whatsapp.net": {
@@ -9271,7 +9271,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3328
+        "ttl": 2033
       },
       "AAAA": {
         "ips": [
@@ -9279,7 +9279,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1389
+        "ttl": 3600
       }
     },
     "media.fcxh1-1.fna.whatsapp.net": {
@@ -9321,7 +9321,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2464
+        "ttl": 2812
       },
       "AAAA": {
         "ips": [
@@ -9549,7 +9549,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1127
       },
       "AAAA": {
         "ips": [],
@@ -9565,7 +9565,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2608
       },
       "AAAA": {
         "ips": [],
@@ -9581,7 +9581,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1563
       },
       "AAAA": {
         "ips": [
@@ -9599,7 +9599,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2304
       },
       "AAAA": {
         "ips": [
@@ -9675,7 +9675,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1810
       }
     },
     "media.fdel4-1.fna.whatsapp.net": {
@@ -9713,7 +9713,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1217
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -9809,7 +9809,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2572
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -9817,7 +9817,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1281
+        "ttl": 3600
       }
     },
     "media.fdkr1-1.fna.whatsapp.net": {
@@ -9855,7 +9855,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3564
+        "ttl": 2921
       },
       "AAAA": {
         "ips": [],
@@ -9903,7 +9903,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -10045,7 +10045,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1689
       },
       "AAAA": {
         "ips": [
@@ -10229,7 +10229,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2934
       },
       "AAAA": {
         "ips": [],
@@ -10261,7 +10261,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1941
+        "ttl": 1816
       },
       "AAAA": {
         "ips": [],
@@ -10345,7 +10345,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fecn3-1.fna.whatsapp.net": {
@@ -10387,7 +10387,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3542
       },
       "AAAA": {
         "ips": [
@@ -10423,7 +10423,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3451
       },
       "AAAA": {
         "ips": [
@@ -10463,7 +10463,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2677
+        "ttl": 3600
       }
     },
     "media.ferm1-1.fna.whatsapp.net": {
@@ -10491,7 +10491,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2603
       },
       "AAAA": {
         "ips": [
@@ -10509,7 +10509,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -10517,7 +10517,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3526
+        "ttl": 3600
       }
     },
     "media.fesb3-1.fna.whatsapp.net": {
@@ -10535,7 +10535,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fesb6-1.fna.whatsapp.net": {
@@ -10655,7 +10655,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2969
       },
       "AAAA": {
         "ips": [
@@ -10673,7 +10673,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [],
@@ -10761,7 +10761,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2378
       },
       "AAAA": {
         "ips": [
@@ -10769,7 +10769,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 880
       }
     },
     "media.ffjr1-2.fna.whatsapp.net": {
@@ -10779,7 +10779,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3540
       },
       "AAAA": {
         "ips": [
@@ -10823,7 +10823,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.ffln5-1.fna.whatsapp.net": {
@@ -10851,7 +10851,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2331
       },
       "AAAA": {
         "ips": [
@@ -10941,7 +10941,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3248
       },
       "AAAA": {
         "ips": [
@@ -11037,7 +11037,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -11087,7 +11087,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3241
       },
       "AAAA": {
         "ips": [
@@ -11119,7 +11119,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1691
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -11137,7 +11137,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2454
       },
       "AAAA": {
         "ips": [
@@ -11181,7 +11181,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.ffuk4-1.fna.whatsapp.net": {
@@ -11191,7 +11191,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3563
       },
       "AAAA": {
         "ips": [
@@ -11255,7 +11255,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1728
       },
       "AAAA": {
         "ips": [
@@ -11273,7 +11273,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2845
+        "ttl": 3141
       },
       "AAAA": {
         "ips": [
@@ -11505,7 +11505,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1848
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -11513,7 +11513,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fgru9-1.fna.whatsapp.net": {
@@ -11541,7 +11541,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1452
       },
       "AAAA": {
         "ips": [
@@ -11549,7 +11549,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3595
+        "ttl": 3600
       }
     },
     "media.fgua2-1.fna.whatsapp.net": {
@@ -11559,7 +11559,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -11605,7 +11605,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3414
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -11613,7 +11613,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3414
+        "ttl": 3600
       }
     },
     "media.fgum2-1.fna.whatsapp.net": {
@@ -11623,7 +11623,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3378
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -11665,7 +11665,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1875
+        "ttl": 3600
       }
     },
     "media.fgvr3-1.fna.whatsapp.net": {
@@ -11739,7 +11739,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2547
       },
       "AAAA": {
         "ips": [
@@ -11747,7 +11747,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2502
       }
     },
     "media.fgye10-2.fna.whatsapp.net": {
@@ -11757,7 +11757,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2559
       },
       "AAAA": {
         "ips": [
@@ -11783,7 +11783,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fgye13-1.fna.whatsapp.net": {
@@ -11801,7 +11801,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 805
+        "ttl": 3600
       }
     },
     "media.fgyn1-1.fna.whatsapp.net": {
@@ -11819,7 +11819,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3088
       }
     },
     "media.fgyn4-1.fna.whatsapp.net": {
@@ -11829,7 +11829,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2290
+        "ttl": 3216
       },
       "AAAA": {
         "ips": [
@@ -11957,7 +11957,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2773
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -11993,7 +11993,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -12235,7 +12235,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2231
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -12265,7 +12265,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3476
       },
       "AAAA": {
         "ips": [
@@ -12283,7 +12283,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3267
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -12319,7 +12319,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3409
+        "ttl": 214
       },
       "AAAA": {
         "ips": [
@@ -12353,7 +12353,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3314
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -12547,7 +12547,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 846
       },
       "AAAA": {
         "ips": [],
@@ -12649,7 +12649,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3424
       }
     },
     "media.fiom1-1.fna.whatsapp.net": {
@@ -12673,7 +12673,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1732
       },
       "AAAA": {
         "ips": [
@@ -12705,7 +12705,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3424
       },
       "AAAA": {
         "ips": [
@@ -12809,7 +12809,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1770
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -12817,7 +12817,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3529
       }
     },
     "media.fist6-2.fna.whatsapp.net": {
@@ -12933,7 +12933,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3232
+        "ttl": 3214
       },
       "AAAA": {
         "ips": [
@@ -12941,7 +12941,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3232
+        "ttl": 3214
       }
     },
     "media.fixc4-1.fna.whatsapp.net": {
@@ -13009,7 +13009,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fjdf1-1.fna.whatsapp.net": {
@@ -13131,7 +13131,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 318
       }
     },
     "media.fjog1-1.fna.whatsapp.net": {
@@ -13141,7 +13141,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2974
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -13305,7 +13305,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2542
+        "ttl": 3600
       }
     },
     "media.fkbl1-1.fna.whatsapp.net": {
@@ -13353,7 +13353,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2943
+        "ttl": 3600
       }
     },
     "media.fkgl1-1.fna.whatsapp.net": {
@@ -13377,7 +13377,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [],
@@ -13429,7 +13429,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3217
       },
       "AAAA": {
         "ips": [
@@ -13569,7 +13569,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3457
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -13661,7 +13661,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fktm4-1.fna.whatsapp.net": {
@@ -13761,7 +13761,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fkul12-1.fna.whatsapp.net": {
@@ -13785,7 +13785,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2923
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -13793,7 +13793,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 437
       }
     },
     "media.fkul16-1.fna.whatsapp.net": {
@@ -13803,7 +13803,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1237
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -13881,7 +13881,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1988
       },
       "AAAA": {
         "ips": [
@@ -14011,7 +14011,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1154
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -14063,7 +14063,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1058
       },
       "AAAA": {
         "ips": [
@@ -14081,7 +14081,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1685
       },
       "AAAA": {
         "ips": [
@@ -14131,7 +14131,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3387
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -14251,7 +14251,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.flfw1-1.fna.whatsapp.net": {
@@ -14497,7 +14497,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.flko4-1.fna.whatsapp.net": {
@@ -14507,7 +14507,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3500
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -14515,7 +14515,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3500
+        "ttl": 3600
       }
     },
     "media.fllw1-1.fna.whatsapp.net": {
@@ -14589,7 +14589,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3064
+        "ttl": 2218
       },
       "AAAA": {
         "ips": [],
@@ -14605,7 +14605,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1033
+        "ttl": 2887
       },
       "AAAA": {
         "ips": [],
@@ -14705,7 +14705,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.flun3-1.fna.whatsapp.net": {
@@ -14747,7 +14747,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3216
       },
       "AAAA": {
         "ips": [
@@ -14783,7 +14783,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1153
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -15015,7 +15015,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3298
+        "ttl": 3600
       }
     },
     "media.fmcz1-1.fna.whatsapp.net": {
@@ -15083,7 +15083,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2264
       }
     },
     "media.fmdl1-1.fna.whatsapp.net": {
@@ -15181,7 +15181,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3424
       },
       "AAAA": {
         "ips": [
@@ -15199,7 +15199,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1438
       },
       "AAAA": {
         "ips": [
@@ -15225,7 +15225,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2264
       }
     },
     "media.fmex10-2.fna.whatsapp.net": {
@@ -15235,7 +15235,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2152
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -15253,7 +15253,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3057
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -15271,7 +15271,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2879
       },
       "AAAA": {
         "ips": [
@@ -15289,7 +15289,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3078
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -15307,7 +15307,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2441
+        "ttl": 270
       },
       "AAAA": {
         "ips": [
@@ -15421,7 +15421,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3248
       },
       "AAAA": {
         "ips": [],
@@ -15487,7 +15487,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2605
       },
       "AAAA": {
         "ips": [
@@ -15559,7 +15559,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2440
       },
       "AAAA": {
         "ips": [
@@ -15577,7 +15577,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1125
       },
       "AAAA": {
         "ips": [],
@@ -15647,7 +15647,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3421
       },
       "AAAA": {
         "ips": [
@@ -15665,7 +15665,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3122
       },
       "AAAA": {
         "ips": [
@@ -15673,7 +15673,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fmnl4-1.fna.whatsapp.net": {
@@ -15727,7 +15727,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 913
+        "ttl": 3600
       }
     },
     "media.fmoc1-1.fna.whatsapp.net": {
@@ -15791,7 +15791,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2900
       },
       "AAAA": {
         "ips": [],
@@ -15991,7 +15991,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2165
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -16109,7 +16109,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1156
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [],
@@ -16179,7 +16179,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fnkc1-1.fna.whatsapp.net": {
@@ -16269,7 +16269,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2791
+        "ttl": 436
       },
       "AAAA": {
         "ips": [
@@ -16277,7 +16277,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2712
       }
     },
     "media.fntr6-2.fna.whatsapp.net": {
@@ -16309,7 +16309,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2395
       }
     },
     "media.fnvt3-1.fna.whatsapp.net": {
@@ -16415,7 +16415,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 585
       },
       "AAAA": {
         "ips": [
@@ -16541,7 +16541,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fotp5-1.fna.whatsapp.net": {
@@ -16605,7 +16605,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -16705,7 +16705,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 485
       },
       "AAAA": {
         "ips": [
@@ -16831,7 +16831,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3208
       },
       "AAAA": {
         "ips": [
@@ -16839,7 +16839,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2723
+        "ttl": 3600
       }
     },
     "media.fphl2-3.fna.whatsapp.net": {
@@ -16863,7 +16863,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1387
       },
       "AAAA": {
         "ips": [
@@ -16895,7 +16895,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1646
       },
       "AAAA": {
         "ips": [
@@ -16927,7 +16927,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3106
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -16935,7 +16935,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3106
+        "ttl": 3084
       }
     },
     "media.fplm3-1.fna.whatsapp.net": {
@@ -17005,7 +17005,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2341
       },
       "AAAA": {
         "ips": [
@@ -17041,7 +17041,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3147
       },
       "AAAA": {
         "ips": [
@@ -17175,7 +17175,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2332
       },
       "AAAA": {
         "ips": [],
@@ -17401,7 +17401,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2725
+        "ttl": 3600
       }
     },
     "media.fppb3-1.fna.whatsapp.net": {
@@ -17493,7 +17493,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2951
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -17501,7 +17501,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fprn4-1.fna.whatsapp.net": {
@@ -17527,7 +17527,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1235
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -17559,7 +17559,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3434
       },
       "AAAA": {
         "ips": [
@@ -17663,7 +17663,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2584
       },
       "AAAA": {
         "ips": [
@@ -17721,7 +17721,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fqnv1-1.fna.whatsapp.net": {
@@ -17763,7 +17763,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3084
+        "ttl": 2343
       },
       "AAAA": {
         "ips": [
@@ -17789,7 +17789,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fqro1-1.fna.whatsapp.net": {
@@ -17799,7 +17799,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2620
       },
       "AAAA": {
         "ips": [
@@ -17851,7 +17851,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1679
       },
       "AAAA": {
         "ips": [
@@ -17959,7 +17959,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1866
+        "ttl": 1771
       },
       "AAAA": {
         "ips": [
@@ -18009,7 +18009,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 546
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -18061,7 +18061,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3464
       },
       "AAAA": {
         "ips": [
@@ -18185,7 +18185,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1709
+        "ttl": 240
       },
       "AAAA": {
         "ips": [
@@ -18261,7 +18261,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3424
       }
     },
     "media.fros5-1.fna.whatsapp.net": {
@@ -18343,7 +18343,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1545
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -18387,7 +18387,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3120
+        "ttl": 3600
       }
     },
     "media.fsac1-1.fna.whatsapp.net": {
@@ -18397,7 +18397,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2123
+        "ttl": 1929
       },
       "AAAA": {
         "ips": [
@@ -18405,7 +18405,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2717
+        "ttl": 3600
       }
     },
     "media.fsah2-1.fna.whatsapp.net": {
@@ -18433,7 +18433,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1413
       },
       "AAAA": {
         "ips": [
@@ -18451,7 +18451,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3393
+        "ttl": 2899
       },
       "AAAA": {
         "ips": [
@@ -18459,7 +18459,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 309
+        "ttl": 3600
       }
     },
     "media.fsap5-1.fna.whatsapp.net": {
@@ -18477,7 +18477,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3424
       }
     },
     "media.fsaw1-1.fna.whatsapp.net": {
@@ -18593,7 +18593,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2650
       },
       "AAAA": {
         "ips": [],
@@ -18707,7 +18707,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1691
       },
       "AAAA": {
         "ips": [
@@ -18733,7 +18733,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3180
+        "ttl": 3600
       }
     },
     "media.fsdv1-2.fna.whatsapp.net": {
@@ -18805,7 +18805,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2302
+        "ttl": 3600
       }
     },
     "media.fsgn6-2.fna.whatsapp.net": {
@@ -18815,7 +18815,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 839
       },
       "AAAA": {
         "ips": [
@@ -18833,7 +18833,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1687
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -18851,7 +18851,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2062
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -18937,7 +18937,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fsjk5-1.fna.whatsapp.net": {
@@ -18979,7 +18979,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2594
       },
       "AAAA": {
         "ips": [
@@ -18997,7 +18997,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2019
       },
       "AAAA": {
         "ips": [
@@ -19037,7 +19037,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3202
       }
     },
     "media.fskp2-1.fna.whatsapp.net": {
@@ -19055,7 +19055,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fskp3-1.fna.whatsapp.net": {
@@ -19175,7 +19175,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1843
       },
       "AAAA": {
         "ips": [
@@ -19183,7 +19183,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 209
       }
     },
     "media.fsod8-1.fna.whatsapp.net": {
@@ -19259,7 +19259,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2097
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -19313,7 +19313,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 476
       },
       "AAAA": {
         "ips": [
@@ -19339,7 +19339,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3422
       }
     },
     "media.fssa15-1.fna.whatsapp.net": {
@@ -19457,7 +19457,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fsti4-1.fna.whatsapp.net": {
@@ -19597,7 +19597,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [
@@ -19651,7 +19651,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3506
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -19659,7 +19659,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3506
+        "ttl": 3600
       }
     },
     "media.fsub6-5.fna.whatsapp.net": {
@@ -19677,7 +19677,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2689
+        "ttl": 3600
       }
     },
     "media.fsuv3-1.fna.whatsapp.net": {
@@ -19701,7 +19701,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2046
       },
       "AAAA": {
         "ips": [
@@ -19745,7 +19745,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3499
+        "ttl": 3423
       }
     },
     "media.fsyd4-1.fna.whatsapp.net": {
@@ -19755,7 +19755,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1892
+        "ttl": 2947
       },
       "AAAA": {
         "ips": [
@@ -19781,7 +19781,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1649
+        "ttl": 3600
       }
     },
     "media.fsyq1-1.fna.whatsapp.net": {
@@ -19975,7 +19975,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3551
       },
       "AAAA": {
         "ips": [
@@ -19993,7 +19993,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3537
+        "ttl": 510
       },
       "AAAA": {
         "ips": [
@@ -20001,7 +20001,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3138
+        "ttl": 3600
       }
     },
     "media.ftip3-1.fna.whatsapp.net": {
@@ -20011,7 +20011,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 289
       },
       "AAAA": {
         "ips": [],
@@ -20063,7 +20063,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1268
       },
       "AAAA": {
         "ips": [
@@ -20113,7 +20113,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2701
       },
       "AAAA": {
         "ips": [
@@ -20149,7 +20149,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3013
+        "ttl": 1416
       },
       "AAAA": {
         "ips": [
@@ -20167,7 +20167,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3419
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -20231,7 +20231,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2180
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -20249,7 +20249,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1006
       },
       "AAAA": {
         "ips": [
@@ -20299,7 +20299,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3135
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -20361,7 +20361,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.ftrd4-1.fna.whatsapp.net": {
@@ -20683,7 +20683,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1650
+        "ttl": 3600
       }
     },
     "media.fuio2-1.fna.whatsapp.net": {
@@ -20779,7 +20779,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1317
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -20815,7 +20815,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3566
       },
       "AAAA": {
         "ips": [
@@ -20833,7 +20833,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3138
       },
       "AAAA": {
         "ips": [
@@ -20983,7 +20983,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 578
       },
       "AAAA": {
         "ips": [
@@ -20991,7 +20991,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 437
       }
     },
     "media.fvix2-1.fna.whatsapp.net": {
@@ -21261,7 +21261,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fwzy2-1.fna.whatsapp.net": {
@@ -21397,7 +21397,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       }
     },
     "media.fykz1-2.fna.whatsapp.net": {
@@ -21407,7 +21407,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3427
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -21415,7 +21415,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 40
       }
     },
     "media.fymq1-1.fna.whatsapp.net": {
@@ -21469,7 +21469,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2908
       }
     },
     "media.fyvr4-1.fna.whatsapp.net": {
@@ -21479,7 +21479,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2528
+        "ttl": 2585
       },
       "AAAA": {
         "ips": [
@@ -21497,7 +21497,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1301
       },
       "AAAA": {
         "ips": [
@@ -21505,7 +21505,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 1902
       }
     },
     "media.fyyc3-1.fna.whatsapp.net": {
@@ -21533,7 +21533,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 305
       },
       "AAAA": {
         "ips": [
@@ -21551,7 +21551,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 2541
+        "ttl": 3585
       },
       "AAAA": {
         "ips": [
@@ -21559,7 +21559,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3073
       }
     },
     "media.fyyz2-1.fna.whatsapp.net": {
@@ -21583,7 +21583,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3061
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [
@@ -21601,7 +21601,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 509
       },
       "AAAA": {
         "ips": [
@@ -21744,7 +21744,7 @@
     "mmg-fna.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -21752,7 +21752,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -21776,15 +21776,15 @@
     "mmg.whatsapp.net": {
       "A": {
         "ips": [
-          "157.240.11.53"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1
+        "ttl": 46
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23138,7 +23138,7 @@
     "mmx-ds-fallback.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23146,17 +23146,17 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 57
+        "ttl": 60
       }
     },
     "mmx-ds.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23164,7 +23164,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23174,15 +23174,15 @@
     "mmx-fb.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7
+        "ttl": 60
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23192,7 +23192,7 @@
     "mmx.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23208,7 +23208,7 @@
     "my-od-1.wa.me": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23216,7 +23216,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23226,7 +23226,7 @@
     "my-od-1.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23234,7 +23234,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23244,7 +23244,7 @@
     "my-od-1.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23252,7 +23252,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23262,7 +23262,7 @@
     "my-od-2.wa.me": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23270,7 +23270,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23280,7 +23280,7 @@
     "my-od-2.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23288,7 +23288,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23298,7 +23298,7 @@
     "my-od-3.wa.me": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23306,7 +23306,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23316,7 +23316,7 @@
     "my-od-3.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23324,7 +23324,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23334,7 +23334,7 @@
     "my-od-3.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23342,7 +23342,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23352,7 +23352,7 @@
     "my-od-4.wa.me": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23360,7 +23360,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23370,7 +23370,7 @@
     "my-od-4.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23378,7 +23378,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23388,7 +23388,7 @@
     "my-od-4.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23396,7 +23396,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23406,7 +23406,7 @@
     "my-od-5.wa.me": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23414,7 +23414,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23424,7 +23424,7 @@
     "my-od-5.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23432,7 +23432,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23442,7 +23442,7 @@
     "my-od-5.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23450,7 +23450,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23460,7 +23460,7 @@
     "my-od.wa.me": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23468,7 +23468,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23478,7 +23478,7 @@
     "my-od.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.149"
+          "57.144.205.149"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23486,7 +23486,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:195:face:b00c:0:4619"
+          "2a03:2880:f366:195:face:b00c:0:4619"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23546,7 +23546,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5644
       },
       "AAAA": {
         "ips": [
@@ -23678,7 +23678,7 @@
     "nw81530a9f1kxhogkgd-gm3dgmbvgq2timrx.snr.whatsapp.net": {
       "A": {
         "ips": [
-          "102.132.103.60"
+          "57.144.83.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23694,7 +23694,7 @@
     "nwd89975cf1kjx33lic-gi2tamjzgq3tsmd.snr.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.179.32"
+          "57.144.247.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23772,25 +23772,7 @@
     "pps-fallback.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.32"
-        ],
-        "resolver": "https://dns.google/resolve",
-        "status": 0,
-        "ttl": 57
-      },
-      "AAAA": {
-        "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
-        ],
-        "resolver": "https://dns.google/resolve",
-        "status": 0,
-        "ttl": 57
-      }
-    },
-    "pps.whatsapp.net": {
-      "A": {
-        "ips": [
-          "57.144.221.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23798,7 +23780,25 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
+        ],
+        "resolver": "https://dns.google/resolve",
+        "status": 0,
+        "ttl": 60
+      }
+    },
+    "pps.whatsapp.net": {
+      "A": {
+        "ips": [
+          "57.144.205.32"
+        ],
+        "resolver": "https://dns.google/resolve",
+        "status": 0,
+        "ttl": 60
+      },
+      "AAAA": {
+        "ips": [
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23808,7 +23808,7 @@
     "privatestats.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23816,11 +23816,11 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 57
+        "ttl": 60
       }
     },
     "qa.fsgn5-3.fna.whatsapp.net": {
@@ -23886,15 +23886,15 @@
     "scontent-fallback.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 57
+        "ttl": 60
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23904,7 +23904,7 @@
     "scontent.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -23912,7 +23912,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -24090,7 +24090,7 @@
     "sonar-fml.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.117.32"
+          "57.144.109.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -24214,7 +24214,7 @@
     "sonar-hbe.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "102.132.103.60"
+          "102.132.97.54"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -24420,7 +24420,7 @@
     "sonar-lhr.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.63.32"
+          "57.144.239.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -24560,7 +24560,7 @@
     "sonar-mnl.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "163.70.130.60"
+          "57.144.185.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -24806,7 +24806,7 @@
     "sonar-sof.cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "157.240.9.53"
+          "157.240.234.60"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -24992,7 +24992,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6166
       },
       "AAAA": {
         "ips": [],
@@ -25192,7 +25192,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -25208,7 +25208,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2956
       },
       "AAAA": {
         "ips": [],
@@ -25224,7 +25224,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 6787
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -25468,7 +25468,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 4177
       },
       "AAAA": {
         "ips": [],
@@ -25750,7 +25750,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -25844,7 +25844,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -25904,7 +25904,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7139
       },
       "AAAA": {
         "ips": [],
@@ -26012,7 +26012,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 5583
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -26028,7 +26028,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -26076,7 +26076,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2388
       },
       "AAAA": {
         "ips": [],
@@ -26122,7 +26122,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -26138,7 +26138,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5963
       },
       "AAAA": {
         "ips": [],
@@ -26246,7 +26246,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -26276,7 +26276,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5653
       },
       "AAAA": {
         "ips": [],
@@ -26368,7 +26368,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 3902
       },
       "AAAA": {
         "ips": [],
@@ -26414,7 +26414,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5089
       },
       "AAAA": {
         "ips": [],
@@ -26674,7 +26674,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -26844,7 +26844,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2935
       },
       "AAAA": {
         "ips": [],
@@ -26860,7 +26860,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 5390
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -26956,7 +26956,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6613
       },
       "AAAA": {
         "ips": [],
@@ -27062,7 +27062,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6877
       },
       "AAAA": {
         "ips": [],
@@ -27126,7 +27126,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2602
       },
       "AAAA": {
         "ips": [],
@@ -27248,7 +27248,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6563
       },
       "AAAA": {
         "ips": [],
@@ -27264,7 +27264,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6842
       },
       "AAAA": {
         "ips": [],
@@ -27444,7 +27444,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2916
       },
       "AAAA": {
         "ips": [],
@@ -27460,7 +27460,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6261
       },
       "AAAA": {
         "ips": [],
@@ -27552,7 +27552,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -27722,7 +27722,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 6538
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -27876,7 +27876,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 4513
       },
       "AAAA": {
         "ips": [],
@@ -27920,7 +27920,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5616
       },
       "AAAA": {
         "ips": [],
@@ -27966,7 +27966,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 4334
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -28030,7 +28030,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -28078,7 +28078,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6636
       },
       "AAAA": {
         "ips": [],
@@ -28094,7 +28094,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6811
       },
       "AAAA": {
         "ips": [],
@@ -28430,7 +28430,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -28476,7 +28476,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -28618,7 +28618,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6495
       },
       "AAAA": {
         "ips": [],
@@ -28704,7 +28704,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 5474
+        "ttl": 5917
       },
       "AAAA": {
         "ips": [],
@@ -28720,7 +28720,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5903
       },
       "AAAA": {
         "ips": [],
@@ -28810,7 +28810,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 4367
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -28950,7 +28950,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5621
       },
       "AAAA": {
         "ips": [],
@@ -28982,7 +28982,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -29062,7 +29062,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 4053
       },
       "AAAA": {
         "ips": [],
@@ -29174,7 +29174,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -29434,7 +29434,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 3223
       },
       "AAAA": {
         "ips": [],
@@ -29450,7 +29450,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -29496,7 +29496,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2975
       },
       "AAAA": {
         "ips": [],
@@ -29528,7 +29528,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -29560,7 +29560,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 544
       },
       "AAAA": {
         "ips": [],
@@ -29682,7 +29682,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6858
       },
       "AAAA": {
         "ips": [],
@@ -29836,7 +29836,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 6076
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -29852,7 +29852,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 6590
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -29956,7 +29956,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6875
       },
       "AAAA": {
         "ips": [],
@@ -29988,7 +29988,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 1603
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -30066,7 +30066,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -30224,7 +30224,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5593
       },
       "AAAA": {
         "ips": [],
@@ -30272,7 +30272,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -30320,7 +30320,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 4407
       },
       "AAAA": {
         "ips": [],
@@ -30368,7 +30368,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -30414,7 +30414,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6259
       },
       "AAAA": {
         "ips": [],
@@ -30446,7 +30446,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5646
       },
       "AAAA": {
         "ips": [],
@@ -30900,7 +30900,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 3508
       },
       "AAAA": {
         "ips": [],
@@ -30946,7 +30946,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5106
       },
       "AAAA": {
         "ips": [],
@@ -31068,7 +31068,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 3818
       },
       "AAAA": {
         "ips": [],
@@ -31470,7 +31470,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 4767
       },
       "AAAA": {
         "ips": [],
@@ -31518,7 +31518,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7194
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -31534,7 +31534,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 6883
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -31708,7 +31708,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 557
       },
       "AAAA": {
         "ips": [],
@@ -31860,7 +31860,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -32028,7 +32028,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6495
       },
       "AAAA": {
         "ips": [],
@@ -32044,7 +32044,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6845
       },
       "AAAA": {
         "ips": [],
@@ -32166,7 +32166,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6258
       },
       "AAAA": {
         "ips": [],
@@ -32182,7 +32182,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2718
       },
       "AAAA": {
         "ips": [],
@@ -32640,7 +32640,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 5399
       },
       "AAAA": {
         "ips": [],
@@ -32758,7 +32758,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7021
       },
       "AAAA": {
         "ips": [],
@@ -32806,7 +32806,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -32886,7 +32886,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 6132
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -33116,7 +33116,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 4714
       },
       "AAAA": {
         "ips": [],
@@ -33164,7 +33164,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 470
       },
       "AAAA": {
         "ips": [],
@@ -33224,7 +33224,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6247
       },
       "AAAA": {
         "ips": [],
@@ -33272,7 +33272,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7102
       },
       "AAAA": {
         "ips": [],
@@ -33288,7 +33288,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 3207
       },
       "AAAA": {
         "ips": [],
@@ -33350,7 +33350,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 1162
       },
       "AAAA": {
         "ips": [],
@@ -33366,7 +33366,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -33398,7 +33398,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -33428,7 +33428,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6318
       },
       "AAAA": {
         "ips": [],
@@ -33444,7 +33444,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2918
       },
       "AAAA": {
         "ips": [],
@@ -33674,7 +33674,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6272
       },
       "AAAA": {
         "ips": [],
@@ -33754,7 +33754,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6843
       },
       "AAAA": {
         "ips": [],
@@ -33864,7 +33864,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2036
       },
       "AAAA": {
         "ips": [],
@@ -33912,7 +33912,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7023
       },
       "AAAA": {
         "ips": [],
@@ -34020,7 +34020,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 4948
+        "ttl": 7200
       },
       "AAAA": {
         "ips": [],
@@ -34158,7 +34158,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 7024
       },
       "AAAA": {
         "ips": [],
@@ -34190,7 +34190,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 6300
       },
       "AAAA": {
         "ips": [],
@@ -34252,7 +34252,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 3608
       },
       "AAAA": {
         "ips": [],
@@ -34378,7 +34378,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 2932
       },
       "AAAA": {
         "ips": [],
@@ -34426,7 +34426,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 7200
+        "ttl": 3899
       },
       "AAAA": {
         "ips": [],
@@ -34532,7 +34532,7 @@
     "static-fallback.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34540,7 +34540,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34550,7 +34550,7 @@
     "static.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34558,7 +34558,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34596,7 +34596,7 @@
     "test-web-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34604,7 +34604,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34614,7 +34614,7 @@
     "test-web.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34622,7 +34622,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34738,7 +34738,7 @@
     "v-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34746,7 +34746,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34756,7 +34756,7 @@
     "v-k-fallback.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34764,7 +34764,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34774,7 +34774,7 @@
     "v-k.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34782,7 +34782,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34792,7 +34792,7 @@
     "v.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34800,7 +34800,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34810,7 +34810,7 @@
     "v.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34818,7 +34818,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -34854,7 +34854,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 6718
+        "ttl": 7200
       }
     },
     "w0.whatsapp.com": {
@@ -34930,7 +34930,7 @@
     "w257381631-ge2tsnbugy4tsmrx.snr.whatsapp.net": {
       "A": {
         "ips": [
-          "157.240.244.60"
+          "57.145.1.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35002,7 +35002,7 @@
     "w4e3801a91-guydgmjsgi4dcnb.snr.whatsapp.net": {
       "A": {
         "ips": [
-          "157.240.24.60"
+          "57.144.249.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35088,7 +35088,7 @@
     "wa.me": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35096,7 +35096,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35106,7 +35106,7 @@
     "wa9842a181-ha4tonzvha4dmob.snr.whatsapp.net": {
       "A": {
         "ips": [
-          "31.13.72.52"
+          "57.144.105.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35136,7 +35136,7 @@
     "web-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35144,7 +35144,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35168,25 +35168,7 @@
     "web.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
-        ],
-        "resolver": "https://dns.google/resolve",
-        "status": 0,
-        "ttl": 55
-      },
-      "AAAA": {
-        "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
-        ],
-        "resolver": "https://dns.google/resolve",
-        "status": 0,
-        "ttl": 55
-      }
-    },
-    "webtp.whatsapp.net": {
-      "A": {
-        "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35194,7 +35176,25 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
+        ],
+        "resolver": "https://dns.google/resolve",
+        "status": 0,
+        "ttl": 60
+      }
+    },
+    "webtp.whatsapp.net": {
+      "A": {
+        "ips": [
+          "57.144.205.32"
+        ],
+        "resolver": "https://dns.google/resolve",
+        "status": 0,
+        "ttl": 60
+      },
+      "AAAA": {
+        "ips": [
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -35678,7 +35678,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3197
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -35796,7 +35796,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3423
       },
       "AAAA": {
         "ips": [],
@@ -35812,7 +35812,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3249
+        "ttl": 3600
       },
       "AAAA": {
         "ips": [],
@@ -35874,7 +35874,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 2074
       },
       "AAAA": {
         "ips": [],
@@ -35904,7 +35904,7 @@
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 3600
+        "ttl": 3374
       },
       "AAAA": {
         "ips": [],
@@ -36100,7 +36100,7 @@
     "whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36108,7 +36108,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36118,7 +36118,7 @@
     "whatsapp.fbsbx.com": {
       "A": {
         "ips": [
-          "57.144.220.141"
+          "57.144.204.141"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36126,7 +36126,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:8d:face:b00c:0:2"
+          "2a03:2880:f366:8d:face:b00c:0:2"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36136,7 +36136,7 @@
     "whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36144,7 +36144,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36168,7 +36168,7 @@
     "www-cdn.whatsapp.net": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36176,7 +36176,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36186,7 +36186,7 @@
     "www-fallback.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.217.32"
+          "57.144.21.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36194,7 +36194,7 @@
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36c:120:face:b00c:0:167"
+          "2a03:2880:f309:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36246,15 +36246,15 @@
     "www.whatsapp.com": {
       "A": {
         "ips": [
-          "57.144.221.32"
+          "57.144.205.32"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
-        "ttl": 58
+        "ttl": 60
       },
       "AAAA": {
         "ips": [
-          "2a03:2880:f36e:120:face:b00c:0:167"
+          "2a03:2880:f366:120:face:b00c:0:167"
         ],
         "resolver": "https://dns.google/resolve",
         "status": 0,
@@ -36291,12 +36291,12 @@
     }
   },
   "summary": {
-    "checked_at": "2026-11-22T00:23:17.748165+00:00",
+    "checked_at": "2026-11-23T07:31:28.399506+00:00",
     "failed_questions": 0,
     "fallback_answers": 0,
     "hosts": 2269,
-    "ips": 1882,
-    "ipv4": 1175,
+    "ips": 1885,
+    "ipv4": 1178,
     "ipv6": 707,
     "questions": 4538,
     "resolved_hosts": 1462,
