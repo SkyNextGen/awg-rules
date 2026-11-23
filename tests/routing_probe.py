@@ -1,4 +1,3 @@
-Attempting to perform the InitializeDefaultDrives operation on the 'FileSystem' provider failed.
 """Exercise the generated SRS with real TCP/UDP traffic, entirely on loopback."""
 import argparse
 from contextlib import ExitStack
