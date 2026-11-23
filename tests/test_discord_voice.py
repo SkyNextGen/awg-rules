@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 
 sys.path.insert(0, str(Path(__file__).parents[1] / 'src'))
 import build as b
-from check_itdog import check_publication, publication_warnings
+from check_itdog import API, RUNS_URL, check_publication, publication_warnings as upstream_warnings
 from routing_rules import scoped_rules, unrestricted
 
 UPSTREAM = {'version': 3, 'rules': [
@@ -168,16 +168,20 @@ class CustomDiscordVoice(unittest.TestCase):
 
 
 class UpstreamReadiness(unittest.TestCase):
+    @staticmethod
+    def publication_warnings(runs, now):
+        return upstream_warnings(runs, now, lambda run, name, at: datetime.fromisoformat(run['updated_at']))
+
     def test_previous_week_success_survives_a_failed_new_publication(self):
         now = datetime(2026, 11, 17, 2, 57, tzinfo=timezone.utc)
         previous = [dict(path='.github/workflows/' + name, event='schedule', head_branch='main',
                          created_at='2026-11-09T17:18:16Z', updated_at='2026-11-09T17:18:56Z',
-                         status='completed', conclusion='success')
-                    for name in ('create-lists.yml', 'create-subnets.yml')]
+                         status='completed', conclusion='success', id=i)
+                    for i, name in enumerate(('create-lists.yml', 'create-subnets.yml'), 1)]
         failed = dict(previous[1], created_at='2026-11-16T17:02:00Z',
                       updated_at='2026-11-16T17:03:00Z', conclusion='failure')
-        self.assertEqual(len(publication_warnings(previous + [failed], now)), 2)
-        warnings = publication_warnings(previous + [failed], datetime(2026, 11, 18, tzinfo=timezone.utc))
+        self.assertEqual(len(self.publication_warnings(previous + [failed], now)), 2)
+        warnings = self.publication_warnings(previous + [failed], datetime(2026, 11, 18, tzinfo=timezone.utc))
         self.assertEqual(len(warnings), 2)
         self.assertTrue(all('8 дней 6 ч 41 мин назад' in message for message in warnings))
 
@@ -185,31 +189,41 @@ class UpstreamReadiness(unittest.TestCase):
         now = datetime(2026, 10, 5, 20, 17, tzinfo=timezone.utc)
         runs = [dict(path='.github/workflows/' + p, event='schedule', head_branch='main',
                      created_at='2026-10-05T17:18:16Z', updated_at='2026-10-05T17:18:56Z',
-                     status='completed', conclusion='success')
-                for p in ('create-lists.yml', 'create-subnets.yml')]
-        self.assertEqual(publication_warnings(runs, now), [])
+                     status='completed', conclusion='success', id=i)
+                for i, p in enumerate(('create-lists.yml', 'create-subnets.yml'), 1)]
+        self.assertEqual(self.publication_warnings(runs, now), [])
         for field, value in (('conclusion', 'failure'), ('status', 'in_progress'),
                              ('created_at', '2026-09-21T17:18:16Z'),
                              ('updated_at', '2026-10-05T20:16:56Z')):
             changed = copy.deepcopy(runs)
             changed[1][field] = value
-            self.assertEqual(len(publication_warnings(changed, now)), 1)
-        self.assertEqual(len(publication_warnings(runs[:1], now)), 1)
+            self.assertEqual(len(self.publication_warnings(changed, now)), 1)
+        self.assertEqual(len(self.publication_warnings(runs[:1], now)), 1)
 
-    def test_november_18_failed_subnets_do_not_block_valid_sources(self):
-        now = datetime(2026, 11, 18, 2, 27, 54, tzinfo=timezone.utc)
-        common = dict(event='schedule', head_branch='main', status='completed')
+    def test_november_23_age_uses_job_completion_instead_of_run_metadata(self):
+        now = datetime(2026, 11, 23, 7, 31, tzinfo=timezone.utc)
+        common = dict(event='schedule', head_branch='main', status='completed', run_attempt=1)
         runs = [
-            dict(common, path='.github/workflows/create-lists.yml', conclusion='success',
-                 created_at='2026-11-16T18:48:01Z', updated_at='2026-11-16T18:48:54Z'),
-            dict(common, path='.github/workflows/create-subnets.yml', conclusion='failure',
+            dict(common, path='.github/workflows/create-lists.yml', conclusion='success', id=43932625311,
+                 created_at='2026-11-16T18:48:01Z', updated_at='2026-11-22T19:08:54Z'),
+            dict(common, path='.github/workflows/create-subnets.yml', conclusion='failure', id=43914074669,
                  created_at='2026-11-16T17:02:26Z', updated_at='2026-11-16T17:03:19Z'),
-            dict(common, path='.github/workflows/create-subnets.yml', conclusion='success',
-                 created_at='2026-11-09T17:30:40Z', updated_at='2026-11-09T17:31:15Z')]
-        messages = check_publication(lambda url: json.dumps({'workflow_runs': runs}), now)
-        self.assertEqual(len(messages), 1)
-        self.assertEqual(messages[0], 'Последнее успешное обновление списка IP-подсетей у ITDog было 8 дней 8 ч 56 мин назад. '
-                         'Последняя попытка завершилась ошибкой. Сами списки проверяются отдельно.')
+            dict(common, path='.github/workflows/create-subnets.yml', conclusion='success', id=42665311795,
+                 created_at='2026-11-09T17:30:40Z', updated_at='2026-11-22T19:01:15Z')]
+        responses = {RUNS_URL: {'workflow_runs': runs}}
+        for run, name, start, finish in (
+                (43932625311, 'generate-lists', '2026-11-16T18:48:05Z', '2026-11-16T18:48:54Z'),
+                (42665311795, 'generate-subnet', '2026-11-09T17:30:43Z', '2026-11-09T17:31:15Z')):
+            responses[f'{API}/{run}/attempts/1/jobs'] = {'jobs': [
+                dict(name=name, run_id=run, run_attempt=1, conclusion='success', started_at=start, completed_at=finish)]}
+        messages = check_publication(lambda url: json.dumps(responses[url]), now)
+        self.assertIn('№43932625311 завершилась 16.11.2026, 21:48 МСК (6 дней 12 ч 42 мин назад)', messages[0])
+        self.assertIn('№42665311795 завершилась 09.11.2026, 20:31 МСК (13 дней 13 ч 59 мин назад)', messages[1])
+        self.assertIn('Последняя попытка завершилась ошибкой.', messages[1])
+        responses[f'{API}/42665311795/attempts/1/jobs'] = {'jobs': []}
+        messages = check_publication(lambda url: json.dumps(responses[url]), now)
+        self.assertIn('Не удалось подтвердить дату', messages[1])
+        self.assertNotIn('назад', messages[1])
 
     def test_metadata_outage_or_invalid_response_is_only_a_warning(self):
         now = datetime(2026, 11, 18, tzinfo=timezone.utc)
