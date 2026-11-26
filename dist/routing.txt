@@ -1,8 +1,8 @@
 # AWG Rules — NDMS / DNS-маршруты AWG Manager
 # Источник: тот же проверенный набор, что routing.srs.
-# Сборка UTC: 2026-11-25T03:33:56.570177+00:00
+# Сборка UTC: 2026-11-26T02:52:57.009104+00:00
 # Один домен или CIDR на строку. Все домены включают поддомены; * не нужен.
-# Домены: 4452; IPv4: 1145; IPv6: 790.
+# Домены: 4453; IPv4: 1145; IPv6: 790.
 # Точных правил, преобразованных в суффиксы: 89.
 # Исключены правила с протоколами/портами: 4; keyword/regexp не исполняются.
 # Сети Meta общие для компании, не только для WhatsApp.
@@ -983,6 +983,7 @@ destinationbim.com
 devexpress.com
 deviantart.com
 devin.ai
+devmachine.ai
 devopsassessment.net
 devopsms.com
 devsitetest.how
