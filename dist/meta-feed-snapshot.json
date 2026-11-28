@@ -1,8 +1,8 @@
 {
   "geofeed": {
     "url": "https://www.meta.com/peering/geofeed/",
-    "fetched_at": "2026-11-27T02:54:36.639933+00:00",
-    "expires_at": "2026-12-04T00:00:00+00:00",
+    "fetched_at": "2026-11-28T02:48:13.812913+00:00",
+    "expires_at": "2026-12-05T00:00:00+00:00",
     "prefixes": [
       "31.13.69.0/24",
       "31.13.71.0/24",
@@ -369,8 +369,8 @@
   },
   "geofeed-corp": {
     "url": "https://www.meta.com/peering/geofeed_corp/",
-    "fetched_at": "2026-11-27T02:54:37.095487+00:00",
-    "expires_at": "2026-12-04T00:00:00+00:00",
+    "fetched_at": "2026-11-28T02:48:14.109368+00:00",
+    "expires_at": "2026-12-05T00:00:00+00:00",
     "prefixes": [
       "163.114.128.0/21",
       "163.114.136.0/23",
@@ -529,8 +529,8 @@
   },
   "ITDog-IPv4": {
     "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv4/meta.lst",
-    "fetched_at": "2026-11-27T02:54:37.216196+00:00",
-    "expires_at": "2026-12-05T02:54:37.216196+00:00",
+    "fetched_at": "2026-11-28T02:48:14.321991+00:00",
+    "expires_at": "2026-12-06T02:48:14.321991+00:00",
     "prefixes": [
       "31.13.24.0/21",
       "31.13.64.0/18",
@@ -617,8 +617,8 @@
   },
   "ITDog-IPv6": {
     "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Subnets/IPv6/meta.lst",
-    "fetched_at": "2026-11-27T02:54:37.344206+00:00",
-    "expires_at": "2026-12-05T02:54:37.344206+00:00",
+    "fetched_at": "2026-11-28T02:48:14.435518+00:00",
+    "expires_at": "2026-12-06T02:48:14.435518+00:00",
     "prefixes": [
       "2620:0:1c00::/40",
       "2620:10d:c090::/44",
@@ -666,8 +666,8 @@
   },
   "MetaCubeX": {
     "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/facebook.list",
-    "fetched_at": "2026-11-27T02:54:37.459916+00:00",
-    "expires_at": "2026-12-05T02:54:37.459916+00:00",
+    "fetched_at": "2026-11-28T02:48:14.542507+00:00",
+    "expires_at": "2026-12-06T02:48:14.542507+00:00",
     "prefixes": [
       "31.13.24.0/21",
       "31.13.64.0/18",
@@ -795,8 +795,8 @@
   },
   "Loyalsoldier": {
     "url": "https://raw.githubusercontent.com/Loyalsoldier/geoip/release/text/facebook.txt",
-    "fetched_at": "2026-11-27T02:54:37.596455+00:00",
-    "expires_at": "2026-12-05T02:54:37.596455+00:00",
+    "fetched_at": "2026-11-28T02:48:14.634073+00:00",
+    "expires_at": "2026-12-06T02:48:14.634073+00:00",
     "prefixes": [
       "31.13.24.0/21",
       "31.13.64.0/18",
